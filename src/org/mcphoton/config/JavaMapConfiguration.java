@@ -99,6 +99,7 @@ public class JavaMapConfiguration implements Configuration {
 	}
 	
 	public synchronized void correct(ConfigurationSpecification spec) {
+		// --- Validate current entries ---
 		Iterator<Entry<String, Object>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<String, Object> entry = it.next();
@@ -109,6 +110,15 @@ public class JavaMapConfiguration implements Configuration {
 			} else {
 				it.remove();
 			}
+		}
+		// --- Add missing entries ---
+		Iterator<Entry<String, KeySpecification>> itSpec = spec.asMap().entrySet().iterator();
+		while (itSpec.hasNext()) {
+			Entry<String, KeySpecification> entrySpec = itSpec.next();
+			String key = entrySpec.getKey();
+			KeySpecification keySpec = entrySpec.getValue();
+			if (!map.containsKey(key))
+				map.put(key, keySpec.defaultValue);
 		}
 	}
 	
