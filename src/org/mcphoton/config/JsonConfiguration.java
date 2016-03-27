@@ -4,9 +4,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class JsonConfiguration implements Configuration {
+	
+	public JsonConfiguration() {}
+	
+	public JsonConfiguration(Map<String, Object> data) {
+		// defined by the photon's implementation
+	}
 	
 	@Override
 	public boolean contains(String key) {
@@ -173,7 +180,11 @@ public class JsonConfiguration implements Configuration {
 	@Override
 	public void writeTo(OutputStream out) throws IOException {
 		// defined by the photon's implementation
-		
+	}
+	
+	public String writeToString() throws IOException {
+		return null;
+		// defined by the photon's implementation
 	}
 	
 }
