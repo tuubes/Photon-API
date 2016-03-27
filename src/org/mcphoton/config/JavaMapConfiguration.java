@@ -2,14 +2,19 @@ package org.mcphoton.config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import com.electronwill.utils.TextUtils;
 
 /**
- * An implementation of Configuration that is based on a simple {@code Map<String, Object>}.
+ * An configuration based on a simple {@code Map<String, Object>}.
  * 
  * @author TheElectronWill
  * 		
@@ -17,9 +22,10 @@ import java.util.Optional;
 public class JavaMapConfiguration implements Configuration {
 	
 	protected Map<String, Object> map;
+	protected Optional<Configuration> defaults = Optional.empty();
 	
 	public JavaMapConfiguration() {
-		map = new HashMap<>();
+		map = new HashMap<>(4);
 	}
 	
 	public JavaMapConfiguration(Map<String, Object> map) {
@@ -27,176 +33,209 @@ public class JavaMapConfiguration implements Configuration {
 	}
 	
 	@Override
-	public Map<String, Object> asMap() {
-		return map;
-	}
-	
-	@Override
-	public boolean contains(String key) {
-		// TODO Auto-generated method stub
+	public synchronized boolean contains(String key) {
+		List<CharSequence> parts = new ArrayList<>(1);
+		TextUtils.split(key, '.', parts);
+		
+		if (parts.size() == 1)
+			return map.containsKey(key);
+			
+		Configuration currentTable = this;
+		for (Iterator<CharSequence> it = parts.iterator(); it.hasNext();) {
+			String part = it.next().toString();
+			
+			if (!it.hasNext())// last
+				return currentTable.contains(part);
+				
+			currentTable = currentTable.getTable(part);
+			if (currentTable == null)
+				return false;
+		}
 		return false;
 	}
 	
 	@Override
 	public boolean containsBoolean(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return get(key) instanceof Boolean;
 	}
 	
 	@Override
 	public boolean containsDouble(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return get(key) instanceof Double;
 	}
 	
 	@Override
 	public boolean containsInt(String key) {
-		// TODO Auto-generated method stub
+		Object value = get(key);
+		if (value instanceof Long) {
+			long l = (long) value;
+			return (Integer.MIN_VALUE >= l) && (l <= Integer.MAX_VALUE);
+		}
 		return false;
 	}
 	
 	@Override
 	public boolean containsList(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return get(key) instanceof List;
 	}
 	
 	@Override
 	public boolean containsLong(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return get(key) instanceof Long;
 	}
 	
 	@Override
 	public boolean containsString(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return get(key) instanceof String;
 	}
 	
 	@Override
 	public boolean containsTable(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		Object value = get(key);
+		return (value instanceof Map) || (value instanceof Configuration);
 	}
 	
 	@Override
-	public Object get(String key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public void set(String key, Object value) {
-		// TODO Auto-generated method stub
+	public synchronized Object get(String key) {
+		List<CharSequence> parts = new ArrayList<>(1);
+		TextUtils.split(key, '.', parts);
 		
+		if (parts.size() == 1)
+			return map.get(key);
+			
+		Configuration currentTable = this;
+		for (Iterator<CharSequence> it = parts.iterator(); it.hasNext();) {
+			String part = it.next().toString();
+			
+			if (!it.hasNext())// last
+				return currentTable.get(part);
+				
+			currentTable = currentTable.getTable(part);
+			if (currentTable == null)
+				return null;
+		}
+		
+		return null;
 	}
 	
 	@Override
-	public Optional<Configuration> getDefaults() {
-		// TODO Auto-generated method stub
-		return null;
+	public synchronized void set(String key, Object value) {
+		List<CharSequence> parts = new ArrayList<>(1);
+		TextUtils.split(key, '.', parts);
+		
+		if (parts.size() == 1)
+			map.put(key, value);
+			
+		Configuration currentTable = this;
+		for (Iterator<CharSequence> it = parts.iterator(); it.hasNext();) {
+			String part = it.next().toString();
+			
+			if (!it.hasNext())// last
+				currentTable.set(part, value);
+				
+			Configuration innerTable = currentTable.getTable(part);
+			if (innerTable == null) {
+				innerTable = new TomlConfiguration();
+				currentTable.set(part, innerTable);
+			}
+			currentTable = innerTable;
+		}
+	}
+	
+	@Override
+	public synchronized Optional<Configuration> getDefaults() {
+		return defaults;
 	}
 	
 	@Override
 	public boolean getBoolean(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return (boolean) get(key);
 	}
 	
 	@Override
 	public double getDouble(String key) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (double) get(key);
 	}
 	
 	@Override
 	public int getInt(String key) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) get(key);
 	}
 	
 	@Override
 	public List<?> getList(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List) get(key);
 	}
 	
 	@Override
 	public long getLong(String key) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (long) get(key);
 	}
 	
 	@Override
 	public String getString(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return (String) get(key);
 	}
 	
 	@Override
 	public Configuration getTable(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Configuration) get(key);
 	}
 	
 	@Override
-	public void setDefaults(Configuration config) {
-		// TODO Auto-generated method stub
-		
+	public synchronized void setDefaults(Configuration defaults) {
+		this.defaults = Optional.ofNullable(defaults);
 	}
 	
 	@Override
 	public void setBoolean(String key, boolean value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
 	public void setDouble(String key, double value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
 	public void setInt(String key, int value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
 	public void setList(String key, List<?> value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
 	public void setLong(String key, long value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
 	public void setString(String key, String value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
 	public void setTable(String key, Configuration value) {
-		// TODO Auto-generated method stub
-		
+		set(key, value);
 	}
 	
 	@Override
-	public void readFrom(InputStream in) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public synchronized void readFrom(InputStream in) throws IOException {
+		ObjectInputStream ois = new ObjectInputStream(in);
+		try {
+			this.map = (Map) ois.readObject();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
-	public void writeTo(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public synchronized void writeTo(OutputStream out) throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(out);
+		oos.writeObject(map);
 	}
 	
 }

@@ -4,16 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class TomlConfiguration implements Configuration {
-	
-	@Override
-	public Map<String, Object> asMap() {
-		// defined by the photon's implementation
-		return null;
-	}
 	
 	@Override
 	public boolean contains(String key) {

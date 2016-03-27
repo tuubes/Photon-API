@@ -8,20 +8,22 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import org.mcphoton.config.ConfigurationSpecification.KeySpecification;
 
+/**
+ * A configuration that contains key-value pairs. Configurations are thread-safe.
+ * <h1>Null</h2>
+ * <p>
+ * Null keys or values aren't allowed. Attempting to add a null key or value to a configuration should throw an
+ * Exception.
+ * </p>
+ * 
+ * @author TheElectronWill
+ * 		
+ */
 public interface Configuration {
-	
-	// NOTE: null values are NOT supported
-	
-	/**
-	 * Gets a map that represents this configuration object. Any change to the map is reflected in the configuration,
-	 * and vice-versa.
-	 */
-	Map<String, Object> asMap();
 	
 	boolean contains(String key);
 	
