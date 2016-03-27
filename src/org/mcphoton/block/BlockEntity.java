@@ -1,9 +1,9 @@
 package org.mcphoton.block;
 
+import org.mcphoton.network.ProtocolWriteable;
 import org.mcphoton.world.Location;
-import com.electronwill.streams.Writeable;
 
-public interface BlockEntity extends Writeable {
+public interface BlockEntity extends ProtocolWriteable {
 	
 	Location getLocation();
 	

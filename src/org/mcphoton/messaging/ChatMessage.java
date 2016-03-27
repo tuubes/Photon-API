@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.electronwill.json.Json;
+import org.mcphoton.config.JsonConfiguration;
 
 /**
  * A chat message. In the new chat system it is stored as a JSON object, that's why there's a map in this class. A
@@ -173,11 +173,6 @@ public abstract class ChatMessage {
 		map.put("underlined", underlined);
 	}
 	
-	@Override
-	public String toString() {
-		return Json.dump(map, false);
-	}
-	
 	public void unsetBold() {
 		map.remove("bold");
 	}
@@ -230,4 +225,18 @@ public abstract class ChatMessage {
 	 * of 2 characters: the '§' character and another character. The second character definds the color/style to apply.
 	 */
 	public abstract String toLegacyString();
+	
+	/**
+	 * Returns a JSON representation of this chat message.
+	 */
+	@Override
+	public String toString() {
+		JsonConfiguration conf = new JsonConfiguration(map);
+		try {
+			return conf.writeToString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return super.toString();
+	}
 }

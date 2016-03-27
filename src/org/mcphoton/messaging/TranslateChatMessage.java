@@ -38,4 +38,5 @@ public class TranslateChatMessage extends ChatMessage {
 	public String toLegacyString() {
 		return toString();
 	}
+	
 }

@@ -1,10 +1,10 @@
 package org.mcphoton.entity;
 
+import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.World;
-import com.electronwill.streams.Writeable;
 import com.electronwill.utils.IntConstant;
 
-public abstract class Entity implements Writeable {
+public abstract class Entity {
 	
 	private final IntConstant entityId = new IntConstant();
 	
@@ -45,5 +45,10 @@ public abstract class Entity implements Writeable {
 	public World getWorld() {
 		return world;
 	}
+	
+	/**
+	 * Writes this entity to a ProtocolOutputStream.
+	 */
+	public abstract void writeTo(ProtocolOutputStream out);
 	
 }
