@@ -6,10 +6,13 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 
 public class JsonConfiguration implements Configuration {
 	
-	public JsonConfiguration() {}
+	public JsonConfiguration() {
+		// defined by the photon's implementation
+	}
 	
 	public JsonConfiguration(Map<String, Object> data) {
 		// defined by the photon's implementation
@@ -126,55 +129,46 @@ public class JsonConfiguration implements Configuration {
 	@Override
 	public void setDefaults(Configuration config) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setBoolean(String key, boolean value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setDouble(String key, double value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setInt(String key, int value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setList(String key, List<?> value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setLong(String key, long value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setString(String key, String value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setTable(String key, Configuration value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void readFrom(InputStream in) throws IOException {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
@@ -184,6 +178,16 @@ public class JsonConfiguration implements Configuration {
 	
 	public String writeToString() throws IOException {
 		return null;
+		// defined by the photon's implementation
+	}
+	
+	@Override
+	public void forEach(BiConsumer<? super String, ? super Object> action) {
+		// defined by the photon's implementation
+	}
+	
+	@Override
+	public void correct(ConfigurationSpecification spec) {
 		// defined by the photon's implementation
 	}
 	

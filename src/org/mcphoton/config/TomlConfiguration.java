@@ -4,9 +4,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 
 public class TomlConfiguration implements Configuration {
+	
+	public TomlConfiguration() {
+		// defined by the photon's implementation
+	}
+	
+	public TomlConfiguration(Map<String, Object> map) {
+		// defined by the photon's implementation
+	}
 	
 	@Override
 	public boolean contains(String key) {
@@ -119,61 +129,61 @@ public class TomlConfiguration implements Configuration {
 	@Override
 	public void setDefaults(Configuration config) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setBoolean(String key, boolean value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setDouble(String key, double value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setInt(String key, int value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setList(String key, List<?> value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setLong(String key, long value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setString(String key, String value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void setTable(String key, Configuration value) {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void readFrom(InputStream in) throws IOException {
 		// defined by the photon's implementation
-		
 	}
 	
 	@Override
 	public void writeTo(OutputStream out) throws IOException {
 		// defined by the photon's implementation
-		
+	}
+	
+	@Override
+	public void forEach(BiConsumer<? super String, ? super Object> action) {
+		// defined by the photon's implementation
+	}
+	
+	@Override
+	public void correct(ConfigurationSpecification spec) {
+		// defined by the photon's implementation
 	}
 	
 }

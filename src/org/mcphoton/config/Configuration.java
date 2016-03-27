@@ -6,11 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Optional;
-import org.mcphoton.config.ConfigurationSpecification.KeySpecification;
+import java.util.function.BiConsumer;
 
 /**
  * A configuration that contains key-value pairs. Configurations are thread-safe.
@@ -40,6 +38,8 @@ public interface Configuration {
 	boolean containsString(String key);
 	
 	boolean containsTable(String key);
+	
+	void forEach(BiConsumer<? super String, ? super Object> action);
 	
 	Object get(String key);
 	
@@ -94,55 +94,11 @@ public interface Configuration {
 	}
 	
 	/**
-	 * Corrects this configuration based on the given one. Any key that is in <code>expectedConf</code> but not in this
-	 * one will be added with the value of <code>expectedConf</code>. Any key that is present in this configuration, but
-	 * not present in <code>expectedConf</code> will be removed. And any key that has not the same type as in
-	 * <code>expectedConf</code>, will be set to the value of <code>expectedConf</code>.
-	 * 
-	 * @param expectedConf the expected configuration
-	 */
-	default void correct(Configuration expectedConf) {
-		// Removes all unexpected keys and correct data types:
-		Iterator<Entry<String, Object>> it = asMap().entrySet().iterator();
-		while (it.hasNext()) {
-			Entry<String, Object> currentEntry = it.next();
-			if (!expectedConf.contains(currentEntry.getKey())) {
-				it.remove();
-			} else {
-				Object expectedValue = expectedConf.get(currentEntry.getKey());
-				if (!expectedValue.getClass().isAssignableFrom(currentEntry.getValue().getClass())) {
-					currentEntry.setValue(expectedValue);
-				}
-			}
-		}
-		// Adds all nonexistant expected keys:
-		it = expectedConf.asMap().entrySet().iterator();
-		while (it.hasNext()) {
-			Entry<String, Object> expectedEntry = it.next();
-			if (!this.contains(expectedEntry.getKey())) {
-				this.set(expectedEntry.getKey(), expectedEntry.getValue());
-			}
-		}
-	}
-	
-	/**
 	 * Makes this configuration conform to the given specification. Any invalid value is replaced by the specification's
-	 * default value.
+	 * default value. Any entry present in the configuration but not in the specification is removed.
 	 * 
 	 * @param spec the specification this configuration must conform to
 	 */
-	default void correct(ConfigurationSpecification spec) {
-		Iterator<Entry<String, Object>> it = asMap().entrySet().iterator();
-		while (it.hasNext()) {
-			Entry<String, Object> entry = it.next();
-			Optional<KeySpecification> keySpec = spec.getSpecification(entry.getKey());
-			if (!keySpec.isPresent())
-				it.remove();
-			else {
-				if (!keySpec.get().validator.apply(entry.getValue()))
-					entry.setValue(keySpec.get().defaultValue);
-			}
-		}
-	}
+	void correct(ConfigurationSpecification spec);
 	
 }

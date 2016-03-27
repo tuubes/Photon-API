@@ -1,15 +1,23 @@
 package org.mcphoton.config;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 public class ConfigurationSpecification {
 	
-	protected final Map<String, KeySpecification> map = new HashMap();
+	protected final Map<String, KeySpecification> map = new ConcurrentHashMap<>();
+	
+	public ConfigurationSpecification() {}
+	
+	public ConfigurationSpecification(Configuration model) {
+		model.forEach((key, value) -> {
+			this.define(key, value);
+		});
+	}
 	
 	public Map<String, KeySpecification> asMap() {
 		return map;
@@ -39,7 +47,7 @@ public class ConfigurationSpecification {
 	}
 	
 	public void define(String key, Object defaultValue) {
-		map.put(key, new KeySpecification(defaultValue, (v) -> v != null));
+		map.put(key, new KeySpecification(defaultValue, (v) -> v != null && defaultValue.getClass().isAssignableFrom(v.getClass())));
 	}
 	
 	public void defineBoolean(String key, boolean defaultValue) {

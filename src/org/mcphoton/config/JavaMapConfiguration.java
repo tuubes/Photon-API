@@ -10,7 +10,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.function.BiConsumer;
+import org.mcphoton.config.ConfigurationSpecification.KeySpecification;
 import com.electronwill.utils.TextUtils;
 
 /**
@@ -93,6 +96,25 @@ public class JavaMapConfiguration implements Configuration {
 	public boolean containsTable(String key) {
 		Object value = get(key);
 		return (value instanceof Map) || (value instanceof Configuration);
+	}
+	
+	public synchronized void correct(ConfigurationSpecification spec) {
+		Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<String, Object> entry = it.next();
+			Optional<KeySpecification> keySpec = spec.getSpecification(entry.getKey());
+			if (keySpec.isPresent()) {
+				if (!keySpec.get().validator.apply(entry.getValue()))
+					entry.setValue(keySpec.get().defaultValue);
+			} else {
+				it.remove();
+			}
+		}
+	}
+	
+	@Override
+	public synchronized void forEach(BiConsumer<? super String, ? super Object> action) {
+		map.forEach(action);
 	}
 	
 	@Override
