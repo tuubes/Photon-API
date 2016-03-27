@@ -39,31 +39,49 @@ public interface Configuration {
 	
 	boolean containsTable(String key);
 	
+	/**
+	 * Makes this configuration conform to the given specification. Any invalid value is replaced by the specification's
+	 * default value. Any entry present in the configuration but not in the specification is removed. Any missing value
+	 * is added, with the specification's default value.
+	 * 
+	 * @param spec the specification this configuration must conform to
+	 * @return the number of entries modified, added and removed.
+	 */
+	int correct(ConfigurationSpecification spec);
+	
 	void forEach(BiConsumer<? super String, ? super Object> action);
 	
 	Object get(String key);
 	
 	boolean getBoolean(String key);
 	
+	Optional<Configuration> getDefaults();
+	
 	double getDouble(String key);
 	
 	int getInt(String key);
 	
-	long getLong(String key);
-	
 	List<?> getList(String key);
+	
+	long getLong(String key);
 	
 	String getString(String key);
 	
 	Configuration getTable(String key);
 	
-	Optional<Configuration> getDefaults();
+	default void readFrom(File file) throws IOException {
+		try (FileInputStream fis = new FileInputStream(file)) {
+			readFrom(fis);
+		} // fis is closed here
+	}
 	
-	void setDefaults(Configuration config);
+	void readFrom(InputStream in) throws IOException;
 	
 	void set(String key, Object value);
 	
 	void setBoolean(String key, boolean value);
+	
+	void setDefaults(Configuration config);
 	
 	void setDouble(String key, double value);
 	
@@ -77,28 +95,12 @@ public interface Configuration {
 	
 	void setTable(String key, Configuration value);
 	
-	void readFrom(InputStream in) throws IOException;
-	
-	default void readFrom(File file) throws IOException {
-		try (FileInputStream fis = new FileInputStream(file)) {
-			readFrom(fis);
-		} // fis is closed here
-	}
-	
-	void writeTo(OutputStream out) throws IOException;
-	
 	default void writeTo(File file) throws IOException {
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			writeTo(fos);
 		} // fos is closed here
 	}
 	
-	/**
-	 * Makes this configuration conform to the given specification. Any invalid value is replaced by the specification's
-	 * default value. Any entry present in the configuration but not in the specification is removed.
-	 * 
-	 * @param spec the specification this configuration must conform to
-	 */
-	void correct(ConfigurationSpecification spec);
+	void writeTo(OutputStream out) throws IOException;
 	
 }
