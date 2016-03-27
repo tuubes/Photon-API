@@ -1,88 +1,36 @@
 package org.mcphoton.network;
 
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Extensible and not Thread-safe OutputStream that provides methods for writing common data types found in the
- * Minecraft's protocol.
+ * An OutputStream with methods for writing common data types of the Minecraft protocol. A ProtocolOutputStream
+ * automatically increases its size when needed.
  * 
  * @author TheElectronWill
  * 		
  */
-public final class ProtocolOutputStream extends OutputStream {
-	
-	private byte[] buff;
-	private int count = 0;
+public abstract class ProtocolOutputStream extends OutputStream {
 	
 	/**
-	 * Creates a new stream with the initial capacity of 32 bytes.
+	 * Gets the size of this OutputStream.
 	 */
-	public ProtocolOutputStream() {
-		buff = new byte[32];
-	}
+	public abstract int size();
 	
 	/**
-	 * Creates a new stream with the specified initial capacity.
+	 * Gets the current capacity of this OutputStream.
 	 */
-	public ProtocolOutputStream(int initialCapacity) {
-		buff = new byte[initialCapacity];
-	}
+	public abstract int capacity();
 	
 	/**
-	 * Creates a new stream with the specified data.
+	 * Clears this ProtocolOutputStream, that is, sets it size to 0. The capacity does not change.
 	 */
-	public ProtocolOutputStream(byte[] data) {
-		buff = data;
-	}
-	
-	public ByteBuffer asBuffer() {
-		return ByteBuffer.wrap(buff, 0, count);
-	}
-	
-	public int size() {
-		return count;
-	}
-	
-	public int capacity() {
-		return buff.length;
-	}
+	public abstract void clear();
 	
 	/**
-	 * Clears this ProtocolOutputStream, that is, sets it size (internal counter) to 0. The capacity does not change.
+	 * Resets this ProcotolOutputStream, that is, delete the internal data. The capacity will be the default capacity.
 	 */
-	public void clear() {
-		count = 0;
-	}
-	
-	/**
-	 * Resets this ProcotolOutputStream, that is, delete the internal buffer and create a new one with the default
-	 * capacity (32 bytes).
-	 */
-	public void reset() {
-		buff = new byte[32];
-	}
-	
-	/**
-	 * Resets this ProcotolOutputStream, that is, delete the internal buffer and create a new one with the specified
-	 * capacity.
-	 */
-	public void reset(int newCapacity) {
-		buff = new byte[newCapacity];
-	}
-	
-	private void ensureCapacity(int cap) {
-		if (buff.length < cap) {
-			byte[] buff2 = new byte[buff.length * 2];
-			System.arraycopy(buff, 0, buff2, 0, count);
-			buff = buff2;
-		}
-	}
-	
-	private void directWrite(int b) {
-		buff[count++] = (byte) b;
-	}
+	public abstract void reset();
 	
 	@Override
 	public void write(int b) {
@@ -96,42 +44,15 @@ public final class ProtocolOutputStream extends OutputStream {
 		writeByte(b ? 1 : 0);
 	}
 	
-	public void writeByte(int b) {
-		ensureCapacity(buff.length + 1);
-		directWrite(b);
-	}
+	public abstract void writeByte(int b);
 	
-	public void writeShort(int s) {
-		ensureCapacity(buff.length + 2);
-		directWrite(s >> 8);
-		directWrite(s);
-	}
+	public abstract void writeShort(int s);
 	
-	public void writeChar(int c) {
-		ensureCapacity(buff.length + 2);
-		directWrite(c >> 8);
-		directWrite(c);
-	}
+	public abstract void writeChar(int c);
 	
-	public void writeInt(int i) {
-		ensureCapacity(buff.length + 4);
-		directWrite(i >> 24);
-		directWrite(i >> 16);
-		directWrite(i >> 8);
-		directWrite(i);
-	}
+	public abstract void writeInt(int i);
 	
-	public void writeLong(long l) {
-		ensureCapacity(buff.length + 8);
-		directWrite((byte) (l >> 56));
-		directWrite((byte) (l >> 48));
-		directWrite((byte) (l >> 40));
-		directWrite((byte) (l >> 32));
-		directWrite((byte) (l >> 24));
-		directWrite((byte) (l >> 16));
-		directWrite((byte) (l >> 8));
-		directWrite((byte) l);
-	}
+	public abstract void writeLong(long l);
 	
 	public void writeFloat(float f) {
 		writeInt(Float.floatToIntBits(f));
@@ -142,7 +63,7 @@ public final class ProtocolOutputStream extends OutputStream {
 	}
 	
 	/**
-	 * Writes a String with the UTF-8 charset, prefixed with its size (in bytes) as a VarInt.
+	 * Writes a String with the UTF-8 charset, prefixed with its size (in bytes) encoded as a VarInt.
 	 */
 	public void writeString(String s) {
 		byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
@@ -169,26 +90,11 @@ public final class ProtocolOutputStream extends OutputStream {
 	}
 	
 	@Override
-	public void write(byte[] b, int off, int len) {
-		ensureCapacity(buff.length + len);
-		System.arraycopy(b, off, buff, count, len);
-	}
+	public abstract void write(byte[] b, int off, int len);
 	
 	@Override
 	public void write(byte[] b) {
 		write(b, 0, b.length);
 	}
-	
-	/**
-	 * Does nothing.
-	 */
-	@Override
-	public void close() {}
-	
-	/**
-	 * Does nothing.
-	 */
-	@Override
-	public void flush() {}
 	
 }
