@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
- * A network packet that can be sent and received. Implementations must take care of thread-safety and visibility,
- * because
+ * A network packet that can be sent and received.
  * 
  * @author TheElectronWill
  * 		
