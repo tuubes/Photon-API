@@ -1,9 +1,9 @@
 package org.mcphoton.messaging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.electronwill.collections.OpenList;
 import com.electronwill.json.Json;
 
 /**
@@ -47,7 +47,7 @@ public abstract class ChatMessage {
 			throw new IllegalArgumentException("Cannot add a ChatMessage to it's own extras");
 		List<Object> extras = getExtras();
 		if (extras == null) {
-			extras = new OpenList<>();
+			extras = new ArrayList<>();
 			setExtras(extras);
 		}
 		if (extra instanceof ChatMessage) {

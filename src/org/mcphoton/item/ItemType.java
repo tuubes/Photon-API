@@ -1,6 +1,6 @@
 package org.mcphoton.item;
 
-import com.electronwill.concurrent.IntConstant;
+import com.electronwill.utils.IntConstant;
 
 public abstract class ItemType {
 	

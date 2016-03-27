@@ -1,8 +1,8 @@
 package org.mcphoton.entity;
 
 import org.mcphoton.world.World;
-import com.electronwill.concurrent.IntConstant;
 import com.electronwill.streams.Writeable;
+import com.electronwill.utils.IntConstant;
 
 public abstract class Entity implements Writeable {
 	

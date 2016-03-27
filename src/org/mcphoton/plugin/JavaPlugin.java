@@ -4,7 +4,7 @@ import java.io.File;
 import org.mcphoton.Photon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.electronwill.concurrent.Constant;
+import com.electronwill.utils.Constant;
 
 /**
  * Abstract class for every plugin written in Java.

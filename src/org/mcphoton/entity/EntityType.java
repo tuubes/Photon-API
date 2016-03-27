@@ -1,6 +1,6 @@
 package org.mcphoton.entity;
 
-import com.electronwill.concurrent.IntConstant;
+import com.electronwill.utils.IntConstant;
 
 public abstract class EntityType {
 	
