@@ -138,10 +138,13 @@ public interface Configuration extends Map<String, Object> {
 	void forEach(BiConsumer<? super String, ? super Object> action);
 	
 	/**
-	 * Performs the given action for each entry of this configuration which doesn't refer to a Map value. For example,
-	 * if the config is like this: <code>Config = { map = { key1
-	 * = value1, key2 = value2} }</code>, the forEach method will perform an action for "map.key1" and for "map.key2",
-	 * but not for "map" alone. The String passed to the BiConsumer is a compound key.
+	 * Performs the given action for each last-level entry of this configuration, that is, for each entry that doesn't
+	 * refer to a <b>non-empty</b> Map value. The String passed to the BiConsumer is a compound key.
+	 * <p>
+	 * For example, if the config is like this: <code>Config = { map = { key1
+	 * = value1, key2 = value2}, map 2 = {} }</code>, the forEach method will perform an action for "map.key1",
+	 * "map.key2" and "map2", but not for "map".
+	 * </p>
 	 */
 	void deepForEach(BiConsumer<? super String, ? super Object> action);
 	
