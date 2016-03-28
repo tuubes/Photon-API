@@ -16,7 +16,7 @@ import com.electronwill.utils.StringUtils;
  * Base class for Configuration's implementation.
  * 
  * @author TheElectronWill
- *		
+ * 		
  */
 public abstract class BaseConfiguration implements Configuration {
 	
@@ -355,6 +355,11 @@ public abstract class BaseConfiguration implements Configuration {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return "Configuration: " + map.toString();
 	}
 	
 }
