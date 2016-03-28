@@ -1,8 +1,5 @@
 package org.mcphoton.config;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,15 +12,21 @@ import java.util.function.BiConsumer;
 import org.mcphoton.config.ConfigurationSpecification.KeySpecification;
 import com.electronwill.utils.StringUtils;
 
-public class MemoryConfiguration implements Configuration {
+/**
+ * Base class for Configuration's implementation.
+ * 
+ * @author TheElectronWill
+ *		
+ */
+public abstract class BaseConfiguration implements Configuration {
 	
 	protected Map<String, Object> map;
 	
-	public MemoryConfiguration() {
+	public BaseConfiguration() {
 		this.map = new HashMap<>();
 	}
 	
-	public MemoryConfiguration(Map<String, Object> map) {
+	public BaseConfiguration(Map<String, Object> map) {
 		this.map = map;
 	}
 	
@@ -352,16 +355,6 @@ public class MemoryConfiguration implements Configuration {
 			}
 		}
 		return false;
-	}
-	
-	@Override
-	public void readFrom(InputStream in) throws IOException {
-		// TODO Auto-generated method stub
-	}
-	
-	@Override
-	public void writeTo(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
 	}
 	
 }

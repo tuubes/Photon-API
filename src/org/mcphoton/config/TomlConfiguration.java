@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class TomlConfiguration extends MemoryConfiguration {
+public class TomlConfiguration extends BaseConfiguration {
 	
 	public TomlConfiguration() {
 		// defined by the photon's implementation

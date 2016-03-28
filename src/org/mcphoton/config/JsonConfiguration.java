@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class JsonConfiguration extends MemoryConfiguration {
+public class JsonConfiguration extends BaseConfiguration {
 	
 	public JsonConfiguration() {
 		// defined by the photon's implementation
