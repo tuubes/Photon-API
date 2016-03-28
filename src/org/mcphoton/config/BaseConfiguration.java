@@ -46,10 +46,10 @@ public abstract class BaseConfiguration implements Configuration {
 				if (it.hasNext()) {// not the last part: get the inner map
 					Map<String, Object> innerMap = (Map) map.get(part);
 					if (innerMap == null) {
-						innerMap = new HashMap<>();
+						innerMap = new HashMap<>();// create the inner map if needed
 						currentMap.put(part, innerMap);
 					}
-					currentMap = (Map) map.get(part);
+					currentMap = innerMap;
 				} else// last part: get the value
 					return currentMap.put(part, value);
 			}
