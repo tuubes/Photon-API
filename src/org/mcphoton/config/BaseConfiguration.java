@@ -158,10 +158,12 @@ public abstract class BaseConfiguration implements Configuration {
 			Entry<String, Object> entry = it.next();
 			String key = entry.getKey();
 			Object value = entry.getValue();
+			keyParts.addLast(key);
 			if (value instanceof Map && !((Map) value).isEmpty()) {// intermediate level entry
-				keyParts.addLast(key);
-				modCount += correct((Map) value, spec, keyParts, keyBuilder);
-				keyParts.removeLast();
+				Map<String, Object> valueMap = (Map) value;
+				modCount += correct(valueMap, spec, keyParts, keyBuilder);
+				if (valueMap.isEmpty())// empty useless map
+					it.remove();
 			} else {// last-level entry
 				String compoundKey = buildCompoundKeyName(keyParts, keyBuilder);
 				Optional<KeySpecification> optKeySpec = spec.getSpecification(compoundKey);
@@ -176,6 +178,7 @@ public abstract class BaseConfiguration implements Configuration {
 					modCount++;
 				}
 			}
+			keyParts.removeLast();
 		}
 		return modCount;
 	}
