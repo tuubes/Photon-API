@@ -148,7 +148,16 @@ public abstract class BaseConfiguration implements Configuration {
 	
 	@Override
 	public synchronized int correct(ConfigurationSpecification spec) {
-		return correct(map, spec, new LinkedList<>(), new StringBuilder());
+		int modCount = correct(map, spec, new LinkedList<>(), new StringBuilder());
+		for (Entry<String, KeySpecification> entry : spec.map.entrySet()) {
+			String compoundKey = entry.getKey();
+			KeySpecification keySpec = entry.getValue();
+			if (!this.containsKey(compoundKey)) {
+				modCount++;
+				this.put(compoundKey, keySpec.defaultValue);
+			}
+		}
+		return modCount;
 	}
 	
 	protected int correct(Map<String, Object> map, ConfigurationSpecification spec, LinkedList<String> keyParts, StringBuilder keyBuilder) {
