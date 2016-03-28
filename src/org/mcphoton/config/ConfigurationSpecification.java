@@ -1,15 +1,22 @@
 package org.mcphoton.config;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
+/**
+ * Maps keys with their specifications. A ConfigurationSpecification is NOT thread-safe, but it should be safe to read
+ * it with different threads at the same time, provided that they <b>never</b> modify it.
+ * 
+ * @author TheElectronWill
+ * 		
+ */
 public class ConfigurationSpecification {
 	
-	protected final Map<String, KeySpecification> map = new ConcurrentHashMap<>();
+	protected final Map<String, KeySpecification> map = new HashMap<>();
 	
 	public ConfigurationSpecification() {}
 	
@@ -139,7 +146,6 @@ public class ConfigurationSpecification {
 			this.defaultValue = defaultValue;
 			this.validator = validator;
 		}
-		
 	}
 	
 }
