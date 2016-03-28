@@ -45,7 +45,7 @@ public class ConfigurationSpecification {
 	
 	public Optional<Object> getDefaultValue(String key) {
 		KeySpecification vs = map.get(key);
-		return vs == null ? Optional.empty() : Optional.ofNullable(vs.defaultValue);
+		return vs == null ? Optional.empty() : Optional.of(vs.defaultValue);
 	}
 	
 	public Optional<Function<Object, Boolean>> getValidator(String key) {
