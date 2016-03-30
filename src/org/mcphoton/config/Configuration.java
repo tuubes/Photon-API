@@ -6,9 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * A configuration that contains key-value mappings. Configurations are thread-safe.
@@ -39,21 +43,25 @@ public interface Configuration extends Map<String, Object> {
 	void clear();
 	
 	/**
-	 * Checks if this configuration contains a first-level key. This method is different from
-	 * {@link #containsKey(String)}, because it does not support compound values, and because it accepts any Object as a
-	 * parameter.
-	 * 
-	 * @return true if it contains this key
-	 */
-	boolean containsKey(Object key);
-	
-	/**
-	 * Checks if this configuration contains the key.
+	 * {@inheritDoc}
 	 * 
 	 * @param key the key (may be compound)
-	 * @return true if it contains this key
 	 */
-	boolean containsKey(String key);
+	Object compute(String key, BiFunction<? super String, ? super Object, ? extends Object> remappingFunction);
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param key the key (may be compound)
+	 */
+	Object computeIfAbsent(String key, Function<? super String, ? extends Object> mappingFunction);
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param key the key (may be compound)
+	 */
+	Object computeIfPresent(String key, BiFunction<? super String, ? super Object, ? extends Object> remappingFunction);
 	
 	/**
 	 * Checks if the key exists and refers to a boolean value.
@@ -80,6 +88,23 @@ public interface Configuration extends Map<String, Object> {
 	boolean containsInt(String key);
 	
 	/**
+	 * Checks if this configuration contains a first-level key. This method is different from
+	 * {@link #containsKey(String)}, because it does not support compound values, and because it accepts any Object as a
+	 * parameter.
+	 * 
+	 * @return true if it contains this key
+	 */
+	boolean containsKey(Object key);
+	
+	/**
+	 * Checks if this configuration contains the key.
+	 * 
+	 * @param key the key (may be compound)
+	 * @return true if it contains this key
+	 */
+	boolean containsKey(String key);
+	
+	/**
 	 * Checks if the key exists and refers to a List value.
 	 * 
 	 * @param key the key key the key (may be compound)
@@ -96,20 +121,20 @@ public interface Configuration extends Map<String, Object> {
 	boolean containsLong(String key);
 	
 	/**
-	 * Checks if the key exists and refers to a String value.
-	 * 
-	 * @param key the key key the key (may be compound)
-	 * @return true if the key refers to a string
-	 */
-	boolean containsString(String key);
-	
-	/**
 	 * Checks if the key exists and refers to a Map value.
 	 * 
 	 * @param key the key key the key (may be compound)
 	 * @return true if the key refers to a map
 	 */
 	boolean containsMap(String key);
+	
+	/**
+	 * Checks if the key exists and refers to a String value.
+	 * 
+	 * @param key the key key the key (may be compound)
+	 * @return true if the key refers to a string
+	 */
+	boolean containsString(String key);
 	
 	/**
 	 * Checks if this configuration contains a first-level mapping with the specified value. For example, if the
@@ -131,11 +156,17 @@ public interface Configuration extends Map<String, Object> {
 	int correct(ConfigurationSpecification spec);
 	
 	/**
-	 * Performs the given action for each first-level entry of this configuration. For example, if the config is like
-	 * this: <code>Config = { map = { key1
-	 * = value1, key2 = value2} }</code>, the forEach method will perform an action for "map" only, not for its content.
+	 * Returns a Set view of the mappings contained in the first level of this configuration.
+	 * 
+	 * @see {@link Map#entrySet()}
 	 */
-	void forEach(BiConsumer<? super String, ? super Object> action);
+	Set<java.util.Map.Entry<String, Object>> entrySet();
+	
+	/**
+	 * Checks if this configuration is equal to the given object. It returns true if and only if the object is an
+	 * implementation of Map which contains exactly the same key-value pairs as this configuration.
+	 */
+	boolean equals(Object o);
 	
 	/**
 	 * Performs the given action for each last-level entry of this configuration, that is, for each entry that doesn't
@@ -149,10 +180,11 @@ public interface Configuration extends Map<String, Object> {
 	void deepForEach(BiConsumer<? super String, ? super Object> action);
 	
 	/**
-	 * Checks if this configuration is equal to the given object. It returns true if and only if the object is an
-	 * implementation of Map which contains exactly the same key-value pairs as this configuration.
+	 * Performs the given action for each first-level entry of this configuration. For example, if the config is like
+	 * this: <code>Config = { map = { key1
+	 * = value1, key2 = value2} }</code>, the forEach method will perform an action for "map" only, not for its content.
 	 */
-	boolean equals(Object o);
+	void forEach(BiConsumer<? super String, ? super Object> action);
 	
 	/**
 	 * Gets the value mapped to this first-level key. This method is different from {@link #get(String)}, because it
@@ -168,22 +200,6 @@ public interface Configuration extends Map<String, Object> {
 	 *         is null.
 	 */
 	Object get(String key);
-	
-	/**
-	 * Gets the value mapped to this first-level key. This method is different from
-	 * {@link #getOrDefault(String, Object)}, because it does not support compound values, and because it accepts any
-	 * Object as a parameter.
-	 */
-	Object getOrDefault(Object key, Object defaultValue);
-	
-	/**
-	 * Gets the value mapped to this key, or the default one if there is no mapped value.
-	 * 
-	 * @param key key the key (may be compound)
-	 * @param defaultValue the default value to return if there is no mapped value
-	 * @return the mapped value, or the default one if there is no mapped value.
-	 */
-	Object getOrDefault(String key, Object defaultValue);
 	
 	/**
 	 * Gets the boolean value mapped to this key.
@@ -226,14 +242,6 @@ public interface Configuration extends Map<String, Object> {
 	long getLong(String key);
 	
 	/**
-	 * Gets the String value mapped to this key.
-	 * 
-	 * @param key the key (may be compound)
-	 * @return the mapped value, converted to a String.
-	 */
-	String getString(String key);
-	
-	/**
 	 * Gets the Map value mapped to this key.
 	 * 
 	 * @param key the key (may be compound)
@@ -242,11 +250,49 @@ public interface Configuration extends Map<String, Object> {
 	Map<String, Object> getMap(String key);
 	
 	/**
+	 * Gets the value mapped to this first-level key. This method is different from
+	 * {@link #getOrDefault(String, Object)}, because it does not support compound values, and because it accepts any
+	 * Object as a parameter.
+	 */
+	Object getOrDefault(Object key, Object defaultValue);
+	
+	/**
+	 * Gets the value mapped to this key, or the default one if there is no mapped value.
+	 * 
+	 * @param key key the key (may be compound)
+	 * @param defaultValue the default value to return if there is no mapped value
+	 * @return the mapped value, or the default one if there is no mapped value.
+	 */
+	Object getOrDefault(String key, Object defaultValue);
+	
+	/**
+	 * Gets the String value mapped to this key.
+	 * 
+	 * @param key the key (may be compound)
+	 * @return the mapped value, converted to a String.
+	 */
+	String getString(String key);
+	
+	/**
 	 * Checks if this configuration is empty.
 	 * 
 	 * @return true if it is empty, false otherwise
 	 */
 	boolean isEmpty();
+	
+	/**
+	 * Returns a Set view of the keys contained in the first level of this configuration.
+	 * 
+	 * @see {@link Map#keySet()}
+	 */
+	Set<String> keySet();
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param the key (may be compound)
+	 */
+	Object merge(String key, Object value, BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction);
 	
 	/**
 	 * Associates the specified value with the specified key in this configuration. If the configuration previously
@@ -259,48 +305,18 @@ public interface Configuration extends Map<String, Object> {
 	 */
 	Object put(String key, Object value);
 	
-	/**
-	 * Removes the mapping for a first-level key from this configuration. This method is different from
-	 * {@link #remove(String)}, because it does not support compound values, and because it accepts any Object as a
-	 * parameter.
-	 */
-	Object remove(Object key);
+	@Override
+	default void putAll(Map<? extends String, ? extends Object> m) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	/**
-	 * Removes the mapping for a key from this configuration.
+	 * {@inheritDoc}
 	 * 
 	 * @param key the key (may be compound)
-	 * @return the value previously mapped to the key
 	 */
-	Object remove(String key);
-	
-	/**
-	 * Removes the mapping for the specified first-level key from this configuration, only if it is currently mapped to
-	 * the specified value. This method is different from {@link #remove(String, Object)}, because it does not support
-	 * compound values, and because it accepts any Object as a parameter.
-	 * 
-	 * @param key the key (may be compound)
-	 * @param value the value
-	 * @return true if it was removed, false otherwise
-	 */
-	boolean remove(Object key, Object value);
-	
-	/**
-	 * Removes the mapping for the specified key from this configuration, only if it is currently mapped to the
-	 * specified value.
-	 * 
-	 * @param key the key (may be compound)
-	 * @param value the value
-	 * @return true if it was removed, false otherwise
-	 */
-	boolean remove(String key, Object value);
-	
-	/**
-	 * Returns the number of first-level mappings in this configuraiton. For example, if the configuration is like this:
-	 * <code>Config = { map = { key1
-	 * = value1, key2 = value2} }</code>, size() returns 1 because only "map" is in the first level,
-	 */
-	int size();
+	Object putIfAbsent(String key, Object value);
 	
 	/**
 	 * Reads this configuration from a file. The configuration's content is replaced by the parsed content of the file.
@@ -316,6 +332,78 @@ public interface Configuration extends Map<String, Object> {
 	 * the file.
 	 */
 	void readFrom(InputStream in) throws IOException;
+	
+	/**
+	 * Removes the mapping for a first-level key from this configuration. This method is different from
+	 * {@link #remove(String)}, because it does not support compound values, and because it accepts any Object as a
+	 * parameter.
+	 */
+	Object remove(Object key);
+	
+	/**
+	 * Removes the mapping for the specified first-level key from this configuration, only if it is currently mapped to
+	 * the specified value. This method is different from {@link #remove(String, Object)}, because it does not support
+	 * compound values, and because it accepts any Object as a parameter.
+	 * 
+	 * @param key the key (may be compound)
+	 * @param value the value
+	 * @return true if it was removed, false otherwise
+	 */
+	boolean remove(Object key, Object value);
+	
+	/**
+	 * Removes the mapping for a key from this configuration.
+	 * 
+	 * @param key the key (may be compound)
+	 * @return the value previously mapped to the key
+	 */
+	Object remove(String key);
+	
+	/**
+	 * Removes the mapping for the specified key from this configuration, only if it is currently mapped to the
+	 * specified value.
+	 * 
+	 * @param key the key (may be compound)
+	 * @param value the value
+	 * @return true if it was removed, false otherwise
+	 */
+	boolean remove(String key, Object value);
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param key the key (may be compound)
+	 */
+	Object replace(String key, Object value);
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param key the key (may be compound)
+	 */
+	boolean replace(String key, Object oldValue, Object newValue);
+	
+	/**
+	 * Replaces each first-level entry's value with the result of invoking the given function on that entry until all
+	 * entries have been processed or the function throws an exception
+	 * 
+	 * @see {@link Map#replaceAll(BiFunction)}
+	 */
+	void replaceAll(BiFunction<? super String, ? super Object, ? extends Object> function);
+	
+	/**
+	 * Returns the number of first-level mappings in this configuraiton. For example, if the configuration is like this:
+	 * <code>Config = { map = { key1
+	 * = value1, key2 = value2} }</code>, size() returns 1 because only "map" is in the first level,
+	 */
+	int size();
+	
+	/**
+	 * Returns a Collection view of the values contained in the first level of this configuration.
+	 * 
+	 * @see {@link Map#values()}
+	 */
+	Collection<Object> values();
 	
 	/**
 	 * Writes this configuration to a file. The file's content is replaced.
