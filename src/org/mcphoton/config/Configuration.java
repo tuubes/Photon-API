@@ -27,11 +27,6 @@ import java.util.function.Function;
  * "map". <code>Config = { map = { key1
  * = value1, key2 = value2} }</code>
  * </p>
- * <h1>Null</h2>
- * <p>
- * Null keys or values aren't allowed. Attempting to add a null key or value to a configuration should throw an
- * Exception.
- * </p>
  * 
  * @author TheElectronWill
  * 		
