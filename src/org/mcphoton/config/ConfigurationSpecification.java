@@ -8,14 +8,13 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * Maps keys with their specifications. A ConfigurationSpecification is NOT thread-safe, but it
- * should be safe to read it with different threads at the same time, provided that they
- * <b>never</b> modify it.
+ * Maps keys with their specifications. ConfigurationSpecifications are NOT thread-safe, but it should be safe to read
+ * them with different threads at the same time, provided that they <b>never</b> modify it.
  * <h1>How to use</h1>
  * <p>
- * Defines rules for keys' values with the define() methods. Compound keys are accepted, of course.
- * Each last-level key that you want to be valid must be specified, because any unspecified key is
- * removed by {@link Configuration#correct(ConfigurationSpecification)}.
+ * Define rules for keys' values with the define() methods. Compound keys are accepted, of course. Each last-level key
+ * that you want to be valid must be specified, because any unspecified key is removed by
+ * {@link Configuration#correct(ConfigurationSpecification)}.
  * </p>
  * 
  * @author TheElectronWill
