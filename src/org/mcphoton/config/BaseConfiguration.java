@@ -6,9 +6,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import org.mcphoton.config.ConfigurationSpecification.KeySpecification;
 import com.electronwill.utils.StringUtils;
 
@@ -16,7 +19,6 @@ import com.electronwill.utils.StringUtils;
  * Base class for Configuration's implementation.
  * 
  * @author TheElectronWill
- * 		
  */
 public abstract class BaseConfiguration implements Configuration {
 	
@@ -367,6 +369,108 @@ public abstract class BaseConfiguration implements Configuration {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public synchronized Object compute(String key, BiFunction<? super String, ? super Object, ? extends Object> remappingFunction) {
+		// based on default's map implementation:
+		Objects.requireNonNull(remappingFunction);
+		Object oldValue = get(key);
+		Object newValue = remappingFunction.apply(key, oldValue);
+		if (newValue == null) {
+			remove(key);
+			return null;
+		} else {
+			put(key, newValue);
+			return newValue;
+		}
+	}
+	
+	@Override
+	public synchronized Object computeIfAbsent(String key, Function<? super String, ? extends Object> mappingFunction) {
+		// based on default's map implementation
+		Objects.requireNonNull(mappingFunction);
+		Object v;
+		if ((v = get(key)) == null) {
+			Object newValue;
+			if ((newValue = mappingFunction.apply(key)) != null) {
+				put(key, newValue);
+				return newValue;
+			}
+		}
+		return v;
+	}
+	
+	@Override
+	public synchronized Object computeIfPresent(String key,
+			BiFunction<? super String, ? super Object, ? extends Object> remappingFunction) {
+		// based on default's map implementation
+		Objects.requireNonNull(remappingFunction);
+		Object oldValue;
+		if ((oldValue = get(key)) != null) {
+			Object newValue = remappingFunction.apply(key, oldValue);
+			if (newValue != null) {
+				put(key, newValue);
+				return newValue;
+			} else {
+				remove(key);
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+	
+	@Override
+	public synchronized Object merge(String key, Object value,
+			BiFunction<? super Object, ? super Object, ? extends Object> remappingFunction) {
+		// based on default's map implementation
+		Objects.requireNonNull(remappingFunction);
+		Objects.requireNonNull(value);
+		Object oldValue = get(key);
+		Object newValue = (oldValue == null) ? value : remappingFunction.apply(oldValue, value);
+		if (newValue == null) {
+			remove(key);
+		} else {
+			put(key, newValue);
+		}
+		return newValue;
+	}
+	
+	@Override
+	public synchronized Object putIfAbsent(String key, Object value) {
+		// based on default's map implementation
+		Object v = get(key);
+		if (v == null) {
+			v = put(key, value);
+		}
+		return v;
+	}
+	
+	@Override
+	public synchronized Object replace(String key, Object value) {
+		// based on default's map implementation
+		Object curValue;
+		if (((curValue = get(key)) != null) || containsKey(key)) {
+			curValue = put(key, value);
+		}
+		return curValue;
+	}
+	
+	@Override
+	public synchronized boolean replace(String key, Object oldValue, Object newValue) {
+		// based on default's map implementation
+		Object curValue = get(key);
+		if (!Objects.equals(curValue, oldValue) || (curValue == null && !containsKey(key))) {
+			return false;
+		}
+		put(key, newValue);
+		return true;
+	}
+	
+	@Override
+	public synchronized void replaceAll(BiFunction<? super String, ? super Object, ? extends Object> function) {
+		map.replaceAll(function);
 	}
 	
 	@Override
