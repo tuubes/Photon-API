@@ -158,8 +158,8 @@ public interface Configuration extends Map<String, Object> {
 	Set<java.util.Map.Entry<String, Object>> entrySet();
 	
 	/**
-	 * Checks if this configuration is equal to the given object. It returns true if and only if the object is an
-	 * implementation of Map which contains exactly the same key-value pairs as this configuration.
+	 * Checks if this configuration is equal to the given object. Returns true if and only if the object is an
+	 * implementation of Map which is equal to this configuration.
 	 */
 	boolean equals(Object o);
 	
