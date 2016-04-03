@@ -1,2 +1,1 @@
-# Photon-API
-Photon API for plugins
+Photon-API

@@ -4,13 +4,20 @@ import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.World;
 import com.electronwill.utils.IntConstant;
 
+/**
+ * Base class for entites. Entities normally don't need to be thread-safe, because the photon's implementation take care
+ * of this.
+ * 
+ * @author TheElectronWill
+ * 		
+ */
 public abstract class Entity {
 	
 	private final IntConstant entityId = new IntConstant();
 	
-	protected volatile String customName = "";
-	protected volatile double x, y, z;
-	protected volatile World world;
+	protected String customName = "";
+	protected double x, y, z;
+	protected World world;
 	
 	public int getEntityId() {
 		return entityId.get();
