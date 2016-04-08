@@ -1,19 +1,12 @@
 package org.mcphoton.item;
 
-import com.electronwill.utils.IntConstant;
+import org.mcphoton.AbstractType;
 
-public abstract class ItemType {
-	
-	private final IntConstant id = new IntConstant();
-	
-	public int getId() {
-		return id.get();
-	}
-	
-	public void initializeId(int id) {
-		this.id.init(id);
-	}
-	
-	public abstract String getName();
-	
+/**
+ * Defines a type of item.
+ *
+ * @author TheElectronWill
+ */
+public abstract class ItemType extends AbstractType {
+
 }

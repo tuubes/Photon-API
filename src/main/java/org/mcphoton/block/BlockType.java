@@ -1,19 +1,12 @@
 package org.mcphoton.block;
 
-import com.electronwill.utils.IntConstant;
+import org.mcphoton.AbstractType;
 
-public abstract class BlockType {
-	
-	private final IntConstant id = new IntConstant();
-	
-	public int getId() {
-		return id.get();
-	}
-	
-	public void initializeId(int id) {
-		this.id.init(id);
-	}
-	
-	public abstract String getName();
-	
+/**
+ * Defines a type of block.
+ *
+ * @author TheElectronWill
+ */
+public abstract class BlockType extends AbstractType {
+
 }
