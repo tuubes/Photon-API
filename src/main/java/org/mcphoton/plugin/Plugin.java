@@ -20,20 +20,19 @@ public interface Plugin {
 
 	/**
 	 * Gets the plugin's version. The version should follow the principles of
-	 * <a href="http://semver.org/">Semantic
-	 * versioning</a>.
+	 * <a href="http://semver.org/">Semantic versioning</a>.
 	 */
 	String version();
 
 	/**
-	 * Gets the plugin's dependancies.
-	 * <h1>Dependancies format</h1>
-	 * <p>
-	 * The following format is used:
-	 *
-	 * </p>
+	 * Gets the plugin's required dependencies. May return null if there is no dependency.
 	 */
-	String dependancies();
+	String[] requiredDependencies();
+
+	/**
+	 * Gets the plugin's optional dependencies. May return null if there is no dependency.
+	 */
+	String[] optionalDependencies();
 
 	/**
 	 * Gets the directory this plugin may use to store files.
