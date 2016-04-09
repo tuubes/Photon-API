@@ -5,8 +5,7 @@ import org.mcphoton.block.BlockRegistry;
 import org.mcphoton.entity.EntityRegistry;
 import org.mcphoton.event.EventsManager;
 import org.mcphoton.item.ItemRegistry;
-import org.mcphoton.network.PacketRegistry;
-import org.mcphoton.network.PacketService;
+import org.mcphoton.network.PacketsManager;
 import org.mcphoton.plugin.PluginsManager;
 import org.mcphoton.world.BiomeRegistry;
 
@@ -19,7 +18,12 @@ import org.mcphoton.world.BiomeRegistry;
  */
 public final class Photon {
 
-	private Photon() {}
+	private Photon() {
+	}
+
+	public static PacketsManager packetsManager() {
+		return null;
+	}
 
 	public static PluginsManager pluginsManager() {
 		return null;
@@ -45,14 +49,6 @@ public final class Photon {
 		return null;
 	}
 
-	public static PacketRegistry packetRegistry() {
-		return null;
-	}
-
-	public static PacketService packetService() {
-		return null;
-	}
-
 	public static boolean isClient() {
 		return false;
 	}
@@ -62,7 +58,7 @@ public final class Photon {
 	}
 
 	public static String version() {
-		return "0.1.1-alpha";
+		return "0.2.0-alpha";
 	}
 
 	public static String minecraftVersion() {
