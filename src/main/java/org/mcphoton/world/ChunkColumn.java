@@ -17,4 +17,8 @@ public interface ChunkColumn {
 
 	Collection<ChunkSection> getSections();
 
+	int getBiomeId(int x, int z);
+
+	void setBiomeId(int x, int z, int biomeId);
+
 }

@@ -11,8 +11,4 @@ public interface ChunkSection {
 
 	void setBlockId(int x, int z, int blockId);
 
-	int getBiomeId(int x, int z);
-
-	void setBiomeId(int x, int z, int biomeId);
-
 }
