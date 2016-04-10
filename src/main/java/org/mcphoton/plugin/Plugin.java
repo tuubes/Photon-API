@@ -13,12 +13,12 @@ import org.slf4j.Logger;
  * The following conditions may be used:
  * <ul>
  * <li><code>==</code> strictly equal</li>
- * <li><code>!=</code> non equal</li>
+ * <li><code>!=</code> not equal</li>
  * <li><code>~=</code> compatible</li>
- * <li>{@code >=} greater or equal</li>
- * <li>{@code > } strictly greater</li>
- * <li>{@code <=} smaller or equal</li>
- * <li>{@code < } strictly smaller</li>
+ * <li>{@code >=} greater than or equal to</li>
+ * <li>{@code > } strictly greater than</li>
+ * <li>{@code <=} less than or equal to</li>
+ * <li>{@code < } strictly less than</li>
  * </ul>
  * <h2>Version number</h2>
  * This system is based on <a href="http://semver.org/">Semantic Versioning</a>. A version number consists of
@@ -44,13 +44,21 @@ import org.slf4j.Logger;
  * The "compatible" condition allows for any version that is compatible to the specified one according to the
  * semantic versioning. There are two cases:
  * <ul>
- * <li>The major version is 0: in that case, two versions are considered compatible if and only if
- * they have the same supplementary char sequence
- * AND they have the same minor version number
+ * <li>The major version is 0: in that case, a version is compatible with the requirement if and only if:
+ * <ul>
+ * <li>they have the same supplementary char sequence</li>
+ * <li>AND they have the same minor version number</li>
+ * <li>AND the patch version number is greater than or equal to the required one</li>
+ * </ul>
  * </li>
- * <li>The major version isn't 0: in that case, two versions are considered compatible if and only if
- * they have the same supplementary char sequence
- * AND they have the same major version number
+ * <li>The major version isn't 0: in that case, a version is compatible with the requirement if and only if:
+ * <ul>
+ * <li>they have the same supplementary char sequence</li>
+ * <li>AND they have the same major version number</li>
+ * <li>AND the minor version is greater than or equal to the required one</li>
+ * <li>AND, if the minor version is equal to the required one, the patch version is greater than or equal to
+ * the required one</li>
+ * </ul>
  * </li>
  * </ul>
  *
