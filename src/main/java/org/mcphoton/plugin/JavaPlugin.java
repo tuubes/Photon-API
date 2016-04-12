@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public abstract class JavaPlugin implements Plugin {
 
 	protected final File directory = new File(Photon.getPluginsDirectory(), getName());
-	protected final File configFile = new File(directory, "config.yml");
+	protected final File configFile = new File(directory, "config.toml");
 	protected final Logger logger = LoggerFactory.getLogger(getName());
 	private final Constant<PluginLoader> loader = new Constant<>();
 
