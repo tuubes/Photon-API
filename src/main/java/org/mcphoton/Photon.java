@@ -21,31 +21,31 @@ public final class Photon {
 	private Photon() {
 	}
 
-	public static PacketsManager packetsManager() {
+	public static PacketsManager getPacketsManager() {
 		return null;
 	}
 
-	public static PluginsManager pluginsManager() {
+	public static PluginsManager getPluginsManager() {
 		return null;
 	}
 
-	public static EventsManager eventsManager() {
+	public static EventsManager getEventsManager() {
 		return null;
 	}
 
-	public static EntityRegistry entityRegistry() {
+	public static EntityRegistry getEntityRegistry() {
 		return null;
 	}
 
-	public static BlockRegistry blockRegistry() {
+	public static BlockRegistry getBlockRegistry() {
 		return null;
 	}
 
-	public static ItemRegistry itemRegistry() {
+	public static ItemRegistry getItemRegistry() {
 		return null;
 	}
 
-	public static BiomeRegistry biomeRegistry() {
+	public static BiomeRegistry getBiomeRegistry() {
 		return null;
 	}
 
@@ -57,19 +57,19 @@ public final class Photon {
 		return false;
 	}
 
-	public static String version() {
+	public static String getVersion() {
 		return "0.2.0-alpha";
 	}
 
-	public static String minecraftVersion() {
+	public static String getMinecraftVersion() {
 		return "1.9";
 	}
 
-	public static File mainDirectory() {
+	public static File getMainDirectory() {
 		return null;
 	}
 
-	public static File pluginsDirectory() {
+	public static File getPluginsDirectory() {
 		return null;
 	}
 

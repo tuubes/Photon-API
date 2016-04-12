@@ -69,52 +69,52 @@ public interface Plugin {
 	/**
 	 * Gets the plugin's name.
 	 */
-	String name();
+	String getName();
 
 	/**
 	 * Gets the plugin's author(s).
 	 */
-	String author();
+	String getAuthor();
 
 	/**
 	 * Gets the plugin's version. The version should follow the principles of
 	 * <a href="http://semver.org/">Semantic versioning</a>.
 	 */
-	String version();
+	String getVersion();
 
 	/**
 	 * Gets the plugin's required dependencies. May return null if there is no dependency.
 	 *
 	 * @see Plugin the dependency format
 	 */
-	String[] requiredDependencies();
+	String[] getRequiredDependencies();
 
 	/**
 	 * Gets the plugin's optional dependencies. May return null if there is no dependency.
 	 *
 	 * @see Plugin the dependency format
 	 */
-	String[] optionalDependencies();
+	String[] getOptionalDependencies();
 
 	/**
 	 * Gets the directory this plugin may use to store files.
 	 */
-	File directory();
+	File getDirectory();
 
 	/**
 	 * Gets the plugin's main config file.
 	 */
-	File configFile();
+	File getConfigFile();
 
 	/**
 	 * Gets the plugin's logger.
 	 */
-	Logger logger();
+	Logger getLogger();
 
 	/**
 	 * Gets the {@link PluginLoader} that loaded this plugin.
 	 */
-	PluginLoader loader();
+	PluginLoader getLoader();
 
 	/**
 	 * Called when the plugin is loaded, just after its constructor is called.

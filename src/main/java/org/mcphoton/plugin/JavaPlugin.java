@@ -14,29 +14,28 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class JavaPlugin implements Plugin {
 
-	// These fields are private, they are not required by the API and may be deleted at any time.
-	private final File directory = new File(Photon.pluginsDirectory(), name());
-	private final File configFile = new File(directory, "config.yml");
-	private final Logger logger = LoggerFactory.getLogger("plugin." + name());
+	protected final File directory = new File(Photon.getPluginsDirectory(), getName());
+	protected final File configFile = new File(directory, "config.yml");
+	protected final Logger logger = LoggerFactory.getLogger(getName());
 	private final Constant<PluginLoader> loader = new Constant<>();
 
 	@Override
-	public final File directory() {
+	public final File getDirectory() {
 		return directory;
 	}
 
 	@Override
-	public final File configFile() {
+	public final File getConfigFile() {
 		return configFile;
 	}
 
 	@Override
-	public final Logger logger() {
+	public final Logger getLogger() {
 		return logger;
 	}
 
 	@Override
-	public final PluginLoader loader() {
+	public final PluginLoader getLoader() {
 		return loader.get();
 	}
 
@@ -45,12 +44,12 @@ public abstract class JavaPlugin implements Plugin {
 	}
 
 	@Override
-	public String[] requiredDependencies() {
+	public String[] getRequiredDependencies() {
 		return null;
 	}
 
 	@Override
-	public String[] optionalDependencies() {
+	public String[] getOptionalDependencies() {
 		return null;
 	}
 
