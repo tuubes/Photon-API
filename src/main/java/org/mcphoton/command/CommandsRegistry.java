@@ -1,5 +1,6 @@
 package org.mcphoton.command;
 
+import java.util.List;
 import org.mcphoton.plugin.Plugin;
 
 /**
@@ -12,6 +13,8 @@ public interface CommandsRegistry {
 
 	void unregister(Command cmd, Plugin plugin);
 
-	Command get(String cmdName);
+	Command getRegistered(String cmdName);
+
+	List<Command> getAllRegistered(Plugin plugin);
 
 }
