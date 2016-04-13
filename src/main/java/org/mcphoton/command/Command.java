@@ -30,4 +30,9 @@ public interface Command {
 	 */
 	void execute(Object source, String[] args);
 
+	/**
+	 * Gets the name of this command.
+	 */
+	String getName();
+
 }

@@ -13,10 +13,17 @@ import org.apache.commons.cli.ParseException;
  */
 public abstract class AbstractCommand implements Command {
 
+	protected final String name;
 	protected final Options options;
 
-	public AbstractCommand(Options options) {
+	public AbstractCommand(String name, Options options) {
+		this.name = name;
 		this.options = options;
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override
