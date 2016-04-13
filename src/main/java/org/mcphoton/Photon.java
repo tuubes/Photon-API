@@ -2,6 +2,7 @@ package org.mcphoton;
 
 import java.io.File;
 import org.mcphoton.block.BlockRegistry;
+import org.mcphoton.command.CommandsRegistry;
 import org.mcphoton.entity.EntityRegistry;
 import org.mcphoton.event.EventsManager;
 import org.mcphoton.item.ItemRegistry;
@@ -30,6 +31,10 @@ public final class Photon {
 	}
 
 	public static EventsManager getEventsManager() {
+		return null;
+	}
+
+	public static CommandsRegistry getCommandsRegistry() {
 		return null;
 	}
 
