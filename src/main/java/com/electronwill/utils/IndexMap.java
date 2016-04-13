@@ -10,16 +10,14 @@ import java.util.Map;
 
 /**
  * A map implementations that maps integers to values. Values are stored in an array that grows when
- * necessary. IndexMap
- * is a good choice if there are very few gap between keys. It is for example used in the
+ * necessary. IndexMap is a good choice if there are very few gap between keys. It is for example used in the
  * {@link org.photon.packets.PacketRegistry} .
  * <p>
  * About null values: IndexMap does not handle null values. A null value is considered as "no value set".
- * Moreover,
- * putting a <code>null</code> value with <code>put(index, null)</code> does absolutely nothing.
+ * Moreover, putting a <code>null</code> value with <code>put(index, null)</code> does absolutely nothing.
  * </p>
  * <p>
- * <b>This class is NOT Thread-safe!</b>
+ * <b>This class is NOT Thread-safe.</b>
  * </p>
  *
  * @author TheElectronWill
@@ -328,8 +326,7 @@ public final class IndexMap<E> extends AbstractMap<Integer, E> {
 
 	/**
 	 * Associates the specified value with the specified key in this map. If the map previously contained a
-	 * mapping for
-	 * the key, the old value is replaced by the specified value.
+	 * mapping for the key, the old value is replaced by the specified value.
 	 *
 	 * @param key the key
 	 * @param value the associated value
@@ -354,10 +351,8 @@ public final class IndexMap<E> extends AbstractMap<Integer, E> {
 
 	/**
 	 * Removes the mapping for a key from this map if it is present.
-	 *
 	 * Returns the value to which this map previously associated the key, or null if the map contained no
-	 * mapping for
-	 * the key.
+	 * mapping for the key.
 	 *
 	 * @param key the key
 	 * @return the previous value if there is one or null if there is none.
@@ -382,10 +377,8 @@ public final class IndexMap<E> extends AbstractMap<Integer, E> {
 
 	/**
 	 * Removes the mapping for a key from this map if it is present.
-	 *
 	 * Returns the value to which this map previously associated the key, or null if the map contained no
-	 * mapping for
-	 * the key.
+	 * mapping for the key.
 	 *
 	 * @param key the key
 	 * @return the previous value if there is one or null if there is none.
