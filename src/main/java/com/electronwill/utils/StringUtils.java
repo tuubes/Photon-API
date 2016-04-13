@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility class for manipulating Strings. TextUtils is faster than the equivalent methods of the standard Java library.
- * 
+ * Utility class for manipulating Strings. TextUtils is faster than the equivalent methods of the standard
+ * Java library.
+ *
  * @author TheElectronWill
- * 		
+ *
  */
 public final class StringUtils {
-	
+
 	/**
 	 * Removes a character from a String.
-	 * 
+	 *
 	 * @return a new String contaning the given String without the character to remove
 	 */
 	public static String remove(String seq, char toRemove) {
@@ -26,10 +27,10 @@ public final class StringUtils {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Removes several character from a String.
-	 * 
+	 *
 	 * @return a new String contaning the given String without the characters to remove
 	 */
 	public static String remove(String seq, char... toRemove) {
@@ -50,19 +51,20 @@ public final class StringUtils {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
-	 * Splits a String around occurences of a character. The result is similar to {@link String#split(String)}.
+	 * Splits a String around occurences of a character. The result is similar to
+	 * {@link String#split(String)}.
 	 */
 	public static List<String> split(String cs, char sep) {
 		List<String> list = new ArrayList<>(4);
 		split(cs, sep, list);
 		return list;
 	}
-	
+
 	/**
-	 * Splits a String around occurences of a character, and put the result in a List. The result is similar to
-	 * {@link String#split(String)}.
+	 * Splits a String around occurences of a character, and put the result in a List. The result is similar
+	 * to {@link String#split(String)}.
 	 */
 	public static void split(String str, char sep, List<String> list) {
 		int pos0 = 0;
@@ -73,10 +75,12 @@ public final class StringUtils {
 				pos0 = i + 1;
 			}
 		}
-		if (pos0 < str.length())
+		if (pos0 < str.length()) {
 			list.add(str.substring(pos0, str.length()));
+		}
 	}
-	
-	private StringUtils() {}
-	
+
+	private StringUtils() {
+	}
+
 }
