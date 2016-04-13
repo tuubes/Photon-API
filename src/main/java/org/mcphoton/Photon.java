@@ -63,7 +63,7 @@ public final class Photon {
 	}
 
 	public static String getVersion() {
-		return "0.2.0-alpha";
+		return "0.3.0-alpha";
 	}
 
 	public static String getMinecraftVersion() {

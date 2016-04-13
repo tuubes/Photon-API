@@ -1,5 +1,5 @@
 apply plugin: 'java'
-version = '0.2.0'
+version = '0.3.0'
 description 'API of the multi-threaded minecraft server Photon'
 
 sourceCompatibility = '1.8'
