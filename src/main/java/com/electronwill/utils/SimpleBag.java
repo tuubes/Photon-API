@@ -1,18 +1,18 @@
 package com.electronwill.utils;
 
+import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
 /**
  * A reziseable collection based on an array. The delete operation is in constant time because we just move
- * the last
- * element to fill the gap.
+ * the last element to fill the gap.
  *
  * @author TheElectronWill
  * @param <E>
  */
-public class SimpleBag<E> extends Bag<E> {
+public class SimpleBag<E> extends AbstractCollection<E> implements Bag<E> {
 
 	private class BagIterator implements Iterator<E> {
 
@@ -34,10 +34,9 @@ public class SimpleBag<E> extends Bag<E> {
 		}
 
 	}
+	private final int capacityIncrement;
 	private Object[] array;
 	private int size = 0;
-
-	private final int capacityIncrement;
 
 	/**
 	 * Constructs a new Bag with an initial capacity of ten and an increment of 2.
@@ -47,7 +46,7 @@ public class SimpleBag<E> extends Bag<E> {
 	}
 
 	/**
-	 * Creates a new SimpleBag with the given initialCapacity and e default increment of 2.
+	 * Creates a new SimpleBag with the given initialCapacity and a default increment of 2.
 	 *
 	 * @param initialCapacity
 	 */
@@ -86,13 +85,6 @@ public class SimpleBag<E> extends Bag<E> {
 	@Override
 	public void clear() {
 		array = new Object[10];
-	}
-
-	/**
-	 * Compacts this Bag, i.e. reduces its capacity to its size.
-	 */
-	public void compact() {
-		array = Arrays.copyOf(array, size);
 	}
 
 	@Override
