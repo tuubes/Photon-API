@@ -80,6 +80,45 @@ public final class StringUtils {
 		}
 	}
 
+	public static List<String> splitArguments(String str) {
+		List<String> list = new ArrayList<>();
+		splitArguments(str, list);
+		return list;
+	}
+
+	public static void splitArguments(String str, List<String> list) {
+		StringBuilder sb = new StringBuilder();
+		int pos = 0;
+		boolean escape = false, inQuotes = false;
+		while (pos < str.length()) {
+			char ch = str.charAt(pos++);
+			if (escape) {
+				escape = false;
+				sb.append(ch);
+			} else if (ch == '\\') {
+				escape = true;
+			} else if (ch == '"' || ch == '\'') {
+				if (inQuotes) {
+					inQuotes = false;
+					list.add(sb.toString());
+					sb.setLength(0);
+				} else {
+					inQuotes = true;
+				}
+			} else if (ch == ' ' && !inQuotes) {
+				if (sb.length() > 0) {
+					list.add(sb.toString());
+					sb.setLength(0);
+				}
+			} else {
+				sb.append(ch);
+			}
+		}
+		if (sb.length() > 0) {
+			list.add(sb.toString());
+		}
+	}
+
 	private StringUtils() {
 	}
 

@@ -15,10 +15,10 @@ public interface Command {
 	 * Executes this command.
 	 *
 	 * @param source the person or thing that executes this command
-	 * @param argString the string that contains all the characters except the command name
+	 * @param argString the string that contains the command's arguments
 	 */
 	default void execute(Messageable source, String argString) {
-		List<String> parts = StringUtils.split(argString, ' ');
+		List<String> parts = StringUtils.splitArguments(argString);
 		String[] array = new String[parts.size()];
 		execute(source, parts.toArray(array));
 	}
