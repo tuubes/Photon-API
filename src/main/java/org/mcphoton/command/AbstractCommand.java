@@ -5,6 +5,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.mcphoton.messaging.Messageable;
 
 /**
  * Base class for commands.
@@ -27,7 +28,7 @@ public abstract class AbstractCommand implements Command {
 	}
 
 	@Override
-	public void execute(Object source, String[] args) {
+	public void execute(Messageable source, String[] args) {
 		CommandLineParser parser = new DefaultParser();
 		try {
 			CommandLine cmdLine = parser.parse(options, args);
@@ -43,6 +44,6 @@ public abstract class AbstractCommand implements Command {
 	 * @param source the person or thing that executes this command
 	 * @param cmd the CommandLine objet that contains the parsed arguments of this command
 	 */
-	public abstract void execute(Object source, CommandLine cmd);
+	public abstract void execute(Messageable source, CommandLine cmd);
 
 }
