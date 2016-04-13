@@ -1,5 +1,5 @@
 apply plugin: 'java'
-version = '0.1.1'
+version = '0.2.0'
 description 'API of the multi-threaded minecraft server Photon'
 
 sourceCompatibility = '1.8'
@@ -12,5 +12,6 @@ repositories {
 }
 
 dependencies {
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.13+'
+	compile 'org.slf4j:slf4j-api:1.7.13+'
+	compile 'commons-cli:commons-cli:1.3.1'
 }
