@@ -15,8 +15,13 @@ public class PluginMessagePacket implements Packet {
 	public byte[] data;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x18;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

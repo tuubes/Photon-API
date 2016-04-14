@@ -14,8 +14,13 @@ public class SpawnPositionPacket implements Packet {
 	public int x, y, z;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x43;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

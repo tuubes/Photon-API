@@ -16,8 +16,13 @@ public class HandshakePacket implements Packet {
 	public String serverAddress;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x00;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return true;
 	}
 
 	@Override

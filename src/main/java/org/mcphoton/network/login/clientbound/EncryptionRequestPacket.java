@@ -15,8 +15,13 @@ public class EncryptionRequestPacket implements Packet {
 	public byte[] publicKey, verifyToken;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x01;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

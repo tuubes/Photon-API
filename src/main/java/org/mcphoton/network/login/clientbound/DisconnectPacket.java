@@ -16,8 +16,13 @@ public class DisconnectPacket implements Packet {
 	public ChatMessage reason;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x00;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

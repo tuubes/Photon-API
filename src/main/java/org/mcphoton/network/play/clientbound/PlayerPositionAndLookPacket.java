@@ -17,8 +17,13 @@ public class PlayerPositionAndLookPacket implements Packet {
 	public int teleportId;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x2E;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

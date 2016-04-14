@@ -13,7 +13,12 @@ public interface Packet {
 	/**
 	 * Gets the unique id of this packet's type.
 	 */
-	int id();
+	int getId();
+
+	/**
+	 * Returns true if this packet is bound to the server, false if it is bound to the client.
+	 */
+	boolean isServerBound();
 
 	/**
 	 * Writes this packet to a ProtocolOutputStream. This method is called in the network output thread.

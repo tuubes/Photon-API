@@ -11,8 +11,13 @@ import org.mcphoton.network.ProtocolOutputStream;
 public class RequestPacket implements Packet {
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x00;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return true;
 	}
 
 	@Override

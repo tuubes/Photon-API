@@ -14,8 +14,13 @@ public class LoginStartPacket implements Packet {
 	public String username;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x00;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return true;
 	}
 
 	@Override

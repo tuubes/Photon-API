@@ -14,8 +14,13 @@ public class SetCompressionPacket implements Packet {
 	public int compressionThreshold;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x03;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

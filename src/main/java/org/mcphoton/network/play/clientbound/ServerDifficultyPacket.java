@@ -13,8 +13,13 @@ public class ServerDifficultyPacket implements Packet {
 	public byte difficulty;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x0D;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

@@ -20,8 +20,13 @@ public class JoinGamePacket implements Packet {
 	public boolean reducedDebugInfo;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x23;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

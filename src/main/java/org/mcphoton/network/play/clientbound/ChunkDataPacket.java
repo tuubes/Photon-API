@@ -19,8 +19,13 @@ public class ChunkDataPacket implements Packet {
 	public byte[] biomes;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x20;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

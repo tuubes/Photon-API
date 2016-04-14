@@ -14,8 +14,13 @@ public class LoginSuccessPacket implements Packet {
 	public String uuid, username;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x02;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

@@ -14,8 +14,13 @@ public class ResponsePacket implements Packet {
 	public String jsonResponse;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x00;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override

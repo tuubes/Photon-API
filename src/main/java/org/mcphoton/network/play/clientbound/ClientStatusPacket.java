@@ -14,8 +14,13 @@ public class ClientStatusPacket implements Packet {
 	public int actionId;
 
 	@Override
-	public int id() {
+	public int getId() {
 		return 0x03;
+	}
+
+	@Override
+	public boolean isServerBound() {
+		return false;
 	}
 
 	@Override
