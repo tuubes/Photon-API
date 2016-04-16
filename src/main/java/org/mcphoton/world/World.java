@@ -22,7 +22,7 @@ public interface World {
 
 	File getDirectory();
 
-	int getType();
+	WorldType getType();
 
 	Location getSpawn();
 
