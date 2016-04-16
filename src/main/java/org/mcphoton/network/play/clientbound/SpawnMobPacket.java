@@ -22,43 +22,70 @@ import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 
 import java.nio.ByteBuffer;
+import java.util.UUID;
 
 /**
+ *
  * @author Maaattt
  */
-public class SpawnExperienceOrbPacket implements Packet {
+public class SpawnMobPacket implements Packet {
 
     public int entityId;
+    public UUID entityUUID;
     public byte type;
     public double x, y, z;
+    public byte yaw, pitch, headPitch;
+    public short xVelocity, yVelocity, zVelocity;
+    public byte metadata;
 
     @Override
-    public int getId() { return 0x01; }
+    public int getId() { return 0x03; }
 
     @Override
-    public boolean isServerBound() { return false; }
+    public boolean isServerBound() {
+        return false;
+    }
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
         out.writeInt(entityId);
-        out.write(type);
+        out.writeLong(entityUUID.getMostSignificantBits());
+        out.writeLong(entityUUID.getLeastSignificantBits());
+        out.writeByte(type);
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
+        out.write(yaw);
+        out.write(pitch);
+        out.write(headPitch);
+        out.writeShort(xVelocity);
+        out.writeShort(yVelocity);
+        out.writeShort(zVelocity);
+        out.write(metadata);
     }
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
         entityId = buff.getInt();
+        long MSB = buff.getLong();
+        long LSB = buff.getLong();
+        entityUUID = new UUID(MSB, LSB);
         type = buff.get();
         x = buff.getDouble();
         y = buff.getDouble();
         z = buff.getDouble();
+        yaw = buff.get();
+        pitch = buff.get();
+        headPitch = buff.get();
+        xVelocity = buff.getShort();
+        yVelocity = buff.getShort();
+        zVelocity = buff.getShort();
+        metadata = buff.get();
         return this;
     }
 
     @Override
     public String toString() {
-        return "SpawnExperienceOrb{" + "entityID=" + entityId + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + '}';
+        return "SpawnMobPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + ", metadata=" + metadata + '}';
     }
 }

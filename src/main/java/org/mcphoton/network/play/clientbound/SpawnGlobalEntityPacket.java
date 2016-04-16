@@ -33,7 +33,7 @@ public class SpawnGlobalEntityPacket implements Packet {
     public double x, y, z;
 
     @Override
-    public int getId() { return 0x03; }
+    public int getId() { return 0x02; }
 
     @Override
     public boolean isServerBound() { return false; }
@@ -45,7 +45,6 @@ public class SpawnGlobalEntityPacket implements Packet {
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
-
     }
 
     @Override
