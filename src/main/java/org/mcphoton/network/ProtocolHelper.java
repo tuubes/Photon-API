@@ -1,18 +1,18 @@
-/* 
+/*
  * Copyright (c) 2016 MCPhoton <http://mcphoton.org> and contributors.
- * 
+ *
  * This file is part of the Photon API <https://github.com/mcphoton/Photon-API>.
- * 
+ *
  * The Photon API is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * The Photon API is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -127,11 +127,11 @@ public final class ProtocolHelper {
 		return new String(bytes, StandardCharsets.UTF_8);
 	}
 
-	public static final byte asUnsignedByte(int n) {
-		return (byte) ((n) & 0xFF);
+	public static int readUnsignedByte(byte b) {
+		return (int) (b & 0x000000ff);
 	}
 
-	public static final byte encodeEntityMetadataByte(int type, int index) {
+	public static byte encodeEntityMetadataByte(int type, int index) {
 		return (byte) (type << 5 | (index & 0x1F));
 	}
 
@@ -143,42 +143,42 @@ public final class ProtocolHelper {
 	 * @param z Z coordinate, points South in game
 	 * @return an unsigned 64 bytes value containing the 3D position
 	 */
-	public static final long encodePosition(int x, int y, int z) {
+	public static long encodePosition(int x, int y, int z) {
 		return ((long) x << 38) | ((long) y << 26) | (z & 0x3FFFFFF);
 	}
 
 	/**
 	 * Decodes the X coordinate of a 64 bytes value contaning 3D coordinates.
 	 */
-	public static final int decodePositionX(long pos) {
+	public static int decodePositionX(long pos) {
 		return (int) (pos >> 38);
 	}
 
 	/**
 	 * Decodes the Y coordinate of a 64 bytes value contaning 3D coordinates.
 	 */
-	public static final int decodePositionY(long pos) {
+	public static int decodePositionY(long pos) {
 		return (int) ((pos >> 26) & 0xFFF);
 	}
 
 	/**
 	 * Decodes the Z coordinate of a 64 bytes value contaning 3D coordinates.
 	 */
-	public static final int decodePositionZ(long pos) {
+	public static int decodePositionZ(long pos) {
 		return (int) (pos << 38 >> 38);
 	}
 
 	/**
 	 * Converts an integer to a 32 bits fixed-point number.
 	 */
-	public static final int toFixedPoint(int i) {
+	public static int toFixedPoint(int i) {
 		return i << 5;
 	}
 
 	/**
 	 * Converts a double to a 32 bits fixed-point number.
 	 */
-	public static final int toFixedPoint(double d) {
+	public static int toFixedPoint(double d) {
 		return (int) (d * 32d);// 32 because 32 = 2⁵, and the fixed-point used by minecraft has a 5 bits fractional
 		// part.
 		// d*32 is basically equivalent to d << 5
@@ -190,7 +190,7 @@ public final class ProtocolHelper {
 	 * @param degrees the angle, in degrees, as a float.
 	 * @return the angle, in steps of 1/256 of a full turn, as an unsigned byte.
 	 */
-	public static final int toRotationStep(float degrees) {
+	public static int toRotationStep(float degrees) {
 		return (int) ((degrees * 256.0) / 360.0);
 	}
 
@@ -200,21 +200,21 @@ public final class ProtocolHelper {
 	 * @param degrees the angle, in degrees, as an unsigned byte
 	 * @return the angle, in steps of 1/256 of a full turn, as a float.
 	 */
-	public static final float toDegrees(int steps) {
+	public static float toDegrees(int steps) {
 		return (float) ((steps * 360.0) / 256.0);
 	}
 
 	/**
 	 * Converts a fixed-point number to a double.
 	 */
-	public static final double fixedPointToDouble(int fixedPoint) {
+	public static double fixedPointToDouble(int fixedPoint) {
 		return fixedPoint / 32d;
 	}
 
 	/**
 	 * Converts a fixed-point number to a float.
 	 */
-	public static final float fixedPointToFloat(int fixedPoint) {
+	public static float fixedPointToFloat(int fixedPoint) {
 		return fixedPoint / 32f;
 	}
 
@@ -222,7 +222,7 @@ public final class ProtocolHelper {
 	 * Converts a fixed-point number to an integer. The resulting integer does not contains the fractional
 	 * part.
 	 */
-	public static final int fixedPointToInt(int fixedPoint) {
+	public static int fixedPointToInt(int fixedPoint) {
 		return fixedPoint >>> 5;
 	}
 
@@ -232,7 +232,7 @@ public final class ProtocolHelper {
 	 * @param v a velocity, in unit of 1 block per 50ms.
 	 * @return a velocity, in units of 1/8000 of a block per 50ms.
 	 */
-	public static final short encodeVelocity(double v) {
+	public static short encodeVelocity(double v) {
 		return (short) (v * 8000f);
 	}
 
