@@ -26,21 +26,18 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 /**
- *
  * @author Maaattt
  */
-public class SpawnObjectPacket implements Packet {
+public class SpawnPaintingPacket implements Packet {
 
     public int entityId;
-    public UUID objectUUID;
-    public byte type;
-    public double x, y, z;
-    public float pitch, yaw;
-    public int data;
-    public short xVelocity, yVelocity, zVelocity;
+    public UUID entityUUID;
+    public String title;
+    public int x , y , z;
+    public byte direction;
 
     @Override
-    public int getId() { return 0x00; }
+    public int getId() { return 0x04; }
 
     @Override
     public boolean isServerBound() {
@@ -50,18 +47,12 @@ public class SpawnObjectPacket implements Packet {
     @Override
     public void writeTo(ProtocolOutputStream out) {
         out.writeVarInt(entityId);
-        out.writeLong(objectUUID.getMostSignificantBits());
-        out.writeLong(objectUUID.getLeastSignificantBits());
-        out.writeByte(type);
-        out.writeDouble(x);
-        out.writeDouble(y);
-        out.writeDouble(z);
-        out.writeByte(ProtocolHelper.toRotationStep(pitch));
-        out.writeByte(ProtocolHelper.toRotationStep(yaw));
-        out.writeInt(data);
-        out.writeShort(xVelocity);
-        out.writeShort(yVelocity);
-        out.writeShort(zVelocity);
+        out.writeLong(entityUUID.getMostSignificantBits());
+        out.writeLong(entityUUID.getLeastSignificantBits());
+        out.writeString(title);
+        long pos = ProtocolHelper.encodePosition(x,y,z);
+        out.writeLong(pos);
+        out.writeByte(direction);
     }
 
     @Override
@@ -69,22 +60,18 @@ public class SpawnObjectPacket implements Packet {
         entityId = ProtocolHelper.readVarInt(buff);
         long MSB = buff.getLong();
         long LSB = buff.getLong();
-        objectUUID = new UUID(MSB, LSB);
-        type = buff.get();
-        x = buff.getDouble();
-        y = buff.getDouble();
-        z = buff.getDouble();
-        pitch = buff.get();
-        yaw = buff.get();
-        data = buff.getInt();
-        xVelocity = buff.getShort();
-        yVelocity = buff.getShort();
-        zVelocity = buff.getShort();
+        entityUUID = new UUID(MSB, LSB);
+        title = ProtocolHelper.readString(buff);
+        long pos = buff.getLong();
+        x = ProtocolHelper.decodePositionX(pos);
+        y = ProtocolHelper.decodePositionY(pos);
+        z = ProtocolHelper.decodePositionZ(pos);
+        direction = buff.get();
         return this;
     }
 
     @Override
     public String toString() {
-        return "SpawnObjectPacket{" + "entityID=" + entityId + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + '}';
+        return "SpawnPaintingPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", title='" + title + '\'' + ", x=" + x + ", y=" + y + ", z=" + z + ", direction=" + direction + '}';
     }
 }

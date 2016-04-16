@@ -26,42 +26,34 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 /**
- *
  * @author Maaattt
  */
-public class SpawnObjectPacket implements Packet {
+public class SpawnPlayerPacket implements Packet {
 
     public int entityId;
-    public UUID objectUUID;
-    public byte type;
+    public UUID playerUUID;
     public double x, y, z;
-    public float pitch, yaw;
-    public int data;
-    public short xVelocity, yVelocity, zVelocity;
+    public float yaw, pitch;
+    public byte metadata;
 
     @Override
-    public int getId() { return 0x00; }
+    public int getId() { return 0x05; }
 
     @Override
-    public boolean isServerBound() {
-        return false;
-    }
+    public boolean isServerBound() { return false; }
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
         out.writeVarInt(entityId);
-        out.writeLong(objectUUID.getMostSignificantBits());
-        out.writeLong(objectUUID.getLeastSignificantBits());
-        out.writeByte(type);
+        out.writeLong(playerUUID.getMostSignificantBits());
+        out.writeLong(playerUUID.getLeastSignificantBits());
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
-        out.writeByte(ProtocolHelper.toRotationStep(pitch));
         out.writeByte(ProtocolHelper.toRotationStep(yaw));
-        out.writeInt(data);
-        out.writeShort(xVelocity);
-        out.writeShort(yVelocity);
-        out.writeShort(zVelocity);
+        out.writeByte(ProtocolHelper.toRotationStep(pitch));
+        out.writeByte(metadata);
+
     }
 
     @Override
@@ -69,22 +61,18 @@ public class SpawnObjectPacket implements Packet {
         entityId = ProtocolHelper.readVarInt(buff);
         long MSB = buff.getLong();
         long LSB = buff.getLong();
-        objectUUID = new UUID(MSB, LSB);
-        type = buff.get();
+        playerUUID = new UUID(MSB, LSB);
         x = buff.getDouble();
         y = buff.getDouble();
         z = buff.getDouble();
-        pitch = buff.get();
         yaw = buff.get();
-        data = buff.getInt();
-        xVelocity = buff.getShort();
-        yVelocity = buff.getShort();
-        zVelocity = buff.getShort();
+        pitch = buff.get();
+        metadata = buff.get();
         return this;
     }
 
     @Override
     public String toString() {
-        return "SpawnObjectPacket{" + "entityID=" + entityId + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + '}';
+        return "SpawnPlayerPacket{" + "entityId=" + entityId + ", playerUUID=" + playerUUID + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", metadata=" + metadata + '}';
     }
 }

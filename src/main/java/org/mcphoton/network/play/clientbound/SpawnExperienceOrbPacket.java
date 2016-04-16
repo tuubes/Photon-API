@@ -19,6 +19,7 @@
 package org.mcphoton.network.play.clientbound;
 
 import org.mcphoton.network.Packet;
+import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 import java.nio.ByteBuffer;
@@ -40,7 +41,7 @@ public class SpawnExperienceOrbPacket implements Packet {
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
-        out.writeInt(entityId);
+        out.writeVarInt(entityId);
         out.write(type);
         out.writeDouble(x);
         out.writeDouble(y);
@@ -49,7 +50,7 @@ public class SpawnExperienceOrbPacket implements Packet {
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
-        entityId = buff.getInt();
+        entityId = ProtocolHelper.readVarInt(buff);
         type = buff.get();
         x = buff.getDouble();
         y = buff.getDouble();

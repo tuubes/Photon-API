@@ -29,18 +29,13 @@ import java.util.UUID;
  *
  * @author Maaattt
  */
-public class SpawnObjectPacket implements Packet {
+public class AnimationPacket implements Packet {
 
     public int entityId;
-    public UUID objectUUID;
-    public byte type;
-    public double x, y, z;
-    public float pitch, yaw;
-    public int data;
-    public short xVelocity, yVelocity, zVelocity;
+    public byte animation;
 
     @Override
-    public int getId() { return 0x00; }
+    public int getId() { return 0x06; }
 
     @Override
     public boolean isServerBound() {
@@ -50,41 +45,18 @@ public class SpawnObjectPacket implements Packet {
     @Override
     public void writeTo(ProtocolOutputStream out) {
         out.writeVarInt(entityId);
-        out.writeLong(objectUUID.getMostSignificantBits());
-        out.writeLong(objectUUID.getLeastSignificantBits());
-        out.writeByte(type);
-        out.writeDouble(x);
-        out.writeDouble(y);
-        out.writeDouble(z);
-        out.writeByte(ProtocolHelper.toRotationStep(pitch));
-        out.writeByte(ProtocolHelper.toRotationStep(yaw));
-        out.writeInt(data);
-        out.writeShort(xVelocity);
-        out.writeShort(yVelocity);
-        out.writeShort(zVelocity);
+        out.write(animation);
     }
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
         entityId = ProtocolHelper.readVarInt(buff);
-        long MSB = buff.getLong();
-        long LSB = buff.getLong();
-        objectUUID = new UUID(MSB, LSB);
-        type = buff.get();
-        x = buff.getDouble();
-        y = buff.getDouble();
-        z = buff.getDouble();
-        pitch = buff.get();
-        yaw = buff.get();
-        data = buff.getInt();
-        xVelocity = buff.getShort();
-        yVelocity = buff.getShort();
-        zVelocity = buff.getShort();
+        animation = buff.get();
         return this;
     }
 
     @Override
     public String toString() {
-        return "SpawnObjectPacket{" + "entityID=" + entityId + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + '}';
+        return "AnimationPacket{" + "entityId=" + entityId + ", animation=" + animation + '}';
     }
 }
