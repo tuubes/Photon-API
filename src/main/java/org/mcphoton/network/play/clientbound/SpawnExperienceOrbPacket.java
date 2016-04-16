@@ -22,68 +22,43 @@ import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 
 import java.nio.ByteBuffer;
-import java.util.UUID;
 
 /**
- *
  * @author Maaattt
  */
-public class SpawnObjectPacket implements Packet {
+public class SpawnExperienceOrbPacket implements Packet {
 
-    public int entityID;
-    public UUID objectUUID;
+    public int entityId;
     public byte type;
     public double x, y, z;
-    public byte pitch, yaw;
-    public int data;
-    public short xVelocity, yVelocity, zVelocity;
 
     @Override
-    public int getId() { return 0x00; }
+    public int getId() { return 0x02; }
 
     @Override
-    public boolean isServerBound() {
-        return false;
-    }
+    public boolean isServerBound() { return false; }
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
-        out.writeInt(entityID);
-        out.writeLong(objectUUID.getMostSignificantBits());
-        out.writeLong(objectUUID.getLeastSignificantBits());
-        out.writeByte(type);
+        out.writeInt(entityId);
+        out.write(type);
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
-        out.write(pitch);
-        out.write(yaw);
-        out.writeInt(data);
-        out.writeShort(xVelocity);
-        out.writeShort(yVelocity);
-        out.writeShort(zVelocity);
     }
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
-        entityID = buff.getInt();
-        long MSB = buff.getLong();
-        long LSB = buff.getLong();
-        objectUUID = new UUID(MSB, LSB);
+        entityId = buff.getInt();
         type = buff.get();
         x = buff.getDouble();
         y = buff.getDouble();
         z = buff.getDouble();
-        pitch = buff.get();
-        yaw = buff.get();
-        data = buff.getInt();
-        xVelocity = buff.getShort();
-        yVelocity = buff.getShort();
-        zVelocity = buff.getShort();
         return this;
     }
 
     @Override
     public String toString() {
-        return "SpawnObjectPacket{" + "entityID=" + entityID + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + '}';
+        return "SpawnExperienceOrb{" + "entityID=" + entityId + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + '}';
     }
 }
