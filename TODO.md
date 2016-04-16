@@ -7,8 +7,8 @@ the data that will be sent or that has been received. For this task, you don't h
 implement some packets, make a pull request, implement more and so on.
 - [ ] Remove `EventsManager.unregister(Class<E>, EventHandler<? super E>)` and `EventsManager.unregisterAll(Object)`
 - [ ] Add `EventsManager.unregisterAll(Plugin)`
-- [ ] Create a `WorldType`
-- [ ] Refractor the `World` interface: `getType()` should return a `WorldType`
+- [WIP] Create a `WorldType`
+- [WIP] Refractor the `World` interface: `getType()` should return a `WorldType`
 - [ ] Allow object creation with a type, for example an entity should be created by calling `MyEntityType.create(some parameters to determine)`
 - [ ] In `org.mcphoton.messaging.TextChatMessage.toConsoleString()`, check if the colors are supported by the console. Generally,
 the colors are supported on Linux and OSX, but not on Windows.
