@@ -5,8 +5,8 @@ and when you're done.
 The packets are sorted in different subpackages of `org.mcphoton.network`. A packet's class must have public fields that defines
 the data that will be sent or that has been received. For this task, you don't have to implement all the packets at once. You can
 implement some packets, make a pull request, implement more and so on.
-- [ ] Remove `EventsManager.unregister(Class<E>, EventHandler<? super E>)` and `EventsManager.unregisterAll(Object)`
-- [ ] Add `EventsManager.unregisterAll(Plugin)`
+- [x] Remove `EventsManager.unregister(Class<E>, EventHandler<? super E>)` and `EventsManager.unregisterAll(Object)`
+- [x] Add `EventsManager.unregisterAll(Plugin)`
 - [x] Create a `WorldType`
 - [x] Refractor the `World` interface: `getType()` should return a `WorldType` 
 - [ ] Allow object creation with a type, for example an entity should be created by calling `MyEntityType.create(some parameters to determine)`
