@@ -19,6 +19,7 @@
 package org.mcphoton.network.play.clientbound;
 
 import org.mcphoton.network.Packet;
+import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 import java.nio.ByteBuffer;
@@ -32,7 +33,7 @@ public class SpawnMobPacket implements Packet {
 
     public int entityId;
     public UUID entityUUID;
-    public byte type;
+    public int type;
     public double x, y, z;
     public byte yaw, pitch, headPitch;
     public short xVelocity, yVelocity, zVelocity;
@@ -48,29 +49,29 @@ public class SpawnMobPacket implements Packet {
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
-        out.writeInt(entityId);
+        out.writeVarInt(entityId);
         out.writeLong(entityUUID.getMostSignificantBits());
         out.writeLong(entityUUID.getLeastSignificantBits());
         out.writeByte(type);
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
-        out.write(yaw);
-        out.write(pitch);
-        out.write(headPitch);
+        out.writeByte(yaw);
+        out.writeByte(pitch);
+        out.writeByte(headPitch);
         out.writeShort(xVelocity);
         out.writeShort(yVelocity);
         out.writeShort(zVelocity);
-        out.write(metadata);
+        out.writeByte(metadata);
     }
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
-        entityId = buff.getInt();
+        entityId = ProtocolHelper.readVarInt(buff);
         long MSB = buff.getLong();
         long LSB = buff.getLong();
         entityUUID = new UUID(MSB, LSB);
-        type = buff.get();
+        type = ProtocolHelper.readUnsignedByte(buff.get());
         x = buff.getDouble();
         y = buff.getDouble();
         z = buff.getDouble();

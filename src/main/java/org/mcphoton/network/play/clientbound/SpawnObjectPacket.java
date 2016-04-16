@@ -19,6 +19,7 @@
 package org.mcphoton.network.play.clientbound;
 
 import org.mcphoton.network.Packet;
+import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 import java.nio.ByteBuffer;
@@ -34,7 +35,7 @@ public class SpawnObjectPacket implements Packet {
     public UUID objectUUID;
     public byte type;
     public double x, y, z;
-    public byte pitch, yaw;
+    public float pitch, yaw;
     public int data;
     public short xVelocity, yVelocity, zVelocity;
 
@@ -48,15 +49,15 @@ public class SpawnObjectPacket implements Packet {
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
-        out.writeInt(entityId);
+        out.writeVarInt(entityId);
         out.writeLong(objectUUID.getMostSignificantBits());
         out.writeLong(objectUUID.getLeastSignificantBits());
         out.writeByte(type);
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
-        out.write(pitch);
-        out.write(yaw);
+        out.writeByte(ProtocolHelper.toRotationStep(pitch));
+        out.writeByte(ProtocolHelper.toRotationStep(yaw));
         out.writeInt(data);
         out.writeShort(xVelocity);
         out.writeShort(yVelocity);
@@ -65,7 +66,7 @@ public class SpawnObjectPacket implements Packet {
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
-        entityId = buff.getInt();
+        entityId = ProtocolHelper.readVarInt(buff);
         long MSB = buff.getLong();
         long LSB = buff.getLong();
         objectUUID = new UUID(MSB, LSB);
