@@ -46,14 +46,7 @@ public class UpdateBlockEntityPacket implements Packet {
     public void writeTo(ProtocolOutputStream out) {
         out.writeLong(ProtocolHelper.encodePosition(x,y,z));
         out.writeByte(action);
-        try
-        {
-            blockEntity.writeTo(out);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        blockEntity.writeTo(out);
     }
 
     @Override
