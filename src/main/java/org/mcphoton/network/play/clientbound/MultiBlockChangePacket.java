@@ -88,4 +88,9 @@ public class MultiBlockChangePacket implements Packet {
         public Integer getYCoord() { return yCoord; }
         public Integer getBlockId() { return blockId; }
     }
+
+    @Override
+    public String toString() {
+        return "MultiBlockChangePacket{" + "chunkX=" + chunkX + ", chunkZ=" + chunkZ + ", record=" + Arrays.toString(record) + '}';
+    }
 }
