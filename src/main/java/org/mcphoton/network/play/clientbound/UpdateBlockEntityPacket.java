@@ -37,7 +37,7 @@ public class UpdateBlockEntityPacket implements Packet {
     public BlockEntity blockEntity;
 
     @Override
-    public int getId() { return 0x08; }
+    public int getId() { return 0x09; }
 
     @Override
     public boolean isServerBound() { return false; }
