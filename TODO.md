@@ -1,7 +1,7 @@
 # TODO
 Here are the tasks to do for the next API version (or a future one). Update this file when you start working on something,
 and when you're done.
-- [ ] **Implement all the network packets**. You can find a description of each packet [here](http://wiki.vg/Protocol).
+- [ ] WIP **Implement all the network packets**. You can find a description of each packet [here](http://wiki.vg/Protocol).
 The packets are sorted in different subpackages of `org.mcphoton.network`. A packet's class must have public fields that defines
 the data that will be sent or that has been received. For this task, you don't have to implement all the packets at once. You can
 implement some packets, make a pull request, implement more and so on.
