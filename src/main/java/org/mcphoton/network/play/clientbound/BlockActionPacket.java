@@ -24,48 +24,46 @@ import org.mcphoton.network.ProtocolOutputStream;
 
 import java.nio.ByteBuffer;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Maaattt
  */
-public class StatisticsPacket implements Packet {
+public class BlockActionPacket implements Packet {
 
-    public Map<String, Integer> statistics;
+    public int x,y,z;
+    public int byte1;
+    public int byte2;
+    public int type;
 
     @Override
-    public int getId() { return 0x07; }
+    public int getId() { return 0x0A; }
 
     @Override
     public boolean isServerBound() { return false; }
 
     @Override
     public void writeTo(ProtocolOutputStream out) {
-        out.writeVarInt(statistics.size());
-        for (Map.Entry<String, Integer> entry : statistics.entrySet())
-        {
-            out.writeString(entry.getKey().toString());
-            out.writeVarInt((Integer)entry.getValue());
-        }
+        out.writeLong(ProtocolHelper.encodePosition(x,y,z));
+        out.writeByte(byte1);
+        out.writeByte(byte2);
+        out.writeVarInt(type);
+
     }
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
-        int count = ProtocolHelper.readVarInt(buff);
-        statistics = new HashMap<String, Integer>();
-
-        for(int i = 0; i < count; i++)
-        {
-            String stat = ProtocolHelper.readString(buff);
-            int k = ProtocolHelper.readVarInt(buff);
-
-            statistics.put(stat, k);
-        }
+        long pos = buff.getLong();
+        x = ProtocolHelper.decodePositionX(pos);
+        y = ProtocolHelper.decodePositionY(pos);
+        z = ProtocolHelper.decodePositionZ(pos);
+        byte1 = ProtocolHelper.readUnsignedByte(buff.get());
+        byte2 = ProtocolHelper.readUnsignedByte(buff.get());
+        type = ProtocolHelper.readVarInt(buff);
         return this;
     }
 
     @Override
     public String toString() {
-        return "StatisticsPacket{" + "statistics=" + statistics + '}';
+        return "BlockActionPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", byte1=" + byte1 + ", byte2=" + byte2 + ", type=" + type + '}';
     }
 }
