@@ -49,6 +49,19 @@ public final class ProtocolHelper {
 	}
 
 	/**
+	 * Calculates the size (in bytes) that would take the given number in the "VarInt"
+	 * format.
+	 */
+	public static int varIntSize(int n) {
+		int size = 1;
+		while ((n & 0xFFFF_FF80) != 0) {
+			size++;
+			n >>>= 7;
+		}
+		return size;
+	}
+
+	/**
 	 * Writes a signed integer with the "VarInt" format.
 	 *
 	 * @param n the int to encode
