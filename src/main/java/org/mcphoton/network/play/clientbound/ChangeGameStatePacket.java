@@ -20,6 +20,7 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import org.mcphoton.network.Packet;
+import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
@@ -28,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ChangeGameStatePacket implements Packet {
 
-	public Byte reason;
+	public int reason;
 	public float value;
 
 	@Override
@@ -43,13 +44,13 @@ public class ChangeGameStatePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(reason);
+		out.write(reason);
 		out.writeFloat(value);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		reason = buff.get();
+		reason = ProtocolHelper.readUnsignedByte(buff.get());
 		value = buff.getFloat();
 		return this;
 	}

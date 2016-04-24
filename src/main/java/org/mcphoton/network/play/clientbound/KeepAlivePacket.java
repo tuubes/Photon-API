@@ -20,6 +20,7 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import org.mcphoton.network.Packet;
+import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
@@ -47,7 +48,7 @@ public class KeepAlivePacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		keepAliveID = buff.getInt();
+		keepAliveID = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
