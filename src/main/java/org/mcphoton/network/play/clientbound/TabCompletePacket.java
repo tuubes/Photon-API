@@ -19,9 +19,7 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -32,37 +30,37 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class TabCompletePacket implements Packet {
 
-    public String[] matches;
+	public String[] matches;
 
-    @Override
-    public int getId() {return 0x0E;}
+	@Override
+	public int getId() {
+		return 0x0E;
+	}
 
-    @Override
-    public boolean isServerBound() {
-        return false;
-    }
+	@Override
+	public boolean isServerBound() {
+		return false;
+	}
 
-    @Override
-    public void writeTo(ProtocolOutputStream out) {
-        out.writeVarInt(matches.length);
-        for(String s : matches)
-        {
-            out.writeString(s);
-        }
-    }
+	@Override
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeVarInt(matches.length);
+		for (String s : matches) {
+			out.writeString(s);
+		}
+	}
 
-    @Override
-    public Packet readFrom(ByteBuffer buff) {
-        matches = new String[ProtocolHelper.readVarInt(buff)];
-        for (int i = 0; i < matches.length; ++i)
-        {
-            matches[i] = ProtocolHelper.readString(buff);
-        }
-        return this;
-    }
+	@Override
+	public Packet readFrom(ByteBuffer buff) {
+		matches = new String[ProtocolHelper.readVarInt(buff)];
+		for (int i = 0; i < matches.length; ++i) {
+			matches[i] = ProtocolHelper.readString(buff);
+		}
+		return this;
+	}
 
-    @Override
-    public String toString() {
-        return "TabCompletePacket{" + "matches=" + Arrays.toString(matches) + '}';
-    }
+	@Override
+	public String toString() {
+		return "TabCompletePacket{" + "matches=" + Arrays.toString(matches) + '}';
+	}
 }

@@ -19,9 +19,6 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -32,32 +29,34 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ChatMessagePacket implements Packet {
 
-    public String chat;
-    public int position;
+	public String chat;
+	public int position;
 
-    @Override
-    public int getId() {return 0x0F;}
+	@Override
+	public int getId() {
+		return 0x0F;
+	}
 
-    @Override
-    public boolean isServerBound() {
-        return false;
-    }
+	@Override
+	public boolean isServerBound() {
+		return false;
+	}
 
-    @Override
-    public void writeTo(ProtocolOutputStream out) {
-        out.writeString(chat);
-        out.writeByte(position);
-    }
+	@Override
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeString(chat);
+		out.writeByte(position);
+	}
 
-    @Override
-    public Packet readFrom(ByteBuffer buff) {
-        chat = ProtocolHelper.readString(buff);
-        position = buff.get();
-        return this;
-    }
+	@Override
+	public Packet readFrom(ByteBuffer buff) {
+		chat = ProtocolHelper.readString(buff);
+		position = buff.get();
+		return this;
+	}
 
-    @Override
-    public String toString() {
-        return "ChatMessagePacket{" + "chat='" + chat + '\'' + ", position=" + position + '}';
-    }
+	@Override
+	public String toString() {
+		return "ChatMessagePacket{" + "chat='" + chat + '\'' + ", position=" + position + '}';
+	}
 }

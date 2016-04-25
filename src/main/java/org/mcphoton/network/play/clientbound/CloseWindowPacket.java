@@ -19,9 +19,6 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -32,29 +29,31 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class CloseWindowPacket implements Packet {
 
-    public int windowId;
+	public int windowId;
 
-    @Override
-    public int getId() {return 0x12;}
+	@Override
+	public int getId() {
+		return 0x12;
+	}
 
-    @Override
-    public boolean isServerBound() {
-        return false;
-    }
+	@Override
+	public boolean isServerBound() {
+		return false;
+	}
 
-    @Override
-    public void writeTo(ProtocolOutputStream out) {
-        out.writeByte(windowId);
-    }
+	@Override
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeByte(windowId);
+	}
 
-    @Override
-    public Packet readFrom(ByteBuffer buff) {
-        windowId = ProtocolHelper.readUnsignedByte(buff.get());
-        return this;
-    }
+	@Override
+	public Packet readFrom(ByteBuffer buff) {
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
+		return this;
+	}
 
-    @Override
-    public String toString() {
-        return "CloseWindowPacket{" + "windowId=" + windowId + '}';
-    }
+	@Override
+	public String toString() {
+		return "CloseWindowPacket{" + "windowId=" + windowId + '}';
+	}
 }

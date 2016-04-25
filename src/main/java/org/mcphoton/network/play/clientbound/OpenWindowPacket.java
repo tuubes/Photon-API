@@ -19,9 +19,6 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -32,47 +29,47 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class OpenWindowPacket implements Packet {
 
-    public int windowId;
-    public String windowType;
-    public String chat;
-    public int slots;
-    public int entityId;
+	public int windowId;
+	public String windowType;
+	public String chat;
+	public int slots;
+	public int entityId;
 
-    @Override
-    public int getId() {return 0x13;}
+	@Override
+	public int getId() {
+		return 0x13;
+	}
 
-    @Override
-    public boolean isServerBound() {
-        return false;
-    }
+	@Override
+	public boolean isServerBound() {
+		return false;
+	}
 
-    @Override
-    public void writeTo(ProtocolOutputStream out) {
-        out.writeByte(windowId);
-        out.writeString(windowType);
-        out.writeString(chat);
-        out.writeByte(slots);
-        if(windowType.equalsIgnoreCase("EntityHorse"))
-        {
-            out.writeInt(entityId);
-        }
-    }
+	@Override
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeByte(windowId);
+		out.writeString(windowType);
+		out.writeString(chat);
+		out.writeByte(slots);
+		if (windowType.equalsIgnoreCase("EntityHorse")) {
+			out.writeInt(entityId);
+		}
+	}
 
-    @Override
-    public Packet readFrom(ByteBuffer buff) {
-        windowId = buff.get();
-        windowType = ProtocolHelper.readString(buff);
-        chat = ProtocolHelper.readString(buff);
-        slots = buff.getInt();
-        if(windowType.equalsIgnoreCase("EntityHorse"))
-        {
-            entityId = buff.getInt();
-        }
-        return this;
-    }
+	@Override
+	public Packet readFrom(ByteBuffer buff) {
+		windowId = buff.get();
+		windowType = ProtocolHelper.readString(buff);
+		chat = ProtocolHelper.readString(buff);
+		slots = buff.getInt();
+		if (windowType.equalsIgnoreCase("EntityHorse")) {
+			entityId = buff.getInt();
+		}
+		return this;
+	}
 
-    @Override
-    public String toString() {
-        return "OpenWindowPacket{" + "windowId=" + windowId + ", windowType='" + windowType + '\'' + ", chat='" + chat + '\'' + ", slots=" + slots + ", entityId=" + entityId + '}';
-    }
+	@Override
+	public String toString() {
+		return "OpenWindowPacket{" + "windowId=" + windowId + ", windowType='" + windowType + '\'' + ", chat='" + chat + '\'' + ", slots=" + slots + ", entityId=" + entityId + '}';
+	}
 }

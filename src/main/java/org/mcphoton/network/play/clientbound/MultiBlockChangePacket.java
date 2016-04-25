@@ -19,10 +19,7 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -33,64 +30,71 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class MultiBlockChangePacket implements Packet {
 
-    public int chunkX;
-    public int chunkZ;
-    public BlockUpdateData[] record;
+	public int chunkX;
+	public int chunkZ;
+	public BlockUpdateData[] record;
 
-    @Override
-    public int getId() {return 0x10;}
+	@Override
+	public int getId() {
+		return 0x10;
+	}
 
-    @Override
-    public boolean isServerBound() {
-        return false;
-    }
+	@Override
+	public boolean isServerBound() {
+		return false;
+	}
 
-    @Override
-    public void writeTo(ProtocolOutputStream out) {
-        out.writeInt(chunkX);
-        out.writeInt(chunkZ);
-        out.writeVarInt(record.length);
-        for(BlockUpdateData blocks : record)
-        {
-            out.writeByte(blocks.getHorizontalPos());
-            out.writeByte(blocks.getYCoord());
-            out.writeVarInt(blocks.getBlockId());
-        }
-    }
+	@Override
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeInt(chunkX);
+		out.writeInt(chunkZ);
+		out.writeVarInt(record.length);
+		for (BlockUpdateData blocks : record) {
+			out.writeByte(blocks.getHorizontalPos());
+			out.writeByte(blocks.getYCoord());
+			out.writeVarInt(blocks.getBlockId());
+		}
+	}
 
-    @Override
-    public Packet readFrom(ByteBuffer buff) {
-        chunkX = buff.getInt();
-        chunkZ = buff.getInt();
-        record = new BlockUpdateData[ProtocolHelper.readVarInt(buff)];
-        for(int i = 0; i < record.length; i++)
-        {
-            record[i] = new BlockUpdateData(ProtocolHelper.readUnsignedByte(buff.get()), ProtocolHelper.readUnsignedByte(buff.get()), ProtocolHelper.readVarInt(buff));
-        }
+	@Override
+	public Packet readFrom(ByteBuffer buff) {
+		chunkX = buff.getInt();
+		chunkZ = buff.getInt();
+		record = new BlockUpdateData[ProtocolHelper.readVarInt(buff)];
+		for (int i = 0; i < record.length; i++) {
+			record[i] = new BlockUpdateData(ProtocolHelper.readUnsignedByte(buff.get()), ProtocolHelper.readUnsignedByte(buff.get()), ProtocolHelper.readVarInt(buff));
+		}
 
-        return this;
-    }
+		return this;
+	}
 
-    class BlockUpdateData {
+	class BlockUpdateData {
 
-        private int horizontalPos;
-        private int yCoord;
-        private int blockId;
+		private int horizontalPos;
+		private int yCoord;
+		private int blockId;
 
-        public BlockUpdateData(Integer horizontalPos, Integer yCoord, Integer blockId)
-        {
-            this.horizontalPos = horizontalPos;
-            this.yCoord = yCoord;
-            this.blockId = blockId;
-        }
+		public BlockUpdateData(Integer horizontalPos, Integer yCoord, Integer blockId) {
+			this.horizontalPos = horizontalPos;
+			this.yCoord = yCoord;
+			this.blockId = blockId;
+		}
 
-        public Integer getHorizontalPos() { return horizontalPos; }
-        public Integer getYCoord() { return yCoord; }
-        public Integer getBlockId() { return blockId; }
-    }
+		public Integer getHorizontalPos() {
+			return horizontalPos;
+		}
 
-    @Override
-    public String toString() {
-        return "MultiBlockChangePacket{" + "chunkX=" + chunkX + ", chunkZ=" + chunkZ + ", record=" + Arrays.toString(record) + '}';
-    }
+		public Integer getYCoord() {
+			return yCoord;
+		}
+
+		public Integer getBlockId() {
+			return blockId;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "MultiBlockChangePacket{" + "chunkX=" + chunkX + ", chunkZ=" + chunkZ + ", record=" + Arrays.toString(record) + '}';
+	}
 }
