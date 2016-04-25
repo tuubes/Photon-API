@@ -26,15 +26,18 @@ import java.nio.ByteBuffer;
 
 /**
  * @author Maaattt
+ * @author DJmaxZPL4Y
  */
 public class SpawnExperienceOrbPacket implements Packet {
 
     public int entityId;
-    public byte type;
     public double x, y, z;
+    public short count;
 
     @Override
-    public int getId() { return 0x01; }
+    public int getId() { 
+    	return 0x01; 
+    }
 
     @Override
     public boolean isServerBound() { return false; }
@@ -42,24 +45,24 @@ public class SpawnExperienceOrbPacket implements Packet {
     @Override
     public void writeTo(ProtocolOutputStream out) {
         out.writeVarInt(entityId);
-        out.write(type);
         out.writeDouble(x);
         out.writeDouble(y);
         out.writeDouble(z);
+        out.writeShort(count);
     }
 
     @Override
     public Packet readFrom(ByteBuffer buff) {
         entityId = ProtocolHelper.readVarInt(buff);
-        type = buff.get();
         x = buff.getDouble();
         y = buff.getDouble();
         z = buff.getDouble();
+        count = buff.getShort();
         return this;
     }
 
     @Override
     public String toString() {
-        return "SpawnExperienceOrb{" + "entityID=" + entityId + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + '}';
+        return "SpawnExperienceOrb{" + "entityID=" + entityId + ", x=" + x + ", y=" + y + ", z=" + z + ", count=" + count + '}';
     }
 }
