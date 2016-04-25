@@ -457,7 +457,7 @@ public final class IndexMap<E> extends AbstractMap<Integer, E> {
 
 		@Override
 		public boolean hasNext() {
-			while (cursor < array.length) {
+			while (cursor < array.length - 1) {
 				Object value = array[++cursor];
 				if (value != null) {
 					next = new IntEntry(cursor);
@@ -481,7 +481,7 @@ public final class IndexMap<E> extends AbstractMap<Integer, E> {
 
 		@Override
 		public boolean hasNext() {
-			while (cursor < array.length) {
+			while (cursor < array.length - 1) {
 				Object value = array[++cursor];
 				if (value != null) {
 					next = (E) value;

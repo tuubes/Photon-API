@@ -19,9 +19,6 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -32,35 +29,37 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ConfirmTransactionPacket implements Packet {
 
-    public int windowId;
-    public int actionNumber;
-    public boolean accepted;
+	public int windowId;
+	public int actionNumber;
+	public boolean accepted;
 
-    @Override
-    public int getId() {return 0x11;}
+	@Override
+	public int getId() {
+		return 0x11;
+	}
 
-    @Override
-    public boolean isServerBound() {
-        return false;
-    }
+	@Override
+	public boolean isServerBound() {
+		return false;
+	}
 
-    @Override
-    public void writeTo(ProtocolOutputStream out) {
-        out.writeByte(windowId);
-        out.writeShort(actionNumber);
-        out.writeBoolean(accepted);
-    }
+	@Override
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeByte(windowId);
+		out.writeShort(actionNumber);
+		out.writeBoolean(accepted);
+	}
 
-    @Override
-    public Packet readFrom(ByteBuffer buff) {
-        windowId = buff.get();
-        actionNumber = buff.getShort();
-        accepted = ProtocolHelper.readBoolean(buff);
-        return this;
-    }
+	@Override
+	public Packet readFrom(ByteBuffer buff) {
+		windowId = buff.get();
+		actionNumber = buff.getShort();
+		accepted = ProtocolHelper.readBoolean(buff);
+		return this;
+	}
 
-    @Override
-    public String toString() {
-        return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", actionNumber=" + actionNumber + ", accepted=" + accepted + '}';
-    }
+	@Override
+	public String toString() {
+		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", actionNumber=" + actionNumber + ", accepted=" + accepted + '}';
+	}
 }

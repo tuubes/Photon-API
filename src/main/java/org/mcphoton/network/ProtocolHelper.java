@@ -49,6 +49,19 @@ public final class ProtocolHelper {
 	}
 
 	/**
+	 * Calculates the size (in bytes) that would take the given number in the "VarInt"
+	 * format.
+	 */
+	public static int varIntSize(int n) {
+		int size = 1;
+		while ((n & 0xFFFF_FF80) != 0) {
+			size++;
+			n >>>= 7;
+		}
+		return size;
+	}
+
+	/**
 	 * Writes a signed integer with the "VarInt" format.
 	 *
 	 * @param n the int to encode
@@ -74,8 +87,7 @@ public final class ProtocolHelper {
 			byte b = (byte) buff.get();
 			i |= (b & 0x7F) << shift;// Remove sign bit and shift to get the next 7 bits
 			shift += 7;
-			if (b >= 0) {// VarInt byte prefix is 0, it means that we just decoded the last 7 bits, therefore we've
-				// finished.
+			if (b >= 0) {// VarInt byte prefix is 0, it means that we just decoded the last 7 bits, therefore we've finished.
 				return i;
 			}
 		}
@@ -105,21 +117,28 @@ public final class ProtocolHelper {
 		long l = 0;
 		while (true) {
 			byte b = (byte) buff.get();
-			l |= (long) (b & 0x7F) << shift;// On enlève le préfixe 0 ou 1 et on décale les 7 bits restant à la bonne
-			// position
+			l |= (long) (b & 0x7F) << shift;// Remove sign bit and shift to get the next 7 bits
 			shift += 7;
-			if (b >= 0) {// b >= 0 <=> premier bits vaut 0
+			if (b >= 0) {// VarInt byte prefix is 0, it means that we just decoded the last 7 bits, therefore we've finished.
 				return l;
 			}
 		}
 	}
 
+	/**
+	 * Writes a String to a ByteBuffer. The length of the string is written as a varInt, and then the content
+	 * of the string is written with the UTF-8 charset.
+	 */
 	public static void writeString(String s, ByteBuffer buff) {
 		byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
 		writeVarInt(bytes.length, buff);
 		buff.put(bytes);
 	}
 
+	/**
+	 * Reads a String from a ByteBuffer. The length of the string is read as a varInt, and then the content of
+	 * the string is read with the UTF-8 charset.
+	 */
 	public static String readString(ByteBuffer buff) {
 		int size = readVarInt(buff);
 		byte[] bytes = new byte[size];
@@ -127,6 +146,12 @@ public final class ProtocolHelper {
 		return new String(bytes, StandardCharsets.UTF_8);
 	}
 
+	/**
+	 * Reads a unsigned byte.
+	 *
+	 * @param b the unsigned byte
+	 * @return a positive integer with the value of the unsigned byte
+	 */
 	public static int readUnsignedByte(byte b) {
 		return (int) (b & 0x000000ff);
 	}
@@ -179,9 +204,8 @@ public final class ProtocolHelper {
 	 * Converts a double to a 32 bits fixed-point number.
 	 */
 	public static int toFixedPoint(double d) {
-		return (int) (d * 32d);// 32 because 32 = 2⁵, and the fixed-point used by minecraft has a 5 bits fractional
-		// part.
-		// d*32 is basically equivalent to d << 5
+		return (int) (d * 32d);// 32 because 32 = 2⁵, and the fixed-point used by minecraft has a 5 bits fractional part.
+		//d*32 is basically equivalent to d << 5
 	}
 
 	/**
@@ -197,8 +221,8 @@ public final class ProtocolHelper {
 	/**
 	 * Converts an angle in steps of 1/256 of a full turn to an angle in degrees.
 	 *
-	 * @param degrees the angle, in degrees, as an unsigned byte
-	 * @return the angle, in steps of 1/256 of a full turn, as a float.
+	 * @param steps the angle, in steps of 1/256 of a full turn, as an unsigned byte
+	 * @return the angle, in degrees, as a float.
 	 */
 	public static float toDegrees(int steps) {
 		return (float) ((steps * 360.0) / 256.0);
