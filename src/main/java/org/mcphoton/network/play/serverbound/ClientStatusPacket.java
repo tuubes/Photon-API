@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.network.play.clientbound;
+package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
 import org.mcphoton.network.Packet;
@@ -38,7 +38,7 @@ public class ClientStatusPacket implements Packet {
 
 	@Override
 	public boolean isServerBound() {
-		return false;
+		return true;
 	}
 
 	@Override
