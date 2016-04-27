@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
 public class BlockChangePacket implements Packet {
 
 	public int x, y, z;
-	public int blockId;
+	public int blockID;
 
 	@Override
 	public int getId() {
@@ -44,7 +44,7 @@ public class BlockChangePacket implements Packet {
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
-		out.writeVarInt(blockId);
+		out.writeVarInt(blockID);
 
 	}
 
@@ -54,12 +54,12 @@ public class BlockChangePacket implements Packet {
 		x = ProtocolHelper.decodePositionX(pos);
 		y = ProtocolHelper.decodePositionY(pos);
 		z = ProtocolHelper.decodePositionZ(pos);
-		blockId = ProtocolHelper.readVarInt(buff);
+		blockID = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "BlockChangePacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", blockId=" + blockId + '}';
+		return "BlockChangePacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", blockID=" + blockID + '}';
 	}
 }

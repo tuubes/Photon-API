@@ -51,6 +51,7 @@ public class EntityMetadataPacket implements Packet {
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
 		entityID = ProtocolHelper.readVarInt(buff);
+		//TODO Improve the metadata reading and writing methods
 		metadata = buff.get();
 		return this;
 	}

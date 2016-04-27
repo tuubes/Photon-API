@@ -25,11 +25,12 @@ import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  * @author Maaattt
+ * @author DJmaxZPLAY
  */
 public class RemoveEntityEffectPacket implements Packet {
 
-	public int entityId;
-	public int effectId;
+	public int entityID;
+	public byte effectID;
 
 	@Override
 	public int getId() {
@@ -43,19 +44,19 @@ public class RemoveEntityEffectPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityId);
-		out.writeByte(effectId);
+		out.writeVarInt(entityID);
+		out.writeByte(effectID);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
-		effectId = buff.get();
+		entityID = ProtocolHelper.readVarInt(buff);
+		effectID = buff.get();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "RemoveEntityEffectPacket{" + "entityId=" + entityId + ", effectId=" + effectId + '}';
+		return "RemoveEntityEffectPacket{" + "entityID=" + entityID + ", effectID=" + effectID + '}';
 	}
 }

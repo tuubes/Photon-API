@@ -20,23 +20,20 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
- *
- * @author DJmaxZPL4Y
+ * @author Maaattt
  */
-public class SetPassengersPacket implements Packet {
+public class DestroyEntitiesPacket implements Packet {
 
-	public int entityID;
-	public int passengers[];
+	public int[] entitiesID;
 
 	@Override
 	public int getId() {
-		return 0x40;
+		return 0x30;
 	}
 
 	@Override
@@ -46,26 +43,23 @@ public class SetPassengersPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
-		out.writeVarInt(passengers.length);
-		for(int i : passengers){
+		out.writeVarInt(entitiesID.length);
+		for (int i : entitiesID) {
 			out.writeVarInt(i);
 		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
-		passengers = new int[ProtocolHelper.readVarInt(buff)];
-		for(int i = 0; i < passengers.length; i++){
-			passengers[i] = ProtocolHelper.readVarInt(buff);
+		entitiesID = new int[ProtocolHelper.readVarInt(buff)];
+		for (int i = 0; i < entitiesID.length; i++) {
+			entitiesID[i] = ProtocolHelper.readVarInt(buff);
 		}
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SetPassengersPacket{" + "entityID=" + entityID + ", passengers=" + Arrays.toString(passengers) + '}';
+		return "DestroyEntitiesPacket{" + "entitiesID=" + Arrays.toString(entitiesID) + '}';
 	}
-
 }

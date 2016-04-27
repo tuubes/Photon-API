@@ -19,21 +19,24 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
+
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
- * @author TheElectronWill
+ * @author DJmaxZPL4Y
  */
-public class ClientStatusPacket implements Packet {
+public class UpdateScorePacket implements Packet {
 
-	public int actionId;
+	public String scoreName, objectiveName;
+	public byte action;
+	public int value;
 
 	@Override
 	public int getId() {
-		return 0x03;
+		return 0x42;
 	}
 
 	@Override
@@ -43,18 +46,27 @@ public class ClientStatusPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(actionId);
+		out.writeString(scoreName);
+		out.writeByte(action);
+		out.writeString(objectiveName);
+		if(action != 1){
+			out.writeVarInt(value);
+		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		actionId = ProtocolHelper.readVarInt(buff);
+		scoreName = ProtocolHelper.readString(buff);
+		action = buff.get();
+		objectiveName = ProtocolHelper.readString(buff);
+		if(action != 1){
+			value = ProtocolHelper.readVarInt(buff);
+		}		
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ClientStatusPacket{" + "actionId=" + actionId + '}';
+		return "UpdateScorePacket{" + "scoreName=" + scoreName + ", action=" + action + ", objectiveName=" + objectiveName + ", value=" + value + '}';
 	}
-
 }

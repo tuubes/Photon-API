@@ -19,21 +19,22 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
- * @author Maaattt
+ *
+ * @author DJmaxZPL4Y
  */
-public class DestroyEntities implements Packet {
+public class ScoreboardObjectivePacket implements Packet {
 
-	public int[] entitiesId;
+	public String objectiveName, objectiveValue, type;
+	public byte mode;
 
 	@Override
 	public int getId() {
-		return 0x30;
+		return 0x3F;
 	}
 
 	@Override
@@ -43,23 +44,27 @@ public class DestroyEntities implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entitiesId.length);
-		for (Integer i : entitiesId) {
-			out.writeVarInt(i);
+		out.writeString(objectiveName);
+		out.writeByte(mode);
+		if(mode == 0 || mode == 2){
+			out.writeString(objectiveValue);
+			out.writeString(type);
 		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entitiesId = new int[ProtocolHelper.readVarInt(buff)];
-		for (int i = 0; i < entitiesId.length; i++) {
-			entitiesId[i] = ProtocolHelper.readVarInt(buff);
+		objectiveName = ProtocolHelper.readString(buff);
+		mode = buff.get();
+		if(mode == 0 || mode == 2){
+			objectiveValue = ProtocolHelper.readString(buff);
+			type = ProtocolHelper.readString(buff);
 		}
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "DestroyEntities{" + "entitiesId=" + Arrays.toString(entitiesId) + '}';
+		return "ScoreboardObjectivePacket{" + "objectiveName=" + objectiveName + ", mode=" + mode + ", objectiveValue=" + objectiveValue + ", type=" + type + '}';
 	}
 }

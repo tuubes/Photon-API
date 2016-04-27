@@ -31,7 +31,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ParticlePacket implements Packet {
 
-	public int particleID, particleCount;
+	public int particleID;
 	public boolean longDistance;
 	public float x, y, z, offsetX, offsetY, offsetZ, particleData;
 	public int data[];
@@ -57,7 +57,7 @@ public class ParticlePacket implements Packet {
 		out.writeFloat(offsetY);
 		out.writeFloat(offsetZ);
 		out.writeFloat(particleData);
-		out.writeInt(particleCount);
+		out.writeInt(data.length);
 		for(int i : data){
 			out.writeVarInt(i);
 		}
@@ -74,9 +74,8 @@ public class ParticlePacket implements Packet {
 		offsetY = buff.getFloat();
 		offsetZ = buff.getFloat();
 		particleData = buff.getFloat();
-		particleCount = buff.getInt();
-		data = new int[particleCount];
-		for(int i = 0; i < particleCount; i++){
+		data = new int[buff.getInt()];
+		for(int i = 0; i < data.length; i++){
 			data[i] = ProtocolHelper.readVarInt(buff);
 		}
 		return this;

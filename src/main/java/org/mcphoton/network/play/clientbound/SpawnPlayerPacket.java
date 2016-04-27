@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnPlayerPacket implements Packet {
 
-	public int entityId;
+	public int entityID;
 	public UUID playerUUID;
 	public double x, y, z;
 	public float yaw, pitch;
@@ -48,7 +48,7 @@ public class SpawnPlayerPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityId);
+		out.writeVarInt(entityID);
 		out.writeLong(playerUUID.getMostSignificantBits());
 		out.writeLong(playerUUID.getLeastSignificantBits());
 		out.writeDouble(x);
@@ -62,7 +62,7 @@ public class SpawnPlayerPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
+		entityID = ProtocolHelper.readVarInt(buff);
 		long MSB = buff.getLong();
 		long LSB = buff.getLong();
 		playerUUID = new UUID(MSB, LSB);
@@ -77,6 +77,6 @@ public class SpawnPlayerPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnPlayerPacket{" + "entityId=" + entityId + ", playerUUID=" + playerUUID + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", metadata=" + metadata + '}';
+		return "SpawnPlayerPacket{" + "entityID=" + entityID + ", playerUUID=" + playerUUID + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", metadata=" + metadata + '}';
 	}
 }

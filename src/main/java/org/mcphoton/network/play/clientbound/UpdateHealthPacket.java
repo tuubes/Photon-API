@@ -34,7 +34,7 @@ public class UpdateHealthPacket implements Packet {
 
 	@Override
 	public int getId() {
-		return 0x3D;
+		return 0x3E;
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class UpdateHealthPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "UpdateHealthPacket{" + "health" + health + ", food=" + food + ", foodSaturation=" + foodSaturation + '}';
+		return "UpdateHealthPacket{" + "health=" + health + ", food=" + food + ", foodSaturation=" + foodSaturation + '}';
 	}
 
 }

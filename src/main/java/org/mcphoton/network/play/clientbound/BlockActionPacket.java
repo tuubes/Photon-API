@@ -29,8 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
 public class BlockActionPacket implements Packet {
 
 	public int x, y, z;
-	public int byte1;
-	public int byte2;
+	public int byte1, byte2;
 	public int type;
 
 	@Override

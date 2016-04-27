@@ -28,7 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnGlobalEntityPacket implements Packet {
 
-	public int entityId;
+	public int entityID;
 	public byte type;
 	public double x, y, z;
 
@@ -44,7 +44,7 @@ public class SpawnGlobalEntityPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityId);
+		out.writeVarInt(entityID);
 		out.writeByte(type);
 		out.writeDouble(x);
 		out.writeDouble(y);
@@ -53,7 +53,7 @@ public class SpawnGlobalEntityPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
+		entityID = ProtocolHelper.readVarInt(buff);
 		type = buff.get();
 		x = buff.getDouble();
 		y = buff.getDouble();
@@ -63,6 +63,6 @@ public class SpawnGlobalEntityPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnGlobalEntity{" + "entityId=" + entityId + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + '}';
+		return "SpawnGlobalEntity{" + "entityID=" + entityID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + '}';
 	}
 }

@@ -28,7 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class BlockBreakAnimationPacket implements Packet {
 
-	public int entityId;
+	public int entityID;
 	public int x, y, z;
 	public byte destroyStage;
 
@@ -44,7 +44,7 @@ public class BlockBreakAnimationPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityId);
+		out.writeVarInt(entityID);
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
 		out.writeByte(destroyStage);
 
@@ -52,7 +52,7 @@ public class BlockBreakAnimationPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
+		entityID = ProtocolHelper.readVarInt(buff);
 		long pos = buff.getLong();
 		x = ProtocolHelper.decodePositionX(pos);
 		y = ProtocolHelper.decodePositionY(pos);
@@ -63,6 +63,6 @@ public class BlockBreakAnimationPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "BlockBreakAnimationPacket{" + "entityId=" + entityId + ", x=" + x + ", y=" + y + ", z=" + z + ", destroyStage=" + destroyStage + '}';
+		return "BlockBreakAnimationPacket{" + "entityID=" + entityID + ", x=" + x + ", y=" + y + ", z=" + z + ", destroyStage=" + destroyStage + '}';
 	}
 }

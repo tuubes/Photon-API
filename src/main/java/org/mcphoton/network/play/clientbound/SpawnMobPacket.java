@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnMobPacket implements Packet {
 
-	public int entityId;
+	public int entityID;
 	public UUID entityUUID;
 	public int type;
 	public double x, y, z;
@@ -50,7 +50,7 @@ public class SpawnMobPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityId);
+		out.writeVarInt(entityID);
 		out.writeLong(entityUUID.getMostSignificantBits());
 		out.writeLong(entityUUID.getLeastSignificantBits());
 		out.writeByte(type);
@@ -68,7 +68,7 @@ public class SpawnMobPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
+		entityID = ProtocolHelper.readVarInt(buff);
 		long MSB = buff.getLong();
 		long LSB = buff.getLong();
 		entityUUID = new UUID(MSB, LSB);
@@ -88,6 +88,6 @@ public class SpawnMobPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnMobPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + ", metadata=" + metadata + '}';
+		return "SpawnMobPacket{" + "entityID=" + entityID + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + ", metadata=" + metadata + '}';
 	}
 }

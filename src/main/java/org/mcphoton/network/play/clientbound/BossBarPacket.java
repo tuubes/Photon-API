@@ -26,16 +26,14 @@ import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  * @author Maaattt
+ * @author DJmaxZPLAY
  */
 public class BossBarPacket implements Packet {
 
 	public UUID barUUID;
-	public int action;
+	public int action, color, division, flags;
 	public String chat;
 	public float health;
-	public int color;
-	public int division;
-	public byte flags;
 
 	@Override
 	public int getId() {
@@ -90,7 +88,7 @@ public class BossBarPacket implements Packet {
 				health = buff.getFloat();
 				color = ProtocolHelper.readVarInt(buff);
 				division = ProtocolHelper.readVarInt(buff);
-				flags = buff.get();
+				flags = ProtocolHelper.readUnsignedByte(buff.get());
 				break;
 			case 2:
 				health = buff.getFloat();
@@ -103,7 +101,7 @@ public class BossBarPacket implements Packet {
 				division = ProtocolHelper.readVarInt(buff);
 				break;
 			case 5:
-				flags = buff.get();
+				flags = ProtocolHelper.readUnsignedByte(buff.get());
 				break;
 			default:
 				break;
