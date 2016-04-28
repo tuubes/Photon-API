@@ -30,12 +30,12 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnMobPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public UUID entityUUID;
 	public int type;
 	public double x, y, z;
 	public byte yaw, pitch, headPitch;
-	public short xVelocity, yVelocity, zVelocity;
+	public short velocityX, velocityY, velocityZ;
 	public byte metadata;
 
 	@Override
@@ -50,7 +50,7 @@ public class SpawnMobPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeLong(entityUUID.getMostSignificantBits());
 		out.writeLong(entityUUID.getLeastSignificantBits());
 		out.writeByte(type);
@@ -60,15 +60,15 @@ public class SpawnMobPacket implements Packet {
 		out.writeByte(yaw);
 		out.writeByte(pitch);
 		out.writeByte(headPitch);
-		out.writeShort(xVelocity);
-		out.writeShort(yVelocity);
-		out.writeShort(zVelocity);
+		out.writeShort(velocityX);
+		out.writeShort(velocityY);
+		out.writeShort(velocityZ);
 		out.writeByte(metadata);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		long MSB = buff.getLong();
 		long LSB = buff.getLong();
 		entityUUID = new UUID(MSB, LSB);
@@ -79,15 +79,15 @@ public class SpawnMobPacket implements Packet {
 		yaw = buff.get();
 		pitch = buff.get();
 		headPitch = buff.get();
-		xVelocity = buff.getShort();
-		yVelocity = buff.getShort();
-		zVelocity = buff.getShort();
+		velocityX = buff.getShort();
+		velocityY = buff.getShort();
+		velocityZ = buff.getShort();
 		metadata = buff.get();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SpawnMobPacket{" + "entityID=" + entityID + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + ", metadata=" + metadata + '}';
+		return "SpawnMobPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", velocityX=" + velocityX + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + ", metadata=" + metadata + '}';
 	}
 }

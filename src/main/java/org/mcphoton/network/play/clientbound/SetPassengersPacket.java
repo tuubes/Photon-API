@@ -31,7 +31,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SetPassengersPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public int passengers[];
 
 	@Override
@@ -46,7 +46,7 @@ public class SetPassengersPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeVarInt(passengers.length);
 		for(int i : passengers){
 			out.writeVarInt(i);
@@ -55,7 +55,7 @@ public class SetPassengersPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		passengers = new int[ProtocolHelper.readVarInt(buff)];
 		for(int i = 0; i < passengers.length; i++){
 			passengers[i] = ProtocolHelper.readVarInt(buff);
@@ -65,7 +65,7 @@ public class SetPassengersPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SetPassengersPacket{" + "entityID=" + entityID + ", passengers=" + Arrays.toString(passengers) + '}';
+		return "SetPassengersPacket{" + "entityId=" + entityId + ", passengers=" + Arrays.toString(passengers) + '}';
 	}
 
 }

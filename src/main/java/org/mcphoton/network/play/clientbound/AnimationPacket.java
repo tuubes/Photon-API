@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class AnimationPacket implements Packet {
 
-	public int entityID, animation;
+	public int entityId, animation;
 
 	@Override
 	public int getId() {
@@ -44,19 +44,19 @@ public class AnimationPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeByte(animation);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		animation = ProtocolHelper.readUnsignedByte(buff.get());
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "AnimationPacket{" + "entityID=" + entityID + ", animation=" + animation + '}';
+		return "AnimationPacket{" + "entityId=" + entityId + ", animation=" + animation + '}';
 	}
 }

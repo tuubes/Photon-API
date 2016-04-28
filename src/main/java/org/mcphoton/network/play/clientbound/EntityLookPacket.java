@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityLookPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public float yaw, pitch;
 	public boolean onGround;
 
@@ -46,7 +46,7 @@ public class EntityLookPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeByte(ProtocolHelper.toRotationStep(yaw));
 		out.writeByte(ProtocolHelper.toRotationStep(pitch));
 		out.writeBoolean(onGround);
@@ -54,7 +54,7 @@ public class EntityLookPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		yaw = ProtocolHelper.toDegrees(buff.get());
 		pitch = ProtocolHelper.toDegrees(buff.get());
 		onGround = ProtocolHelper.readBoolean(buff);
@@ -63,7 +63,7 @@ public class EntityLookPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EntityLookPacket{" + "entityID=" + entityID + ", yaw=" + yaw + ", pitch=" + pitch + ", onGround=" + onGround + '}';
+		return "EntityLookPacket{" + "entityId=" + entityId + ", yaw=" + yaw + ", pitch=" + pitch + ", onGround=" + onGround + '}';
 	}
 
 }

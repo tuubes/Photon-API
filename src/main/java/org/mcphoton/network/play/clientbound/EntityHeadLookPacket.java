@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityHeadLookPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public float headYaw;
 
 	@Override
@@ -44,20 +44,20 @@ public class EntityHeadLookPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeByte(ProtocolHelper.toRotationStep(headYaw));
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		headYaw = ProtocolHelper.toDegrees(buff.get());
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityHeadLook{" + "entityID=" + entityID + ", headYaw=" + headYaw + '}';
+		return "EntityHeadLook{" + "entityId=" + entityId + ", headYaw=" + headYaw + '}';
 	}
 
 }

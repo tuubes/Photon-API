@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ConfirmTransactionPacket implements Packet {
 
-	public byte windowID;
+	public byte windowId;
 	public short actionNumber;
 	public boolean accepted;
 
@@ -46,14 +46,14 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeShort(actionNumber);
 		out.writeBoolean(accepted);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = buff.get();
+		windowId = buff.get();
 		actionNumber = buff.getShort();
 		accepted = ProtocolHelper.readBoolean(buff);
 		return this;
@@ -61,6 +61,6 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowID=" + windowID + ", actionNumber=" + actionNumber + ", accepted=" + accepted + '}';
+		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", actionNumber=" + actionNumber + ", accepted=" + accepted + '}';
 	}
 }

@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class OpenWindowPacket implements Packet {
 
-	public int windowID, slots, entityID;
+	public int windowId, slots, entityId;
 	public String windowType, chat;
 
 	@Override
@@ -45,29 +45,29 @@ public class OpenWindowPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeString(windowType);
 		out.writeString(chat);
 		out.writeByte(slots);
 		if (windowType.equalsIgnoreCase("EntityHorse")) {
-			out.writeInt(entityID);
+			out.writeInt(entityId);
 		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = ProtocolHelper.readUnsignedByte(buff.get());
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		windowType = ProtocolHelper.readString(buff);
 		chat = ProtocolHelper.readString(buff);
 		slots = ProtocolHelper.readUnsignedByte(buff.get());
 		if (windowType.equalsIgnoreCase("EntityHorse")) {
-			entityID = buff.getInt();
+			entityId = buff.getInt();
 		}
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "OpenWindowPacket{" + "windowID=" + windowID + ", windowType='" + windowType + '\'' + ", chat='" + chat + '\'' + ", slots=" + slots + ", entityId=" + entityID + '}';
+		return "OpenWindowPacket{" + "windowId=" + windowId + ", windowType='" + windowType + '\'' + ", chat='" + chat + '\'' + ", slots=" + slots + ", entityId=" + entityId + '}';
 	}
 }

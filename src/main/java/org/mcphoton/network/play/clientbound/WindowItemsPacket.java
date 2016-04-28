@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class WindowItemsPacket implements Packet {
 
-	public int windowID;
+	public int windowId;
 	public short cout;
 
 	@Override
@@ -44,14 +44,14 @@ public class WindowItemsPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeShort(cout);
 		//TODO Write array of slot
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = ProtocolHelper.readUnsignedByte(buff.get());
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		cout = buff.getShort();
 		//TODO Read array of slot
 		return this;
@@ -59,7 +59,7 @@ public class WindowItemsPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "WindowItemsPacket{" + "windowID=" + windowID + ", cout=" + cout + '}';
+		return "WindowItemsPacket{" + "windowId=" + windowId + ", cout=" + cout + '}';
 	}
 
 }

@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class WindowPropertyPacket implements Packet {
 
-	public int windowID;
+	public int windowId;
 	public short property, value;
 
 	@Override
@@ -44,14 +44,14 @@ public class WindowPropertyPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeShort(property);
 		out.writeShort(value);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = ProtocolHelper.readUnsignedByte(buff.get());
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		property = buff.getShort();
 		value = buff.getShort();
 		return this;
@@ -59,7 +59,7 @@ public class WindowPropertyPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "WindowPropertyPacket{" + "windowID=" + windowID + ", property=" + property + ", value=" + value + '}';
+		return "WindowPropertyPacket{" + "windowId=" + windowId + ", property=" + property + ", value=" + value + '}';
 	}
 
 }

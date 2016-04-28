@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SetCooldownPacket implements Packet {
 
-	public int itemID, cooldownTicks;
+	public int itemId, cooldownTicks;
 
 	@Override
 	public int getId() {
@@ -43,20 +43,20 @@ public class SetCooldownPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(itemID);
+		out.writeVarInt(itemId);
 		out.writeVarInt(cooldownTicks);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		itemID = ProtocolHelper.readVarInt(buff);
+		itemId = ProtocolHelper.readVarInt(buff);
 		cooldownTicks = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SetCooldownPacket{" + "itemID=" + itemID + ", cooldownTicks=" + cooldownTicks + '}';
+		return "SetCooldownPacket{" + "itemId=" + itemId + ", cooldownTicks=" + cooldownTicks + '}';
 	}
 
 }

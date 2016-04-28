@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class CloseWindowPacket implements Packet {
 
-	public int windowID;
+	public int windowId;
 
 	@Override
 	public int getId() {
@@ -43,17 +43,17 @@ public class CloseWindowPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = ProtocolHelper.readUnsignedByte(buff.get());
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "CloseWindowPacket{" + "windowID=" + windowID + '}';
+		return "CloseWindowPacket{" + "windowId=" + windowId + '}';
 	}
 }

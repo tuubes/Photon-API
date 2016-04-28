@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ExplosionPacket implements Packet {
 
-	public float x, y, z, radius, xPlayerMotion, yPlayerMotion, zPlayerMotion;
+	public float x, y, z, radius, playerMotionX, playerMotionY, playerMotionZ;
 	public Records[] records;
 
 	@Override
@@ -55,9 +55,9 @@ public class ExplosionPacket implements Packet {
 			out.writeByte(record.getYOffset());
 			out.writeByte(record.getZOffset());
 		}
-		out.writeFloat(xPlayerMotion);
-		out.writeFloat(yPlayerMotion);
-		out.writeFloat(zPlayerMotion);
+		out.writeFloat(playerMotionX);
+		out.writeFloat(playerMotionY);
+		out.writeFloat(playerMotionZ);
 	}
 
 	@Override
@@ -70,15 +70,15 @@ public class ExplosionPacket implements Packet {
 		for(int i = 0; i < records.length; i++){
 			records[i] = new Records(buff.get(), buff.get(), buff.get());
 		}
-		xPlayerMotion = buff.getFloat();
-		yPlayerMotion = buff.getFloat();
-		zPlayerMotion = buff.getFloat();
+		playerMotionX = buff.getFloat();
+		playerMotionY = buff.getFloat();
+		playerMotionZ = buff.getFloat();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ExplosionPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", radius=" + radius + ", records=" + Arrays.toString(records) + "xPlayerMotion=" + xPlayerMotion + ", yPlayerMotion=" + yPlayerMotion + ", zPlayerMotion=" + zPlayerMotion + '}';
+		return "ExplosionPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", radius=" + radius + ", records=" + Arrays.toString(records) + "playerMotionX=" + playerMotionX + ", playerMotionY=" + playerMotionY + ", playerMotionZ=" + playerMotionZ + '}';
 	}
 
 	public class Records{

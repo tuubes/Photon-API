@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class JoinGamePacket implements Packet {
 
-	public int entityID, gamemode, worldType, difficulty, maxPlayers;
+	public int entityId, gamemode, worldType, difficulty, maxPlayers;
 	public String levelType;
 	public boolean reducedDebugInfo;
 
@@ -46,7 +46,7 @@ public class JoinGamePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeInt(entityID);
+		out.writeInt(entityId);
 		out.writeByte(gamemode);
 		out.writeInt(worldType);
 		out.writeByte(difficulty);
@@ -57,7 +57,7 @@ public class JoinGamePacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = buff.getInt();
+		entityId = buff.getInt();
 		gamemode = ProtocolHelper.readUnsignedByte(buff.get());
 		worldType = buff.getInt();
 		difficulty = ProtocolHelper.readUnsignedByte(buff.get());
@@ -69,6 +69,6 @@ public class JoinGamePacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "JoinGamePacket{" + "entityID=" + entityID + ", gamemode=" + gamemode + ", worldType=" + worldType + ", difficulty=" + difficulty + ", maxPlayers=" + maxPlayers + ", levelType=" + levelType + ", reducedDebugInfo=" + reducedDebugInfo + '}';
+		return "JoinGamePacket{" + "entityId=" + entityId + ", gamemode=" + gamemode + ", worldType=" + worldType + ", difficulty=" + difficulty + ", maxPlayers=" + maxPlayers + ", levelType=" + levelType + ", reducedDebugInfo=" + reducedDebugInfo + '}';
 	}
 }

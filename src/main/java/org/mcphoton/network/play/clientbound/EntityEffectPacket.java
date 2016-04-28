@@ -30,8 +30,8 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityEffectPacket implements Packet {
 
-	public int entityID, duration;
-	public byte effectID, amplifier;
+	public int entityId, duration;
+	public byte effectId, amplifier;
 	public boolean hideParticles;
 
 	@Override
@@ -46,8 +46,8 @@ public class EntityEffectPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
-		out.writeByte(effectID);
+		out.writeVarInt(entityId);
+		out.writeByte(effectId);
 		out.writeByte(amplifier);
 		out.writeVarInt(duration);
 		out.writeBoolean(hideParticles);
@@ -55,8 +55,8 @@ public class EntityEffectPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
-		effectID = buff.get();
+		entityId = ProtocolHelper.readVarInt(buff);
+		effectId = buff.get();
 		amplifier = buff.get();
 		duration = ProtocolHelper.readVarInt(buff);
 		hideParticles = ProtocolHelper.readBoolean(buff);
@@ -65,6 +65,6 @@ public class EntityEffectPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EntityEffectPacket{" + "entityID=" + entityID + ", effectID=" + effectID + ", amplifier=" + amplifier + ", duration=" + duration + ", hideParticles=" + hideParticles + '}';
+		return "EntityEffectPacket{" + "entityId=" + entityId + ", effectId=" + effectId + ", amplifier=" + amplifier + ", duration=" + duration + ", hideParticles=" + hideParticles + '}';
 	}
 }

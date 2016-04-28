@@ -29,8 +29,8 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityLookAndRelativeMovePacket implements Packet {
 
-	public int entityID;
-	public short xDelta, yDelta, zDelta;
+	public int entityId;
+	public short deltaX, deltaY, deltaZ;
 	public float yaw, pitch;
 	public boolean onGround;
 
@@ -46,10 +46,10 @@ public class EntityLookAndRelativeMovePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
-		out.writeShort(xDelta);
-		out.writeShort(yDelta);
-		out.writeShort(zDelta);
+		out.writeVarInt(entityId);
+		out.writeShort(deltaX);
+		out.writeShort(deltaY);
+		out.writeShort(deltaZ);
 		out.writeByte(ProtocolHelper.toRotationStep(yaw));
 		out.writeByte(ProtocolHelper.toRotationStep(pitch));
 		out.writeBoolean(onGround);
@@ -57,10 +57,10 @@ public class EntityLookAndRelativeMovePacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
-		xDelta = buff.getShort();
-		yDelta = buff.getShort();
-		zDelta = buff.getShort();
+		entityId = ProtocolHelper.readVarInt(buff);
+		deltaX = buff.getShort();
+		deltaY = buff.getShort();
+		deltaZ = buff.getShort();
 		yaw = ProtocolHelper.toDegrees(buff.get());
 		pitch = ProtocolHelper.toDegrees(buff.get());
 		onGround = ProtocolHelper.readBoolean(buff);
@@ -69,7 +69,7 @@ public class EntityLookAndRelativeMovePacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EntityLookAndRelativeMovePacket{" + "entityID=" + entityID + ", xDelta=" + xDelta + ", yDelta=" + yDelta + ", zDelta=" + zDelta + ", yaw=" + yaw + ", pitch=" + pitch + ", onGround=" + onGround + '}';
+		return "EntityLookAndRelativeMovePacket{" + "entityId=" + entityId + ", deltaX=" + deltaX + ", deltaY=" + deltaY + ", deltaZ=" + deltaZ + ", yaw=" + yaw + ", pitch=" + pitch + ", onGround=" + onGround + '}';
 	}
 
 }

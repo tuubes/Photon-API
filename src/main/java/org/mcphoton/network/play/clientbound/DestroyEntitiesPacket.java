@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class DestroyEntitiesPacket implements Packet {
 
-	public int[] entitiesID;
+	public int[] entitiesId;
 
 	@Override
 	public int getId() {
@@ -43,23 +43,23 @@ public class DestroyEntitiesPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entitiesID.length);
-		for (int i : entitiesID) {
+		out.writeVarInt(entitiesId.length);
+		for (int i : entitiesId) {
 			out.writeVarInt(i);
 		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entitiesID = new int[ProtocolHelper.readVarInt(buff)];
-		for (int i = 0; i < entitiesID.length; i++) {
-			entitiesID[i] = ProtocolHelper.readVarInt(buff);
+		entitiesId = new int[ProtocolHelper.readVarInt(buff)];
+		for (int i = 0; i < entitiesId.length; i++) {
+			entitiesId[i] = ProtocolHelper.readVarInt(buff);
 		}
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "DestroyEntitiesPacket{" + "entitiesID=" + Arrays.toString(entitiesID) + '}';
+		return "DestroyEntitiesPacket{" + "entitiesId=" + Arrays.toString(entitiesId) + '}';
 	}
 }

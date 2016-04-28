@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnExperienceOrbPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public double x, y, z;
 	public short count;
 
@@ -45,7 +45,7 @@ public class SpawnExperienceOrbPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeDouble(x);
 		out.writeDouble(y);
 		out.writeDouble(z);
@@ -54,7 +54,7 @@ public class SpawnExperienceOrbPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		x = buff.getDouble();
 		y = buff.getDouble();
 		z = buff.getDouble();
@@ -64,6 +64,6 @@ public class SpawnExperienceOrbPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnExperienceOrb{" + "entityID=" + entityID + ", x=" + x + ", y=" + y + ", z=" + z + ", count=" + count + '}';
+		return "SpawnExperienceOrb{" + "entityId=" + entityId + ", x=" + x + ", y=" + y + ", z=" + z + ", count=" + count + '}';
 	}
 }

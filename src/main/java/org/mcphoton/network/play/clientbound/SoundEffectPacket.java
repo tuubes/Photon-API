@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SoundEffectPacket implements Packet {
 
-	public int soundID, soundCategory, effectPositionX, effectPositionY, effectPositionZ;
+	public int soundId, soundCategory, effectPositionX, effectPositionY, effectPositionZ;
 	public float volume;
 	public int pitch; //Unsigned Byte
 
@@ -46,7 +46,7 @@ public class SoundEffectPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(soundID);
+		out.writeVarInt(soundId);
 		out.writeVarInt(soundCategory);
 		out.writeInt(effectPositionX);
 		out.writeInt(effectPositionY);
@@ -57,7 +57,7 @@ public class SoundEffectPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		soundID = ProtocolHelper.readVarInt(buff);
+		soundId = ProtocolHelper.readVarInt(buff);
 		soundCategory = ProtocolHelper.readVarInt(buff);
 		effectPositionX = buff.getInt();
 		effectPositionY = buff.getInt();
@@ -69,6 +69,6 @@ public class SoundEffectPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SoundEffectPacket{" + "soundID=" + soundID + ", soundCategory=" + soundCategory + ", effectPositionX=" + effectPositionX + ", effectPositionY=" + effectPositionY + ", effectPositionZ=" + effectPositionZ + ", volume=" + volume + ", pitch=" + pitch + '}';
+		return "SoundEffectPacket{" + "soundId=" + soundId + ", soundCategory=" + soundCategory + ", effectPositionX=" + effectPositionX + ", effectPositionY=" + effectPositionY + ", effectPositionZ=" + effectPositionZ + ", volume=" + volume + ", pitch=" + pitch + '}';
 	}
 }
