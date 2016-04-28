@@ -34,7 +34,7 @@ public class SetExperiencePacket implements Packet {
 
 	@Override
 	public int getId() {
-		return 0x3E;
+		return 0x3D;
 	}
 
 	@Override

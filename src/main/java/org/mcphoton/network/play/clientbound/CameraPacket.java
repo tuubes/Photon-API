@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class CameraPacket implements Packet {
 
-	public int cameraID;
+	public int cameraId;
 
 	@Override
 	public int getId() {
@@ -43,18 +43,18 @@ public class CameraPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(cameraID);
+		out.writeVarInt(cameraId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		cameraID = ProtocolHelper.readVarInt(buff);
+		cameraId = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "CameraPacket{" + "cameraID=" + cameraID + '}';
+		return "CameraPacket{" + "cameraId=" + cameraId + '}';
 	}
 
 }

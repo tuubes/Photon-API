@@ -26,14 +26,12 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author Maaattt
+ * @author DJmaxZPLAY
  */
 public class OpenWindowPacket implements Packet {
 
-	public int windowId;
-	public String windowType;
-	public String chat;
-	public int slots;
-	public int entityId;
+	public int windowId, slots, entityId;
+	public String windowType, chat;
 
 	@Override
 	public int getId() {
@@ -58,10 +56,10 @@ public class OpenWindowPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		windowType = ProtocolHelper.readString(buff);
 		chat = ProtocolHelper.readString(buff);
-		slots = buff.getInt();
+		slots = ProtocolHelper.readUnsignedByte(buff.get());
 		if (windowType.equalsIgnoreCase("EntityHorse")) {
 			entityId = buff.getInt();
 		}

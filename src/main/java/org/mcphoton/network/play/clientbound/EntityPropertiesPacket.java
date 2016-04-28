@@ -32,7 +32,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityPropertiesPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public EntityProperty[] properties;
 
 	@Override
@@ -47,7 +47,7 @@ public class EntityPropertiesPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeInt(properties.length);
 		for(EntityProperty property : properties){
 			out.writeString(property.getKey());
@@ -64,7 +64,7 @@ public class EntityPropertiesPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		properties = new EntityProperty[buff.getInt()];
 		for(int i = 0; i < properties.length; i++){
 			String key = ProtocolHelper.readString(buff);
@@ -83,7 +83,7 @@ public class EntityPropertiesPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EntityPropertiesPacket{" + "entityID=" + entityID + ", property='" + Arrays.toString(properties) + '\'' + '}';
+		return "EntityPropertiesPacket{" + "entityId=" + entityId + ", property='" + Arrays.toString(properties) + '\'' + '}';
 	}
 	
 	public class EntityProperty{

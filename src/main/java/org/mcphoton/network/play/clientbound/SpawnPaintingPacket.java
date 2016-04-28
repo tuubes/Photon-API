@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnPaintingPacket implements Packet {
 
-	public int entityId;
+	public int entityID;
 	public UUID entityUUID;
 	public String title;
 	public int x, y, z;
@@ -47,7 +47,7 @@ public class SpawnPaintingPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityId);
+		out.writeVarInt(entityID);
 		out.writeLong(entityUUID.getMostSignificantBits());
 		out.writeLong(entityUUID.getLeastSignificantBits());
 		out.writeString(title);
@@ -58,7 +58,7 @@ public class SpawnPaintingPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
+		entityID = ProtocolHelper.readVarInt(buff);
 		long MSB = buff.getLong();
 		long LSB = buff.getLong();
 		entityUUID = new UUID(MSB, LSB);
@@ -73,6 +73,6 @@ public class SpawnPaintingPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnPaintingPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", title='" + title + '\'' + ", x=" + x + ", y=" + y + ", z=" + z + ", direction=" + direction + '}';
+		return "SpawnPaintingPacket{" + "entityID=" + entityID + ", entityUUID=" + entityUUID + ", title='" + title + '\'' + ", x=" + x + ", y=" + y + ", z=" + z + ", direction=" + direction + '}';
 	}
 }

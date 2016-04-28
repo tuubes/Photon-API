@@ -31,7 +31,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ParticlePacket implements Packet {
 
-	public int particleID, particleCount;
+	public int particleId;
 	public boolean longDistance;
 	public float x, y, z, offsetX, offsetY, offsetZ, particleData;
 	public int data[];
@@ -48,7 +48,7 @@ public class ParticlePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeInt(particleID);
+		out.writeInt(particleId);
 		out.writeBoolean(longDistance);
 		out.writeFloat(x);
 		out.writeFloat(y);
@@ -57,7 +57,7 @@ public class ParticlePacket implements Packet {
 		out.writeFloat(offsetY);
 		out.writeFloat(offsetZ);
 		out.writeFloat(particleData);
-		out.writeInt(particleCount);
+		out.writeInt(data.length);
 		for(int i : data){
 			out.writeVarInt(i);
 		}
@@ -65,7 +65,7 @@ public class ParticlePacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		particleID = buff.getInt();
+		particleId = buff.getInt();
 		longDistance = ProtocolHelper.readBoolean(buff);
 		x = buff.getFloat();
 		y = buff.getFloat();
@@ -74,9 +74,8 @@ public class ParticlePacket implements Packet {
 		offsetY = buff.getFloat();
 		offsetZ = buff.getFloat();
 		particleData = buff.getFloat();
-		particleCount = buff.getInt();
-		data = new int[particleCount];
-		for(int i = 0; i < particleCount; i++){
+		data = new int[buff.getInt()];
+		for(int i = 0; i < data.length; i++){
 			data[i] = ProtocolHelper.readVarInt(buff);
 		}
 		return this;
@@ -84,7 +83,7 @@ public class ParticlePacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "ParticlePacket{" + "particleID=" + particleID + ", longDistance=" + longDistance + ", x=" + x + ", y=" + y + ", z=" + z + ", offsetX=" + offsetX + ", offsetY=" + offsetY + ", offsetZ=" + offsetZ + ", particleData=" + particleData + ", data=" + Arrays.toString(data) + '}';
+		return "ParticlePacket{" + "particleId=" + particleId + ", longDistance=" + longDistance + ", x=" + x + ", y=" + y + ", z=" + z + ", offsetX=" + offsetX + ", offsetY=" + offsetY + ", offsetZ=" + offsetZ + ", particleData=" + particleData + ", data=" + Arrays.toString(data) + '}';
 	}
 
 }

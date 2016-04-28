@@ -26,11 +26,11 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author Maaattt
+ * @author DJmaxZPLAY
  */
 public class AnimationPacket implements Packet {
 
-	public int entityId;
-	public byte animation;
+	public int entityId, animation;
 
 	@Override
 	public int getId() {
@@ -45,13 +45,13 @@ public class AnimationPacket implements Packet {
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeVarInt(entityId);
-		out.write(animation);
+		out.writeByte(animation);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
 		entityId = ProtocolHelper.readVarInt(buff);
-		animation = buff.get();
+		animation = ProtocolHelper.readUnsignedByte(buff.get());
 		return this;
 	}
 

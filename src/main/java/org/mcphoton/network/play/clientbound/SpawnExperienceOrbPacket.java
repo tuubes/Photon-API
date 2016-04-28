@@ -64,6 +64,6 @@ public class SpawnExperienceOrbPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnExperienceOrb{" + "entityID=" + entityId + ", x=" + x + ", y=" + y + ", z=" + z + ", count=" + count + '}';
+		return "SpawnExperienceOrb{" + "entityId=" + entityId + ", x=" + x + ", y=" + y + ", z=" + z + ", count=" + count + '}';
 	}
 }

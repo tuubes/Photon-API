@@ -30,8 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class MultiBlockChangePacket implements Packet {
 
-	public int chunkX;
-	public int chunkZ;
+	public int chunkX, chunkZ;
 	public BlockUpdateData[] record;
 
 	@Override

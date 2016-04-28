@@ -29,8 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class CombatEventPacket implements Packet {
 
-	public int event;
-	public int duration, entityID, playerID;
+	public int event, duration, entityId, playerId;;
 	public String message;
 
 	@Override
@@ -49,11 +48,11 @@ public class CombatEventPacket implements Packet {
 		switch (event) {
 			case 1:
 				out.writeVarInt(duration);
-				out.writeInt(entityID);
+				out.writeInt(entityId);
 				break;
 			case 2:
-				out.writeVarInt(playerID);
-				out.writeInt(entityID);
+				out.writeVarInt(playerId);
+				out.writeInt(entityId);
 				out.writeString(message);
 				break;
 		}
@@ -66,11 +65,11 @@ public class CombatEventPacket implements Packet {
 		switch (event) {
 			case 1:
 				duration = ProtocolHelper.readVarInt(buff);
-				entityID = buff.getInt();
+				entityId = buff.getInt();
 				break;
 			case 2:
-				playerID = ProtocolHelper.readVarInt(buff);
-				entityID = buff.getInt();
+				playerId = ProtocolHelper.readVarInt(buff);
+				entityId = buff.getInt();
 				message = ProtocolHelper.readString(buff);
 				break;
 		}
@@ -79,7 +78,7 @@ public class CombatEventPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "CombatEvent{" + "event=" + event + ", duration=" + duration + ", entityID=" + entityID + ", playerID=" + playerID + ", message='" + message + '\'' + '}';
+		return "CombatEvent{" + "event=" + event + ", duration=" + duration + ", entityId=" + entityId + ", playerId=" + playerId + ", message='" + message + '\'' + '}';
 	}
 
 }

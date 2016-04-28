@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class CollectItemPacket implements Packet {
 
-	public int collectedEntityID, collectorEntityID;
+	public int collectedEntityId, collectorEntityId;
 
 	@Override
 	public int getId() {
@@ -44,19 +44,19 @@ public class CollectItemPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(collectedEntityID);
-		out.writeVarInt(collectorEntityID);
+		out.writeVarInt(collectedEntityId);
+		out.writeVarInt(collectorEntityId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		collectedEntityID = ProtocolHelper.readVarInt(buff);
-		collectorEntityID = ProtocolHelper.readVarInt(buff);
+		collectedEntityId = ProtocolHelper.readVarInt(buff);
+		collectorEntityId = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "CollectItemPacket{" + "collectedEntityID=" + collectedEntityID + ", collectorEntityID=" + collectorEntityID + '}';
+		return "CollectItemPacket{" + "collectedEntityId=" + collectedEntityId + ", collectorEntityId=" + collectorEntityId + '}';
 	}
 }

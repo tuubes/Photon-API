@@ -28,7 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityStatusPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public byte entityStatus;
 
 	@Override
@@ -43,20 +43,20 @@ public class EntityStatusPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeInt(entityID);
+		out.writeInt(entityId);
 		out.writeByte(entityStatus);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = buff.getInt();
+		entityId = buff.getInt();
 		entityStatus = buff.get();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityStatusPacket{" + "entityID=" + entityID + ", entityStatus=" + entityStatus + '}';
+		return "EntityStatusPacket{" + "entityId=" + entityId + ", entityStatus=" + entityStatus + '}';
 	}
 
 }

@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityEquipementPacket implements Packet {
 
-	public int entityID, slot;
+	public int entityId, slot;
 
 	@Override
 	public int getId() {
@@ -43,14 +43,14 @@ public class EntityEquipementPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeVarInt(slot);
 		//TODO Write Item in Slot;
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		slot = ProtocolHelper.readVarInt(buff);
 		//TODO Read Item in Slot;
 		return this;
@@ -58,6 +58,6 @@ public class EntityEquipementPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EntityEquipementPacket{" + "entityID=" + entityID + ", slot=" + slot + '}';
+		return "EntityEquipementPacket{" + "entityId=" + entityId + ", slot=" + slot + '}';
 	}
 }

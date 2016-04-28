@@ -28,7 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SetSlotPacket implements Packet {
 
-	public byte windowID;
+	public byte windowId;
 	public short slot;
 
 	@Override
@@ -43,14 +43,14 @@ public class SetSlotPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeShort(slot);
 		//TODO Read Slot Data
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = buff.get();
+		windowId = buff.get();
 		slot = buff.getShort();
 		//TODO Write Slot Data
 		return this;
@@ -58,7 +58,7 @@ public class SetSlotPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SetSlotPacket{" + "windowID=" + windowID + ", slot=" + slot + ", slotData=" + '}';
+		return "SetSlotPacket{" + "windowId=" + windowId + ", slot=" + slot + ", slotData=" + '}';
 	}
 
 }

@@ -26,11 +26,12 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author Maaattt
+ * @author DJmaxZPLAY
  */
 public class ConfirmTransactionPacket implements Packet {
 
-	public int windowId;
-	public int actionNumber;
+	public byte windowId;
+	public short actionNumber;
 	public boolean accepted;
 
 	@Override

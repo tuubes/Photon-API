@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class KeepAlivePacket implements Packet {
 
-	public int keepAliveID;
+	public int keepAliveId;
 
 	@Override
 	public int getId() {
@@ -43,18 +43,18 @@ public class KeepAlivePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(keepAliveID);
+		out.writeVarInt(keepAliveId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		keepAliveID = ProtocolHelper.readVarInt(buff);
+		keepAliveId = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "KeepAlivePacket{" + "keepAliveID=" + keepAliveID + '}';
+		return "KeepAlivePacket{" + "keepAliveId=" + keepAliveId + '}';
 	}
 
 }

@@ -29,9 +29,8 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EffectPacket implements Packet {
 
-	public int effectID, data;
+	public int effectId, data;
 	public int x, y, z;
-
 	public boolean disableRelativeVolume;
 
 	@Override
@@ -46,9 +45,9 @@ public class EffectPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeInt(effectID);
+		out.writeInt(effectId);
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
-		if (effectID == 1010) {
+		if (effectId == 1010 || (2000 <= effectId && effectId <= 2002) || effectId == 2005) {
 			out.writeInt(data);
 		}
 		out.writeBoolean(disableRelativeVolume);
@@ -56,11 +55,11 @@ public class EffectPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		effectID = buff.getInt();
+		effectId = buff.getInt();
 		x = ProtocolHelper.decodePositionX(buff.getLong());
 		y = ProtocolHelper.decodePositionY(buff.getLong());
 		z = ProtocolHelper.decodePositionZ(buff.getLong());
-		if (effectID == 1010) {
+		if (effectId == 1010 || (2000 <= effectId && effectId <= 2002) || effectId == 2005) {
 			data = buff.getInt();
 		}
 		disableRelativeVolume = ProtocolHelper.readBoolean(buff);
@@ -69,7 +68,7 @@ public class EffectPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EffectPacket{" + "effectID=" + effectID + ", x=" + x + ", y=" + y + ", z=" + z + ", data=" + data + ", disableRelativeVolume=" + disableRelativeVolume + '}';
+		return "EffectPacket{" + "effectId=" + effectId + ", x=" + x + ", y=" + y + ", z=" + z + ", data=" + data + ", disableRelativeVolume=" + disableRelativeVolume + '}';
 	}
 
 }

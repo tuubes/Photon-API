@@ -16,50 +16,56 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.network.play.clientbound;
+package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
- * @author Maaattt
+ *
+ * @author DJmaxZPLAY
  */
-public class DestroyEntities implements Packet {
+public class PlayerPositionAndLookPacket implements Packet {
 
-	public int[] entitiesId;
+	public double x, y, z;
+	public float yaw, pitch;
+	public boolean onGround;
 
 	@Override
 	public int getId() {
-		return 0x30;
+		return 0x0D;
 	}
 
 	@Override
 	public boolean isServerBound() {
-		return false;
+		return true;
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entitiesId.length);
-		for (Integer i : entitiesId) {
-			out.writeVarInt(i);
-		}
+	public void writeTo(ProtocolOutputStream out) {;
+		out.writeDouble(x);
+		out.writeDouble(y);
+		out.writeDouble(z);
+		out.writeFloat(yaw);
+		out.writeFloat(pitch);
+		out.writeBoolean(onGround);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entitiesId = new int[ProtocolHelper.readVarInt(buff)];
-		for (int i = 0; i < entitiesId.length; i++) {
-			entitiesId[i] = ProtocolHelper.readVarInt(buff);
-		}
+		x = buff.getDouble();
+		y = buff.getDouble();
+		z = buff.getDouble();
+		yaw = buff.getFloat();
+		pitch = buff.getFloat();
+		onGround = ProtocolHelper.readBoolean(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "DestroyEntities{" + "entitiesId=" + Arrays.toString(entitiesId) + '}';
+		return "PlayerPositionAndLookPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", onGround=" + onGround + '}';
 	}
 }

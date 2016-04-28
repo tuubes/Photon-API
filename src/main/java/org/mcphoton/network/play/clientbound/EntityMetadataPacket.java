@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityMetadataPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public byte metadata;
 
 	@Override
@@ -44,20 +44,21 @@ public class EntityMetadataPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeByte(metadata);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
+		//TODO Improve the metadata reading and writing methods
 		metadata = buff.get();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityMetadataPacket{" + "entityID=" + entityID + ", metadata=" + metadata + '}';
+		return "EntityMetadataPacket{" + "entityId=" + entityId + ", metadata=" + metadata + '}';
 	}
 
 }

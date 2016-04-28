@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityRelativeMovePacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public short deltaX, deltaY, deltaZ;
 	public boolean onGround;
 
@@ -45,7 +45,7 @@ public class EntityRelativeMovePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeShort(deltaX);
 		out.writeShort(deltaY);
 		out.writeShort(deltaZ);
@@ -54,7 +54,7 @@ public class EntityRelativeMovePacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		deltaX = buff.getShort();
 		deltaY = buff.getShort();
 		deltaZ = buff.getShort();
@@ -64,7 +64,7 @@ public class EntityRelativeMovePacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "EntityRelativeMovePacket{" + "entityID=" + entityID + ", deltaX=" + deltaX + ", deltaY=" + deltaY + ", deltaZ=" + deltaZ + ", onGround=" + onGround + '}';
+		return "EntityRelativeMovePacket{" + "entityId=" + entityId + ", deltaX=" + deltaX + ", deltaY=" + deltaY + ", deltaZ=" + deltaZ + ", onGround=" + onGround + '}';
 	}
 
 }

@@ -25,11 +25,12 @@ import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  * @author Maaattt
+ * @author DJmaxZPLAY
  */
 public class RemoveEntityEffectPacket implements Packet {
 
 	public int entityId;
-	public int effectId;
+	public byte effectId;
 
 	@Override
 	public int getId() {

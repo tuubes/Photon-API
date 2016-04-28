@@ -29,8 +29,8 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EntityVelocityPacket implements Packet {
 
-	public int entityID;
-	public short velocityX, velocityY, velocityZ;
+	public int entityId;
+	public short velocityX, yVelocity, velocityZ;
 
 	@Override
 	public int getId() {
@@ -44,24 +44,24 @@ public class EntityVelocityPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeShort(velocityX);
-		out.writeShort(velocityY);
+		out.writeShort(yVelocity);
 		out.writeShort(velocityZ);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		velocityX = buff.getShort();
-		velocityY = buff.getShort();
+		yVelocity = buff.getShort();
 		velocityZ = buff.getShort();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "EntityVelocityPacket{" + "entityID=" + entityID + ", velocityX=" + velocityX + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + '}';
+		return "EntityVelocityPacket{" + "entityId=" + entityId + ", velocityX=" + velocityX + ", yVelocity=" + yVelocity + ", velocityZ=" + velocityZ + '}';
 	}
 
 }

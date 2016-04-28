@@ -28,7 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class AttachEntityPacket implements Packet {
 
-	public int attachedEntityID, holdingEntityID;
+	public int attachedEntityId, holdingEntityId;
 
 	@Override
 	public int getId() {
@@ -42,20 +42,20 @@ public class AttachEntityPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeInt(attachedEntityID);
-		out.writeInt(holdingEntityID);
+		out.writeInt(attachedEntityId);
+		out.writeInt(holdingEntityId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		attachedEntityID = buff.getInt();
-		holdingEntityID = buff.getInt();
+		attachedEntityId = buff.getInt();
+		holdingEntityId = buff.getInt();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "AttachEntityPacket{" + "attachedEntityID=" + attachedEntityID + ", holdingEntityID=" + holdingEntityID + '}';
+		return "AttachEntityPacket{" + "attachedEntityId=" + attachedEntityId + ", holdingEntityId=" + holdingEntityId + '}';
 	}
 
 }
