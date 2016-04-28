@@ -31,7 +31,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ParticlePacket implements Packet {
 
-	public int particleID;
+	public int particleId;
 	public boolean longDistance;
 	public float x, y, z, offsetX, offsetY, offsetZ, particleData;
 	public int data[];
@@ -48,7 +48,7 @@ public class ParticlePacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeInt(particleID);
+		out.writeInt(particleId);
 		out.writeBoolean(longDistance);
 		out.writeFloat(x);
 		out.writeFloat(y);
@@ -65,7 +65,7 @@ public class ParticlePacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		particleID = buff.getInt();
+		particleId = buff.getInt();
 		longDistance = ProtocolHelper.readBoolean(buff);
 		x = buff.getFloat();
 		y = buff.getFloat();
@@ -83,7 +83,7 @@ public class ParticlePacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "ParticlePacket{" + "particleID=" + particleID + ", longDistance=" + longDistance + ", x=" + x + ", y=" + y + ", z=" + z + ", offsetX=" + offsetX + ", offsetY=" + offsetY + ", offsetZ=" + offsetZ + ", particleData=" + particleData + ", data=" + Arrays.toString(data) + '}';
+		return "ParticlePacket{" + "particleId=" + particleId + ", longDistance=" + longDistance + ", x=" + x + ", y=" + y + ", z=" + z + ", offsetX=" + offsetX + ", offsetY=" + offsetY + ", offsetZ=" + offsetZ + ", particleData=" + particleData + ", data=" + Arrays.toString(data) + '}';
 	}
 
 }

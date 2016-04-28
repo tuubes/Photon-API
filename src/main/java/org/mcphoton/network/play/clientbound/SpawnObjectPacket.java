@@ -31,13 +31,13 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class SpawnObjectPacket implements Packet {
 
-	public int entityID;
+	public int entityId;
 	public UUID objectUUID;
 	public byte type;
 	public double x, y, z;
 	public float pitch, yaw;
 	public int data;
-	public short xVelocity, yVelocity, zVelocity;
+	public short xVelocity, velocityY, velocityZ;
 
 	@Override
 	public int getId() {
@@ -51,7 +51,7 @@ public class SpawnObjectPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(entityID);
+		out.writeVarInt(entityId);
 		out.writeLong(objectUUID.getMostSignificantBits());
 		out.writeLong(objectUUID.getLeastSignificantBits());
 		out.writeByte(type);
@@ -62,13 +62,13 @@ public class SpawnObjectPacket implements Packet {
 		out.writeByte(ProtocolHelper.toRotationStep(yaw));
 		out.writeInt(data);
 		out.writeShort(xVelocity);
-		out.writeShort(yVelocity);
-		out.writeShort(zVelocity);
+		out.writeShort(velocityY);
+		out.writeShort(velocityZ);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityID = ProtocolHelper.readVarInt(buff);
+		entityId = ProtocolHelper.readVarInt(buff);
 		long MSB = buff.getLong();
 		long LSB = buff.getLong();
 		objectUUID = new UUID(MSB, LSB);
@@ -80,13 +80,13 @@ public class SpawnObjectPacket implements Packet {
 		yaw = ProtocolHelper.toDegrees(buff.get());
 		data = buff.getInt();
 		xVelocity = buff.getShort();
-		yVelocity = buff.getShort();
-		zVelocity = buff.getShort();
+		velocityY = buff.getShort();
+		velocityZ = buff.getShort();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SpawnObjectPacket{" + "entityID=" + entityID + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", yVelocity=" + yVelocity + ", zVelocity=" + zVelocity + '}';
+		return "SpawnObjectPacket{" + "entityId=" + entityId + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + '}';
 	}
 }
