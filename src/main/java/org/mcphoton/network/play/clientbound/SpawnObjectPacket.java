@@ -37,7 +37,7 @@ public class SpawnObjectPacket implements Packet {
 	public double x, y, z;
 	public float pitch, yaw;
 	public int data;
-	public short xVelocity, velocityY, velocityZ;
+	public short velocityX, velocityY, velocityZ;
 
 	@Override
 	public int getId() {
@@ -61,7 +61,7 @@ public class SpawnObjectPacket implements Packet {
 		out.writeByte(ProtocolHelper.toRotationStep(pitch));
 		out.writeByte(ProtocolHelper.toRotationStep(yaw));
 		out.writeInt(data);
-		out.writeShort(xVelocity);
+		out.writeShort(velocityX);
 		out.writeShort(velocityY);
 		out.writeShort(velocityZ);
 	}
@@ -79,7 +79,7 @@ public class SpawnObjectPacket implements Packet {
 		pitch = ProtocolHelper.toDegrees(buff.get());
 		yaw = ProtocolHelper.toDegrees(buff.get());
 		data = buff.getInt();
-		xVelocity = buff.getShort();
+		velocityX = buff.getShort();
 		velocityY = buff.getShort();
 		velocityZ = buff.getShort();
 		return this;
@@ -87,6 +87,6 @@ public class SpawnObjectPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "SpawnObjectPacket{" + "entityId=" + entityId + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", xVelocity=" + xVelocity + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + '}';
+		return "SpawnObjectPacket{" + "entityId=" + entityId + ", objectUUID=" + objectUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", pitch=" + pitch + ", yaw=" + yaw + ", data=" + data + ", velocityX=" + velocityX + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + '}';
 	}
 }
