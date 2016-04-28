@@ -20,22 +20,20 @@ package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
 import org.mcphoton.network.Packet;
-import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class VehicleMovePacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public double x, y, z;
+	public float yaw, pitch;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x10;
 	}
 
 	@Override
@@ -45,21 +43,25 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+		out.writeDouble(x);
+		out.writeDouble(y);
+		out.writeDouble(z);
+		out.writeFloat(yaw);
+		out.writeFloat(pitch);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		x = buff.getDouble();
+		y = buff.getDouble();
+		z = buff.getDouble();
+		yaw = buff.getFloat();
+		pitch = buff.getFloat();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "VehicleMovePacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + '}';
 	}
 }

@@ -19,6 +19,7 @@
 package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
+
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -27,15 +28,13 @@ import org.mcphoton.network.ProtocolOutputStream;
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class UseItemPacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public int hand;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x1B;
 	}
 
 	@Override
@@ -45,21 +44,17 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+		out.writeVarInt(hand);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		hand = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "UseItemPacket{" + "hand=" + hand + '}';
 	}
 }

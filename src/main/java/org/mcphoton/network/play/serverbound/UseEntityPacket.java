@@ -27,15 +27,14 @@ import org.mcphoton.network.ProtocolOutputStream;
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class UseEntityPacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public int target, type, hand;
+	public float targetX, targetY, targetZ;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x0A;
 	}
 
 	@Override
@@ -45,21 +44,33 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+		out.writeVarInt(target);
+		out.writeVarInt(type);
+		if(type == 0) out.writeVarInt(hand);
+		if(type == 2){
+			out.writeFloat(targetX);
+			out.writeFloat(targetY);
+			out.writeFloat(targetZ);
+			out.writeVarInt(hand);
+		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		target = ProtocolHelper.readVarInt(buff);
+		type = ProtocolHelper.readVarInt(buff);
+		if(type == 0) hand = ProtocolHelper.readVarInt(buff);
+		if(type == 2){
+			targetX = buff.getFloat();
+			targetY = buff.getFloat();
+			targetZ = buff.getFloat();
+			hand = ProtocolHelper.readVarInt(buff);
+		}
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "UseEntityPacket{" + "target=" + target + ", type=" + type + ", targetX=" + targetX + ", targetY=" + targetY + ", targetZ=" + targetZ + ", hand=" + hand + '}';
 	}
 }

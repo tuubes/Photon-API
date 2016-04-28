@@ -27,15 +27,14 @@ import org.mcphoton.network.ProtocolOutputStream;
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class SteerVehiclePacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public float sideways, forward;
+	public int flags;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x15;
 	}
 
 	@Override
@@ -45,21 +44,21 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+		out.writeFloat(sideways);
+		out.writeFloat(forward);
+		out.writeByte(flags);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		sideways = buff.getFloat();
+		forward = buff.getFloat();
+		flags = ProtocolHelper.readUnsignedByte(buff.get());
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "SteerVehiclePacket{" + "sideways=" + sideways + ", forward=" + forward + ", flags=" + flags + '}';
 	}
 }

@@ -19,6 +19,7 @@
 package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
+
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -27,15 +28,13 @@ import org.mcphoton.network.ProtocolOutputStream;
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class PlayerBlockPlacementPacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public int x, y, z, face, hand, cursorPositionX, cursorPositionY, cursorPositionZ;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x1C;
 	}
 
 	@Override
@@ -45,21 +44,30 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
+		out.writeVarInt(face);
+		out.writeVarInt(hand);
+		out.writeByte(cursorPositionX);
+		out.writeByte(cursorPositionY);
+		out.writeByte(cursorPositionZ);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		long pos = buff.getLong();
+		x = ProtocolHelper.decodePositionX(pos);
+		y = ProtocolHelper.decodePositionX(pos);
+		z = ProtocolHelper.decodePositionX(pos);
+		face = ProtocolHelper.readVarInt(buff);
+		hand = ProtocolHelper.readVarInt(buff);
+		cursorPositionX = ProtocolHelper.readUnsignedByte(buff.get());
+		cursorPositionY = ProtocolHelper.readUnsignedByte(buff.get());
+		cursorPositionZ = ProtocolHelper.readUnsignedByte(buff.get());
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "PlayerBlockPlacementPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", face=" + face + ", hand=" + hand + ", cursorPositionX=" + cursorPositionX + ", cursorPositionY=" + cursorPositionY + ", cursorPositionZ=" + cursorPositionZ + '}';
 	}
 }

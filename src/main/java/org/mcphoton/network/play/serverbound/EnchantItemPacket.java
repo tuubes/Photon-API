@@ -28,7 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EnchantItemPacket implements Packet {
 
-	public byte windowID, enchantement;
+	public byte windowId, enchantement;
 
 	@Override
 	public int getId() {
@@ -42,19 +42,19 @@ public class EnchantItemPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeByte(enchantement);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = buff.get();
+		windowId = buff.get();
 		enchantement = buff.get();
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "EnchantItemPacket{" + "windowID=" + windowID + ", enchantement=" + enchantement + '}';
+		return "EnchantItemPacket{" + "windowId=" + windowId + ", enchantement=" + enchantement + '}';
 	}
 }

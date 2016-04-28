@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class TeleportConfirmPacket implements Packet {
 
-	public int teleportID;
+	public int teleportId;
 
 	@Override
 	public int getId() {
@@ -43,17 +43,17 @@ public class TeleportConfirmPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(teleportID);
+		out.writeVarInt(teleportId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		teleportID = ProtocolHelper.readVarInt(buff);
+		teleportId = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "TeleportConfirmPacket{" + "teleportID=" + teleportID + '}';
+		return "TeleportConfirmPacket{" + "teleportId=" + teleportId + '}';
 	}
 }

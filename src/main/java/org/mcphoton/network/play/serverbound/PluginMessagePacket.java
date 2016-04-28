@@ -25,17 +25,16 @@ import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
- * @author DJmaxZPLAY
+ * @author DJmaxZPL4Y
  */
-public class ConfirmTransactionPacket implements Packet {
+public class PluginMessagePacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public String channel;
+	public byte[] data;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x09;
 	}
 
 	@Override
@@ -44,22 +43,22 @@ public class ConfirmTransactionPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeString(channel);
+		out.write(data);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		channel = ProtocolHelper.readString(buff);
+		data = new byte[buff.remaining()];
+		buff.get(data);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "PluginMessagePacket{" + "channel=" + channel + ", data=" + data + '}';
 	}
+
 }

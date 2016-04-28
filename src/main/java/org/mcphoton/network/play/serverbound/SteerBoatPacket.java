@@ -27,15 +27,13 @@ import org.mcphoton.network.ProtocolOutputStream;
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class SteerBoatPacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public boolean rightPaddleTurning, leftPaddleTurning;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x11;
 	}
 
 	@Override
@@ -45,21 +43,19 @@ public class ConfirmTransactionPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+		out.writeBoolean(rightPaddleTurning);
+		out.writeBoolean(leftPaddleTurning);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		rightPaddleTurning = ProtocolHelper.readBoolean(buff);
+		leftPaddleTurning = ProtocolHelper.readBoolean(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "SteerBoatPacket{" + "rightPaddleTurning=" + rightPaddleTurning + ", leftPaddleTurning=" + leftPaddleTurning + '}';
 	}
 }

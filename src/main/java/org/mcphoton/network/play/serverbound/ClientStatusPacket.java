@@ -25,11 +25,11 @@ import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
- * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public class ClientStatusPacket implements Packet {
 
-	public int actionID;
+	public int actionId;
 
 	@Override
 	public int getId() {
@@ -43,17 +43,18 @@ public class ClientStatusPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeVarInt(actionID);
+		out.writeVarInt(actionId);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		actionID = ProtocolHelper.readVarInt(buff);
+		actionId = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ClientStatusPacket{" + "actionID=" + actionID + '}';
+		return "ClientStatusPacket{" + "actionId=" + actionId + '}';
 	}
+
 }

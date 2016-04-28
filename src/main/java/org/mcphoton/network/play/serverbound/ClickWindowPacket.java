@@ -29,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class ClickWindowPacket implements Packet {
 
-	public int windowID, mode;
+	public int windowId, mode;
 	public byte button;
 	public short slot, action;
 
@@ -45,7 +45,7 @@ public class ClickWindowPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
-		out.writeByte(windowID);
+		out.writeByte(windowId);
 		out.writeShort(slot);
 		out.writeByte(button);
 		out.writeShort(action);
@@ -55,7 +55,7 @@ public class ClickWindowPacket implements Packet {
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowID = ProtocolHelper.readUnsignedByte(buff.get());
+		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		slot = buff.getShort();
 		button = buff.get();
 		action = buff.getShort();
@@ -66,6 +66,6 @@ public class ClickWindowPacket implements Packet {
 
 	@Override
 	public String toString() {
-		return "ClickWindowPacket{" + "windowID=" + windowID + ", slot=" + slot + ", button=" + button + ", action=" + action + ", mode=" + mode + '}';
+		return "ClickWindowPacket{" + "windowId=" + windowId + ", slot=" + slot + ", button=" + button + ", action=" + action + ", mode=" + mode + '}';
 	}
 }

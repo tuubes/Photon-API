@@ -27,15 +27,14 @@ import org.mcphoton.network.ProtocolOutputStream;
  *
  * @author DJmaxZPLAY
  */
-public class ConfirmTransactionPacket implements Packet {
+public class UpdateSignPacket implements Packet {
 
-	public byte windowId;
-	public short action;
-	public boolean accepted;
+	public int x, y, z;
+	public String[] lines;
 
 	@Override
 	public int getId() {
-		return 0x05;
+		return 0x19;
 	}
 
 	@Override
@@ -44,22 +43,28 @@ public class ConfirmTransactionPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {;
-		out.writeByte(windowId);
-		out.writeShort(action);
-		out.writeBoolean(accepted);
+	public void writeTo(ProtocolOutputStream out) {
+		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
+		for(String line : lines){
+			out.writeString(line);
+		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		action = buff.getShort();
-		accepted = ProtocolHelper.readBoolean(buff);
+		long position = buff.getLong();
+		x = ProtocolHelper.decodePositionX(position);
+		y = ProtocolHelper.decodePositionY(position);
+		z = ProtocolHelper.decodePositionZ(position);
+		lines = new String[4];
+		for(int i = 0; i < 4; i++){
+			lines[i] = ProtocolHelper.readString(buff);
+		}
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfirmTransactionPacket{" + "windowId=" + windowId + ", action=" + action + ", accepted=" + accepted + '}';
+		return "UpdateSignPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", line1='" + lines[0] + "', line2='" + lines[1] + "', line3='" + lines[2] + "', line4='" + lines[3] + '\'' + '}';
 	}
 }
