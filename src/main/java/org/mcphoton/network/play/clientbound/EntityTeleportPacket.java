@@ -19,7 +19,6 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -27,6 +26,7 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author DJmaxZPL4Y
+ * @author TheElectronWill
  */
 public class EntityTeleportPacket implements Packet {
 
@@ -37,7 +37,7 @@ public class EntityTeleportPacket implements Packet {
 
 	@Override
 	public int getId() {
-		return 0x4A;
+		return 0x49;
 	}
 
 	@Override
