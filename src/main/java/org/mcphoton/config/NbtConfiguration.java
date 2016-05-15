@@ -39,6 +39,15 @@ public class NbtConfiguration extends BaseConfiguration {
 		// defined by the photon's implementation
 	}
 
+	public NbtConfiguration(Map<String, Object> data, String name) {
+		// defined by the photon's implementation
+	}
+
+	public String getName() {
+		return null;
+		//defined by the photon's implementation
+	}
+
 	public boolean containsByteArray(String key) {
 		return false;
 		// defined by the photon's implementation
