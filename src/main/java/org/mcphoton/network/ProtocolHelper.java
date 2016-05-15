@@ -202,7 +202,7 @@ public final class ProtocolHelper {
 	 * @return the angle, in steps of 1/256 of a full turn, as an unsigned byte.
 	 */
 	public static int toRotationStep(float degrees) {
-		return (int) ((degrees * 256.0) / 360.0);
+		return (int) (degrees / 360.0 * 256.0);
 	}
 
 	/**
@@ -212,7 +212,7 @@ public final class ProtocolHelper {
 	 * @return the angle, in degrees, as a float.
 	 */
 	public static float toDegrees(int steps) {
-		return (float) ((steps * 360.0) / 256.0);
+		return (float) (steps / 256.0 * 360.0);
 	}
 
 	/**
