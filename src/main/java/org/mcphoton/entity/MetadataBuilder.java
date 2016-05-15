@@ -22,7 +22,6 @@ import java.util.UUID;
 import org.mcphoton.messaging.ChatMessage;
 import org.mcphoton.network.ByteArrayProtocolOutputStream;
 import org.mcphoton.network.ProtocolHelper;
-import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
@@ -30,7 +29,7 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class MetadataBuilder {
 
-	protected final ProtocolOutputStream out;
+	protected final ByteArrayProtocolOutputStream out;
 
 	public MetadataBuilder() {
 		this(16);
@@ -40,83 +39,103 @@ public class MetadataBuilder {
 		this.out = new ByteArrayProtocolOutputStream(initialCapacity);
 	}
 
-	public void putByte(byte b) {
+	public MetadataBuilder putByte(byte b) {
 		out.writeByte(out.size());//index
 		out.writeByte(0);//type
 		out.writeByte(b);//data
+		return this;
 	}
 
-	public void putVarInt(int i) {
+	public MetadataBuilder putVarInt(int i) {
 		out.writeByte(out.size());
 		out.writeByte(1);
 		out.writeVarInt(i);
+		return this;
 	}
 
-	public void putFloat(float f) {
+	public MetadataBuilder putFloat(float f) {
 		out.writeByte(out.size());
 		out.writeByte(2);
 		out.writeFloat(f);
+		return this;
 	}
 
-	public void putString(String s) {
+	public MetadataBuilder putString(String s) {
 		out.writeByte(out.size());
 		out.writeByte(3);
 		out.writeString(s);
+		return this;
 	}
 
-	public void putChatMessage(ChatMessage msg) {
+	public MetadataBuilder putChatMessage(ChatMessage msg) {
 		out.writeByte(out.size());
 		out.writeByte(4);
 		out.writeString(msg.toString());
+		return this;
 	}
 
 	//TODO putSlot
 	//
-	public void putBoolean(boolean b) {
+	public MetadataBuilder putBoolean(boolean b) {
 		out.writeByte(out.size());
 		out.writeByte(6);
 		out.writeBoolean(b);
+		return this;
 	}
 
-	public void putRotation(float rx, float ry, float rz) {
+	public MetadataBuilder putRotation(float rx, float ry, float rz) {
 		out.writeByte(out.size());
 		out.writeByte(7);
 		out.writeFloat(rx);
 		out.writeFloat(ry);
 		out.writeFloat(rz);
+		return this;
 	}
 
-	public void putPosition(int x, int y, int z) {
+	public MetadataBuilder putPosition(int x, int y, int z) {
 		out.writeByte(out.size());
 		out.writeByte(8);
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
+		return this;
 	}
 
-	public void putOptionalPosition(int x, int y, int z) {
+	public MetadataBuilder putOptionalPosition(int x, int y, int z) {
 		out.writeByte(out.size());
 		out.writeByte(9);
 		out.writeBoolean(true);
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
+		return this;
 	}
 
-	public void putDirection(int d) {
+	public MetadataBuilder putDirection(int d) {
 		out.writeByte(out.size());
 		out.writeByte(10);
 		out.writeVarInt(d);
+		return this;
 	}
 
-	public void putOptionalUUID(UUID uuid) {
+	public MetadataBuilder putOptionalUUID(UUID uuid) {
 		out.writeByte(out.size());
 		out.writeByte(11);
 		out.writeBoolean(true);
 		out.writeLong(uuid.getMostSignificantBits());
 		out.writeLong(uuid.getLeastSignificantBits());
+		return this;
 	}
 
-	public void putBlockId(int id) {
+	public MetadataBuilder putBlockId(int id) {
 		out.writeByte(out.size());
 		out.writeByte(12);
 		out.writeVarInt(id);
+		return this;
+	}
+
+	public int getSize() {
+		return out.size();
+	}
+
+	public byte[] buildByteArray() {
+		return out.getBytes();
 	}
 
 }
