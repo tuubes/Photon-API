@@ -32,15 +32,6 @@ public final class ProtocolHelper {
 	private ProtocolHelper() {
 	}
 
-	public static final int ENTITY_META_BYTE = 0;
-	public static final int ENTITY_META_SHORT = 1;
-	public static final int ENTITY_META_INT = 2;
-	public static final int ENTITY_META_FLOAT = 3;
-	public static final int ENTITY_META_STRING = 4;
-	public static final int ENTITY_META_SLOT = 5;
-	public static final int ENTITY_META_3INT = 6;
-	public static final int ENTITY_META_3FLOAT = 7;
-
 	/**
 	 * Reads one byte as a boolean. Its value is true if 1 and false if 0
 	 */
@@ -154,10 +145,6 @@ public final class ProtocolHelper {
 	 */
 	public static int readUnsignedByte(byte b) {
 		return (int) (b & 0x000000ff);
-	}
-
-	public static byte encodeEntityMetadataByte(int type, int index) {
-		return (byte) (type << 5 | (index & 0x1F));
 	}
 
 	/**
