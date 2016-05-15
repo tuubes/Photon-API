@@ -51,6 +51,13 @@ public class ByteArrayProtocolOutputStream extends ProtocolOutputStream {
 		buff = data;
 	}
 
+	/**
+	 * Returns the underlying byte array of this stream.
+	 */
+	public byte[] getBytes() {
+		return buff;
+	}
+
 	@Override
 	public int size() {
 		return count;
