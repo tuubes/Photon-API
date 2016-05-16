@@ -20,6 +20,7 @@ package org.mcphoton.item;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.mcphoton.Photon;
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.network.ProtocolWriteable;
@@ -33,41 +34,51 @@ public class ItemStack implements ProtocolWriteable {
 
 	protected final ItemType type;
 	protected final int maxSize;
-	protected volatile int size, damage;
+	protected AtomicInteger size, damage;
 
 	public ItemStack(ItemType type, int maxSize, int size, int damage) {
 		this.type = type;
 		this.maxSize = maxSize;
-		this.size = size;
-		this.damage = damage;
+		this.size = new AtomicInteger(size);
+		this.damage = new AtomicInteger(damage);
 	}
 
 	/**
 	 * Checks if the stack is empty.
 	 */
 	boolean isEmpty() {
-		return size == 0;
+		return size.get() == 0;
 	}
 
 	/**
 	 * Checks if the stack is full, ie if its size is equal to its max size.
 	 */
 	boolean isFull() {
-		return size == maxSize;
+		return size.get() == maxSize;
 	}
 
 	/**
 	 * Gets the stack's size.
 	 */
 	int getSize() {
-		return size;
+		return size.get();
+	}
+
+	/**
+	 * Atomically adds the given value to the current size value.
+	 *
+	 * @param delta the value to add
+	 * @return the previous value
+	 */
+	int getAndAddSize(int delta) {
+		return size.getAndAdd(delta);
 	}
 
 	/**
 	 * Sets the stack's size.
 	 */
 	void setSize(int size) {
-		this.size = size;
+		this.size.set(size);
 	}
 
 	/**
@@ -88,19 +99,29 @@ public class ItemStack implements ProtocolWriteable {
 	 * Gets the stack's damage.
 	 */
 	int getDamage() {
-		return damage;
+		return damage.get();
+	}
+
+	/**
+	 * Atomically adds the given value to the current damage value.
+	 *
+	 * @param delta the value to add
+	 * @return the previous value
+	 */
+	int getAndAddDamage(int delta) {
+		return damage.getAndAdd(delta);
 	}
 
 	/**
 	 * Sets the stack's damage.
 	 */
 	void setDamage(int damage) {
-		this.damage = damage;
+		this.damage.set(damage);
 	}
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) throws IOException {
-		int capturedSize = size, capturedDamage = damage;//capture the values here to make sure that the written values don't change during the write operation.
+		int capturedSize = size.get(), capturedDamage = damage.get();//capture the values here to make sure that the written values don't change during the write operation.
 		if (capturedSize == 0) {//empty
 			out.writeShort(-1);
 		} else {
