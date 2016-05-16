@@ -20,7 +20,6 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -49,7 +48,7 @@ public class TeamsPacket implements Packet {
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeString(teamName);
 		out.writeByte(mode);
-		switch(mode){
+		switch (mode) {
 			case 0:
 				out.writeString(teamDisplayName);
 				out.writeString(teamPrefix);
@@ -59,7 +58,7 @@ public class TeamsPacket implements Packet {
 				out.writeString(collisionRule);
 				out.writeByte(color);
 				out.writeVarInt(players.length);
-				for(String player : players){
+				for (String player : players) {
 					out.writeString(player);
 				}
 				break;
@@ -74,13 +73,13 @@ public class TeamsPacket implements Packet {
 				break;
 			case 3:
 				out.writeVarInt(players.length);
-				for(String player : players){
+				for (String player : players) {
 					out.writeString(player);
 				}
 				break;
 			case 4:
 				out.writeVarInt(players.length);
-				for(String player : players){
+				for (String player : players) {
 					out.writeString(player);
 				}
 				break;
@@ -91,7 +90,7 @@ public class TeamsPacket implements Packet {
 	public Packet readFrom(ByteBuffer buff) {
 		teamName = ProtocolHelper.readString(buff);
 		mode = buff.get();
-		switch(mode){
+		switch (mode) {
 			case 0:
 				teamDisplayName = ProtocolHelper.readString(buff);
 				teamPrefix = ProtocolHelper.readString(buff);
@@ -101,7 +100,7 @@ public class TeamsPacket implements Packet {
 				collisionRule = ProtocolHelper.readString(buff);
 				color = buff.get();
 				players = new String[ProtocolHelper.readVarInt(buff)];
-				for(int i = 0; i < players.length; i++){
+				for (int i = 0; i < players.length; i++) {
 					players[i] = ProtocolHelper.readString(buff);
 				}
 				break;
@@ -116,13 +115,13 @@ public class TeamsPacket implements Packet {
 				break;
 			case 3:
 				players = new String[ProtocolHelper.readVarInt(buff)];
-				for(int i = 0; i < players.length; i++){
+				for (int i = 0; i < players.length; i++) {
 					players[i] = ProtocolHelper.readString(buff);
 				}
 				break;
 			case 4:
 				players = new String[ProtocolHelper.readVarInt(buff)];
-				for(int i = 0; i < players.length; i++){
+				for (int i = 0; i < players.length; i++) {
 					players[i] = ProtocolHelper.readString(buff);
 				}
 				break;

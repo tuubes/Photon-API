@@ -45,7 +45,7 @@ public class UpdateSignPacket implements Packet {
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
-		for(String line : lines){
+		for (String line : lines) {
 			out.writeString(line);
 		}
 	}
@@ -57,7 +57,7 @@ public class UpdateSignPacket implements Packet {
 		y = ProtocolHelper.decodePositionY(position);
 		z = ProtocolHelper.decodePositionZ(position);
 		lines = new String[4];
-		for(int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++) {
 			lines[i] = ProtocolHelper.readString(buff);
 		}
 		return this;

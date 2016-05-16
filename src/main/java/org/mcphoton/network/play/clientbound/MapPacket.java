@@ -20,7 +20,6 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -52,13 +51,13 @@ public class MapPacket implements Packet {
 		out.writeByte(scale);
 		out.writeBoolean(trackingPosition);
 		out.writeVarInt(icons.length);
-		for(Icon icon : icons){
+		for (Icon icon : icons) {
 			out.writeByte(icon.getDirectionAndType());
 			out.writeByte(icon.getX());
 			out.writeByte(icon.getZ());
 		}
 		out.writeByte(columns);
-		if(columns > 0){
+		if (columns > 0) {
 			out.writeByte(rows);
 			out.writeByte(x);
 			out.writeByte(z);
@@ -73,11 +72,11 @@ public class MapPacket implements Packet {
 		scale = buff.get();
 		trackingPosition = ProtocolHelper.readBoolean(buff);
 		icons = new Icon[ProtocolHelper.readVarInt(buff)];
-		for(int i = 0; i < icons.length; i++){
+		for (int i = 0; i < icons.length; i++) {
 			icons[i] = new Icon(buff.get(), buff.get(), buff.get());
 		}
 		columns = buff.get();
-		if(columns > 0){
+		if (columns > 0) {
 			rows = buff.get();
 			x = buff.get();
 			z = buff.get();
@@ -92,16 +91,16 @@ public class MapPacket implements Packet {
 		return "MapPacket{" + "itemDamage=" + itemDamage + ", scale=" + scale + ", trackingPosition=" + trackingPosition + ", icons='" + Arrays.toString(icons) + "', columns=" + columns + "rows=" + rows + ", x=" + x + ", z=" + z + '}';
 	}
 
-	public class Icon{
+	public class Icon {
 
 		private byte directionAndType, x, z;
-		
-		public Icon(byte directionAndType, byte x, byte z){
+
+		public Icon(byte directionAndType, byte x, byte z) {
 			this.directionAndType = directionAndType;
 			this.x = x;
 			this.z = z;
 		}
-		
+
 		public byte getDirectionAndType() {
 			return directionAndType;
 		}

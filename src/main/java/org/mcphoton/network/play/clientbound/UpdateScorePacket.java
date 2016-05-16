@@ -19,7 +19,6 @@
 package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -49,7 +48,7 @@ public class UpdateScorePacket implements Packet {
 		out.writeString(scoreName);
 		out.writeByte(action);
 		out.writeString(objectiveName);
-		if(action != 1){
+		if (action != 1) {
 			out.writeVarInt(value);
 		}
 	}
@@ -59,9 +58,9 @@ public class UpdateScorePacket implements Packet {
 		scoreName = ProtocolHelper.readString(buff);
 		action = buff.get();
 		objectiveName = ProtocolHelper.readString(buff);
-		if(action != 1){
+		if (action != 1) {
 			value = ProtocolHelper.readVarInt(buff);
-		}		
+		}
 		return this;
 	}
 

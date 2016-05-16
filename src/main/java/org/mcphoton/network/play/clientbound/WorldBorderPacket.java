@@ -46,7 +46,7 @@ public class WorldBorderPacket implements Packet {
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeVarInt(action);
-		switch(action){
+		switch (action) {
 			case 0:
 				out.writeDouble(diameter);
 				break;
@@ -81,7 +81,7 @@ public class WorldBorderPacket implements Packet {
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
 		action = ProtocolHelper.readVarInt(buff);
-		switch(action){
+		switch (action) {
 			case 0:
 				diameter = buff.getDouble();
 				break;

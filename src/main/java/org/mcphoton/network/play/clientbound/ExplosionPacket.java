@@ -20,7 +20,6 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 
@@ -50,7 +49,7 @@ public class ExplosionPacket implements Packet {
 		out.writeFloat(z);
 		out.writeFloat(radius);
 		out.writeInt(records.length);
-		for(Records record : records){
+		for (Records record : records) {
 			out.writeByte(record.getXOffset());
 			out.writeByte(record.getYOffset());
 			out.writeByte(record.getZOffset());
@@ -67,7 +66,7 @@ public class ExplosionPacket implements Packet {
 		z = buff.getFloat();
 		radius = buff.getFloat();
 		records = new Records[buff.getInt()];
-		for(int i = 0; i < records.length; i++){
+		for (int i = 0; i < records.length; i++) {
 			records[i] = new Records(buff.get(), buff.get(), buff.get());
 		}
 		playerMotionX = buff.getFloat();
@@ -81,16 +80,16 @@ public class ExplosionPacket implements Packet {
 		return "ExplosionPacket{" + "x=" + x + ", y=" + y + ", z=" + z + ", radius=" + radius + ", records=" + Arrays.toString(records) + "playerMotionX=" + playerMotionX + ", playerMotionY=" + playerMotionY + ", playerMotionZ=" + playerMotionZ + '}';
 	}
 
-	public class Records{
+	public class Records {
 
 		private byte xOffset, yOffset, zOffset;
-		
-		public Records(byte xOffset, byte yOffset, byte zOffset){
+
+		public Records(byte xOffset, byte yOffset, byte zOffset) {
 			this.xOffset = xOffset;
 			this.yOffset = yOffset;
 			this.zOffset = zOffset;
 		}
-		
+
 		public byte getXOffset() {
 			return xOffset;
 		}

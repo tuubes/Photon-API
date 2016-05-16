@@ -29,7 +29,8 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class CombatEventPacket implements Packet {
 
-	public int event, duration, entityId, playerId;;
+	public int event, duration, entityId, playerId;
+	;
 	public String message;
 
 	@Override
@@ -56,7 +57,7 @@ public class CombatEventPacket implements Packet {
 				out.writeString(message);
 				break;
 		}
-		
+
 	}
 
 	@Override
