@@ -1,18 +1,18 @@
-/* 
+/*
  * Copyright (c) 2016 MCPhoton <http://mcphoton.org> and contributors.
- * 
+ *
  * This file is part of the Photon API <https://github.com/mcphoton/Photon-API>.
- * 
+ *
  * The Photon API is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * The Photon API is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -20,18 +20,20 @@ package org.mcphoton.messaging;
 
 import java.util.List;
 import java.util.Map;
+import org.mcphoton.Photon;
 
 /**
- * A textual chat message. This class also provides a way to parse a message that uses '§'-codes, and to create such a
+ * A textual chat message. This class also provides a way to parse a message that uses '§'-codes, and to
+ * create such a
  * message.
- * 
+ *
  * @author TheElectronWill
  */
 public class TextChatMessage extends ChatMessage {
-	
+
 	/**
-	 * Parses a "legacy string" that contains color and style codes. Each code consists of 2 characters: the '§'
-	 * character and another character. The second character definds the color/style to apply.
+	 * Parses a "legacy string" that contains color and style codes. Each code consists of 2 characters: the
+	 * '§' character and another character. The second character definds the color/style to apply.
 	 */
 	public static TextChatMessage parse(CharSequence csq) {
 		TextChatMessage main = null;// the main part of the msg
@@ -40,18 +42,19 @@ public class TextChatMessage extends ChatMessage {
 		for (int i = 0; i < csq.length(); i++) {
 			char c = csq.charAt(i);
 			if (c == '§' && i + 1 < csq.length()) {
-				
+
 				if (main == null) {
 					main = new TextChatMessage(sb.toString());
 					current = main;
 				} else {
 					current.setText(sb.toString());
-					if (current != main)
+					if (current != main) {
 						main.addExtra(current);
+					}
 					current = new TextChatMessage();
 				}
 				sb = new StringBuilder();
-				
+
 				char c2 = csq.charAt(++i);
 				switch (c2) {
 					case '0':
@@ -136,50 +139,58 @@ public class TextChatMessage extends ChatMessage {
 			main = new TextChatMessage(sb.toString());
 		} else {
 			current.setText(sb.toString());
-			if (current != main)
+			if (current != main) {
 				main.addExtra(current);
+			}
 		}
 		return main;
 	}
-	
-	public TextChatMessage() {}
-	
+
+	public TextChatMessage() {
+	}
+
 	public TextChatMessage(Map<String, Object> map) {
 		super(map);
 	}
-	
+
 	public TextChatMessage(String text) {
 		map.put("text", text);
 	}
-	
+
 	public String getText() {
 		return (String) map.get("text");
 	}
-	
+
 	public void setText(String text) {
 		map.put("text", text);
 	}
-	
+
 	/**
-	 * Returns the "legacy string" which represents this TextChatMessage with color and style codes. Each code consists
-	 * of 2 characters: the '§' character and another character. The second character definds the color/style to apply.
+	 * Returns the "legacy string" which represents this TextChatMessage with color and style codes. Each code
+	 * consists of 2 characters: the '§' character and another character. The second character definds the
+	 * color/style to apply.
 	 */
 	@Override
 	public String toLegacyString() {
 		StringBuilder sb = new StringBuilder();
-		if (isBold())
+		if (isBold()) {
 			sb.append("§l");
-		if (isObfuscated())
+		}
+		if (isObfuscated()) {
 			sb.append("§k");
-		if (isStrikethrough())
+		}
+		if (isStrikethrough()) {
 			sb.append("§m");
-		if (isUnderlined())
+		}
+		if (isUnderlined()) {
 			sb.append("§n");
-		if (isItalic())
+		}
+		if (isItalic()) {
 			sb.append("§o");
-			
+		}
+
 		sb.append(getText());
-		
+
 		List<Object> extras = getExtras();
 		if (extras != null) {
 			for (Object extra : extras) {
@@ -200,27 +211,36 @@ public class TextChatMessage extends ChatMessage {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
-	 * Returns a string which represents this TextChatMessage with console codes, to use it in the Terminal (console).
-	 * Each code consists of a special character sequence. When such a sequence is read by the Terminal (console), it
-	 * creates color/style.
+	 * Returns a string which represents this TextChatMessage with console codes, to use it in the Terminal
+	 * (console). Each code consists of a special character sequence. When such a sequence is read by the
+	 * Terminal (console), it creates color/style.
 	 */
 	@Override
 	public String toConsoleString() {
+		return Photon.isConsoleAdvanced() ? toColorfoulConsoleString() : toBasicConsoleString();
+	}
+
+	private String toColorfoulConsoleString() {
 		StringBuilder sb = new StringBuilder();
-		if (isBold())
+		if (isBold()) {
 			sb.append("\u001B[1m");
+		}
 		// obfuscated does not exist
-		if (isStrikethrough())
+		if (isStrikethrough()) {
 			sb.append("\u001B[9m");
-		if (isUnderlined())
+		}
+		if (isUnderlined()) {
 			sb.append("\u001B[4m");
-		if (isItalic())
+		}
+		if (isItalic()) {
 			sb.append("\u001B[3m");
-			
+		}
+
+		sb.append(getColor().ansi);
 		sb.append(getText());
-		
+
 		List<Object> extras = getExtras();
 		if (extras != null) {
 			for (Object extra : extras) {
@@ -230,10 +250,11 @@ public class TextChatMessage extends ChatMessage {
 							|| (extraMessage.isObfuscatedSet() && !extraMessage.isObfuscated() && this.isObfuscated())
 							|| (extraMessage.isStrikethroughSet() && !extraMessage.isStrikethrough() && this.isStrikethrough())
 							|| (extraMessage.isUnderlinedSet() && !extraMessage.isUnderlined() && this.isUnderlined())
-							|| (extraMessage.isItalicSet() && !extraMessage.isItalic() && this.isItalic())) {
+							|| (extraMessage.isItalicSet() && !extraMessage.isItalic() && this.isItalic())
+							|| !extraMessage.getColorName().equals(this.getColorName())) {
 						sb.append("\u001B[0m");
 					}
-					sb.append(extraMessage.toConsoleString());
+					sb.append(extraMessage.toColorfoulConsoleString());
 				} else {
 					sb.append(extra.toString());
 				}
@@ -242,5 +263,23 @@ public class TextChatMessage extends ChatMessage {
 		sb.append("\u001B[0m");
 		return sb.toString();
 	}
-	
+
+	private String toBasicConsoleString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getText());
+
+		List<Object> extras = getExtras();
+		if (extras != null) {
+			for (Object extra : extras) {
+				if (extra instanceof TextChatMessage) {
+					TextChatMessage extraMessage = (TextChatMessage) extra;
+					sb.append(extraMessage.toBasicConsoleString());
+				} else {
+					sb.append(extra.toString());
+				}
+			}
+		}
+		return sb.toString();
+	}
+
 }
