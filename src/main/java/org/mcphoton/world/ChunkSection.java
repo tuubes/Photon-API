@@ -18,12 +18,14 @@
  */
 package org.mcphoton.world;
 
+import org.mcphoton.network.ProtocolWriteable;
+
 /**
  * A chunk section: 16x16x16 blocks.
  *
  * @author TheElectronWill
  */
-public interface ChunkSection {
+public interface ChunkSection extends ProtocolWriteable {
 
 	int getBlockId(int x, int y, int z);
 
