@@ -18,6 +18,7 @@
  */
 package org.mcphoton.entity;
 
+import java.util.Arrays;
 import java.util.UUID;
 import org.mcphoton.messaging.ChatMessage;
 import org.mcphoton.network.ByteArrayProtocolOutputStream;
@@ -130,12 +131,21 @@ public class MetadataBuilder {
 		return this;
 	}
 
+	/**
+	 * Gets the size of the metadata, in bytes.
+	 */
 	public int getSize() {
 		return out.size();
 	}
 
-	public byte[] buildByteArray() {
-		return out.getBytes();
+	/**
+	 * Construct a byte array that contains the metadata's bytes.
+	 *
+	 * @param trim true to ensure that the returned array's length is equal to the result of "getSize()",
+	 * false to return directly the underlying byte array, which may be bigger than the metadata size.
+	 */
+	public byte[] buildByteArray(boolean trim) {
+		return trim ? Arrays.copyOf(out.getBytes(), out.size()) : out.getBytes();
 	}
 
 }
