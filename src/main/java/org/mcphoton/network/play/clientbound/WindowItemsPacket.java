@@ -18,19 +18,21 @@
  */
 package org.mcphoton.network.play.clientbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.mcphoton.item.ItemStack;
 import org.mcphoton.network.Packet;
-import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
  * @author DJmaxZPL4Y
+ * @author TheElectronWill
  */
 public class WindowItemsPacket implements Packet {
 
-	public int windowId;
-	public short cout;
+	public int windowId, count;
+	public ItemStack[] items;
 
 	@Override
 	public int getId() {
@@ -43,23 +45,22 @@ public class WindowItemsPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
+	public void writeTo(ProtocolOutputStream out) throws IOException {
 		out.writeByte(windowId);
-		out.writeShort(cout);
-		//TODO Write array of slot
+		out.writeShort(count);
+		for (ItemStack item : items) {
+			item.writeTo(out);
+		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = ProtocolHelper.readUnsignedByte(buff.get());
-		cout = buff.getShort();
-		//TODO Read array of slot
-		return this;
+		throw new UnsupportedOperationException("Not implemented yet, because it's useless for the server.");
 	}
 
 	@Override
 	public String toString() {
-		return "WindowItemsPacket{" + "windowId=" + windowId + ", cout=" + cout + '}';
+		return "WindowItemsPacket{" + "windowId=" + windowId + ", count=" + count + ", items=" + items + '}';
 	}
 
 }

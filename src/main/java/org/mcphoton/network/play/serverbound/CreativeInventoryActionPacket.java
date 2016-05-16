@@ -18,17 +18,21 @@
  */
 package org.mcphoton.network.play.serverbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.mcphoton.item.ItemStack;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public class CreativeInventoryActionPacket implements Packet {
 
-	public short slot;
+	public int slot;
+	public ItemStack clickedItem;
 
 	@Override
 	public int getId() {
@@ -41,20 +45,21 @@ public class CreativeInventoryActionPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {;
+	public void writeTo(ProtocolOutputStream out) throws IOException {;
 		out.writeShort(slot);
-		//TODO Read Slot
+		clickedItem.writeTo(out);
 	}
 
 	@Override
-	public Packet readFrom(ByteBuffer buff) {
+	public Packet readFrom(ByteBuffer buff) throws IOException {
 		slot = buff.getShort();
-		//TODO Write Slot
+		clickedItem = ItemStack.readFrom(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "CreativeInventoryActionPacket{" + "slot=" + slot + '}';
+		return "CreativeInventoryActionPacket{" + "slot=" + slot + ", clickedItem=" + clickedItem + '}';
 	}
+
 }

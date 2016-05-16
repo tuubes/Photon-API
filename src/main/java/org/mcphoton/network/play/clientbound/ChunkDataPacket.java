@@ -18,9 +18,10 @@
  */
 package org.mcphoton.network.play.clientbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.mcphoton.config.NbtConfiguration;
 import org.mcphoton.network.Packet;
-import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.ChunkSection;
 
@@ -35,6 +36,7 @@ public class ChunkDataPacket implements Packet {
 	public int bitMask;
 	public ChunkSection[] sections;
 	public byte[] biomes;
+	public NbtConfiguration[] nbtArray;
 
 	@Override
 	public int getId() {
@@ -47,20 +49,27 @@ public class ChunkDataPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
-		; //TODO
+	public void writeTo(ProtocolOutputStream out) throws IOException {
+		out.writeInt(chunkX);
+		out.writeInt(chunkZ);
+		out.writeBoolean(groundUpContinuous);
+		out.writeVarInt(bitMask);
+		out.writeVarInt(sections.length);
+		for (ChunkSection section : sections) {
+			//write section
+		}
+		if (groundUpContinuous) {
+			out.write(biomes);
+		}
+		out.writeVarInt(nbtArray.length);
+		for (NbtConfiguration nbt : nbtArray) {
+			nbt.writeTo(out);
+		}
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		chunkX = buff.getInt();
-		chunkZ = buff.getInt();
-		groundUpContinuous = ProtocolHelper.readBoolean(buff);
-		bitMask = ProtocolHelper.readVarInt(buff);
-		int dataSize = ProtocolHelper.readVarInt(buff);
-		byte[] data = new byte[dataSize];
-		buff.get(data);
-		return this;
+		throw new UnsupportedOperationException("Not implemented yet, because it's useless for the server.");
 	}
 
 	@Override

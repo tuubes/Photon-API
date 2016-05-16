@@ -18,18 +18,22 @@
  */
 package org.mcphoton.network.play.clientbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.mcphoton.item.ItemStack;
 import org.mcphoton.network.Packet;
-import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
  * @author DJmaxZPL4Y
+ * @author TheElectronWill
  */
 public class EntityEquipementPacket implements Packet {
 
+	public static final int SLOT_MAIN_HAND = 0, SLOT_OFF_HAND = 1, SLOT_BOOTS = 2, SLOT_LEGGINGS = 3, SLOT_CHESTPLATE = 4, SLOT_HELMET = 5;
 	public int entityId, slot;
+	public ItemStack item;
 
 	@Override
 	public int getId() {
@@ -42,22 +46,20 @@ public class EntityEquipementPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
+	public void writeTo(ProtocolOutputStream out) throws IOException {
 		out.writeVarInt(entityId);
 		out.writeVarInt(slot);
-		//TODO Write Item in Slot;
+		item.writeTo(out);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
-		slot = ProtocolHelper.readVarInt(buff);
-		//TODO Read Item in Slot;
-		return this;
+		throw new UnsupportedOperationException("Not implemented yet, because it's useless for the server.");
 	}
 
 	@Override
 	public String toString() {
-		return "EntityEquipementPacket{" + "entityId=" + entityId + ", slot=" + slot + '}';
+		return "EntityEquipementPacket{" + "entityId=" + entityId + ", slot=" + slot + ", item=" + item + '}';
 	}
+
 }
