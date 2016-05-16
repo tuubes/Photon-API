@@ -245,6 +245,14 @@ public final class ProtocolHelper {
 	 */
 	public static short encodeVelocity(double v) {
 		return (short) (v * 8000f);
+	/**
+	 * Decodes a short with the "Velocity" format into a double.
+	 *
+	 * @param velocity a velocity, in units of 1/8000 of a block per 50ms.
+	 * @return the velocity, in units of 1 block per 50ms.
+	 */
+	public static double decodeVelocity(short velocity) {
+		return velocity / 8000.0;
 	}
 
 }
