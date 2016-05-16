@@ -21,7 +21,10 @@ package org.mcphoton.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
 import java.util.Map;
+import org.mcphoton.network.ProtocolOutputStream;
+import org.mcphoton.network.ProtocolWriteable;
 
 /**
  * A NBT configuration.
@@ -29,7 +32,7 @@ import java.util.Map;
  * @see http://wiki.vg/NBT
  * @author TheElectronWill
  */
-public class NbtConfiguration extends BaseConfiguration {
+public class NbtConfiguration extends BaseConfiguration implements ProtocolWriteable {
 
 	public NbtConfiguration() {
 		// defined by the photon's implementation
@@ -73,9 +76,18 @@ public class NbtConfiguration extends BaseConfiguration {
 		// defined by the photon's implementation
 	}
 
+	public void readFrom(ByteBuffer buff) throws IOException {
+		// defined by the photon's implementation
+	}
+
 	@Override
 	public void writeTo(OutputStream out) throws IOException {
 		// defined by the photon's implementation
+	}
+
+	@Override
+	public void writeTo(ProtocolOutputStream out) throws IOException {
+		//defined by the photon's implementation
 	}
 
 }
