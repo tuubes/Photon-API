@@ -24,8 +24,7 @@ import org.mcphoton.Photon;
 
 /**
  * A textual chat message. This class also provides a way to parse a message that uses '§'-codes, and to
- * create such a
- * message.
+ * create such a message.
  *
  * @author TheElectronWill
  */
@@ -250,8 +249,7 @@ public class TextChatMessage extends ChatMessage {
 							|| (extraMessage.isObfuscatedSet() && !extraMessage.isObfuscated() && this.isObfuscated())
 							|| (extraMessage.isStrikethroughSet() && !extraMessage.isStrikethrough() && this.isStrikethrough())
 							|| (extraMessage.isUnderlinedSet() && !extraMessage.isUnderlined() && this.isUnderlined())
-							|| (extraMessage.isItalicSet() && !extraMessage.isItalic() && this.isItalic())
-							|| !extraMessage.getColorName().equals(this.getColorName())) {
+							|| (extraMessage.isItalicSet() && !extraMessage.isItalic() && this.isItalic())) {
 						sb.append("\u001B[0m");
 					}
 					sb.append(extraMessage.toColorfoulConsoleString());
