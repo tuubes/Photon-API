@@ -13,4 +13,4 @@ implement some packets, make a pull request, implement more and so on.
 - [x] In `org.mcphoton.messaging.TextChatMessage.toConsoleString()`, check if the colors are supported by the console. Generally,
 the colors are supported on Linux and OSX, but not on Windows.
 - [ ] Talk about the protection API (AccessManager, etc.): how to make it better? What are its goals?  
-**There is a discussion group [here (french)](https://groups.google.com/forum/#!forum/photon-api-fr/).**
+**There is a discussion group [here (french)](https://groups.google.com/forum/#!forum/mcphoton-fr).**
