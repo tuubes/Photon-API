@@ -45,7 +45,7 @@ public class TitlePacket implements Packet {
 	@Override
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeVarInt(action);
-		switch(action){
+		switch (action) {
 			case 0:
 				out.writeString(titleText);
 				break;
@@ -63,7 +63,7 @@ public class TitlePacket implements Packet {
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
 		action = ProtocolHelper.readVarInt(buff);
-		switch(action){
+		switch (action) {
 			case 0:
 				titleText = ProtocolHelper.readString(buff);
 				break;

@@ -20,7 +20,6 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -48,7 +47,7 @@ public class SetPassengersPacket implements Packet {
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeVarInt(entityId);
 		out.writeVarInt(passengers.length);
-		for(int i : passengers){
+		for (int i : passengers) {
 			out.writeVarInt(i);
 		}
 	}
@@ -57,7 +56,7 @@ public class SetPassengersPacket implements Packet {
 	public Packet readFrom(ByteBuffer buff) {
 		entityId = ProtocolHelper.readVarInt(buff);
 		passengers = new int[ProtocolHelper.readVarInt(buff)];
-		for(int i = 0; i < passengers.length; i++){
+		for (int i = 0; i < passengers.length; i++) {
 			passengers[i] = ProtocolHelper.readVarInt(buff);
 		}
 		return this;

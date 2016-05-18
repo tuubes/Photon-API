@@ -21,7 +21,6 @@ package org.mcphoton.network.play.clientbound;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.UUID;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -29,6 +28,7 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author DJmaxZPL4Y
+ * @author TheElectronWill
  */
 public class EntityPropertiesPacket implements Packet {
 
@@ -37,7 +37,7 @@ public class EntityPropertiesPacket implements Packet {
 
 	@Override
 	public int getId() {
-		return 0x4B;
+		return 0x4A;
 	}
 
 	@Override
@@ -49,11 +49,11 @@ public class EntityPropertiesPacket implements Packet {
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeVarInt(entityId);
 		out.writeInt(properties.length);
-		for(EntityProperty property : properties){
+		for (EntityProperty property : properties) {
 			out.writeString(property.getKey());
 			out.writeDouble(property.getValue());
 			out.writeVarInt(property.getModifierData().length);
-			for(ModifierData modifier : property.getModifierData()){
+			for (ModifierData modifier : property.getModifierData()) {
 				out.writeLong(modifier.getUUID().getMostSignificantBits());
 				out.writeLong(modifier.getUUID().getLeastSignificantBits());
 				out.writeDouble(modifier.getAmount());
@@ -66,11 +66,11 @@ public class EntityPropertiesPacket implements Packet {
 	public Packet readFrom(ByteBuffer buff) {
 		entityId = ProtocolHelper.readVarInt(buff);
 		properties = new EntityProperty[buff.getInt()];
-		for(int i = 0; i < properties.length; i++){
+		for (int i = 0; i < properties.length; i++) {
 			String key = ProtocolHelper.readString(buff);
 			double value = buff.getDouble();
 			ModifierData[] modifierData = new ModifierData[ProtocolHelper.readVarInt(buff)];
-			for(int imodifier = 0; imodifier < modifierData.length; imodifier++){
+			for (int imodifier = 0; imodifier < modifierData.length; imodifier++) {
 				UUID uuid = new UUID(buff.getLong(), buff.getLong());
 				double amount = buff.getDouble();
 				byte operation = buff.get();
@@ -85,51 +85,53 @@ public class EntityPropertiesPacket implements Packet {
 	public String toString() {
 		return "EntityPropertiesPacket{" + "entityId=" + entityId + ", property='" + Arrays.toString(properties) + '\'' + '}';
 	}
-	
-	public class EntityProperty{
+
+	public class EntityProperty {
+
 		private String key;
 		private double value;
 		private ModifierData[] modifierData;
-		
-		public EntityProperty(String key, double value, ModifierData[] modifierData){
+
+		public EntityProperty(String key, double value, ModifierData[] modifierData) {
 			this.key = key;
 			this.value = value;
 			this.modifierData = modifierData;
 		}
-		
-		public String getKey(){
+
+		public String getKey() {
 			return this.key;
 		}
-		
-		public double getValue(){
+
+		public double getValue() {
 			return this.value;
 		}
-		
-		public ModifierData[] getModifierData(){
+
+		public ModifierData[] getModifierData() {
 			return this.modifierData;
-		}	
+		}
 	}
-	
-	public class ModifierData{
+
+	public class ModifierData {
+
 		private UUID uuid;
 		private double amount;
 		private byte operation;
-		
-		public ModifierData(UUID uuid, double amount, byte operation){
+
+		public ModifierData(UUID uuid, double amount, byte operation) {
 			this.uuid = uuid;
 			this.amount = amount;
 			this.operation = operation;
 		}
-		
-		public UUID getUUID(){
+
+		public UUID getUUID() {
 			return this.uuid;
 		}
-		
-		public double getAmount(){
+
+		public double getAmount() {
 			return this.amount;
 		}
-		
-		public byte getOperation(){
+
+		public byte getOperation() {
 			return this.operation;
 		}
 	}

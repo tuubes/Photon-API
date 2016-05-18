@@ -18,18 +18,31 @@
  */
 package org.mcphoton.network.play.clientbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.mcphoton.item.ItemStack;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  *
  * @author DJmaxZPL4Y
+ * @author TheElectronWill
  */
 public class SetSlotPacket implements Packet {
 
-	public byte windowId;
-	public short slot;
+	/**
+	 * Standard window id.
+	 */
+	public static final int PLAYER_INVENTORY = 0;
+
+	/**
+	 * To set the item under the cursor (dragged with the mouse), set windowId and slot to this value.
+	 */
+	public static final int MOUSE_CURSOR = -1;
+
+	public int windowId, slot;
+	public ItemStack item;
 
 	@Override
 	public int getId() {
@@ -42,23 +55,20 @@ public class SetSlotPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
+	public void writeTo(ProtocolOutputStream out) throws IOException {
 		out.writeByte(windowId);
 		out.writeShort(slot);
-		//TODO Read Slot Data
+		item.writeTo(out);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		windowId = buff.get();
-		slot = buff.getShort();
-		//TODO Write Slot Data
-		return this;
+		throw new UnsupportedOperationException("Not implemented yet, because it's useless for the server.");
 	}
 
 	@Override
 	public String toString() {
-		return "SetSlotPacket{" + "windowId=" + windowId + ", slot=" + slot + ", slotData=" + '}';
+		return "SetSlotPacket{" + "windowId=" + windowId + ", slot=" + slot + ", item=" + item + '}';
 	}
 
 }

@@ -48,7 +48,9 @@ public class TabCompletePacket implements Packet {
 		out.writeString(text);
 		out.writeBoolean(assumeCommand);
 		out.writeBoolean(hasPosition);
-		if(hasPosition) out.writeLong(ProtocolHelper.encodePosition(x, y, z));
+		if (hasPosition) {
+			out.writeLong(ProtocolHelper.encodePosition(x, y, z));
+		}
 	}
 
 	@Override
@@ -56,7 +58,7 @@ public class TabCompletePacket implements Packet {
 		text = ProtocolHelper.readString(buff);
 		assumeCommand = ProtocolHelper.readBoolean(buff);
 		hasPosition = ProtocolHelper.readBoolean(buff);
-		if(hasPosition) {
+		if (hasPosition) {
 			long pos = buff.getLong();
 			x = ProtocolHelper.decodePositionX(pos);
 			y = ProtocolHelper.decodePositionX(pos);

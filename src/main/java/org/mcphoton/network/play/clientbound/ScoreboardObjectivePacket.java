@@ -46,7 +46,7 @@ public class ScoreboardObjectivePacket implements Packet {
 	public void writeTo(ProtocolOutputStream out) {
 		out.writeString(objectiveName);
 		out.writeByte(mode);
-		if(mode == 0 || mode == 2){
+		if (mode == 0 || mode == 2) {
 			out.writeString(objectiveValue);
 			out.writeString(type);
 		}
@@ -56,7 +56,7 @@ public class ScoreboardObjectivePacket implements Packet {
 	public Packet readFrom(ByteBuffer buff) {
 		objectiveName = ProtocolHelper.readString(buff);
 		mode = buff.get();
-		if(mode == 0 || mode == 2){
+		if (mode == 0 || mode == 2) {
 			objectiveValue = ProtocolHelper.readString(buff);
 			type = ProtocolHelper.readString(buff);
 		}

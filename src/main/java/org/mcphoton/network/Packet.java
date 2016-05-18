@@ -18,6 +18,7 @@
  */
 package org.mcphoton.network;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
@@ -41,13 +42,13 @@ public interface Packet {
 	/**
 	 * Writes this packet to a ProtocolOutputStream.
 	 */
-	void writeTo(ProtocolOutputStream out);
+	void writeTo(ProtocolOutputStream out) throws IOException;
 
 	/**
 	 * Reads data from a ByteBuffer, and modify this packet objet according to the data.
 	 *
 	 * @return this packet
 	 */
-	Packet readFrom(ByteBuffer buff);
+	Packet readFrom(ByteBuffer buff) throws IOException;
 
 }

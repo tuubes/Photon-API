@@ -21,43 +21,54 @@ package org.mcphoton.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.time.temporal.TemporalAccessor;
+import java.nio.ByteBuffer;
 import java.util.Map;
+import org.mcphoton.network.ProtocolOutputStream;
+import org.mcphoton.network.ProtocolWriteable;
 
 /**
- * A TOML configuration.
+ * A NBT configuration.
  *
- * @see https://github.com/toml-lang/toml
+ * @see http://wiki.vg/NBT
  * @author TheElectronWill
  */
-public class TomlConfiguration extends BaseConfiguration {
+public class NbtConfiguration extends BaseConfiguration implements ProtocolWriteable {
 
-	public TomlConfiguration() {
+	public NbtConfiguration() {
 		// defined by the photon's implementation
 	}
 
-	public TomlConfiguration(Map<String, Object> map) {
+	public NbtConfiguration(Map<String, Object> data) {
 		// defined by the photon's implementation
 	}
 
-	/**
-	 * Checks if the key exists and refers to a {@link TemporalAccessor} (basically Date or DateTime) value.
-	 *
-	 * @param key the key key the key (may be compound)
-	 * @return true if the key refers to a Date or DateTime
-	 */
-	public boolean containsTemporal(String key) {
-		return get(key) instanceof TemporalAccessor;
+	public NbtConfiguration(Map<String, Object> data, String name) {
+		// defined by the photon's implementation
 	}
 
-	/**
-	 * Gets the {@link TemporalAccessor} value mapped to this key.
-	 *
-	 * @param key the key (may be compound)
-	 * @return the mapped value, converted to a TemporalAccessor.
-	 */
-	public TemporalAccessor getTemporal(String key) {
-		return (TemporalAccessor) get(key);
+	public String getName() {
+		return null;
+		//defined by the photon's implementation
+	}
+
+	public boolean containsByteArray(String key) {
+		return false;
+		// defined by the photon's implementation
+	}
+
+	public boolean containsIntArray(String key) {
+		return false;
+		// defined by the photon's implementation
+	}
+
+	public byte[] getByteArray(String key) {
+		return null;
+		// defined by the photon's implementation
+	}
+
+	public int[] getIntArray(String key) {
+		return null;
+		// defined by the photon's implementation
 	}
 
 	@Override
@@ -65,9 +76,18 @@ public class TomlConfiguration extends BaseConfiguration {
 		// defined by the photon's implementation
 	}
 
+	public void readFrom(ByteBuffer buff) throws IOException {
+		// defined by the photon's implementation
+	}
+
 	@Override
 	public void writeTo(OutputStream out) throws IOException {
 		// defined by the photon's implementation
+	}
+
+	@Override
+	public void writeTo(ProtocolOutputStream out) throws IOException {
+		//defined by the photon's implementation
 	}
 
 }

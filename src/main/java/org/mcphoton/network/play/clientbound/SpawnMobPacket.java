@@ -27,16 +27,29 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author Maaattt
+ * @author TheElectronWill
  */
 public class SpawnMobPacket implements Packet {
 
 	public int entityId;
 	public UUID entityUUID;
+	/**
+	 * Entity's type. It's an unsigned byte.
+	 */
 	public int type;
 	public double x, y, z;
-	public byte yaw, pitch, headPitch;
-	public short velocityX, velocityY, velocityZ;
-	public byte metadata;
+	/**
+	 * Angle, in degrees.
+	 */
+	public float yaw, pitch, headPitch;
+	/**
+	 * Speed, in blocks/tick.
+	 */
+	public double velocityX, velocityY, velocityZ;
+	/**
+	 * Entity's metadata.
+	 */
+	public byte[] metadataBytes;
 
 	@Override
 	public int getId() {
@@ -57,37 +70,36 @@ public class SpawnMobPacket implements Packet {
 		out.writeDouble(x);
 		out.writeDouble(y);
 		out.writeDouble(z);
-		out.writeByte(yaw);
-		out.writeByte(pitch);
-		out.writeByte(headPitch);
-		out.writeShort(velocityX);
-		out.writeShort(velocityY);
-		out.writeShort(velocityZ);
-		out.writeByte(metadata);
+		out.writeByte(ProtocolHelper.toRotationStep(yaw));
+		out.writeByte(ProtocolHelper.toRotationStep(pitch));
+		out.writeByte(ProtocolHelper.toRotationStep(headPitch));
+		out.writeShort(ProtocolHelper.encodeVelocity(velocityX));
+		out.writeShort(ProtocolHelper.encodeVelocity(velocityY));
+		out.writeShort(ProtocolHelper.encodeVelocity(velocityZ));
+		out.write(metadataBytes);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
 		entityId = ProtocolHelper.readVarInt(buff);
-		long MSB = buff.getLong();
-		long LSB = buff.getLong();
-		entityUUID = new UUID(MSB, LSB);
+		entityUUID = new UUID(buff.getLong(), buff.getLong());
 		type = ProtocolHelper.readUnsignedByte(buff.get());
 		x = buff.getDouble();
 		y = buff.getDouble();
 		z = buff.getDouble();
-		yaw = buff.get();
-		pitch = buff.get();
-		headPitch = buff.get();
-		velocityX = buff.getShort();
-		velocityY = buff.getShort();
-		velocityZ = buff.getShort();
-		metadata = buff.get();
+		yaw = ProtocolHelper.toDegrees(buff.get());
+		pitch = ProtocolHelper.toDegrees(buff.get());
+		headPitch = ProtocolHelper.toDegrees(buff.get());
+		velocityX = ProtocolHelper.decodeVelocity(buff.getShort());
+		velocityY = ProtocolHelper.decodeVelocity(buff.getShort());
+		velocityZ = ProtocolHelper.decodeVelocity(buff.getShort());
+		metadataBytes = new byte[buff.remaining()];
+		buff.get(metadataBytes);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "SpawnMobPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", velocityX=" + velocityX + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + ", metadata=" + metadata + '}';
+		return "SpawnMobPacket{" + "entityId=" + entityId + ", entityUUID=" + entityUUID + ", type=" + type + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", headPitch=" + headPitch + ", velocityX=" + velocityX + ", velocityY=" + velocityY + ", velocityZ=" + velocityZ + ", metadata=" + metadataBytes + '}';
 	}
 }

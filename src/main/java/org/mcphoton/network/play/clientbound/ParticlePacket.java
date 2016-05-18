@@ -20,7 +20,6 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -58,7 +57,7 @@ public class ParticlePacket implements Packet {
 		out.writeFloat(offsetZ);
 		out.writeFloat(particleData);
 		out.writeInt(data.length);
-		for(int i : data){
+		for (int i : data) {
 			out.writeVarInt(i);
 		}
 	}
@@ -75,7 +74,7 @@ public class ParticlePacket implements Packet {
 		offsetZ = buff.getFloat();
 		particleData = buff.getFloat();
 		data = new int[buff.getInt()];
-		for(int i = 0; i < data.length; i++){
+		for (int i = 0; i < data.length; i++) {
 			data[i] = ProtocolHelper.readVarInt(buff);
 		}
 		return this;

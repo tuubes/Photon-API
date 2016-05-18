@@ -32,15 +32,6 @@ public final class ProtocolHelper {
 	private ProtocolHelper() {
 	}
 
-	public static final int ENTITY_META_BYTE = 0;
-	public static final int ENTITY_META_SHORT = 1;
-	public static final int ENTITY_META_INT = 2;
-	public static final int ENTITY_META_FLOAT = 3;
-	public static final int ENTITY_META_STRING = 4;
-	public static final int ENTITY_META_SLOT = 5;
-	public static final int ENTITY_META_3INT = 6;
-	public static final int ENTITY_META_3FLOAT = 7;
-
 	/**
 	 * Reads one byte as a boolean. Its value is true if 1 and false if 0
 	 */
@@ -156,10 +147,6 @@ public final class ProtocolHelper {
 		return (int) (b & 0x000000ff);
 	}
 
-	public static byte encodeEntityMetadataByte(int type, int index) {
-		return (byte) (type << 5 | (index & 0x1F));
-	}
-
 	/**
 	 * Encodes 3D coordinates in a 64 bytes value like this: 26 bytes for X, 12 for Y, 26 for Z.
 	 *
@@ -215,7 +202,7 @@ public final class ProtocolHelper {
 	 * @return the angle, in steps of 1/256 of a full turn, as an unsigned byte.
 	 */
 	public static int toRotationStep(float degrees) {
-		return (int) ((degrees * 256.0) / 360.0);
+		return (int) (degrees / 360f * 256f);
 	}
 
 	/**
@@ -225,7 +212,7 @@ public final class ProtocolHelper {
 	 * @return the angle, in degrees, as a float.
 	 */
 	public static float toDegrees(int steps) {
-		return (float) ((steps * 360.0) / 256.0);
+		return (float) (steps / 256f * 360f);
 	}
 
 	/**
@@ -253,11 +240,21 @@ public final class ProtocolHelper {
 	/**
 	 * Encodes a float into a short with the "Velocity" format.
 	 *
-	 * @param v a velocity, in unit of 1 block per 50ms.
-	 * @return a velocity, in units of 1/8000 of a block per 50ms.
+	 * @param vPerTick a velocity, in unit of 1 block per 50ms.
+	 * @return the velocity, in units of 1/8000 of a block per 50ms.
 	 */
-	public static short encodeVelocity(double v) {
-		return (short) (v * 8000f);
+	public static short encodeVelocity(double vPerTick) {
+		return (short) (vPerTick * 8000.0);
+	}
+
+	/**
+	 * Decodes a short with the "Velocity" format into a double.
+	 *
+	 * @param velocity a velocity, in units of 1/8000 of a block per 50ms.
+	 * @return the velocity, in units of 1 block per 50ms.
+	 */
+	public static double decodeVelocity(short velocity) {
+		return velocity / 8000.0;
 	}
 
 }

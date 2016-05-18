@@ -46,8 +46,10 @@ public class UseEntityPacket implements Packet {
 	public void writeTo(ProtocolOutputStream out) {;
 		out.writeVarInt(target);
 		out.writeVarInt(type);
-		if(type == 0) out.writeVarInt(hand);
-		if(type == 2){
+		if (type == 0) {
+			out.writeVarInt(hand);
+		}
+		if (type == 2) {
 			out.writeFloat(targetX);
 			out.writeFloat(targetY);
 			out.writeFloat(targetZ);
@@ -59,8 +61,10 @@ public class UseEntityPacket implements Packet {
 	public Packet readFrom(ByteBuffer buff) {
 		target = ProtocolHelper.readVarInt(buff);
 		type = ProtocolHelper.readVarInt(buff);
-		if(type == 0) hand = ProtocolHelper.readVarInt(buff);
-		if(type == 2){
+		if (type == 0) {
+			hand = ProtocolHelper.readVarInt(buff);
+		}
+		if (type == 2) {
 			targetX = buff.getFloat();
 			targetY = buff.getFloat();
 			targetZ = buff.getFloat();

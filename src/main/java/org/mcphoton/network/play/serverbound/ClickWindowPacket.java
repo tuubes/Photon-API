@@ -18,7 +18,9 @@
  */
 package org.mcphoton.network.play.serverbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import org.mcphoton.item.ItemStack;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -26,12 +28,12 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public class ClickWindowPacket implements Packet {
 
-	public int windowId, mode;
-	public byte button;
-	public short slot, action;
+	public int windowId, slot, button, actionNumber, mode;
+	public ItemStack clickedItem;
 
 	@Override
 	public int getId() {
@@ -44,28 +46,29 @@ public class ClickWindowPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
+	public void writeTo(ProtocolOutputStream out) throws IOException {
 		out.writeByte(windowId);
 		out.writeShort(slot);
 		out.writeByte(button);
-		out.writeShort(action);
+		out.writeShort(actionNumber);
 		out.writeVarInt(mode);
-		//TODO Write Slot
+		clickedItem.writeTo(out);
 	}
 
 	@Override
-	public Packet readFrom(ByteBuffer buff) {
+	public Packet readFrom(ByteBuffer buff) throws IOException {
 		windowId = ProtocolHelper.readUnsignedByte(buff.get());
 		slot = buff.getShort();
 		button = buff.get();
-		action = buff.getShort();
+		actionNumber = buff.getShort();
 		mode = ProtocolHelper.readVarInt(buff);
-		//TODO Read Slot
+		clickedItem = ItemStack.readFrom(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ClickWindowPacket{" + "windowId=" + windowId + ", slot=" + slot + ", button=" + button + ", action=" + action + ", mode=" + mode + '}';
+		return "ClickWindowPacket{" + "windowId=" + windowId + ", slot=" + slot + ", button=" + button + ", actionNumber=" + actionNumber + ", mode=" + mode + ", clickedItem=" + clickedItem + '}';
 	}
+
 }

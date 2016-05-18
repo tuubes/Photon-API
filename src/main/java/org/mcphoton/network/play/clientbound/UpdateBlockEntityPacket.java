@@ -18,20 +18,22 @@
  */
 package org.mcphoton.network.play.clientbound;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
-import org.mcphoton.block.BlockEntity;
+import org.mcphoton.config.NbtConfiguration;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
 
 /**
  * @author Maaattt
+ * @author TheElectronWill
  */
 public class UpdateBlockEntityPacket implements Packet {
 
 	public int x, y, z;
 	public int action;
-	public BlockEntity blockEntity;
+	public NbtConfiguration nbt;
 
 	@Override
 	public int getId() {
@@ -44,20 +46,21 @@ public class UpdateBlockEntityPacket implements Packet {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) {
+	public void writeTo(ProtocolOutputStream out) throws IOException {
 		out.writeLong(ProtocolHelper.encodePosition(x, y, z));
 		out.writeByte(action);
-		blockEntity.writeTo(out);
+		nbt.writeTo(out);
 	}
 
 	@Override
-	public Packet readFrom(ByteBuffer buff) {
+	public Packet readFrom(ByteBuffer buff) throws IOException {
 		long pos = buff.getLong();
 		x = ProtocolHelper.decodePositionX(pos);
 		y = ProtocolHelper.decodePositionY(pos);
 		z = ProtocolHelper.decodePositionZ(pos);
 		action = ProtocolHelper.readUnsignedByte(buff.get());
-		//TODO Read NBT
+		nbt = new NbtConfiguration();
+		nbt.readFrom(buff);
 		return this;
 	}
 
