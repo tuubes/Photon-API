@@ -20,7 +20,7 @@ package org.mcphoton.network;
 
 import java.net.InetSocketAddress;
 import java.util.Optional;
-import org.mcphoton.entity.living.player.Player;
+import org.mcphoton.entity.living.Player;
 
 /**
  * A client that is connected to a server.
