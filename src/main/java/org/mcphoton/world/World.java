@@ -21,7 +21,7 @@ package org.mcphoton.world;
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
-import org.mcphoton.entity.living.player.Player;
+import org.mcphoton.entity.living.Player;
 import org.mcphoton.world.protection.UnlockedAreaAccess;
 import org.mcphoton.world.protection.WorldAccess;
 import org.mcphoton.world.protection.WorldAccessManager;

@@ -25,6 +25,7 @@ import org.mcphoton.entity.EntityRegistry;
 import org.mcphoton.event.EventsManager;
 import org.mcphoton.item.ItemRegistry;
 import org.mcphoton.network.PacketsManager;
+import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.plugin.PluginsManager;
 import org.mcphoton.world.BiomeRegistry;
 
@@ -41,6 +42,10 @@ public final class Photon {
 	}
 
 	public static PacketsManager getPacketsManager() {
+		return null;
+	}
+
+	public static PermissionsManager getPermissionsManager() {
 		return null;
 	}
 
