@@ -16,19 +16,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.item;
+package org.mcphoton.inventory;
 
 import java.util.Collection;
+
+import org.mcphoton.item.ItemStack;
 
 /**
  * An inventory, which contains some ItemStacks.
  *
  * @author TheElectronWill
+ * @author DJmaxZPLAY
  */
 public interface Inventory extends Iterable<ItemStack> {
 
 	/**
-	 * Gets the niventory's capacity.
+	 * Gets the inventory's capacity.
 	 */
 	int capacity();
 
@@ -42,6 +45,16 @@ public interface Inventory extends Iterable<ItemStack> {
 	 * Gets the stack at the specified index, or null if there is none.
 	 */
 	ItemStack getStack(int index);
+	
+	/**
+	 * Gets the title of the inventory.
+	 */
+	String getTitle();
+	
+	/**
+	 * Gets the type of the inventory.
+	 */
+	InventoryType getType();
 
 	/**
 	 * Sets the stack at the specified index.
@@ -50,6 +63,11 @@ public interface Inventory extends Iterable<ItemStack> {
 	 */
 	ItemStack setStack(int index, ItemStack stack);
 
+	/**
+	 * Sets the title of the inventory.
+	 */
+	void setTitle(String title);
+	
 	/**
 	 * Adds a stack to this inventory. The ItemStack is placed in the first available slot.
 	 *
