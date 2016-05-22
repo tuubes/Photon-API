@@ -16,28 +16,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton;
+package org.mcphoton.entity;
+
+import org.mcphoton.utils.Vector;
 
 /**
- * Interface for types (EntityType, ItemType, etc.)
- *
- * @author TheElectronWill
+ * This interface is used by Minecarts, Horses, Boats and Pigs.
+ * 
+ * @author DJmaxZPLAY
  */
-public interface Type {
-
+public interface Vehicle {
+	
 	/**
-	 * Gets the localized name of this type. For example: "Dirt".
+	 * Gets a Vector from the vehicle's velocity.
 	 */
-	String getLocalizedName();
-
+	Vector getVelocity();
+	
 	/**
-	 * Gets the unique and unlocalized name of this type. For example: "minecraft.dirt".
+	 * Sets the vehicle's velocity with a Vector.
 	 */
-	String getUniqueName();
-
-	/**
-	 * Gets the unique id of this type. For example: 2
-	 */
-	int getUniqueId();
-
+	void setVelocity(Vector velocity);
+	
 }
