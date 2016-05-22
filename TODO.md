@@ -8,8 +8,8 @@ the data that will be sent or that has been received. For this task, you don't h
 implement some packets, make a pull request, implement more and so on.
 - [ ] Allow object creation with a type, for example an entity should be created by calling `MyEntityType.create(some parameters to determine)`.
 - [ ] Add something like a "metadata" or "data container" API to attach additional data to objects like entities. A piece of data would be identified by its name.
-- [ ] Use "User" instead of "OfflinePlayer".
-- [ ] Add an API to get informations about the offline users
+- [x] Use "User" instead of "OfflinePlayer".
+- [x] Add an API to get informations about the offline users
 - [x] In `org.mcphoton.messaging.TextChatMessage.toConsoleString()`, check if the colors are supported by the console. Generally,
 the colors are supported on Linux and OSX, but not on Windows.
 - [ ] Talk about the protection API (AccessManager, etc.): how to make it better? What are its goals?  
