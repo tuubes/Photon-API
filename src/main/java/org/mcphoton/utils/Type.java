@@ -16,15 +16,28 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
-
-import org.mcphoton.utils.AbstractType;
+package org.mcphoton.utils;
 
 /**
- * Defines a type of entity.
+ * Interface for types (EntityType, ItemType, etc.)
  *
  * @author TheElectronWill
  */
-public abstract class EntityType extends AbstractType {
+public interface Type {
+
+	/**
+	 * Gets the localized name of this type. For example: "Dirt".
+	 */
+	String getLocalizedName();
+
+	/**
+	 * Gets the unique and unlocalized name of this type. For example: "minecraft.dirt".
+	 */
+	String getUniqueName();
+
+	/**
+	 * Gets the unique id of this type. For example: 2
+	 */
+	int getUniqueId();
 
 }

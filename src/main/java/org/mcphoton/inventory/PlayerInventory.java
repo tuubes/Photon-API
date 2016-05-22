@@ -16,28 +16,23 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton;
+package org.mcphoton.inventory;
 
 /**
- * Interface for types (EntityType, ItemType, etc.)
+ * The inventory of an player.
  *
- * @author TheElectronWill
+ * @author DJmaxZPLAY
  */
-public interface Type {
+public interface PlayerInventory extends EntityInventory{
 
 	/**
-	 * Gets the localized name of this type. For example: "Dirt".
+	 * Gets the slot number of the currently held stack.
 	 */
-	String getLocalizedName();
-
+	int getHeldSlot();
+	
 	/**
-	 * Gets the unique and unlocalized name of this type. For example: "minecraft.dirt".
+	 * Sets the slot number of the slot to be held.
 	 */
-	String getUniqueName();
-
-	/**
-	 * Gets the unique id of this type. For example: 2
-	 */
-	int getUniqueId();
-
+	void setHeldSlot();
+	
 }

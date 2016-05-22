@@ -16,15 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.utils;
 
-import org.mcphoton.utils.AbstractType;
+import com.electronwill.utils.IntConstant;
 
 /**
- * Defines a type of entity.
+ * Abstract class for types (block types, item types, etc.)
  *
  * @author TheElectronWill
  */
-public abstract class EntityType extends AbstractType {
+public abstract class AbstractType implements Type {
+
+	private final IntConstant id = new IntConstant();
+
+	@Override
+	public int getUniqueId() {
+		return id.get();
+	}
+
+	/**
+	 * Initializes the unique id of this type. This method may only be called once.
+	 */
+	public void initializeId(int id) {
+		this.id.init(id);
+	}
 
 }
