@@ -18,7 +18,7 @@
  */
 package org.mcphoton.block;
 
-import org.mcphoton.AbstractType;
+import org.mcphoton.utils.AbstractType;
 
 /**
  * Defines a type of block.

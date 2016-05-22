@@ -18,7 +18,7 @@
  */
 package org.mcphoton.item;
 
-import org.mcphoton.AbstractType;
+import org.mcphoton.utils.AbstractType;
 
 /**
  * Defines a type of item.
