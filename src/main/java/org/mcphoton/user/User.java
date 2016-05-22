@@ -19,7 +19,7 @@
 package org.mcphoton.user;
 
 import java.util.UUID;
-import org.mcphoton.item.Inventory;
+import org.mcphoton.inventory.Inventory;
 import org.mcphoton.permissions.Permissible;
 import org.mcphoton.world.Location;
 
