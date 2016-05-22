@@ -18,7 +18,7 @@
  */
 package org.mcphoton.inventory;
 
-import org.mcphoton.AbstractType;
+import org.mcphoton.utils.AbstractType;
 
 /**
  * Defines a type of inventory.

@@ -27,7 +27,7 @@ import org.mcphoton.world.World;
  * takes care of this.
  *
  * @author TheElectronWill
- *
+ * @author DJmaxZPLAY
  */
 public abstract class Entity {
 
@@ -70,6 +70,25 @@ public abstract class Entity {
 	public World getWorld() {
 		return world;
 	}
+	
+	/**
+	 * Gets the primary passenger of a vehicle. Vehicle which can have multiple passengers,
+	 * it return only the primary passenger.
+	 */
+	public abstract Entity getPassenger();
+	
+	/**
+	 * Return if the entity has a passenger.
+	 */
+	public abstract boolean hasPassenger();
+	
+	/**
+	 * Set the passenger of the entity.
+	 * 
+	 * @param passenger The new passenger.
+	 * @return false if it couldn't be done.
+	 */
+	public abstract boolean setPassenger(Entity passenger);
 
 	/**
 	 * Writes this entity to a ProtocolOutputStream.
