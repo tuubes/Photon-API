@@ -16,48 +16,30 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.server;
+package org.mcphoton.utils;
 
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.UUID;
-import org.mcphoton.entity.living.Player;
-import org.mcphoton.world.Location;
-import org.mcphoton.world.World;
+import java.awt.image.BufferedImage;
 
-public interface Server {
-
-	// === Players ===
-	Collection<Player> getOnlinePlayers();
-
-	int getMaxPlayers();
-
-	void addPlayer(Player player);
+/**
+ * The icon in the server list.
+ * 
+ * @author DJmaxZPLAY
+ */
+public interface Favicon {
 	
-	Player getPlayer(UUID id);
-
-	Player getPlayer(String name);
-
-	BansManager getBansManager();
-
-	WhitelistManager getWhitelistManager();
-
-	// === Network ===
-	InetSocketAddress getBoundAddress();
-
-	boolean isOnlineMode();
-
-	// === Worlds ===
-	Collection<World> getWorlds();
-
-	World getWorld(String name);
-
-	void registerWorld(World w);
-
-	void unregisterWorld(World w);
-
-	Location getSpawn();
-
-	void setSpawn(Location spawn);
+	/**
+     * @param image The image to encode in base64.
+     */
+	void encode(BufferedImage image) throws IllegalArgumentException, Exception;
+	
+	/**
+     * Gets the favicon encoded in base64.
+     */
+	String getEncodedFavicon();
+	
+	/**
+     * Sets the favicon to the default favicon.
+     */
+	void setDefault();
 
 }
