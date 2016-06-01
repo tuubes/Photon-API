@@ -27,6 +27,7 @@ import org.mcphoton.item.ItemRegistry;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.plugin.PluginsManager;
+import org.mcphoton.server.Server;
 import org.mcphoton.world.BiomeRegistry;
 
 /**
