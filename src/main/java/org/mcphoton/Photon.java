@@ -34,7 +34,8 @@ import org.mcphoton.world.BiomeRegistry;
  * the {@link EventManager}.
  *
  * @author TheElectronWill
- *
+ * @author Maaattt
+ * 
  */
 public final class Photon {
 
@@ -102,6 +103,10 @@ public final class Photon {
 	}
 
 	public static File getPluginsDirectory() {
+		return null;
+	}
+	
+	public static Server getServer() {
 		return null;
 	}
 
