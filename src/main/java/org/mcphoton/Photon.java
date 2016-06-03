@@ -27,6 +27,7 @@ import org.mcphoton.item.ItemRegistry;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.plugin.PluginsManager;
+import org.mcphoton.server.Server;
 import org.mcphoton.world.BiomeRegistry;
 
 /**
@@ -34,7 +35,8 @@ import org.mcphoton.world.BiomeRegistry;
  * the {@link EventManager}.
  *
  * @author TheElectronWill
- *
+ * @author Maaattt
+ * 
  */
 public final class Photon {
 
@@ -102,6 +104,10 @@ public final class Photon {
 	}
 
 	public static File getPluginsDirectory() {
+		return null;
+	}
+	
+	public static Server getServer() {
 		return null;
 	}
 
