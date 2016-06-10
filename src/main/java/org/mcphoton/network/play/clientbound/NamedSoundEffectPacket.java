@@ -26,12 +26,13 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author DJmaxZPL4Y
+ * @author TheElectronWill
  */
 public class NamedSoundEffectPacket implements Packet {
 
 	public String soundName;
-	public int soundCategory, effectPositionX, effectPositionY, effectPositionZ, pitch;
-	public float volume;
+	public int soundCategory, effectPositionX, effectPositionY, effectPositionZ;
+	public float volume, pitch;
 
 	@Override
 	public int getId() {
@@ -51,7 +52,7 @@ public class NamedSoundEffectPacket implements Packet {
 		out.writeInt(effectPositionY);
 		out.writeInt(effectPositionZ);
 		out.writeFloat(volume);
-		out.writeByte(pitch);
+		out.writeFloat(pitch);
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class NamedSoundEffectPacket implements Packet {
 		effectPositionY = buff.getInt();
 		effectPositionZ = buff.getInt();
 		volume = buff.getFloat();
-		pitch = ProtocolHelper.readUnsignedByte(buff.get());
+		pitch = buff.getFloat();
 		return this;
 	}
 

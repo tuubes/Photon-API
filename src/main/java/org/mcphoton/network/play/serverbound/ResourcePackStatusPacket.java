@@ -26,10 +26,17 @@ import org.mcphoton.network.ProtocolOutputStream;
 /**
  *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public class ResourcePackStatusPacket implements Packet {
 
-	public String hash;
+	/**
+	 * The following values are possible:
+	 * 0: successfully loaded;
+	 * 1: declined;
+	 * 2: download failed;
+	 * 3: accepted.
+	 */
 	public int result;
 
 	@Override
@@ -44,19 +51,18 @@ public class ResourcePackStatusPacket implements Packet {
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) {;
-		out.writeString(hash);
 		out.writeVarInt(result);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		hash = ProtocolHelper.readString(buff);
 		result = ProtocolHelper.readVarInt(buff);
 		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "ResourcePackStatusPacket{" + "hash=" + hash + ", result=" + result + '}';
+		return "ResourcePackStatusPacket{" + "result=" + result + '}';
 	}
+
 }
