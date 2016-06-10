@@ -29,6 +29,8 @@ import java.nio.ByteBuffer;
  */
 public interface Packet {
 
+	int CURRENT_PROTOCOL_VERSION = 110;
+
 	/**
 	 * Gets the unique id of this packet's type.
 	 */

@@ -29,7 +29,6 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class HandshakePacket implements Packet {
 
-	public static final int CURRENT_PROTOCOL_VERSION = 110;
 	public int protocolVersion, serverPort, nextState;
 	public String serverAddress;
 
