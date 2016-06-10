@@ -45,7 +45,7 @@ public abstract class ChatMessage {
 	}
 
 	public Color getColor() {
-		return Color.valueOf(getColorName().toUpperCase());
+		return map.containsKey("color") ? Color.valueOf(getColorName().toUpperCase()) : null;
 	}
 
 	public String getColorName() {

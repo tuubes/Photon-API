@@ -187,7 +187,10 @@ public class TextChatMessage extends ChatMessage {
 		if (isItalic()) {
 			sb.append("§o");
 		}
-		sb.append(getColor().legacy);
+		Color color = getColor();
+		if (color != null) {
+			sb.append(color.legacy);
+		}
 		sb.append(getText());
 
 		List<Object> extras = getExtras();
