@@ -18,6 +18,7 @@
  */
 package org.mcphoton.network;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Optional;
 import org.mcphoton.entity.living.Player;
@@ -29,12 +30,31 @@ import org.mcphoton.entity.living.Player;
  */
 public interface Client {
 
+	/**
+	 * Gets the client's IP address.
+	 */
 	InetSocketAddress getAddress();
 
+	/**
+	 * Gets the Player associated with this client, if any.
+	 *
+	 * @return an Optional that contains the player, or an empty optional if there is no player.
+	 */
 	Optional<Player> getPlayer();
 
+	/**
+	 * Gets the current client's connection state.
+	 */
 	ConnectionState getConnectionState();
 
+	/**
+	 * Sets the client's connection state.
+	 */
 	void setConnectionState(ConnectionState newState);
+
+	/**
+	 * Closes the client's connection, without warning it.
+	 */
+	void closeConnection() throws IOException;
 
 }
