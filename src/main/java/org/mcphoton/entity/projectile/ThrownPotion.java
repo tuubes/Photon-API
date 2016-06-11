@@ -16,8 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.projectile;
 
-public interface TameableEntity extends AgeableEntity, Tameable {
+/**
+ * 
+ * @author DJmaxZPLAY
+ */
+public interface ThrownPotion extends Projectile {
 
 }

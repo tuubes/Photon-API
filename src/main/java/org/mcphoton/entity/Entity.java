@@ -18,8 +18,10 @@
  */
 package org.mcphoton.entity;
 
-import com.electronwill.utils.IntConstant;
+import java.util.UUID;
+
 import org.mcphoton.network.ProtocolOutputStream;
+import org.mcphoton.world.Location;
 import org.mcphoton.world.World;
 
 /**
@@ -29,58 +31,51 @@ import org.mcphoton.world.World;
  * @author TheElectronWill
  * @author DJmaxZPLAY
  */
-public abstract class Entity {
+public interface Entity {
 
-	private final IntConstant entityId = new IntConstant();
 
-	protected String customName = "";
-	protected double x, y, z;
-	protected World world;
+	int getEntityId();
+	
+	UUID getEntityUniqueId();
 
-	public int getEntityId() {
-		return entityId.get();
-	}
+	void initializeEntityId(int id);
 
-	public void initializeEntityId(int id) {
-		this.entityId.init(id);
-	}
+	EntityType getType();
 
-	public abstract EntityType getType();
+	String getCustomName();
 
-	public String getCustomName() {
-		return customName;
-	}
+	void setCustomName(String customName);
+	
+	void setCustomNameVisible(boolean visibility);
+	
+	boolean isCustomNameVisible();
 
-	public void setCustomName(String customName) {
-		this.customName = customName;
-	}
+	Location getLocation();
 
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public double getZ() {
-		return z;
-	}
-
-	public World getWorld() {
-		return world;
-	}
+	World getWorld();
+	
+	boolean isOnGround();
+	
+	boolean teleport(Location location);
+	
+	boolean teleport(Entity entity);
+	
+	int getFireTicks();
+	
+	int getMaxFireTicks();
+	
+	void setFireTicks(int ticks);
 	
 	/**
 	 * Gets the primary passenger of a vehicle. Vehicle which can have multiple passengers,
 	 * it return only the primary passenger.
 	 */
-	public abstract Entity getPassenger();
+	Entity getPassenger();
 	
 	/**
 	 * Return if the entity has a passenger.
 	 */
-	public abstract boolean hasPassenger();
+	boolean hasPassenger();
 	
 	/**
 	 * Set the passenger of the entity.
@@ -88,11 +83,37 @@ public abstract class Entity {
 	 * @param passenger The new passenger.
 	 * @return false if it couldn't be done.
 	 */
-	public abstract boolean setPassenger(Entity passenger);
+	boolean setPassenger(Entity passenger);
 
+	boolean ejectPassenger();
+	
+	boolean isInVehicle();
+	
+	boolean leaveVehicle();
+	
+	Entity getVehicle();
+	
+	void playEffect();
+	
+	void setGravity(boolean gravity);
+	
+	boolean hasGravity();
+	
+	void setGlowing(boolean glow);
+	
+	boolean isGlowing();
+	
+	void setInvulnerable(boolean invulnerable);
+	
+	boolean isInvulnerable();
+	
+	void setSilent(boolean silent);
+	
+	boolean isSilent();
+	
 	/**
 	 * Writes this entity to a ProtocolOutputStream.
 	 */
-	public abstract void writeTo(ProtocolOutputStream out);
+	void writeTo(ProtocolOutputStream out);
 
 }
