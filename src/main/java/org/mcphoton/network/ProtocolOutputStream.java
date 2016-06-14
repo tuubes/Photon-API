@@ -42,13 +42,12 @@ public abstract class ProtocolOutputStream extends OutputStream {
 	public abstract int capacity();
 
 	/**
-	 * Clears this ProtocolOutputStream, that is, sets it size to 0. The capacity does not change.
+	 * Discards the stream's data. The capacity does not change.
 	 */
 	public abstract void clear();
 
 	/**
-	 * Resets this ProcotolOutputStream, that is, delete the internal data. The capacity will be the default
-	 * capacity.
+	 * Resets the stream's size and position to 0. The capacity does not change.
 	 */
 	public abstract void reset();
 
