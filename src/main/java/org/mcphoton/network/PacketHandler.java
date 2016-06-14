@@ -19,7 +19,7 @@
 package org.mcphoton.network;
 
 /**
- * A functional interface that handles packets of a given type.
+ * Interface for handling packets of some type.
  *
  * @author TheElectronWill
  * @param <P> the packet's type
@@ -28,7 +28,9 @@ package org.mcphoton.network;
 public interface PacketHandler<P extends Packet> {
 
 	/**
-	 * Handles a packet that is being sent to a client, or that has just been received by the server.
+	 * Handles a packet that is being sent to a client, or that has just been received by the server. This
+	 * method should only perform very quick tasks, because it may block the processing of other packets. Any
+	 * big or slow task must be delegated to another thread, for example to the Photon's ExecutorService.
 	 *
 	 * @param packet the packet that will be sent, or that has been received
 	 * @param client the client who will receive the packet, or the client who sent it.
