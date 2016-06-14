@@ -36,7 +36,6 @@ import org.mcphoton.world.BiomeRegistry;
  *
  * @author TheElectronWill
  * @author Maaattt
- * 
  */
 public final class Photon {
 
@@ -92,11 +91,11 @@ public final class Photon {
 	}
 
 	public static String getVersion() {
-		return "0.3.0-alpha";
+		return "dev-alpha";
 	}
 
 	public static String getMinecraftVersion() {
-		return "1.9";
+		return "1.10";
 	}
 
 	public static File getMainDirectory() {
@@ -106,7 +105,7 @@ public final class Photon {
 	public static File getPluginsDirectory() {
 		return null;
 	}
-	
+
 	public static Server getServer() {
 		return null;
 	}
