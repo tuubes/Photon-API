@@ -24,4 +24,8 @@ package org.mcphoton.entity.projectile;
  */
 public interface WitherSkull extends Fireball {
 
+	boolean isCharged();
+	
+	void setCharged(boolean charged);
+	
 }

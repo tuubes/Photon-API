@@ -18,7 +18,4 @@
  */
 package org.mcphoton.entity.living;
 
-public interface AgeableEntity extends LivingEntity, Ageable {
-
-
-}
+public interface AgeableEntity extends Creature, Ageable {}

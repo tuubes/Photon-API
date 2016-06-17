@@ -18,6 +18,4 @@
  */
 package org.mcphoton.entity.living;
 
-public interface TameableEntity extends AgeableEntity, Tameable {
-
-}
+public interface Squid extends LivingEntity {}

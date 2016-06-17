@@ -18,18 +18,76 @@
  */
 package org.mcphoton.entity.living;
 
-public interface Living {
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
+import org.mcphoton.block.BlockEntity;
+import org.mcphoton.block.BlockType;
+import org.mcphoton.entity.Entity;
+import org.mcphoton.inventory.EntityInventory;
+import org.mcphoton.world.Location;
+
+public interface Living{
+	
+	void setInvulnerable(boolean invulnerable);
+	
+	boolean isInvulnerable();
+	
 	float getHealth();
+	
+	float getMaxHealth();
 
 	void setHealth(float health);
+	
+	void setMaxHealth(float maxHealth);
 
 	void damage(float damage);
 
 	void kill();
+	
+	Optional<Entity> getKiller();
 
 	default boolean isAlive() {
 		return getHealth() > 0;
 	}
-
+	
+	int getRemainingAir();
+	
+	void setRemainingAir(int remainingAir);
+	
+	int getMaxAir();
+	
+	void setMaxAir(int maxAir);
+	
+	void setGliding(boolean gliding);
+	
+	boolean isGliding();
+	
+	float getEyeHeight();
+	
+	float getEyeHeight(boolean ignoreSneak);
+	
+	Location getEyeLocation();
+	
+	Collection<BlockEntity> getBlockInSight(Optional<Set<BlockType>> transparent, int maxDistance);
+	
+	BlockEntity getTargetBlock(Optional<Set<BlockType>>  transparent, int maxDistance);
+	
+	boolean isDispawnFarFromPlayer();
+	
+	void setdispawnFarFromPlayer(boolean dispawn);
+	
+	boolean canPickupItems();
+	
+	void setCanPickItems(boolean pickup);
+	
+	boolean isLeashed();
+	
+	Optional<Entity> getLeashHolder();
+	
+	boolean setLeashHolder(Entity holder);
+	
+	EntityInventory getEquipment();
+	
 }

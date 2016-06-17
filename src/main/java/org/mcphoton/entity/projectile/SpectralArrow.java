@@ -24,4 +24,8 @@ package org.mcphoton.entity.projectile;
  */
 public interface SpectralArrow extends Arrow {
 
+	int getGlowingTicks();
+	
+	void setGlowingTicks(int duration);
+	
 }

@@ -18,6 +18,8 @@
  */
 package org.mcphoton.entity;
 
+import java.util.Optional;
+
 import org.mcphoton.item.ItemStack;
 
 /**
@@ -31,7 +33,7 @@ public interface ItemFrame extends Entity, Hangeable {
 	 * 
 	 * @return the item in this ItemFrame.
 	 */
-	ItemStack getItem();
+	Optional<ItemStack> getItem();
 	
 	/**
 	 * Set the item in this ItemFrame.

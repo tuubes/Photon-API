@@ -18,10 +18,16 @@
  */
 package org.mcphoton.entity.projectile;
 
+import org.mcphoton.entity.Entity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
 public interface ShulkerBullet extends Projectile {
+	
+	Entity getTarget();
+	
+	void setTarget(Entity target);
 
 }

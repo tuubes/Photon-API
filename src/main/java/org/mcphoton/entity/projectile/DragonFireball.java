@@ -18,10 +18,4 @@
  */
 package org.mcphoton.entity.projectile;
 
-/**
- * 
- * @author DJmaxZPLAY
- */
-public interface DragonFireball extends Fireball {
-
-}
+public interface DragonFireball extends Fireball {}

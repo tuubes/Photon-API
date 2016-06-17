@@ -21,6 +21,4 @@ package org.mcphoton.entity;
  * 
  * @author DJmaxZPLAY
  */
-public interface LeashHitch extends Entity, Hangeable{
-
-}
+public interface LeashHitch extends Entity, Hangeable {}

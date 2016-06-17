@@ -24,4 +24,12 @@ package org.mcphoton.entity.projectile;
  */
 public interface Arrow extends Projectile {
 
+	int getKnockbackStrenght();
+	
+	void setKnockbackStrenght(int knockback);
+	
+	boolean isCritical();
+	
+	void setCritical(boolean critical);
+	
 }

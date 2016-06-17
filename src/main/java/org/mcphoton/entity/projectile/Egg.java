@@ -18,10 +18,4 @@
  */
 package org.mcphoton.entity.projectile;
 
-/**
- * 
- * @author DJmaxZPLAY
- */
-public interface Egg extends Projectile {
-
-}
+public interface Egg extends Projectile {}

@@ -18,10 +18,17 @@
  */
 package org.mcphoton.entity.projectile;
 
+import org.mcphoton.entity.Explosive;
+import org.mcphoton.utils.Vector;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Fireball extends Projectile {
+public interface Fireball extends Projectile, Explosive {
 
+	Vector getDirection();
+	
+	void setDirection(Vector direction);
+	
 }

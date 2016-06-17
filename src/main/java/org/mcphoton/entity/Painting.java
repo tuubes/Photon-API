@@ -24,7 +24,7 @@ import org.mcphoton.utils.ArtType;
  * 
  * @author DJmaxZPLAY
  */
-public interface Painting extends Entity, Hangeable{
+public interface Painting extends Entity, Hangeable {
 
 	/**
 	 * Set the art to show on this painting.

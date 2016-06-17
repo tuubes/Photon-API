@@ -18,10 +18,15 @@
  */
 package org.mcphoton.entity.projectile;
 
+import org.mcphoton.item.ItemStack;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
 public interface ThrownPotion extends Projectile {
 
+	ItemStack getItem();
+	
+	void setItem(ItemStack item);
 }

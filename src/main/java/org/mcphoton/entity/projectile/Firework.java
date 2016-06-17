@@ -24,4 +24,6 @@ package org.mcphoton.entity.projectile;
  */
 public interface Firework extends Projectile {
 
+	void detonate();
+	
 }

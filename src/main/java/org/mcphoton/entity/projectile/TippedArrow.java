@@ -23,5 +23,5 @@ package org.mcphoton.entity.projectile;
  * @author DJmaxZPLAY
  */
 public interface TippedArrow extends Arrow {
-
+	
 }

@@ -19,8 +19,6 @@
 package org.mcphoton.entity.living;
 
 import org.mcphoton.entity.Entity;
+import org.mcphoton.entity.projectile.Shooter;
 
-public interface LivingEntity extends Entity, Living, HeadRotateable {
-
-
-}
+public interface LivingEntity extends Entity, Living, HeadRotateable, Shooter {}

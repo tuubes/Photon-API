@@ -18,11 +18,11 @@
  */
 package org.mcphoton.entity;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.Location;
-import org.mcphoton.world.World;
 
 /**
  * Base class for entites. Entities normally don't need to be thread-safe, because the photon's implementation
@@ -51,14 +51,10 @@ public interface Entity {
 	boolean isCustomNameVisible();
 
 	Location getLocation();
-
-	World getWorld();
 	
 	boolean isOnGround();
 	
 	boolean teleport(Location location);
-	
-	boolean teleport(Entity entity);
 	
 	int getFireTicks();
 	
@@ -70,7 +66,7 @@ public interface Entity {
 	 * Gets the primary passenger of a vehicle. Vehicle which can have multiple passengers,
 	 * it return only the primary passenger.
 	 */
-	Entity getPassenger();
+	Optional<Entity> getPassenger();
 	
 	/**
 	 * Return if the entity has a passenger.
@@ -102,10 +98,6 @@ public interface Entity {
 	void setGlowing(boolean glow);
 	
 	boolean isGlowing();
-	
-	void setInvulnerable(boolean invulnerable);
-	
-	boolean isInvulnerable();
 	
 	void setSilent(boolean silent);
 	

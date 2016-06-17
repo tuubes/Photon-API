@@ -18,10 +18,4 @@
  */
 package org.mcphoton.entity.projectile;
 
-/**
- * 
- * @author DJmaxZPLAY
- */
-public interface BlockShooter extends Shooter {
-	
-}
+public interface BlockShooter extends Shooter {}

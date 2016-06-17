@@ -18,10 +18,4 @@
  */
 package org.mcphoton.entity.projectile;
 
-/**
- * 
- * @author DJmaxZPLAY
- */
-public interface EnderPearl extends Projectile {
-
-}
+public interface EnderPearl extends Projectile {}
