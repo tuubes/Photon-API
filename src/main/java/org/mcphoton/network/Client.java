@@ -21,6 +21,7 @@ package org.mcphoton.network;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Optional;
+
 import org.mcphoton.entity.living.Player;
 
 /**
