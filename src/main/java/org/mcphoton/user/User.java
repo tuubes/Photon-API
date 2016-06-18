@@ -56,5 +56,7 @@ public interface User extends Permissible {
 	boolean isWhitelisted();
 
 	Inventory getInventory();
+	
+	Inventory getEnderChest();
 
 }
