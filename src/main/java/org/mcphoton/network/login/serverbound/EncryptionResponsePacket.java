@@ -29,6 +29,9 @@ import org.mcphoton.network.ProtocolOutputStream;
  */
 public class EncryptionResponsePacket implements Packet {
 
+	/**
+	 * Encrypted with the server's RSA public key.
+	 */
 	public byte[] sharedKey, verifyToken;
 
 	@Override
@@ -47,7 +50,6 @@ public class EncryptionResponsePacket implements Packet {
 		out.write(sharedKey);
 		out.writeVarInt(verifyToken.length);
 		out.write(verifyToken);
-
 	}
 
 	@Override
