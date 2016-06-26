@@ -18,57 +18,48 @@
  */
 package org.mcphoton.plugin;
 
-import com.electronwill.utils.Constant;
 import java.io.File;
-import org.mcphoton.Photon;
+import org.mcphoton.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Abstract class for every plugin written in Java.
+ * A WorldPlugin is associated with a game world, and isn't aware of what happens in the other worlds.
  *
  * @author TheElectronWill
- *
  */
-public abstract class JavaPlugin implements Plugin {
+public abstract class WorldPlugin implements Plugin {
 
-	protected final File directory = new File(Photon.getPluginsDirectory(), getName());
-	protected final File configFile = new File(directory, "config.toml");
+	protected final File directory;
+	protected final File configFile;
 	protected final Logger logger = LoggerFactory.getLogger(getName());
-	private final Constant<PluginLoader> loader = new Constant<>();
+	protected final PluginLoader loader;
+	protected final World world;
+
+	public WorldPlugin(PluginLoader loader, World world) {
+		this.loader = loader;
+		this.world = world;
+		this.directory = new File(world.getDirectory(), getName());
+		this.configFile = new File(directory, "config.toml");
+	}
 
 	@Override
-	public final File getDirectory() {
+	public File getDirectory() {
 		return directory;
 	}
 
 	@Override
-	public final File getConfigFile() {
+	public File getConfigFile() {
 		return configFile;
 	}
 
 	@Override
-	public final Logger getLogger() {
+	public Logger getLogger() {
 		return logger;
 	}
 
-	@Override
-	public final PluginLoader getLoader() {
-		return loader.get();
-	}
-
-	public final void init(PluginLoader loader) {
-		this.loader.init(loader);
-	}
-
-	@Override
-	public String[] getRequiredDependencies() {
-		return null;
-	}
-
-	@Override
-	public String[] getOptionalDependencies() {
-		return null;
+	public World getWorld() {
+		return world;
 	}
 
 }
