@@ -22,36 +22,75 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Manages every plugin.
+ * Manages plugins for one world.
  *
  * @author TheElectronWill
  */
-public interface PluginsManager {
+public interface WorldPluginsManager {
 
+	/**
+	 * Gets a plugin by its name. If the plugin is not loaded by this manager, this method returns
+	 * <code>null</code>. The returned plugin may be of any type (WorldPlugin, ServerPlugin, or any other
+	 * Plugin implementation).
+	 */
 	Plugin getPlugin(String name);
 
+	/**
+	 * Loads a plugin from a file with the default plugin loader.
+	 */
 	default Plugin loadPlugin(File file) throws PluginLoadingException {
 		return loadPlugin(file, getDefaultPluginLoader());
 	}
 
+	/**
+	 * Loads a plugin from a file with the specified plugin loader.
+	 */
 	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader) throws PluginLoadingException;
 
+	/**
+	 * Loads multiple plugins from multiple files, with the default plugin loader.
+	 */
 	default List<Plugin> loadPlugins(File[] files) {
 		return loadPlugins(files, getDefaultPluginLoader());
 	}
 
+	/**
+	 * Loads multiple plugins from multiple files, with the specified plugin loader.
+	 */
 	<T extends Plugin> List<T> loadPlugins(File[] files, PluginLoader<T> loader);
 
+	/**
+	 * Unload a plugin. If the plugin is a ServerPlugin, it isn't disabled entirely, but everything it
+	 * registered in the manager's world is unregistered.
+	 *
+	 * @param plugin the plugin to unload.
+	 */
 	void unloadPlugin(Plugin plugin);
 
+	/**
+	 * Unload a plugin. If the plugin is a ServerPlugin, it isn't disabled entirely, but everything it
+	 * registered in the manager's world is unregistered.
+	 */
 	void unloadPlugin(String name);
 
+	/**
+	 * Checks if a plugin with that name is loaded by this WorldPluginsManager.
+	 */
 	boolean isPluginLoaded(String name);
 
+	/**
+	 * Gets the default plugin loader.
+	 */
 	PluginLoader getDefaultPluginLoader();
 
+	/**
+	 * Sets the default plugin loader.
+	 */
 	void setDefaultPluginLoader(PluginLoader loader);
 
+	/**
+	 * Gets the ClassSharer, which is used to share Java classes across plugins of the same world.
+	 */
 	ClassSharer getClassSharer();
 
 }

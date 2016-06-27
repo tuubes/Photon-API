@@ -21,17 +21,17 @@ package org.mcphoton;
 import java.io.File;
 import org.mcphoton.block.BlockRegistry;
 import org.mcphoton.entity.EntityRegistry;
-import org.mcphoton.event.EventsManager;
 import org.mcphoton.item.ItemRegistry;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
-import org.mcphoton.plugin.PluginsManager;
 import org.mcphoton.server.Server;
 import org.mcphoton.world.BiomeRegistry;
 import org.mcphoton.command.CommandRegistry;
+import org.mcphoton.event.WorldEventsManager;
+import org.mcphoton.plugin.WorldPluginsManager;
 
 /**
- * The centralized API core. Gives access to many core points of the API, like the {@link PluginsManager} and
+ * The centralized API core. Gives access to many core points of the API, like the {@link WorldPluginsManager} and
  * the {@link EventManager}.
  *
  * @author TheElectronWill
@@ -50,11 +50,11 @@ public final class Photon {
 		return null;
 	}
 
-	public static PluginsManager getPluginsManager() {
+	public static WorldPluginsManager getPluginsManager() {
 		return null;
 	}
 
-	public static EventsManager getEventsManager() {
+	public static WorldEventsManager getEventsManager() {
 		return null;
 	}
 

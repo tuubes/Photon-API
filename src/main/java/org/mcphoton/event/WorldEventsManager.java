@@ -18,18 +18,51 @@
  */
 package org.mcphoton.event;
 
-import org.mcphoton.plugin.Plugin;
+/**
+ * Manages events for one world.
+ *
+ * @author TheElectronWill
+ */
+public interface WorldEventsManager {
 
-public interface EventsManager {
-
+	/**
+	 * Registers all the events handlers defined in the specified listener object.
+	 *
+	 * @param listener an object that contains some event handlers definitions.
+	 */
 	void registerAll(Object listener);
 
+	/**
+	 * Unregisters all the events handlers defined in the specified listener object.
+	 *
+	 * @param listener an object that contains some event handlers definitions.
+	 */
+	void unregisterAll(Object listener);
+
+	/**
+	 * Registers an event handler.
+	 *
+	 * @param <E> the event's type
+	 * @param eventClass the event's class
+	 * @param eventHandler the handler to register
+	 * @param listenOrder the handler's order
+	 */
 	<E extends Event> void register(Class<E> eventClass, EventHandler<? super E> eventHandler, ListenOrder listenOrder);
 
+	/**
+	 * Unregisters an event handler.
+	 *
+	 * @param <E> the event's type
+	 * @param eventClass the event's class
+	 * @param eventHandler the handler to register
+	 * @param listenOrder the handler's order
+	 * @param plugin the plugin that previously registered the handler
+	 */
 	<E extends Event> void unregister(Class<E> eventClass, EventHandler<? super E> eventHandler, ListenOrder listenOrder);
 
-	void unregisterAll(Plugin plugin);
-
+	/**
+	 * Posts an event, that is, notifies all the corresponding event handlers.
+	 */
 	void post(Event event);
 
 }
