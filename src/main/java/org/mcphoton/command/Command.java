@@ -54,4 +54,9 @@ public interface Command {
 	 */
 	String getName();
 
+	/**
+	 * Gets the aliases of this command.
+	 */
+	String[] getAliases();
+
 }
