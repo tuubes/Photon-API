@@ -18,21 +18,29 @@
  */
 package org.mcphoton.command;
 
-import java.util.List;
-import org.mcphoton.plugin.Plugin;
+import org.mcphoton.plugin.ServerPlugin;
 
 /**
+ * Registers commands for the ServerPlugins.
  *
  * @author TheElectronWill
  */
-public interface CommandRegistry {
+public interface ServerCommandRegistry {
 
-	void register(Command cmd, Plugin plugin);
+	/**
+	 * Registers a command. The command is registered in every world where the ServerPlugin is loaded.
+	 *
+	 * @param cmd the command to register.
+	 * @param plugin the plugin that registers the command.
+	 */
+	void register(Command cmd, ServerPlugin plugin);
 
-	void unregister(Command cmd, Plugin plugin);
-
-	Command getRegistered(String cmdName);
-
-	List<Command> getAllRegistered(Plugin plugin);
+	/**
+	 * Unregister a command.
+	 *
+	 * @param cmd the command to unregister.
+	 * @param plugin the plugin that previously registered the command.
+	 */
+	void unregister(Command cmd, ServerPlugin plugin);
 
 }
