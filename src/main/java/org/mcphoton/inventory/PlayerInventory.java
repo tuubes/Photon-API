@@ -23,16 +23,16 @@ package org.mcphoton.inventory;
  *
  * @author DJmaxZPLAY
  */
-public interface PlayerInventory extends EntityInventory{
+public interface PlayerInventory extends EntityInventory {
 
 	/**
 	 * Gets the slot number of the currently held stack.
 	 */
 	int getHeldSlot();
-	
+
 	/**
 	 * Sets the slot number of the slot to be held.
 	 */
 	void setHeldSlot();
-	
+
 }

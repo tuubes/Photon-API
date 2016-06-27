@@ -136,7 +136,7 @@ public interface Entity {
 	
 	/**
 	 * Set the passenger of the entity.
-	 * 
+	 *
 	 * @param passenger The new passenger.
 	 * @return false if it couldn't be done.
 	 */

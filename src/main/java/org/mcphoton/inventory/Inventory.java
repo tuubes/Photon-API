@@ -19,7 +19,6 @@
 package org.mcphoton.inventory;
 
 import java.util.Collection;
-
 import org.mcphoton.item.ItemStack;
 
 /**
@@ -45,12 +44,12 @@ public interface Inventory extends Iterable<ItemStack> {
 	 * Gets the stack at the specified index, or null if there is none.
 	 */
 	ItemStack getStack(int index);
-	
+
 	/**
 	 * Gets the title of the inventory.
 	 */
 	String getTitle();
-	
+
 	/**
 	 * Gets the type of the inventory.
 	 */
@@ -67,7 +66,7 @@ public interface Inventory extends Iterable<ItemStack> {
 	 * Sets the title of the inventory.
 	 */
 	void setTitle(String title);
-	
+
 	/**
 	 * Adds a stack to this inventory. The ItemStack is placed in the first available slot.
 	 *

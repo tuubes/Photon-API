@@ -19,7 +19,7 @@
 package org.mcphoton.inventory;
 
 import java.util.Collection;
-
+import org.mcphoton.entity.Entity;
 import org.mcphoton.item.ItemStack;
 
 /**
@@ -27,72 +27,77 @@ import org.mcphoton.item.ItemStack;
  *
  * @author DJmaxZPLAY
  */
-public interface EntityInventory extends Inventory{
-	
+public interface EntityInventory extends Inventory {
+
+	/**
+	 * Gets the entity wich holds the inventory.
+	 */
+	Entity getHolder();
+
 	/**
 	 * Returns a Collection object that contains the ItemStacks from the armor slots. Any modification to this
 	 * collection is reflected in the armor slots, and vice-versa.
-	 */	
+	 */
 	Collection<ItemStack> getArmorContents();
-	
+
 	/**
 	 * Gets the ItemStack from the boots slot of an entity.
 	 */
 	ItemStack getBoots();
-	
+
 	/**
 	 * Gets the ItemStack from the chestplate slot of an entity.
 	 */
 	ItemStack getChestplate();
-	
+
 	/**
 	 * Gets the ItemStack from the helmet slot of an entity.
 	 */
 	ItemStack getHelmet();
-	
+
 	/**
 	 * Gets the ItemStack from the main hand of an entity.
 	 */
 	ItemStack getItemInMainHand();
-	
+
 	/**
 	 * Gets the ItemStack from the off hand of an entity.
 	 */
 	ItemStack getItemInOffHand();
-	
+
 	/**
 	 * Gets the ItemStack from the leggings slot of an entity.
 	 */
 	ItemStack getLeggings();
-	
+
 	/**
 	 * Sets the ItemStack in the boots slot of an entity.
 	 */
 	void setBoots(ItemStack stack);
-	
+
 	/**
 	 * Sets the ItemStack in the chestplate slot of an entity.
 	 */
 	void setChestplate(ItemStack stack);
-	
+
 	/**
 	 * Sets the ItemStack in the helmet slot of an entity.
 	 */
 	void setHelmet(ItemStack stack);
-	
+
 	/**
 	 * Sets the ItemStack in the main hand of an entity.
 	 */
 	void setItemInMainHand(ItemStack stack);
-	
+
 	/**
 	 * Sets the ItemStack in the off hand of an entity.
 	 */
 	void setItemInOffHand(ItemStack stack);
-	
+
 	/**
 	 * Sets the ItemStack in the leggings slot of an entity.
 	 */
 	void setLeggings(ItemStack stack);
-	
+
 }

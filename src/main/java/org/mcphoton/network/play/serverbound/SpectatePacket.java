@@ -20,7 +20,6 @@ package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 

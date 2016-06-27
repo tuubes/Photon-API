@@ -19,7 +19,6 @@
 package org.mcphoton.network.play.serverbound;
 
 import java.nio.ByteBuffer;
-
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;

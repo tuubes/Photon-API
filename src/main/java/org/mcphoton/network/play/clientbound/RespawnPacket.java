@@ -30,7 +30,7 @@ import org.mcphoton.network.ProtocolOutputStream;
 public class RespawnPacket implements Packet {
 
 	public int dimension;
-	public int difficulty, gamemode; //Unsigned byte 
+	public int difficulty, gamemode; //Unsigned byte
 	public String levelType;
 
 	@Override
