@@ -22,63 +22,65 @@ import org.mcphoton.world.Location;
 import org.mcphoton.world.World;
 
 /**
- * 
+ * A spatial vector defined by 3 coordinates.
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public class Vector {
 
 	protected double x, y, z;
-	
+
 	/**
-	 * Create a vector with all components as 0.
+	 * Creates a new vector (0,0,0).
 	 */
 	public Vector() {
-		this.x = 0;
-		this.y = 0;
-		this.z = 0;
+		this(0, 0, 0);
 	}
-	
+
 	/**
-	 * Create a vector with integer components.
-	 * 
-	 * @param x X component;
-	 * @param y Y component;
-	 * @param z Z component;
-	 */
-	public Vector(int x, int y, int z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
-	
-	/**
-	 * Create a vector with double components.
-	 * 
-	 * @param x X component;
-	 * @param y Y component;
-	 * @param z Z component;
+	 * Creates a new vector with the specified coordinates.
 	 */
 	public Vector(double x, double y, double z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
 	}
-	
+
 	/**
-	 * Get a location from this vector.
-	 * 
+	 * Creates a Location with this vector's coordinates.
+	 *
 	 * @param w The world of the location.
 	 * @return the location.
 	 */
 	public Location toLocation(World w) {
 		return new Location(x, y, z, w);
 	}
-	
-	/**
-	 * Return the components of this vector in a string.
-	 */
+
+	@Override
 	public String toString() {
-		return "x=" + x + ", y=" + y + ", z=";
+		return "Vector(" + x + ", " + y + ", " + z + ')';
 	}
-	
+
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 29 * hash + (int) (Double.doubleToLongBits(this.x) ^ (Double.doubleToLongBits(this.x) >>> 32));
+		hash = 29 * hash + (int) (Double.doubleToLongBits(this.y) ^ (Double.doubleToLongBits(this.y) >>> 32));
+		hash = 29 * hash + (int) (Double.doubleToLongBits(this.z) ^ (Double.doubleToLongBits(this.z) >>> 32));
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj instanceof Vector) {
+			Vector v = (Vector) obj;
+			return v.x == x && v.y == y && v.z == z;
+		}
+		return false;
+	}
+
 }
