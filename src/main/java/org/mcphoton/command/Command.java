@@ -57,6 +57,8 @@ public interface Command {
 	/**
 	 * Gets the aliases of this command.
 	 */
-	String[] getAliases();
+	default String[] getAliases() {
+		return new String[0];
+	}
 
 }
