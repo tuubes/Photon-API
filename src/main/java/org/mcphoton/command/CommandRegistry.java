@@ -25,7 +25,7 @@ import org.mcphoton.plugin.Plugin;
  *
  * @author TheElectronWill
  */
-public interface CommandsRegistry {
+public interface CommandRegistry {
 
 	void register(Command cmd, Plugin plugin);
 

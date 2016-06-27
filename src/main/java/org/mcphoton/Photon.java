@@ -20,7 +20,6 @@ package org.mcphoton;
 
 import java.io.File;
 import org.mcphoton.block.BlockRegistry;
-import org.mcphoton.command.CommandsRegistry;
 import org.mcphoton.entity.EntityRegistry;
 import org.mcphoton.event.EventsManager;
 import org.mcphoton.item.ItemRegistry;
@@ -29,6 +28,7 @@ import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.plugin.PluginsManager;
 import org.mcphoton.server.Server;
 import org.mcphoton.world.BiomeRegistry;
+import org.mcphoton.command.CommandRegistry;
 
 /**
  * The centralized API core. Gives access to many core points of the API, like the {@link PluginsManager} and
@@ -58,7 +58,7 @@ public final class Photon {
 		return null;
 	}
 
-	public static CommandsRegistry getCommandsRegistry() {
+	public static CommandRegistry getCommandsRegistry() {
 		return null;
 	}
 
