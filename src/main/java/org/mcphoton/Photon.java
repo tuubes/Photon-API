@@ -26,13 +26,9 @@ import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.server.Server;
 import org.mcphoton.world.BiomeRegistry;
-import org.mcphoton.command.CommandRegistry;
-import org.mcphoton.event.WorldEventsManager;
-import org.mcphoton.plugin.WorldPluginsManager;
 
 /**
- * The centralized API core. Gives access to many core points of the API, like the {@link WorldPluginsManager} and
- * the {@link EventManager}.
+ * The centralized API core. Gives access to many core points of the API, like the {@link PermissionsManager}.
  *
  * @author TheElectronWill
  * @author Maaattt
@@ -47,18 +43,6 @@ public final class Photon {
 	}
 
 	public static PermissionsManager getPermissionsManager() {
-		return null;
-	}
-
-	public static WorldPluginsManager getPluginsManager() {
-		return null;
-	}
-
-	public static WorldEventsManager getEventsManager() {
-		return null;
-	}
-
-	public static CommandRegistry getCommandsRegistry() {
 		return null;
 	}
 
