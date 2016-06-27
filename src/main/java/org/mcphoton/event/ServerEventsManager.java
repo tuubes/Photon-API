@@ -28,7 +28,8 @@ import org.mcphoton.plugin.ServerPlugin;
 public interface ServerEventsManager {
 
 	/**
-	 * Registers all the events handlers defined in the specified listener object.
+	 * Registers all the events handlers defined in the specified listener object. The handlers are registered
+	 * in every world where the ServerPlugin is loaded.
 	 *
 	 * @param listener an object that contains some event handlers definitions.
 	 * @param plugin the ServerPlugin that registers these event handlers.
@@ -44,7 +45,7 @@ public interface ServerEventsManager {
 	void unregisterAll(Object listener, ServerPlugin plugin);
 
 	/**
-	 * Registers an event handler.
+	 * Registers an event handler. The handler is registered in every world where the ServerPlugin is loaded.
 	 *
 	 * @param <E> the event's type
 	 * @param eventClass the event's class
