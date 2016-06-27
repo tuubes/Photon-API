@@ -44,21 +44,24 @@ public abstract class WorldPlugin implements Plugin {
 	}
 
 	@Override
-	public File getDirectory() {
+	public final File getDirectory() {
 		return directory;
 	}
 
 	@Override
-	public File getConfigFile() {
+	public final File getConfigFile() {
 		return configFile;
 	}
 
 	@Override
-	public Logger getLogger() {
+	public final Logger getLogger() {
 		return logger;
 	}
 
-	public World getWorld() {
+	/**
+	 * Gets the world where this plugin is loaded.
+	 */
+	public final World getActiveWorld() {
 		return world;
 	}
 

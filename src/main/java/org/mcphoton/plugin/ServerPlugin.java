@@ -19,7 +19,9 @@
 package org.mcphoton.plugin;
 
 import java.io.File;
+import java.util.Collection;
 import org.mcphoton.Photon;
+import org.mcphoton.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,24 +36,33 @@ public abstract class ServerPlugin implements Plugin {
 	protected final File configFile = new File(directory, "config.toml");
 	protected final Logger logger = LoggerFactory.getLogger(getName());
 	protected final PluginLoader loader;
+	protected final Collection<World> worlds;
 
-	public ServerPlugin(PluginLoader loader) {
+	public ServerPlugin(PluginLoader loader, Collection<World> worlds) {
 		this.loader = loader;
+		this.worlds = worlds;
 	}
 
 	@Override
-	public File getDirectory() {
+	public final File getDirectory() {
 		return directory;
 	}
 
 	@Override
-	public File getConfigFile() {
+	public final File getConfigFile() {
 		return configFile;
 	}
 
 	@Override
-	public Logger getLogger() {
+	public final Logger getLogger() {
 		return logger;
+	}
+
+	/**
+	 * Gets the worlds where this plugin is loaded.
+	 */
+	public final Collection<World> getActiveWorlds() {
+		return worlds;
 	}
 
 }
