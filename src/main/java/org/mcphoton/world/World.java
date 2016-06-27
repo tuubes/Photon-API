@@ -21,8 +21,10 @@ package org.mcphoton.world;
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
-
+import org.mcphoton.command.WorldCommandRegistry;
 import org.mcphoton.entity.living.Player;
+import org.mcphoton.event.WorldEventsManager;
+import org.mcphoton.plugin.WorldPluginsManager;
 import org.mcphoton.world.protection.UnlockedAreaAccess;
 import org.mcphoton.world.protection.WorldAccess;
 import org.mcphoton.world.protection.WorldAccessManager;
@@ -55,6 +57,13 @@ public interface World {
 	void save();
 
 	void delete();
+
+	// === Registries and Managers ===
+	WorldCommandRegistry getCommandRegistry();
+
+	WorldEventsManager getEventsManager();
+
+	WorldPluginsManager getPluginsManager();
 
 	// === Block Access ===
 	WorldAccessManager getAccessManager();
