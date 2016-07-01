@@ -25,24 +25,32 @@ import java.util.List;
  * A PluginLoader loads and unloads a specific type of plugins.
  *
  * @author TheElectronWill
- *
  * @param <T> the type of plugins this PluginLoader deals with
  */
 public interface PluginLoader<T extends Plugin> {
 
 	/**
-	 * Loads a single plugin from a file. If its dependancies are not satisfied, an exception is thrown.
+	 * Loads a single plugin from a file.
+	 *
+	 * @param file the file to load the plugin from.
+	 * @throws PluginLoadingException if an error occurs, for example if the plugin's
+	 * dependancies can't be satisfied.
 	 */
 	T loadPlugin(File file) throws PluginLoadingException;
 
 	/**
 	 * Loads all the plugins from the specified files. The load order is calculated so that all dependancies
 	 * (if possible) are resolved.
+	 *
+	 * @param files the files to load the plugin from (1 plugin per file).
 	 */
 	List<T> loadPlugins(File[] files);
 
 	/**
-	 * Unloads a plugin previously loaded by this PluginLoader.
+	 * Unloads a plugin previously loaded by this PluginLoader. This method <b>does not</b> call the
+	 * {@link Plugin#onUnload()} method.
+	 *
+	 * @param plugin the plugin to unload.
 	 */
 	void unloadPlugin(T plugin);
 
