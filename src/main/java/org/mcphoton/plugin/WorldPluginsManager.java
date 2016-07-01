@@ -32,11 +32,15 @@ public interface WorldPluginsManager {
 	 * Gets a plugin by its name. If the plugin is not loaded by this manager, this method returns
 	 * <code>null</code>. The returned plugin may be of any type (WorldPlugin, ServerPlugin, or any other
 	 * Plugin implementation).
+	 *
+	 * @return the plugin with that name, or <code>null</code>.
 	 */
 	Plugin getPlugin(String name);
 
 	/**
 	 * Loads a plugin from a file with the default plugin loader.
+	 *
+	 * @return the loaded plugin.
 	 */
 	default Plugin loadPlugin(File file) throws PluginLoadingException {
 		return loadPlugin(file, getDefaultPluginLoader());
@@ -44,11 +48,15 @@ public interface WorldPluginsManager {
 
 	/**
 	 * Loads a plugin from a file with the specified plugin loader.
+	 *
+	 * @return the loaded plugin.
 	 */
 	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader) throws PluginLoadingException;
 
 	/**
 	 * Loads multiple plugins from multiple files, with the default plugin loader.
+	 *
+	 * @return a list of the loaded plugins.
 	 */
 	default List<Plugin> loadPlugins(File[] files) {
 		return loadPlugins(files, getDefaultPluginLoader());
@@ -56,20 +64,20 @@ public interface WorldPluginsManager {
 
 	/**
 	 * Loads multiple plugins from multiple files, with the specified plugin loader.
+	 *
+	 * @return a list of the loaded plugins.
 	 */
 	<T extends Plugin> List<T> loadPlugins(File[] files, PluginLoader<T> loader);
 
 	/**
-	 * Unload a plugin. If the plugin is a ServerPlugin, it isn't disabled entirely, but everything it
-	 * registered in the manager's world is unregistered.
-	 *
-	 * @param plugin the plugin to unload.
+	 * Unloads a plugin. If the plugin is a ServerPlugin it isn't disabled entirely but only in this world, ie
+	 * everything it registered in the managers of this world is unregistered.
 	 */
 	void unloadPlugin(Plugin plugin);
 
 	/**
-	 * Unload a plugin. If the plugin is a ServerPlugin, it isn't disabled entirely, but everything it
-	 * registered in the manager's world is unregistered.
+	 * Unloads a plugin. If the plugin is a ServerPlugin it isn't disabled entirely but only in this world, ie
+	 * everything it registered in the managers of this world is unregistered.
 	 */
 	void unloadPlugin(String name);
 
@@ -79,7 +87,7 @@ public interface WorldPluginsManager {
 	boolean isPluginLoaded(String name);
 
 	/**
-	 * Gets the default plugin loader.
+	 * Gets the current default plugin loader.
 	 */
 	PluginLoader getDefaultPluginLoader();
 
@@ -89,7 +97,8 @@ public interface WorldPluginsManager {
 	void setDefaultPluginLoader(PluginLoader loader);
 
 	/**
-	 * Gets the ClassSharer, which is used to share Java classes across plugins of the same world.
+	 * Gets the ClassSharer used by the WorldPluginsManager to share Java classes across plugins of the same
+	 * world.
 	 */
 	ClassSharer getClassSharer();
 
