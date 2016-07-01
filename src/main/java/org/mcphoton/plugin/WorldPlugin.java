@@ -18,6 +18,7 @@
  */
 package org.mcphoton.plugin;
 
+import com.electronwill.utils.Constant;
 import java.io.File;
 import org.mcphoton.world.World;
 import org.slf4j.Logger;
@@ -30,27 +31,20 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class WorldPlugin implements Plugin {
 
-	protected final File directory;
-	protected final File configFile;
 	protected final Logger logger = LoggerFactory.getLogger(getName());
-	protected final PluginLoader loader;
-	protected final World world;
-
-	public WorldPlugin(PluginLoader loader, World world) {
-		this.loader = loader;
-		this.world = world;
-		this.directory = new File(world.getDirectory(), getName());
-		this.configFile = new File(directory, "config.toml");
-	}
+	private final Constant<File> directory = new Constant<>();
+	private final Constant<File> configFile = new Constant<>();
+	private final Constant<PluginLoader> loader = new Constant<>();
+	private final Constant<World> world = new Constant<>();
 
 	@Override
 	public final File getDirectory() {
-		return directory;
+		return directory.get();
 	}
 
 	@Override
 	public final File getConfigFile() {
-		return configFile;
+		return configFile.get();
 	}
 
 	@Override
@@ -62,7 +56,16 @@ public abstract class WorldPlugin implements Plugin {
 	 * Gets the world where this plugin is loaded.
 	 */
 	public final World getActiveWorld() {
-		return world;
+		return world.get();
+	}
+
+	public final void init(PluginLoader loader, World world) {
+		this.loader.init(loader);
+		this.world.init(world);
+
+		File directory = new File(world.getDirectory(), getName());
+		this.directory.init(directory);
+		this.configFile.init(new File(directory, "config.toml"));
 	}
 
 }

@@ -18,6 +18,7 @@
  */
 package org.mcphoton.plugin;
 
+import com.electronwill.utils.Constant;
 import java.io.File;
 import java.util.Collection;
 import org.mcphoton.Photon;
@@ -32,16 +33,11 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class ServerPlugin implements Plugin {
 
-	protected final File directory = new File(Photon.getPluginsDirectory(), getName());
-	protected final File configFile = new File(directory, "config.toml");
 	protected final Logger logger = LoggerFactory.getLogger(getName());
-	protected final PluginLoader loader;
-	protected final Collection<World> worlds;
-
-	public ServerPlugin(PluginLoader loader, Collection<World> worlds) {
-		this.loader = loader;
-		this.worlds = worlds;
-	}
+	private final File directory = new File(Photon.getPluginsDirectory(), getName());
+	private final File configFile = new File(directory, "config.toml");
+	private final Constant<PluginLoader> loader = new Constant<>();
+	private final Constant<Collection<World>> worlds = new Constant<>();
 
 	@Override
 	public final File getDirectory() {
@@ -59,10 +55,22 @@ public abstract class ServerPlugin implements Plugin {
 	}
 
 	/**
+	 * Gets the PluginLoader that loaded this plugin.
+	 */
+	public final PluginLoader getLoader() {
+		return loader.get();
+	}
+
+	/**
 	 * Gets the worlds where this plugin is loaded.
 	 */
 	public final Collection<World> getActiveWorlds() {
-		return worlds;
+		return worlds.get();
+	}
+
+	public final void init(PluginLoader loader, Collection<World> worlds) {
+		this.loader.init(loader);
+		this.worlds.init(worlds);
 	}
 
 }
