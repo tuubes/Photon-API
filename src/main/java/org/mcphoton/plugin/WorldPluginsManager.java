@@ -102,4 +102,17 @@ public interface WorldPluginsManager {
 	 */
 	ClassSharer getClassSharer();
 
+	/**
+	 * Registers a plugin to this PluginsManager. After this method, the plugin will be considered as "loaded"
+	 * by this PluginsManager.
+	 */
+	void registerPlugin(Plugin plugin);
+
+	/**
+	 * Unregisters a plugin from this PluginsManager.After this method, the plugin will no longer be
+	 * considered as "loaded"
+	 * by this PluginsManager.
+	 */
+	void unregisterPlugin(Plugin plugin);
+
 }
