@@ -30,7 +30,8 @@ import java.util.List;
 public interface PluginLoader<T extends Plugin> {
 
 	/**
-	 * Loads a single plugin from a file.
+	 * Loads a single plugin from a file. This method <b>does not</b> call the
+	 * {@link Plugin#onLoad()} method.
 	 *
 	 * @param file the file to load the plugin from.
 	 * @throws PluginLoadingException if an error occurs, for example if the plugin's
@@ -39,8 +40,8 @@ public interface PluginLoader<T extends Plugin> {
 	T loadPlugin(File file) throws PluginLoadingException;
 
 	/**
-	 * Loads all the plugins from the specified files. The load order is calculated so that all dependancies
-	 * (if possible) are resolved.
+	 * Loads all the plugins from the specified files. This method <b>does not</b> call the
+	 * {@link Plugin#onLoad()} method.
 	 *
 	 * @param files the files to load the plugin from (1 plugin per file).
 	 */
