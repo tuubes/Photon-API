@@ -38,8 +38,8 @@ public interface ClassSharer {
 
 	Class<?> getClass(String name);
 
-	void addClassLoader(SharedClassLoader finder);
+	void addClassLoader(SharedClassLoader classLoader);
 
-	void removeClassLoader(SharedClassLoader finder);
+	void removeClassLoader(SharedClassLoader classLoader);
 
 }
