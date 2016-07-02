@@ -19,6 +19,7 @@
 package org.mcphoton.plugin;
 
 import java.io.File;
+import java.util.Collection;
 import org.mcphoton.world.World;
 
 /**
@@ -72,7 +73,7 @@ public interface ServerPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	default Plugin loadPlugin(File file, World... worlds) throws PluginLoadingException {
+	default Plugin loadPlugin(File file, Collection<World> worlds) throws PluginLoadingException {
 		return loadPlugin(file, getDefaultPluginLoader(), worlds);
 	}
 
@@ -86,7 +87,7 @@ public interface ServerPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader, World... worlds) throws PluginLoadingException;
+	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader, Collection<World> worlds) throws PluginLoadingException;
 
 	/**
 	 * Unloads a ServerPlugin completely (from all worlds).
