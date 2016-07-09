@@ -1,5 +1,6 @@
 # Photon API
-Photon API for plugins. **Supports Minecraft version 1.9** (and its subversions like 1.9.1, 1.9.2, etc).  
+Photon API for plugins. **Supports Minecraft version 1.10**.  
+
 **This project is licensed under the terms of the GNU Lesser General Public License version 3**, which you can find in the LICENSE file.
 All the files in this repository (except the LICENSE file which is copyrighted by the Free Software Foundation) are copyrighted by TheElectronWill and others who wrote them (the contributors).
 
