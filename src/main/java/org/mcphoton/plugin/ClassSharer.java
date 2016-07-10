@@ -36,10 +36,28 @@ package org.mcphoton.plugin;
  */
 public interface ClassSharer {
 
+	/**
+	 * Gets a class by name.
+	 *
+	 * @param name the full class name, for instance "java.lang.String".
+	 */
 	Class<?> getClass(String name);
 
+	/**
+	 * Adds a SharedClassLoader to this ClassSharer.
+	 */
 	void addClassLoader(SharedClassLoader classLoader);
 
+	/**
+	 * Removes a SharedClassLoader from this ClassSharer. The class loader is removed even if its use count is
+	 * greater than zero.
+	 */
 	void removeClassLoader(SharedClassLoader classLoader);
+
+	/**
+	 * Removes a SharedClassLoader from this ClassSharer. The class loader is removed if and only if its use
+	 * count is less than or equal to zero.
+	 */
+	void removeUselessClassLoader(SharedClassLoader classLoader);
 
 }
