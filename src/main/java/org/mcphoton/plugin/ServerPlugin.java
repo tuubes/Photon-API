@@ -85,10 +85,10 @@ public abstract class ServerPlugin implements Plugin {
 		return worlds.get();
 	}
 
-	public final void init(PluginInfos infos, PluginLoader loader, Collection<World> worlds) {
-		this.name.init(infos.name());
-		this.version.init(infos.version());
-		this.author.init(infos.author());
+	public final void init(PluginDescription description, PluginLoader loader, Collection<World> worlds) {
+		this.name.init(description.name());
+		this.version.init(description.version());
+		this.author.init(description.author());
 		this.loader.init(loader);
 		this.worlds.init(worlds);
 	}

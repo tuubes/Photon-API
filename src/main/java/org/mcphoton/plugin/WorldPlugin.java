@@ -75,10 +75,10 @@ public abstract class WorldPlugin implements Plugin {
 		return world.get();
 	}
 
-	public final void init(PluginInfos infos, PluginLoader loader, World world) {
-		this.name.init(infos.name());
-		this.version.init(infos.version());
-		this.author.init(infos.author());
+	public final void init(PluginDescription description, PluginLoader loader, World world) {
+		this.name.init(description.name());
+		this.version.init(description.version());
+		this.author.init(description.author());
 		this.loader.init(loader);
 		this.world.init(world);
 
