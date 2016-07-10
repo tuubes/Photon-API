@@ -38,6 +38,22 @@ public abstract class ServerPlugin implements Plugin {
 	private final File configFile = new File(directory, "config.toml");
 	private final Constant<PluginLoader> loader = new Constant<>();
 	private final Constant<Collection<World>> worlds = new Constant<>();
+	private final Constant<String> name = new Constant<>(), version = new Constant<>(), author = new Constant<>();
+
+	@Override
+	public String getName() {
+		return name.get();
+	}
+
+	@Override
+	public String getVersion() {
+		return version.get();
+	}
+
+	@Override
+	public String getAuthor() {
+		return author.get();
+	}
 
 	@Override
 	public final File getDirectory() {
@@ -57,6 +73,7 @@ public abstract class ServerPlugin implements Plugin {
 	/**
 	 * Gets the PluginLoader that loaded this plugin.
 	 */
+	@Override
 	public final PluginLoader getLoader() {
 		return loader.get();
 	}
@@ -68,7 +85,10 @@ public abstract class ServerPlugin implements Plugin {
 		return worlds.get();
 	}
 
-	public final void init(PluginLoader loader, Collection<World> worlds) {
+	public final void init(PluginInfos infos, PluginLoader loader, Collection<World> worlds) {
+		this.name.init(infos.name());
+		this.version.init(infos.version());
+		this.author.init(infos.author());
 		this.loader.init(loader);
 		this.worlds.init(worlds);
 	}

@@ -36,6 +36,22 @@ public abstract class WorldPlugin implements Plugin {
 	private final Constant<File> configFile = new Constant<>();
 	private final Constant<PluginLoader> loader = new Constant<>();
 	private final Constant<World> world = new Constant<>();
+	private final Constant<String> name = new Constant<>(), version = new Constant<>(), author = new Constant<>();
+
+	@Override
+	public String getName() {
+		return name.get();
+	}
+
+	@Override
+	public String getVersion() {
+		return version.get();
+	}
+
+	@Override
+	public String getAuthor() {
+		return author.get();
+	}
 
 	@Override
 	public final File getDirectory() {
@@ -59,7 +75,10 @@ public abstract class WorldPlugin implements Plugin {
 		return world.get();
 	}
 
-	public final void init(PluginLoader loader, World world) {
+	public final void init(PluginInfos infos, PluginLoader loader, World world) {
+		this.name.init(infos.name());
+		this.version.init(infos.version());
+		this.author.init(infos.author());
 		this.loader.init(loader);
 		this.world.init(world);
 
