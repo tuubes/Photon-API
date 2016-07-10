@@ -37,21 +37,31 @@ public abstract class ServerPlugin implements Plugin {
 	private final File directory = new File(Photon.getPluginsDirectory(), getName());
 	private final File configFile = new File(directory, "config.toml");
 	private final Constant<Collection<World>> worlds = new Constant<>();
-	private final Constant<String> name = new Constant<>(), version = new Constant<>(), author = new Constant<>();
+	private final Constant<PluginDescription> description = new Constant<>();
 
 	@Override
 	public String getName() {
-		return name.get();
+		return description.get().name();
 	}
 
 	@Override
 	public String getVersion() {
-		return version.get();
+		return description.get().version();
 	}
 
 	@Override
 	public String getAuthor() {
-		return author.get();
+		return description.get().author();
+	}
+
+	@Override
+	public String[] getOptionalDependencies() {
+		return description.get().optionalDependencies();
+	}
+
+	@Override
+	public String[] getRequiredDependencies() {
+		return description.get().requiredDependencies();
 	}
 
 	@Override
@@ -77,9 +87,7 @@ public abstract class ServerPlugin implements Plugin {
 	}
 
 	public final void init(PluginDescription description, Collection<World> worlds) {
-		this.name.init(description.name());
-		this.version.init(description.version());
-		this.author.init(description.author());
+		this.description.init(description);
 		this.worlds.init(worlds);
 	}
 

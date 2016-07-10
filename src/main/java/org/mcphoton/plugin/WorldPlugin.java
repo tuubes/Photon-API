@@ -35,21 +35,31 @@ public abstract class WorldPlugin implements Plugin {
 	private final Constant<File> directory = new Constant<>();
 	private final Constant<File> configFile = new Constant<>();
 	private final Constant<World> world = new Constant<>();
-	private final Constant<String> name = new Constant<>(), version = new Constant<>(), author = new Constant<>();
+	private final Constant<PluginDescription> description = new Constant<>();
 
 	@Override
 	public String getName() {
-		return name.get();
+		return description.get().name();
 	}
 
 	@Override
 	public String getVersion() {
-		return version.get();
+		return description.get().version();
 	}
 
 	@Override
 	public String getAuthor() {
-		return author.get();
+		return description.get().author();
+	}
+
+	@Override
+	public String[] getOptionalDependencies() {
+		return description.get().optionalDependencies();
+	}
+
+	@Override
+	public String[] getRequiredDependencies() {
+		return description.get().requiredDependencies();
 	}
 
 	@Override
@@ -75,11 +85,7 @@ public abstract class WorldPlugin implements Plugin {
 	}
 
 	public final void init(PluginDescription description, World world) {
-		this.name.init(description.name());
-		this.version.init(description.version());
-		this.author.init(description.author());
-		this.world.init(world);
-
+		this.description.init(description);
 		File directory = new File(world.getDirectory(), getName());
 		this.directory.init(directory);
 		this.configFile.init(new File(directory, "config.toml"));
