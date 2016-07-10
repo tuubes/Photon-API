@@ -47,7 +47,7 @@ public interface ServerPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	Plugin loadPlugin(File file);
+	Plugin loadPlugin(File file) throws Exception;
 
 	/**
 	 * Loads a plugin from a file in the specified worlds.
@@ -59,7 +59,7 @@ public interface ServerPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	Plugin loadPlugin(File file, Collection<World> worlds);
+	Plugin loadPlugin(File file, Collection<World> worlds) throws Exception;
 
 	/**
 	 * Unloads a ServerPlugin completely (from all worlds).
