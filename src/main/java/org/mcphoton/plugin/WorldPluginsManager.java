@@ -92,13 +92,6 @@ public interface WorldPluginsManager {
 	PluginLoader getDefaultPluginLoader();
 
 	/**
-	/**
-	 * Gets the ClassSharer used by the WorldPluginsManager to share Java classes across plugins of the same
-	 * world.
-	 */
-	ClassSharer getClassSharer();
-
-	/**
 	 * Registers a plugin to this PluginsManager. After this method, the plugin will be considered as "loaded"
 	 * by this PluginsManager.
 	 */
