@@ -38,36 +38,18 @@ public interface WorldPluginsManager {
 	Plugin getPlugin(String name);
 
 	/**
-	 * Loads a plugin from a file with the default plugin loader.
+	 * Loads a plugin from a file.
 	 *
 	 * @return the loaded plugin.
 	 */
-	default Plugin loadPlugin(File file) throws PluginLoadingException {
-		return loadPlugin(file, getDefaultPluginLoader());
-	}
+	Plugin loadPlugin(File file);
 
 	/**
-	 * Loads a plugin from a file with the specified plugin loader.
-	 *
-	 * @return the loaded plugin.
-	 */
-	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader) throws PluginLoadingException;
-
-	/**
-	 * Loads multiple plugins from multiple files, with the default plugin loader.
+	 * Loads multiple plugins from multiple files (one plugin per file).
 	 *
 	 * @return a list of the loaded plugins.
 	 */
-	default List<Plugin> loadPlugins(File[] files) {
-		return loadPlugins(files, getDefaultPluginLoader());
-	}
-
-	/**
-	 * Loads multiple plugins from multiple files, with the specified plugin loader.
-	 *
-	 * @return a list of the loaded plugins.
-	 */
-	<T extends Plugin> List<T> loadPlugins(File[] files, PluginLoader<T> loader);
+	List<Plugin> loadPlugins(File[] files);
 
 	/**
 	 * Unloads a plugin. If the plugin is a ServerPlugin it isn't disabled entirely but only in this world, ie
@@ -85,11 +67,6 @@ public interface WorldPluginsManager {
 	 * Checks if a plugin with that name is loaded by this WorldPluginsManager.
 	 */
 	boolean isPluginLoaded(String name);
-
-	/**
-	 * Gets the default plugin loader.
-	 */
-	PluginLoader getDefaultPluginLoader();
 
 	/**
 	 * Registers a plugin to this PluginsManager. After this method, the plugin will be considered as "loaded"

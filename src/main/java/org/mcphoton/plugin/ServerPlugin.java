@@ -36,7 +36,6 @@ public abstract class ServerPlugin implements Plugin {
 	protected final Logger logger = LoggerFactory.getLogger(getName());
 	private final File directory = new File(Photon.getPluginsDirectory(), getName());
 	private final File configFile = new File(directory, "config.toml");
-	private final Constant<PluginLoader> loader = new Constant<>();
 	private final Constant<Collection<World>> worlds = new Constant<>();
 	private final Constant<String> name = new Constant<>(), version = new Constant<>(), author = new Constant<>();
 
@@ -71,25 +70,16 @@ public abstract class ServerPlugin implements Plugin {
 	}
 
 	/**
-	 * Gets the PluginLoader that loaded this plugin.
-	 */
-	@Override
-	public final PluginLoader getLoader() {
-		return loader.get();
-	}
-
-	/**
 	 * Gets the worlds where this plugin is loaded.
 	 */
 	public final Collection<World> getActiveWorlds() {
 		return worlds.get();
 	}
 
-	public final void init(PluginDescription description, PluginLoader loader, Collection<World> worlds) {
+	public final void init(PluginDescription description, Collection<World> worlds) {
 		this.name.init(description.name());
 		this.version.init(description.version());
 		this.author.init(description.author());
-		this.loader.init(loader);
 		this.worlds.init(worlds);
 	}
 

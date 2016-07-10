@@ -130,11 +130,6 @@ public interface Plugin {
 	Logger getLogger();
 
 	/**
-	 * Gets the {@link PluginLoader} that loaded this plugin.
-	 */
-	PluginLoader getLoader();
-
-	/**
 	 * Called when the plugin is loaded, just after its constructor is called.
 	 */
 	void onLoad();

@@ -38,7 +38,7 @@ public interface ServerPluginsManager {
 	ServerPlugin getServerPlugin(String name);
 
 	/**
-	 * Loads a plugin from a file with the default plugin loader and in every server's world.
+	 * Loads a plugin from a file in every server's world.
 	 * <p>
 	 * If the plugin is a WorldPlugin, then one instance of the plugin is created per world, and the instance
 	 * assigned to the default world is returned. If the plugin is a ServerPlugin, only one instance of the
@@ -47,24 +47,10 @@ public interface ServerPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	default Plugin loadPlugin(File file) throws PluginLoadingException {
-		return loadPlugin(file, getDefaultPluginLoader());
-	}
+	Plugin loadPlugin(File file);
 
 	/**
-	 * Loads a plugin from a file with the specified plugin loader and in every server's world.
-	 * <p>
-	 * If the plugin is a WorldPlugin, then one instance of the plugin is created per world, and the instance
-	 * assigned to the default world is returned. If the plugin is a ServerPlugin, only one instance of the
-	 * plugin is created and returned.
-	 * </p>
-	 *
-	 * @return the loaded plugin.
-	 */
-	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader) throws PluginLoadingException;
-
-	/**
-	 * Loads a plugin from a file with the default plugin loader and in the specified worlds.
+	 * Loads a plugin from a file in the specified worlds.
 	 * <p>
 	 * If the plugin is a WorldPlugin, then one instance of the plugin is created per world, and the instance
 	 * assigned to the first specified world (the first parameter) is returned. If the plugin is a
@@ -73,21 +59,7 @@ public interface ServerPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	default Plugin loadPlugin(File file, Collection<World> worlds) throws PluginLoadingException {
-		return loadPlugin(file, getDefaultPluginLoader(), worlds);
-	}
-
-	/**
-	 * Loads a plugin from a file with the specified plugin loader and in the specified worlds.
-	 * <p>
-	 * If the plugin is a WorldPlugin, then one instance of the plugin is created per world, and the instance
-	 * assigned to the first specified world (the first parameter) is returned. If the plugin is a
-	 * ServerPlugin, only one instance of the plugin is created and returned.
-	 * </p>
-	 *
-	 * @return the loaded plugin.
-	 */
-	<T extends Plugin> T loadPlugin(File file, PluginLoader<T> loader, Collection<World> worlds) throws PluginLoadingException;
+	Plugin loadPlugin(File file, Collection<World> worlds);
 
 	/**
 	 * Unloads a ServerPlugin completely (from all worlds).
@@ -105,11 +77,6 @@ public interface ServerPluginsManager {
 	 * @return <code>true</code> if a ServerPlugin with that name is loaded, <true>false</false> otherwise.
 	 */
 	boolean isServerPluginLoaded(String name);
-
-	/**
-	 * Gets the default plugin loader.
-	 */
-	PluginLoader getDefaultPluginLoader();
 
 	/**
 	 * Gets the class sharer used by the ServerPluginsManagers to share classes across the ServerPlugins.

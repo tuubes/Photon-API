@@ -34,7 +34,6 @@ public abstract class WorldPlugin implements Plugin {
 	protected final Logger logger = LoggerFactory.getLogger(getName());
 	private final Constant<File> directory = new Constant<>();
 	private final Constant<File> configFile = new Constant<>();
-	private final Constant<PluginLoader> loader = new Constant<>();
 	private final Constant<World> world = new Constant<>();
 	private final Constant<String> name = new Constant<>(), version = new Constant<>(), author = new Constant<>();
 
@@ -75,11 +74,10 @@ public abstract class WorldPlugin implements Plugin {
 		return world.get();
 	}
 
-	public final void init(PluginDescription description, PluginLoader loader, World world) {
+	public final void init(PluginDescription description, World world) {
 		this.name.init(description.name());
 		this.version.init(description.version());
 		this.author.init(description.author());
-		this.loader.init(loader);
 		this.world.init(world);
 
 		File directory = new File(world.getDirectory(), getName());
