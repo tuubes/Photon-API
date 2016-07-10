@@ -39,4 +39,8 @@ public @interface PluginDescription {
 
 	String author();
 
+	String[] requiredDependencies() default "";
+
+	String[] optionalDependencies() default "";
+
 }
