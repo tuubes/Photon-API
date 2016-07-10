@@ -23,6 +23,8 @@ import java.util.Collection;
 import java.util.UUID;
 
 import org.mcphoton.entity.living.Player;
+import org.mcphoton.network.PacketsManager;
+import org.mcphoton.plugin.ServerPluginsManager;
 import org.mcphoton.world.Location;
 import org.mcphoton.world.World;
 
@@ -36,6 +38,11 @@ public interface Server {
 	Player getPlayer(UUID id);
 
 	Player getPlayer(String name);
+
+	//=== Managers ===
+	PacketsManager getPacketsManager();
+
+	ServerPluginsManager getPluginsManager();
 
 	BansManager getBansManager();
 
