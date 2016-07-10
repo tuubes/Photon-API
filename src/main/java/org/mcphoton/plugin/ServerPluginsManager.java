@@ -107,14 +107,9 @@ public interface ServerPluginsManager {
 	boolean isServerPluginLoaded(String name);
 
 	/**
-	 * Gets the current default plugin loader.
+	 * Gets the default plugin loader.
 	 */
 	PluginLoader getDefaultPluginLoader();
-
-	/**
-	 * Sets the default plugin loader.
-	 */
-	void setDefaultPluginLoader(PluginLoader<? extends Plugin> loader);
 
 	/**
 	 * Gets the class sharer used by the ServerPluginsManagers to share classes across the ServerPlugins.

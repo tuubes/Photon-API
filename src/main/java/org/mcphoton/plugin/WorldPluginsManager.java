@@ -87,15 +87,11 @@ public interface WorldPluginsManager {
 	boolean isPluginLoaded(String name);
 
 	/**
-	 * Gets the current default plugin loader.
+	 * Gets the default plugin loader.
 	 */
 	PluginLoader getDefaultPluginLoader();
 
 	/**
-	 * Sets the default plugin loader.
-	 */
-	void setDefaultPluginLoader(PluginLoader loader);
-
 	/**
 	 * Gets the ClassSharer used by the WorldPluginsManager to share Java classes across plugins of the same
 	 * world.
