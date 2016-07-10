@@ -101,21 +101,23 @@ public interface Plugin {
 	String getVersion();
 
 	/**
-	 * Gets the plugin's required dependencies. May return null if there is no dependency.
+	 * Gets the plugin's required dependencies. If there is no dependancy it doesn't return null but an empty
+	 * array instead.
 	 *
 	 * @see Plugin the dependency format
 	 */
 	String[] getRequiredDependencies();
 
 	/**
-	 * Gets the plugin's optional dependencies. May return null if there is no dependency.
+	 * Gets the plugin's optional dependencies. If there is no dependancy it doesn't return null but an
+	 * empty array instead.
 	 *
 	 * @see Plugin the dependency format
 	 */
 	String[] getOptionalDependencies();
 
 	/**
-	 * Gets the directory this plugin may use to store files.
+	 * Gets the directory that this plugin may use to store files.
 	 */
 	File getDirectory();
 
@@ -130,12 +132,12 @@ public interface Plugin {
 	Logger getLogger();
 
 	/**
-	 * Called when the plugin is loaded, just after its constructor is called.
+	 * Called when the plugin is loaded.
 	 */
 	void onLoad();
 
 	/**
-	 * Called when the plugin is unloaded, just after it is removed from the PluginsManager.
+	 * Called when the plugin is unloaded.
 	 */
 	void onUnload();
 
