@@ -52,6 +52,11 @@ public interface WorldPluginsManager {
 	List<Plugin> loadPlugins(File[] files);
 
 	/**
+	 * Unloads every plugin loaded by this WorldPluginsManager.
+	 */
+	void unloadAllPlugins();
+
+	/**
 	 * Unloads a plugin. If the plugin is a ServerPlugin it isn't disabled entirely but only in this world, ie
 	 * everything it registered in the managers of this world is unregistered.
 	 */

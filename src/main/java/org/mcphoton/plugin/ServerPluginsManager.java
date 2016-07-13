@@ -74,6 +74,11 @@ public interface ServerPluginsManager {
 	void loadPlugins(File[] files, Map<World, List<String>> worldPlugins, List<String> serverPlugins, Collection<World> serverWorlds);
 
 	/**
+	 * Unloads all the plugins: all the ServerPlugins + all the plugins of every world.
+	 */
+	void unloadAllPlugins();
+
+	/**
 	 * Unloads a ServerPlugin completely (from all worlds).
 	 */
 	void unloadServerPlugin(ServerPlugin plugin) throws Exception;
