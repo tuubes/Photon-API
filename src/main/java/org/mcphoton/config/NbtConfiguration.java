@@ -18,6 +18,7 @@
  */
 package org.mcphoton.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -43,6 +44,18 @@ public class NbtConfiguration extends BaseConfiguration implements ProtocolWrite
 	}
 
 	public NbtConfiguration(Map<String, Object> data, String name) {
+		// defined by the photon's implementation
+	}
+
+	public NbtConfiguration(File file) throws IOException {
+		// defined by the photon's implementation
+	}
+
+	public NbtConfiguration(InputStream in) throws IOException {
+		// defined by the photon's implementation
+	}
+
+	public NbtConfiguration(ByteBuffer in) throws IOException {
 		// defined by the photon's implementation
 	}
 

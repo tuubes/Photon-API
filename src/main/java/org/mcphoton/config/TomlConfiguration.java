@@ -18,6 +18,7 @@
  */
 package org.mcphoton.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -37,6 +38,14 @@ public class TomlConfiguration extends BaseConfiguration {
 	}
 
 	public TomlConfiguration(Map<String, Object> map) {
+		// defined by the photon's implementation
+	}
+
+	public TomlConfiguration(File file) throws IOException {
+		// defined by the photon's implementation
+	}
+
+	public TomlConfiguration(InputStream in) throws IOException {
 		// defined by the photon's implementation
 	}
 

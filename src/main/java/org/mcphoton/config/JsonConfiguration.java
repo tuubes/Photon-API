@@ -18,6 +18,7 @@
  */
 package org.mcphoton.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -36,6 +37,14 @@ public class JsonConfiguration extends BaseConfiguration {
 	}
 
 	public JsonConfiguration(Map<String, Object> data) {
+		// defined by the photon's implementation
+	}
+
+	public JsonConfiguration(File file) throws IOException {
+		// defined by the photon's implementation
+	}
+
+	public JsonConfiguration(InputStream in) throws IOException {
 		// defined by the photon's implementation
 	}
 
