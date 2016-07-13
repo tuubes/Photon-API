@@ -42,10 +42,10 @@ public interface WorldPluginsManager {
 	 *
 	 * @return the loaded plugin.
 	 */
-	Plugin loadPlugin(File file);
+	Plugin loadPlugin(File file) throws Exception;
 
 	/**
-	 * Loads multiple plugins from multiple files (one plugin per file).
+	 * Loads multiple plugins from multiple files (1 plugin per file).
 	 *
 	 * @return a list of the loaded plugins.
 	 */
@@ -55,13 +55,13 @@ public interface WorldPluginsManager {
 	 * Unloads a plugin. If the plugin is a ServerPlugin it isn't disabled entirely but only in this world, ie
 	 * everything it registered in the managers of this world is unregistered.
 	 */
-	void unloadPlugin(Plugin plugin);
+	void unloadPlugin(Plugin plugin) throws Exception;
 
 	/**
 	 * Unloads a plugin. If the plugin is a ServerPlugin it isn't disabled entirely but only in this world, ie
 	 * everything it registered in the managers of this world is unregistered.
 	 */
-	void unloadPlugin(String name);
+	void unloadPlugin(String name) throws Exception;
 
 	/**
 	 * Checks if a plugin with that name is loaded by this WorldPluginsManager.
@@ -76,8 +76,7 @@ public interface WorldPluginsManager {
 
 	/**
 	 * Unregisters a plugin from this PluginsManager.After this method, the plugin will no longer be
-	 * considered as "loaded"
-	 * by this PluginsManager.
+	 * considered as "loaded" by this PluginsManager.
 	 */
 	void unregisterPlugin(Plugin plugin);
 

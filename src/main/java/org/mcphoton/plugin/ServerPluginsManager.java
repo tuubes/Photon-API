@@ -20,6 +20,8 @@ package org.mcphoton.plugin;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import org.mcphoton.world.World;
 
 /**
@@ -62,14 +64,24 @@ public interface ServerPluginsManager {
 	Plugin loadPlugin(File file, Collection<World> worlds) throws Exception;
 
 	/**
-	 * Unloads a ServerPlugin completely (from all worlds).
+	 * Loads multiple plugins from multiple files.
+	 *
+	 * @param files the files to load the plugins from (1 plugin per file).
+	 * @param worldPlugins the plugins to load for each world.
+	 * @param serverPlugins the plugins to load for the entire server. They don't have to extend ServerPlugin.
+	 * @param serverWorlds the worlds where the serverPlugins will be loaded.
 	 */
-	void unloadServerPlugin(ServerPlugin plugin);
+	void loadPlugins(File[] files, Map<World, List<String>> worldPlugins, List<String> serverPlugins, Collection<World> serverWorlds);
 
 	/**
 	 * Unloads a ServerPlugin completely (from all worlds).
 	 */
-	void unloadServerPlugin(String name);
+	void unloadServerPlugin(ServerPlugin plugin) throws Exception;
+
+	/**
+	 * Unloads a ServerPlugin completely (from all worlds).
+	 */
+	void unloadServerPlugin(String name) throws Exception;
 
 	/**
 	 * Checks if a ServerPlugin with the specified name is loaded by this ServerPluginsManager.
