@@ -18,6 +18,7 @@
  */
 package org.mcphoton.server;
 
+import java.awt.image.BufferedImage;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.UUID;
@@ -67,5 +68,8 @@ public interface Server {
 	Location getSpawn();
 
 	void setSpawn(Location spawn);
+
+	//=== Misc ===
+	void setFavicon(BufferedImage icon) throws Exception;
 
 }
