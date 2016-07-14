@@ -36,6 +36,10 @@ import org.mcphoton.world.BiomeRegistry;
  */
 public final class Photon {
 
+	/*
+	 * Every method here returns null and it's completely normal. Actually the photon implementation redefines
+	 * this class and completes its methods.
+	 */
 	private Photon() {
 	}
 
