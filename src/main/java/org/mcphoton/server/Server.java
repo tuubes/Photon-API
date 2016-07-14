@@ -21,7 +21,7 @@ package org.mcphoton.server;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.UUID;
-
+import org.mcphoton.command.ServerCommandRegistry;
 import org.mcphoton.entity.living.Player;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.plugin.ServerPluginsManager;
@@ -39,7 +39,7 @@ public interface Server {
 
 	Player getPlayer(String name);
 
-	//=== Managers ===
+	//=== Managers & Registries ===
 	PacketsManager getPacketsManager();
 
 	ServerPluginsManager getPluginsManager();
@@ -47,6 +47,8 @@ public interface Server {
 	BansManager getBansManager();
 
 	WhitelistManager getWhitelistManager();
+
+	ServerCommandRegistry getCommandRegistry();
 
 	// === Network ===
 	InetSocketAddress getBoundAddress();
