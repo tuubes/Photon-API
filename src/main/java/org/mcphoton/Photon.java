@@ -19,6 +19,7 @@
 package org.mcphoton;
 
 import java.io.File;
+import java.util.concurrent.ScheduledExecutorService;
 import org.mcphoton.block.BlockRegistry;
 import org.mcphoton.entity.EntityRegistry;
 import org.mcphoton.item.ItemRegistry;
@@ -36,6 +37,24 @@ import org.mcphoton.world.BiomeRegistry;
 public final class Photon {
 
 	private Photon() {
+	}
+
+	/**
+	 * Gets the Photon's ScheduledExecutorService, which is used to schedule tasks across multiple
+	 * threads.
+	 * <h2>What kind of task may be submitted to this ExecutorService?</h2>
+	 * <p>
+	 * To achieve better performance, the submitted tasks:
+	 * <ol>
+	 * <li>Musn't be IO-bound, in order to avoid delaying the other tasks. Use an asynchronous IO API
+	 * instead of the ExecutorService.</li>
+	 * <li>Musn't be too short, in order to avoid creating too much overhead. It is advised to group many
+	 * small tasks together into one bigger task.</li>
+	 * </ol>
+	 * </p>
+	 */
+	public static ScheduledExecutorService getExecutorService() {
+		return null;
 	}
 
 	public static PacketsManager getPacketsManager() {
