@@ -56,7 +56,7 @@ public class ChunkDataPacket implements Packet {
 		out.writeVarInt(bitMask);
 		out.writeVarInt(sections.length);
 		for (ChunkSection section : sections) {
-			//write section
+			section.writeTo(out);
 		}
 		if (groundUpContinuous) {
 			out.write(biomes);
