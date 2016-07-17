@@ -18,7 +18,7 @@
  */
 package org.mcphoton.entity.vehicle;
 
-import org.mcphoton.block.BlockEntity;
+import org.mcphoton.block.BlockType;
 
 /**
  * 
@@ -30,9 +30,11 @@ public interface Minecart extends Vehicle {
 	
 	void setShakingForce(float force);
 	
-	BlockEntity getDisplayBlock();
+	//TODO Change BlockType with BlockData when it's added
+	BlockType getDisplayBlock();
 	
-	void setDisplayBlock(BlockEntity block);
+	//TODO Change BlockType with BlockData when it's added
+	void setDisplayBlock(BlockType block);
 	
 	int getDisplayBlockOffset();
 		
