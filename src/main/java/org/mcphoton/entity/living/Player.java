@@ -43,4 +43,6 @@ public interface Player extends User, LivingEntity, Messageable {
 	
 	void kickPlayer(String message);
 	
+	void sendRawMessage(String rawMessage);
+	
 }
