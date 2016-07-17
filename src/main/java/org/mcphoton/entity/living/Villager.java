@@ -20,6 +20,4 @@ package org.mcphoton.entity.living;
 
 import org.mcphoton.inventory.InventoryHolder;
 
-public interface Villager extends AgeableEntity, InventoryHolder {
-
-}
+public interface Villager extends AgeableEntity, InventoryHolder {}

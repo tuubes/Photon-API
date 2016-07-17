@@ -18,6 +18,4 @@
  */
 package org.mcphoton.entity.living;
 
-public interface MagmaCube extends Slime {
-
-}
+public interface MagmaCube extends Slime {}

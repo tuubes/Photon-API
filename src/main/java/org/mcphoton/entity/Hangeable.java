@@ -21,6 +21,7 @@ package org.mcphoton.entity;
 import org.mcphoton.block.BlockFace;
 
 /**
+ * Interface for Paintings, LeashHitch and ItemFrames.
  * 
  * @author DJmaxZPLAY
  */

@@ -23,6 +23,7 @@ import java.util.Optional;
 import org.mcphoton.item.ItemStack;
 
 /**
+ * An ItemFrame hanging on a block.
  * 
  * @author DJmaxZPLAY
  */

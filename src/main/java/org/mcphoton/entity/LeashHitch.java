@@ -18,6 +18,7 @@
  */
 package org.mcphoton.entity;
 /**
+ * The hitch from a leash.
  * 
  * @author DJmaxZPLAY
  */

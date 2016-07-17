@@ -18,4 +18,7 @@
  */
 package org.mcphoton.entity;
 
+/**
+ * The Ender Signal created when an ender eye is thrown.
+ */
 public interface EnderSignal extends Entity {}

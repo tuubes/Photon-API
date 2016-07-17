@@ -19,6 +19,7 @@
 package org.mcphoton.entity;
 
 /**
+ * A primed TNT.
  * 
  * @author DJmaxZPLAY
  */

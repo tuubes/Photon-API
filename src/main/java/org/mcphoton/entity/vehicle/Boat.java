@@ -18,10 +18,17 @@
  */
 package org.mcphoton.entity.vehicle;
 
+import java.util.Optional;
+
+import org.mcphoton.entity.Entity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Boat extends Vehicle{
-
+public interface Boat extends Vehicle {
+	
+	Optional<Entity> getSecondPassenger();
+	
+	void setSecondPassenger(Entity passenger);
 }

@@ -19,17 +19,38 @@
 package org.mcphoton.entity;
 
 /**
+ * The interface for the explosive entity.
  * 
  * @author DJmaxZPLAY
  */
 public interface Explosive {
 
+	/**
+	 * Gets the radius of the explosion.
+	 * 
+	 * @return radius of the explosion
+	 */
 	float getRadius();
 	
+	/**
+	 * Sets the radius of the explosion.
+	 * 
+	 * @param radius radius of the explosion
+	 */
 	void setRadius(float radius);
 	
+	/**
+	 * Return if the explosion makes near blocks on fire.
+	 * 
+	 * @return true if explosion makes near blocks on fire
+	 */
 	boolean isIncendiary();
 	
+	/**
+	 * Sets if the explosion makes near blocks on fire.
+	 * 
+	 * @param incendiary make near blocks on fire
+	 */
 	void setIncendiary(boolean incendiary);
 	
 }

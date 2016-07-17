@@ -27,8 +27,13 @@ import org.mcphoton.utils.Vector;
  */
 public interface Fireball extends Projectile, Explosive {
 
+	
 	Vector getDirection();
 	
+	/**
+	 * Fireballs fly straight so don't take care on setVelocity().
+	 * 
+	 */
 	void setDirection(Vector direction);
 	
 }

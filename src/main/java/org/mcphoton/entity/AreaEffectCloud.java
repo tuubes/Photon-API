@@ -20,14 +20,54 @@ package org.mcphoton.entity;
 
 import org.mcphoton.entity.projectile.Shooter;
 
+/**
+ * A cloud of a Lingering Potion.
+ * 
+ * @author DJmaxZPLAY
+ */
+
 public interface AreaEffectCloud extends Entity {
 	
+	/**
+	 * Gets the radius of the cloud.
+	 * 
+	 * @return cloud radius
+	 */
 	float getRadius();
 	
+	/**
+	 * Sets the radius of the cloud.
+	 * 
+	 * @param radius cloud radius
+	 */
 	void setRadius(float radius);
 	
+	/**
+	 * Gets the duration in ticks of the existence of the cloud.
+	 * 
+	 * @return cloud duration
+	 */
+	int getDuration();
+	
+	/**
+	 * Sets the duration in ticks of the existence of the cloud.
+	 * 
+	 * @param duration cloud duration
+	 */
+	void setDuration(int duration);
+	
+	/**
+	 * Gets the source of this cloud
+	 * 	
+	 * @return the Shooter of the Lingering Potion
+	 */
 	Shooter getSource();
 	
+	/**
+	 * Sets the source of this cloud
+	 * 	
+	 * @param source the Shooter of the Lingering Potion
+	 */
 	void setSource(Shooter source);
 	
 }

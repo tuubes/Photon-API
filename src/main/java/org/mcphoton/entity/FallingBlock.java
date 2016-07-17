@@ -21,19 +21,45 @@ package org.mcphoton.entity;
 import org.mcphoton.block.BlockType;
 
 /**
-*
-* @author DJmaxZPLAY
-*/
+ * A Falling Block
+ * 
+ * @author DJmaxZPLAY
+ */
 public interface FallingBlock extends Entity {
 
+	/**
+	 * Gets the BlockType of the falling block.
+	 * 
+	 * @return BlockType of the falling block
+	 */
 	BlockType getBlockType();
 	
+	/**
+	 * Return if the falling block drops an item if it can't be placed.
+	 * 
+	 * @return true if it will drop an item if it can't be placed
+	 */
 	boolean dropItem();
 	
+	/**
+	 * Sets if the falling block drops an item if it can't be placed.
+	 * 
+	 * @param drop drop an item if it can't be placed
+	 */
 	void setDropItem(boolean drop);
 	
+	/**
+	 * Return if the falling block can hurt entities.
+	 * 
+	 * @return true if the falling block can hurt entities
+	 */
 	boolean canHurtEntities();
 	
+	/**
+	 * Sets if the falling block can hurt entities.
+	 * 
+	 * @param hurt hurt the entities
+	 */
 	void setHurtEntities(boolean hurt);
 	
 }

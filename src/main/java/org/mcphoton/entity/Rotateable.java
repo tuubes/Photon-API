@@ -20,12 +20,32 @@ package org.mcphoton.entity;
 
 public interface Rotateable {
 
+	/**
+	 * Gets the pitch of the entity in radian.
+	 * 
+	 * @return pitch in radian
+	 */
 	int getPitch();
 
+	/**
+	 * Sets the pitch of the entity in radian.
+	 * 
+	 * @param pitch in radian
+	 */
 	void setPitch(int pitch);
 
+	/**
+	 * Gets the yaw of the entity in radian.
+	 * 
+	 * @return yaw in radian
+	 */
 	int getYaw();
 
+	/**
+	 * Sets the yaw of the entity in radian.
+	 * 
+	 * @param yaw in radian
+	 */
 	void setYaw(int yaw);
 
 }
