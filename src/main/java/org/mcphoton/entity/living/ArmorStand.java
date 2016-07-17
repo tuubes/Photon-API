@@ -18,33 +18,13 @@
  */
 package org.mcphoton.entity.living;
 
-import org.mcphoton.item.ItemStack;
+import org.mcphoton.utils.EulerAngles;
 
 /**
  * 
  * @author DJmaxZPLAY
  */
 public interface ArmorStand extends LivingEntity {
-
-	ItemStack getItemInHand();
-	
-	ItemStack getBoots();
-	
-	ItemStack getLeggings();
-	
-	ItemStack getChestplate();
-	
-	ItemStack getHelmet();
-	
-	void setItemInHand(ItemStack itemStack);
-	
-	void setBoots(ItemStack itemStack);
-	
-	void setLeggings(ItemStack itemStack);
-	
-	void setChestplate(ItemStack itemStack);
-	
-	void setHelmet(ItemStack itemStack);
 	
 	boolean isSmall();
 	
@@ -54,6 +34,18 @@ public interface ArmorStand extends LivingEntity {
 	
 	boolean isMarker();
 	
+	EulerAngles getHeadRotation();
+	
+	EulerAngles getBodyRotation();
+	
+	EulerAngles getLeftArmRotation();
+	
+	EulerAngles getRightArmRotation();
+	
+	EulerAngles getLeftLegRotation();
+	
+	EulerAngles getRighLegRotation();
+	
 	void setSmall(boolean small);
 	
 	void setArms(boolean arms);
@@ -61,5 +53,17 @@ public interface ArmorStand extends LivingEntity {
 	void setBasePlate(boolean baseplate);
 	
 	void setMarker(boolean marker);
+	
+	void setHeadRotation(EulerAngles euler);
+	
+	void setBodyRotation(EulerAngles euler);
+	
+	void setLeftArmRotation(EulerAngles euler);
+	
+	void setRightArmRotation(EulerAngles euler);
+	
+	void setLeftLegRotation(EulerAngles euler);
+	
+	void setRighLegRotation(EulerAngles euler);
 	
 }
