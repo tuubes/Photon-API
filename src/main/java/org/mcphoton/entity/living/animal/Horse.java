@@ -20,12 +20,13 @@ package org.mcphoton.entity.living.animal;
 
 import org.mcphoton.entity.vehicle.Vehicle;
 import org.mcphoton.inventory.HorseInventory;
+import org.mcphoton.inventory.InventoryHolder;
 
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Horse extends TameableAnimal, Vehicle {
+public interface Horse extends TameableAnimal, Vehicle, InventoryHolder {
 
 	boolean isCarryingChest();
 	
@@ -43,6 +44,7 @@ public interface Horse extends TameableAnimal, Vehicle {
 	
 	void setJumpStrength(double strength);
 	
+	@Override
 	HorseInventory getInventory();
 	
 	Variant getVariant();

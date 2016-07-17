@@ -21,6 +21,7 @@ package org.mcphoton.user;
 import java.util.UUID;
 
 import org.mcphoton.inventory.Inventory;
+import org.mcphoton.inventory.InventoryHolder;
 import org.mcphoton.permissions.Permissible;
 import org.mcphoton.world.Location;
 
@@ -29,7 +30,7 @@ import org.mcphoton.world.Location;
  * @author TheElectronWill
  * @author DJmaxZPLAY
  */
-public interface User extends Permissible {
+public interface User extends Permissible, InventoryHolder {
 
 	String getName();
 
@@ -54,8 +55,6 @@ public interface User extends Permissible {
 	boolean isOp();
 	
 	boolean isWhitelisted();
-
-	Inventory getInventory();
 	
 	Inventory getEnderChest();
 
