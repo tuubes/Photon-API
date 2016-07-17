@@ -16,25 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
-
-import org.mcphoton.utils.Vector;
+package org.mcphoton.entity.living.animal;
 
 /**
- * This interface is used by Minecarts, Horses, Boats and Pigs.
  * 
  * @author DJmaxZPLAY
  */
-public interface Vehicle {
+public interface Sheep extends Animal {
+
+	boolean isSheared();
 	
-	/**
-	 * Gets a Vector from the vehicle's velocity.
-	 */
-	Vector getVelocity();
-	
-	/**
-	 * Sets the vehicle's velocity with a Vector.
-	 */
-	void setVelocity(Vector velocity);
+	void setSheared(boolean sheared);
 	
 }

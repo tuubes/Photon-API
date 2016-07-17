@@ -82,4 +82,11 @@ public interface Inventory extends Iterable<ItemStack> {
 	 */
 	ItemStack removeStack(int index);
 
+	/**
+	 * Gets the holder (block or entity) of this inventory.
+	 * 
+	 * @return the holder (block or entity)
+	 */
+	InventoryHolder getHolder();
+	
 }

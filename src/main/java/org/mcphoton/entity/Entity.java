@@ -18,9 +18,11 @@
  */
 package org.mcphoton.entity;
 
-import com.electronwill.utils.IntConstant;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.mcphoton.network.ProtocolOutputStream;
-import org.mcphoton.world.World;
+import org.mcphoton.world.Location;
 
 /**
  * Base class for entites. Entities normally don't need to be thread-safe, because the photon's implementation
@@ -29,58 +31,108 @@ import org.mcphoton.world.World;
  * @author TheElectronWill
  * @author DJmaxZPLAY
  */
-public abstract class Entity {
+public interface Entity {
 
-	private final IntConstant entityId = new IntConstant();
+	/**
+	 * Gets the id of the entity.
+	 * 
+	 * @return Entity Id
+	 */
+	int getEntityId();
+	
+	/**
+	 * Gets the unique id of the entity.
+	 * 
+	 * @return Entity unique Id
+	 */
+	UUID getEntityUniqueId();
 
-	protected String customName = "";
-	protected double x, y, z;
-	protected World world;
+	void initializeEntityId(int id);
 
-	public int getEntityId() {
-		return entityId.get();
-	}
+	/**
+	 * Gets the type of the entity.
+	 * 
+	 * @return EntityType of the entity
+	 */
+	EntityType getType();
 
-	public void initializeEntityId(int id) {
-		this.entityId.init(id);
-	}
+	/**
+	 * Gets the custom name of the entity.
+	 * 
+	 * @return custom name of the entity
+	 */
+	String getCustomName();
 
-	public abstract EntityType getType();
+	/**
+	 * Sets the custom name of the entity.
+	 * 
+	 * @param customName the customName
+	 */
+	void setCustomName(String customName);
+	
+	/**
+	 * Sets if the custom name of the entity is visible.
+	 * 
+	 * @param visibility true if custom name must be shown.
+	 */
+	void setCustomNameVisible(boolean visibility);
+	
+	/**
+	 * Return if the custom name of the entity is visible.
+	 * 
+	 * @return true if custom name is visible
+	 */
+	boolean isCustomNameVisible();
 
-	public String getCustomName() {
-		return customName;
-	}
-
-	public void setCustomName(String customName) {
-		this.customName = customName;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public double getZ() {
-		return z;
-	}
-
-	public World getWorld() {
-		return world;
-	}
+	/**
+	 * Gets the location of the entity.
+	 * 
+	 * @return Location of the entity
+	 */
+	Location getLocation();
+	
+	/**
+	 * Return if the entity is on ground.
+	 * 
+	 * @return true if the entity is on ground
+	 */
+	boolean isOnGround();
+	
+	/**
+	 * Teleport the entity to the location
+	 * 
+	 * @param location location where the entity must be teleport.
+	 * @return true if teleport success
+	 */
+	boolean teleport(Location location);
+	
+	/**
+	 * Return the ticks before the entity stops being on fire.
+	 */
+	int getFireTicks();
+	
+	/**
+	 * Return the entity's maximum fire ticks.
+	 */
+	int getMaxFireTicks();
+	
+	/**
+	 * Sets the ticks before the entity stops being on fire.
+	 * 
+	 * @param ticks ticks before the entity stops being on fire
+	 */
+	void setFireTicks(int ticks);
 	
 	/**
 	 * Gets the primary passenger of a vehicle. Vehicle which can have multiple passengers,
 	 * it return only the primary passenger.
 	 */
-	public abstract Entity getPassenger();
+	Optional<Entity> getPassenger();
 	
 	/**
 	 * Return if the entity has a passenger.
 	 */
-	public abstract boolean hasPassenger();
+	boolean hasPassenger();
 	
 	/**
 	 * Set the passenger of the entity.
@@ -88,11 +140,77 @@ public abstract class Entity {
 	 * @param passenger The new passenger.
 	 * @return false if it couldn't be done.
 	 */
-	public abstract boolean setPassenger(Entity passenger);
+	boolean setPassenger(Entity passenger);
 
+	/**
+	 * Eject the passenger of this entity.
+	 * 
+	 * @return true if there was a passenger
+	 */
+	boolean ejectPassenger();
+	
+	/**
+	 * Return if the entity is in a vehicle.
+	 */
+	boolean isInVehicle();
+	
+	/**
+	 * Eject the entity of his vehicle.
+	 * 
+	 * @return true if the entity was ejected.
+	 */
+	boolean leaveVehicle();
+	
+	/**
+	 * Return the vehicle of the entity.
+	 */
+	Optional<Entity> getVehicle();
+	
+	/**
+	 * Sets if gravity is applied on the entity.
+	 * 
+	 * @param gravity gravity applied
+	 */
+	void setGravity(boolean gravity);
+	
+	/**
+	 * Return if gravity is applied on the entity.
+	 * 
+	 * @return true if gravity is applied
+	 */
+	boolean hasGravity();
+	
+	/**
+	 * Sets if the entity glow. (Color belong on Team Color).
+	 * 
+	 * @param glow entity must glow
+	 */
+	void setGlowing(boolean glow);
+	
+	/**
+	 * Return if the entity glow.
+	 * 
+	 * @return entity is glowing
+	 */
+	boolean isGlowing();
+	
+	/**
+	 * Sets if the entity is silent.
+	 * 
+	 * @param silent if entity is silent
+	 */
+	void setSilent(boolean silent);
+	
+	/**
+	 * Return if the entity is silent.
+	 * 
+	 * @return if entity is silent
+	 */
+	boolean isSilent();
+	
 	/**
 	 * Writes this entity to a ProtocolOutputStream.
 	 */
-	public abstract void writeTo(ProtocolOutputStream out);
+	void writeTo(ProtocolOutputStream out);
 
 }

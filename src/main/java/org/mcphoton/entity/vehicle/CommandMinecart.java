@@ -16,27 +16,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.vehicle;
 
-import org.mcphoton.entity.Entity;
+import org.mcphoton.messaging.ChatMessage;
 
-public abstract class TameableEntity extends AgeableEntity implements Tameable {
+/**
+ * 
+ * @author DJmaxZPLAY
+ */
+public interface CommandMinecart extends Minecart {
 
-	protected volatile Entity tamer = null;
-
-	@Override
-	public Entity getTamer() {
-		return tamer;
-	}
-
-	@Override
-	public void setTamer(Entity tamer) {
-		this.tamer = tamer;
-	}
-
-	@Override
-	public boolean isTamed() {
-		return tamer != null;
-	}
-
+	String getCommand();
+	
+	void setCommand(String command);
+	
+	ChatMessage getLastOutput();
+	
+	void setLastOutput(ChatMessage lastOutput);
+	
 }

@@ -16,30 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.entity.monster;
 
-import org.mcphoton.item.ItemStack;
-
-public interface Equipable {
-
-	ItemStack getItemInHand();
-
-	ItemStack getHeadWear();
-
-	ItemStack getChestplate();
-
-	ItemStack getLeggings();
-
-	ItemStack getBoots();
-
-	void setItemInHand(ItemStack itemInHand);
-
-	void setHeadWear(ItemStack headWear);
-
-	void setChestplate(ItemStack chestPlate);
-
-	void getLeggings(ItemStack leggings);
-
-	void setBoots(ItemStack boots);
-
-}
+public interface Wither extends Monster {}

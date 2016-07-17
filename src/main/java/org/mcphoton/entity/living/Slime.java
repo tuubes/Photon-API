@@ -18,14 +18,14 @@
  */
 package org.mcphoton.entity.living;
 
-import org.mcphoton.entity.Entity;
+/**
+ * 
+ * @author DJmaxZPLAY
+ */
+public interface Slime extends LivingEntity {
 
-public interface Tameable {
-
-	Entity getTamer();
-
-	void setTamer(Entity tamer);
-
-	boolean isTamed();
-
+	int getSize();
+	
+	void setSize(int size);
+	
 }
