@@ -19,7 +19,6 @@
 package org.mcphoton.inventory;
 
 import java.util.Collection;
-import org.mcphoton.entity.Entity;
 import org.mcphoton.item.ItemStack;
 
 /**
@@ -28,11 +27,6 @@ import org.mcphoton.item.ItemStack;
  * @author DJmaxZPLAY
  */
 public interface EntityInventory extends Inventory {
-
-	/**
-	 * Gets the entity wich holds the inventory.
-	 */
-	Entity getHolder();
 
 	/**
 	 * Returns a Collection object that contains the ItemStacks from the armor slots. Any modification to this
