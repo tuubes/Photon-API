@@ -26,4 +26,8 @@ public interface HeadRotateable extends Rotateable {
 
 	void setHeadPitch(int headPitch);
 
+	int getHeadYaw();
+
+	void setHeadYaw(int headYaws);
+
 }
