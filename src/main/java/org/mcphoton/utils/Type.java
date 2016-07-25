@@ -23,7 +23,7 @@ package org.mcphoton.utils;
  *
  * @author TheElectronWill
  */
-public interface  Type {
+public interface Type {
 
 	/**
 	 * Gets the localized name of this type. For example: "Dirt".
