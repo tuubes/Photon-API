@@ -18,12 +18,15 @@
  */
 package org.mcphoton.entity.living;
 
-import org.mcphoton.inventory.InventoryHolder;
+import org.mcphoton.utils.AbstractType;
 
-public interface Villager extends AgeableEntity, InventoryHolder {
+/**
+ * Defines a type of {@link Villager}.
+ *
+ * @author Vinetos
+ */
+public abstract class VillagerType extends AbstractType {
 
-	VillagerType getVillagerType();
 
-	void setType(VillagerType villagerType);
 
 }
