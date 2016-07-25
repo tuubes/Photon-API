@@ -22,8 +22,45 @@ import org.mcphoton.inventory.InventoryHolder;
 
 public interface Villager extends AgeableEntity, InventoryHolder {
 
-	VillagerType getVillagerType();
+	Profession getProfession();
 
-	void setType(VillagerType villagerType);
+	void setProfession(Profession profession);
+
+	/**
+	 * Defines a profession of {@link Villager}.
+	 *
+	 * @author Vinetos
+	 */
+	enum Profession {
+		/**
+		 * Red color
+		 */
+		BLACKSMITH,
+		/**
+		 * Butcher profession.
+		 */
+		BUTCHER,
+		/**
+		 * Farmer profession.
+		 */
+		FARMER,
+		/**
+		 * Husk
+		 */
+		HUSK,
+		/**
+		 * Librarian profession.
+		 */
+		LIBRARIAN,
+		/**
+		 * Normal villager.
+		 */
+		NORMAL,
+		/**
+		 * Priest profession.
+		 */
+		PRIEST
+	}
+
 
 }
