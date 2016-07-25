@@ -20,11 +20,32 @@ package org.mcphoton.entity.living;
 
 import org.mcphoton.inventory.InventoryHolder;
 
+// TODO: 25/07/2016 Add trade 
 public interface Villager extends AgeableEntity, InventoryHolder {
 
+	/**
+	 * Gets the current profession of this villager.
+	 *
+	 * @return {@link Profession}
+	 */
 	Profession getProfession();
 
+	/**
+	 * Set the current profession of this villager.
+	 */
 	void setProfession(Profession profession);
+
+	/**
+	 * Gets the player this villager is trading with, or null if it is not currently trading.
+	 *
+	 * @return {@link Player}
+	 */
+	Player getTrader();
+
+	/**
+	* Gets whether this villager is currently trading.
+	*/
+	boolean isTrading();
 
 	/**
 	 * Defines a profession of {@link Villager}.
