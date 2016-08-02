@@ -19,46 +19,71 @@
 package org.mcphoton.utils;
 
 /**
- * An EulerAngle is composed of three rotation (yaw, pitch, roll) based on three axis. Angles are in radians.
- * 
+ * An EulerAngle is composed of 3 rotations (yaw, pitch, roll) on 3 axis. All angles are in radians.
+ * This class isn't thread-safe.
+ *
  * @author DJmaxZPLAY
  */
 public class EulerAngles {
 
 	private float yaw, pitch, roll;
-	
+
 	/**
-	 * Creates an EulerAngle(0F, 0F, 0F)
+	 * Creates an EulerAngle(0, 0, 0)
 	 */
 	public EulerAngles() {
-		this(0F, 0F, 0F);
+		this(0, 0, 0);
 	}
-	
+
 	/**
-	 * Creates an EulerAngle with the three axis. Angles are in radians.
+	 * Creates an EulerAngle with 3 rotations angles (in radians).
 	 */
-	public EulerAngles(float yaw, float pitch, float roll) {	
+	public EulerAngles(float yaw, float pitch, float roll) {
 		this.yaw = yaw;
 		this.pitch = pitch;
-		this.roll = roll;		
+		this.roll = roll;
 	}
-	
+
+	public float getYaw() {
+		return yaw;
+	}
+
+	public void setYaw(float yaw) {
+		this.yaw = yaw;
+	}
+
+	public float getPitch() {
+		return pitch;
+	}
+
+	public void setPitch(float pitch) {
+		this.pitch = pitch;
+	}
+
+	public float getRoll() {
+		return roll;
+	}
+
+	public void setRoll(float roll) {
+		this.roll = roll;
+	}
+
 	public EulerAngles add(float yaw, float pitch, float roll) {
 		this.yaw += yaw;
 		this.pitch += pitch;
 		this.roll += roll;
 		return this;
 	}
-	
+
 	public EulerAngles subtract(float yaw, float pitch, float roll) {
 		this.yaw -= yaw;
 		this.pitch -= pitch;
 		this.roll -= roll;
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "EulerAngles(" + yaw + ", " + pitch + ", " + roll + ')';
-	}	
+	}
 }
