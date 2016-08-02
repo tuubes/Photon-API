@@ -18,8 +18,6 @@
  */
 package org.mcphoton.entity;
 
-import org.mcphoton.utils.ArtType;
-
 /**
  * A painting hanged on a wall.
  * 
