@@ -18,13 +18,15 @@
  */
 package org.mcphoton.world;
 
+import org.mcphoton.utils.DoubleVector;
+import org.mcphoton.utils.IntVector;
+
 /**
- * A location is defined by 3 coordinates (x,y,z) and one World. A Location is immutable, so thread-safe. The
- * methods {@link #withX(double)}, {@link #withY(double)}, {@link #withZ(double)} and
+ * A location is a precise point defined by 3 coordinates (x,y,z) and one World. A Location is immutable, so
+ * thread-safe. The methods {@link #withX(double)}, {@link #withY(double)}, {@link #withZ(double)} and
  * {@link #withWorld(World)} create a new Location object.
  *
  * @author TheElectronWill
- *
  */
 public final class Location {
 
@@ -67,6 +69,23 @@ public final class Location {
 	}
 
 	/**
+	 * Calculates the squared distance between this location and the l location. This is faster than manually
+	 * multiplying the distance by itself.
+	 */
+	public double squaredDistance(Location l) {
+		final double deltaX = l.x - x, deltaY = l.y - y, deltaZ = l.z - z;
+		return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+	}
+
+	/**
+	 * Calculates the distance between this location and the l location.
+	 */
+	public double distance(Location l) {
+		final double deltaX = l.x - x, deltaY = l.y - y, deltaZ = l.z - z;
+		return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+	}
+
+	/**
 	 * Creates a new Location with the specified x coordinate and the same y, z and World as this Location.
 	 */
 	public Location withX(double x) {
@@ -92,5 +111,19 @@ public final class Location {
 	 */
 	public Location withWorld(World w) {
 		return new Location(x, y, z, w);
+	}
+
+	/**
+	 * Creates a new IntVector with the coordinates of this location. Each coordinate is converted to an int.
+	 */
+	public IntVector toIntVector() {
+		return new IntVector((int) x, (int) y, (int) z);
+	}
+
+	/**
+	 * Creates a new DoubleVector with the coordinates of this location.
+	 */
+	public DoubleVector toDoubleVector() {
+		return new DoubleVector(x, y, z);
 	}
 }
