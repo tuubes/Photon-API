@@ -18,7 +18,7 @@
  */
 package org.mcphoton.entity.vehicle;
 
-import org.mcphoton.utils.Vector;
+import org.mcphoton.utils.DoubleVector;
 
 /**
  * This interface is used by Minecarts, Horses, Boats and Pigs.
@@ -30,11 +30,11 @@ public interface Vehicle {
 	/**
 	 * Gets a Vector from the vehicle's velocity.
 	 */
-	Vector getVelocity();
+	DoubleVector getVelocity();
 	
 	/**
 	 * Sets the vehicle's velocity with a Vector.
 	 */
-	void setVelocity(Vector velocity);
+	void setVelocity(DoubleVector velocity);
 	
 }

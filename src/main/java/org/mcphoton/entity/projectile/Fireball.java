@@ -19,7 +19,7 @@
 package org.mcphoton.entity.projectile;
 
 import org.mcphoton.entity.Explosive;
-import org.mcphoton.utils.Vector;
+import org.mcphoton.utils.DoubleVector;
 
 /**
  * 
@@ -28,12 +28,12 @@ import org.mcphoton.utils.Vector;
 public interface Fireball extends Projectile, Explosive {
 
 	
-	Vector getDirection();
+	DoubleVector getDirection();
 	
 	/**
 	 * Fireballs fly straight so don't take care on setVelocity().
 	 * 
 	 */
-	void setDirection(Vector direction);
+	void setDirection(DoubleVector direction);
 	
 }
