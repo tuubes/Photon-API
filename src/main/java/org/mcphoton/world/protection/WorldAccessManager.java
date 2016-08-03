@@ -30,16 +30,20 @@ import org.mcphoton.world.areas.Area;
  */
 public interface WorldAccessManager {
 
+	/**
+	 * Gets the world this access manager work in.
+	 */
 	World getWorld();
 
 	/**
-	 * Gets a CheckedWorldAccess to the world. The WorldAccessManager's implementation my return the same
+	 * Gets a CheckedWorldAccess to the world. The WorldAccessManager's implementation may return the same
 	 * CheckedWorldAccess for different invocations of this method.
 	 */
 	CheckedWorldAccess getAccess();
 
 	/**
-	 * Tries to unlock an area.
+	 * Tries to unlock an area. The WorldAccessManager's implementation may return the same
+	 * object for different invocations of this method.
 	 *
 	 * @param area the area to unlock.
 	 * @param accessor the object that would like to unlock the area.
@@ -48,13 +52,23 @@ public interface WorldAccessManager {
 	Optional<UnlockedAreaAccess> unlockArea(Area area, Object accessor);
 
 	/**
-	 * Tries to unlock a chunk column.
+	 * Tries to unlock a chunk column. The WorldAccessManager's implementation may return the same
+	 * object for different invocations of this method.
 	 *
 	 * @param x the x chunk coordinate
 	 * @param z the z chunk coordinate
 	 * @param accessor the object that would like to unlock the area.
-	 * @return an ChunkColumn, which does not check every modification.
+	 * @return a ChunkColumn, which does not check every modification.
 	 */
 	Optional<ChunkColumn> unlockChunk(int x, int z, Object accessor);
+
+	/**
+	 * Tries to unlock the entire world. The WorldAccessManager's implementation may return the same
+	 * object for different invocations of this method.
+	 *
+	 * @param accessor the object that would like to unlock the area.
+	 * @return an UnlockedWorldAccess, which does not check every modification.
+	 */
+	Optional<UnlockedWorldAccess> unlockWorld(Object accessor);
 
 }
