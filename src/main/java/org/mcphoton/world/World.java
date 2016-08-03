@@ -18,7 +18,6 @@
  */
 package org.mcphoton.world;
 
-import org.mcphoton.world.areas.Area;
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,9 +25,11 @@ import org.mcphoton.command.WorldCommandRegistry;
 import org.mcphoton.entity.living.Player;
 import org.mcphoton.event.WorldEventsManager;
 import org.mcphoton.plugin.WorldPluginsManager;
-import org.mcphoton.world.protection.UnlockedAreaAccess;
-import org.mcphoton.world.protection.WorldAccessManager;
+import org.mcphoton.world.areas.Area;
 import org.mcphoton.world.protection.CheckedWorldAccess;
+import org.mcphoton.world.protection.UnlockedAreaAccess;
+import org.mcphoton.world.protection.UnlockedWorldAccess;
+import org.mcphoton.world.protection.WorldAccessManager;
 
 /**
  * A game world.
@@ -81,6 +82,10 @@ public interface World {
 
 	default Optional<ChunkColumn> accessChunk(int x, int z, Object accessor) {
 		return getAccessManager().unlockChunk(x, z, accessor);
+	}
+
+	default Optional<UnlockedWorldAccess> accessAll(Object accessor) {
+		return getAccessManager().unlockWorld(accessor);
 	}
 
 }
