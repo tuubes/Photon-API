@@ -26,7 +26,7 @@ import org.mcphoton.world.World;
  *
  * @author TheElectronWill
  */
-public final class IntVector {
+public final class IntVector implements Cloneable {
 
 	int x, y, z;
 
@@ -44,6 +44,11 @@ public final class IntVector {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+
+	@Override
+	public IntVector clone() {
+		return new IntVector(x, y, z);
 	}
 
 	public int getX() {
@@ -133,6 +138,24 @@ public final class IntVector {
 	}
 
 	/**
+	 * Calculates the squared distance between the point corresponding to this vector and the point
+	 * corresponding to the vector v. This is faster than manually multiplying the distance by itself.
+	 */
+	public double squaredDistance(IntVector v) {
+		double deltaX = v.x - x, deltaY = v.y - y, deltaZ = v.z - z;
+		return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+	}
+
+	/**
+	 * Calculates the squared distance between the point corresponding to this vector and the point
+	 * corresponding to the vector v.
+	 */
+	public double distance(IntVector v) {
+		double deltaX = v.x - x, deltaY = v.y - y, deltaZ = v.z - z;
+		return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+	}
+
+	/**
 	 * Calculates the squared norm of this vector. This is faster than manually
 	 * multiplying the norm by itself.
 	 */
@@ -145,6 +168,13 @@ public final class IntVector {
 	 */
 	public double norm() {
 		return Math.sqrt(x * x + y * y + z * z);
+	}
+
+	/**
+	 * Calculates the angle (in radians) between this vector and the vector v.
+	 */
+	public double angleBetween(IntVector v) {
+		return Math.acos(this.dotProduct(v) / (this.norm() * v.norm()));
 	}
 
 	/**
@@ -202,9 +232,10 @@ public final class IntVector {
 	}
 
 	/**
-	 * Creates a new DoubleVector with the coordinates of this vector.
+	 * Creates a new DoubleVector with the coordinates of this vector. Each coordinate is converted to a
+	 * double.
 	 */
-	public DoubleVector toIntVector() {
+	public DoubleVector toDoubleVector() {
 		return new DoubleVector(x, y, z);
 	}
 
@@ -230,8 +261,8 @@ public final class IntVector {
 		if (obj instanceof IntVector) {
 			IntVector v = (IntVector) obj;
 			return v.x == x && v.y == y && v.z == z;
-		} else if (obj instanceof IntVector) {
-			IntVector v = (IntVector) obj;
+		} else if (obj instanceof DoubleVector) {
+			DoubleVector v = (DoubleVector) obj;
 			return v.x == x && v.y == y && v.z == z;
 		}
 		return false;

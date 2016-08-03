@@ -18,6 +18,7 @@
  */
 package org.mcphoton.world;
 
+import java.util.Objects;
 import org.mcphoton.utils.DoubleVector;
 import org.mcphoton.utils.IntVector;
 
@@ -28,7 +29,7 @@ import org.mcphoton.utils.IntVector;
  *
  * @author TheElectronWill
  */
-public final class Location {
+public final class Location implements Cloneable {
 
 	private final double x, y, z;
 	private final World w;
@@ -38,6 +39,39 @@ public final class Location {
 		this.y = y;
 		this.z = z;
 		this.w = w;
+	}
+
+	/**
+	 * Creates a new location that is the result of adding the vector v to this location.
+	 */
+	public Location add(DoubleVector v) {
+		return new Location(x + v.getX(), y + v.getY(), z + v.getZ(), w);
+	}
+
+	/**
+	 * Creates a new location that is the result of adding the vector v to this location.
+	 */
+	public Location add(IntVector v) {
+		return new Location(x + v.getX(), y + v.getY(), z + v.getZ(), w);
+	}
+
+	/**
+	 * Creates a new location that is the result of adding the location l to this location.
+	 */
+	public Location add(Location l) {
+		return new Location(x + l.x, y + l.y, z + l.z, w);
+	}
+
+	/**
+	 * Creates a new location that is the result of adding the specified numbers to this location.
+	 */
+	public Location add(double dx, double dy, double dz) {
+		return new Location(x + dx, y + dy, z + dz, w);
+	}
+
+	@Override
+	public Location clone() {
+		return new Location(x, y, z, w);
 	}
 
 	public World getWorld() {
@@ -125,5 +159,43 @@ public final class Location {
 	 */
 	public DoubleVector toDoubleVector() {
 		return new DoubleVector(x, y, z);
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 89 * hash + (int) (Double.doubleToLongBits(this.x) ^ (Double.doubleToLongBits(this.x) >>> 32));
+		hash = 89 * hash + (int) (Double.doubleToLongBits(this.y) ^ (Double.doubleToLongBits(this.y) >>> 32));
+		hash = 89 * hash + (int) (Double.doubleToLongBits(this.z) ^ (Double.doubleToLongBits(this.z) >>> 32));
+		hash = 89 * hash + Objects.hashCode(this.w);
+		return hash;
+	}
+
+	@Override
+	public String toString() {
+		return "Location{" + "x=" + x + ", y=" + y + ", z=" + z + ", world=" + w + '}';
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj instanceof Location) {
+			Location l = (Location) obj;
+			return w == l.w && x == l.x && y == l.y && z == l.z;
+		}
+		return false;
+	}
+
+	/**
+	 * Creates a location in the middle of the two specified locations.
+	 */
+	public static Location middle(Location l1, Location l2) {
+		if (l1.w != l2.w) {
+			throw new IllegalArgumentException("The two locations must be in the same world.");
+		}
+		double x = (l1.x + l2.x) / 2d, y = (l1.y + l2.y) / 2d, z = (l1.z + l2.z) / 2d;
+		return new Location(x, y, z, l1.w);
 	}
 }

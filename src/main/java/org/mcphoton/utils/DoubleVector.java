@@ -26,7 +26,7 @@ import org.mcphoton.world.World;
  *
  * @author TheElectronWill
  */
-public final class DoubleVector {
+public final class DoubleVector implements Cloneable {
 
 	double x, y, z;
 
@@ -44,6 +44,11 @@ public final class DoubleVector {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+
+	@Override
+	public DoubleVector clone() {
+		return new DoubleVector(x, y, z);
 	}
 
 	public double getX() {
@@ -131,6 +136,24 @@ public final class DoubleVector {
 	}
 
 	/**
+	 * Calculates the squared distance between the point corresponding to this vector and the point
+	 * corresponding to the vector v. This is faster than manually multiplying the distance by itself.
+	 */
+	public double squaredDistance(DoubleVector v) {
+		double deltaX = v.x - x, deltaY = v.y - y, deltaZ = v.z - z;
+		return deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+	}
+
+	/**
+	 * Calculates the squared distance between the point corresponding to this vector and the point
+	 * corresponding to the vector v.
+	 */
+	public double distance(DoubleVector v) {
+		double deltaX = v.x - x, deltaY = v.y - y, deltaZ = v.z - z;
+		return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+	}
+
+	/**
 	 * Calculates the squared norm of this vector. This is faster than manually
 	 * multiplying the norm by itself.
 	 */
@@ -143,6 +166,13 @@ public final class DoubleVector {
 	 */
 	public double norm() {
 		return Math.sqrt(x * x + y * y + z * z);
+	}
+
+	/**
+	 * Calculates the angle (in radians)between this vector and the vector v.
+	 */
+	public double angleBetween(DoubleVector v) {
+		return Math.acos(this.dotProduct(v) / (this.norm() * v.norm()));
 	}
 
 	/**
@@ -247,6 +277,30 @@ public final class DoubleVector {
 	 */
 	public boolean isNearlyEqualTo(IntVector v, double tolerance) {
 		return Math.abs(v.x - x) < tolerance && Math.abs(v.y - y) < tolerance && Math.abs(v.z - z) < tolerance;
+	}
+
+	/**
+	 * Creates a new DoubleVector that represents the middle of the two specified vectors.
+	 */
+	public static DoubleVector middle(DoubleVector v1, DoubleVector v2) {
+		double x = (v1.x + v2.x) / 2d, y = (v1.y + v2.y) / 2d, z = (v1.z + v2.z) / 2d;
+		return new DoubleVector(x, y, z);
+	}
+
+	/**
+	 * Creates a new DoubleVector that represents the middle of the two specified vectors.
+	 */
+	public static DoubleVector middle(DoubleVector v1, IntVector v2) {
+		double x = (v1.x + v2.x) / 2d, y = (v1.y + v2.y) / 2d, z = (v1.z + v2.z) / 2d;
+		return new DoubleVector(x, y, z);
+	}
+
+	/**
+	 * Creates a new DoubleVector that represents the middle of the two specified vectors.
+	 */
+	public static DoubleVector middle(IntVector v1, IntVector v2) {
+		double x = (v1.x + v2.x) / 2d, y = (v1.y + v2.y) / 2d, z = (v1.z + v2.z) / 2d;
+		return new DoubleVector(x, y, z);
 	}
 
 }
