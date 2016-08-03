@@ -18,6 +18,7 @@
  */
 package org.mcphoton.world;
 
+import org.mcphoton.world.areas.Area;
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,8 +27,8 @@ import org.mcphoton.entity.living.Player;
 import org.mcphoton.event.WorldEventsManager;
 import org.mcphoton.plugin.WorldPluginsManager;
 import org.mcphoton.world.protection.UnlockedAreaAccess;
-import org.mcphoton.world.protection.WorldAccess;
 import org.mcphoton.world.protection.WorldAccessManager;
+import org.mcphoton.world.protection.CheckedWorldAccess;
 
 /**
  * A game world.
@@ -70,7 +71,7 @@ public interface World {
 
 	void setAccessManager(WorldAccessManager manager);
 
-	default WorldAccess access() {
+	default CheckedWorldAccess access() {
 		return getAccessManager().getAccess();
 	}
 

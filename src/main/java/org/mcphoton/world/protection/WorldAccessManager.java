@@ -19,18 +19,42 @@
 package org.mcphoton.world.protection;
 
 import java.util.Optional;
-import org.mcphoton.world.Area;
 import org.mcphoton.world.ChunkColumn;
 import org.mcphoton.world.World;
+import org.mcphoton.world.areas.Area;
 
+/**
+ * Manages accesses.
+ *
+ * @author TheElectronWill
+ */
 public interface WorldAccessManager {
 
 	World getWorld();
 
-	WorldAccess getAccess();
+	/**
+	 * Gets a CheckedWorldAccess to the world. The WorldAccessManager's implementation my return the same
+	 * CheckedWorldAccess for different invocations of this method.
+	 */
+	CheckedWorldAccess getAccess();
 
+	/**
+	 * Tries to unlock an area.
+	 *
+	 * @param area the area to unlock.
+	 * @param accessor the object that would like to unlock the area.
+	 * @return an UnlockedAreaAccess, which does not check every modification.
+	 */
 	Optional<UnlockedAreaAccess> unlockArea(Area area, Object accessor);
 
+	/**
+	 * Tries to unlock a chunk column.
+	 *
+	 * @param x the x chunk coordinate
+	 * @param z the z chunk coordinate
+	 * @param accessor the object that would like to unlock the area.
+	 * @return an ChunkColumn, which does not check every modification.
+	 */
 	Optional<ChunkColumn> unlockChunk(int x, int z, Object accessor);
 
 }
