@@ -20,7 +20,6 @@ package org.mcphoton.entity;
 
 import java.util.Optional;
 import java.util.UUID;
-
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.Location;
 
@@ -35,105 +34,98 @@ public interface Entity {
 
 	/**
 	 * Gets the id of the entity.
-	 * 
-	 * @return Entity Id
 	 */
 	int getEntityId();
-	
+
 	/**
 	 * Gets the unique id of the entity.
-	 * 
-	 * @return Entity unique Id
 	 */
-	UUID getEntityUniqueId();
+	UUID getUniqueId();
 
-	void initializeEntityId(int id);
+	/**
+	 * Initializes the entity id. This method may only be called once.
+	 */
+	void initEntityId(int id);
 
 	/**
 	 * Gets the type of the entity.
-	 * 
-	 * @return EntityType of the entity
 	 */
 	EntityType getType();
 
 	/**
 	 * Gets the custom name of the entity.
-	 * 
-	 * @return custom name of the entity
 	 */
 	String getCustomName();
 
 	/**
 	 * Sets the custom name of the entity.
-	 * 
-	 * @param customName the customName
 	 */
 	void setCustomName(String customName);
-	
+
 	/**
 	 * Sets if the custom name of the entity is visible.
-	 * 
+	 *
 	 * @param visibility true if custom name must be shown.
 	 */
 	void setCustomNameVisible(boolean visibility);
-	
+
 	/**
 	 * Return if the custom name of the entity is visible.
-	 * 
+	 *
 	 * @return true if custom name is visible
 	 */
 	boolean isCustomNameVisible();
 
 	/**
 	 * Gets the location of the entity.
-	 * 
+	 *
 	 * @return Location of the entity
 	 */
 	Location getLocation();
-	
+
 	/**
 	 * Return if the entity is on ground.
-	 * 
+	 *
 	 * @return true if the entity is on ground
 	 */
 	boolean isOnGround();
-	
+
 	/**
 	 * Teleport the entity to the location
-	 * 
+	 *
 	 * @param location location where the entity must be teleport.
 	 * @return true if teleport success
 	 */
 	boolean teleport(Location location);
-	
+
 	/**
 	 * Return the ticks before the entity stops being on fire.
 	 */
 	int getFireTicks();
-	
+
 	/**
 	 * Return the entity's maximum fire ticks.
 	 */
 	int getMaxFireTicks();
-	
+
 	/**
 	 * Sets the ticks before the entity stops being on fire.
-	 * 
+	 *
 	 * @param ticks ticks before the entity stops being on fire
 	 */
 	void setFireTicks(int ticks);
-	
+
 	/**
 	 * Gets the primary passenger of a vehicle. Vehicle which can have multiple passengers,
 	 * it return only the primary passenger.
 	 */
 	Optional<Entity> getPassenger();
-	
+
 	/**
 	 * Return if the entity has a passenger.
 	 */
 	boolean hasPassenger();
-	
+
 	/**
 	 * Set the passenger of the entity.
 	 *
@@ -144,70 +136,70 @@ public interface Entity {
 
 	/**
 	 * Eject the passenger of this entity.
-	 * 
+	 *
 	 * @return true if there was a passenger
 	 */
 	boolean ejectPassenger();
-	
+
 	/**
 	 * Return if the entity is in a vehicle.
 	 */
 	boolean isInVehicle();
-	
+
 	/**
 	 * Eject the entity of his vehicle.
-	 * 
+	 *
 	 * @return true if the entity was ejected.
 	 */
 	boolean leaveVehicle();
-	
+
 	/**
 	 * Return the vehicle of the entity.
 	 */
 	Optional<Entity> getVehicle();
-	
+
 	/**
 	 * Sets if gravity is applied on the entity.
-	 * 
+	 *
 	 * @param gravity gravity applied
 	 */
 	void setGravity(boolean gravity);
-	
+
 	/**
 	 * Return if gravity is applied on the entity.
-	 * 
+	 *
 	 * @return true if gravity is applied
 	 */
 	boolean hasGravity();
-	
+
 	/**
 	 * Sets if the entity glow. (Color belong on Team Color).
-	 * 
+	 *
 	 * @param glow entity must glow
 	 */
 	void setGlowing(boolean glow);
-	
+
 	/**
 	 * Return if the entity glow.
-	 * 
+	 *
 	 * @return entity is glowing
 	 */
 	boolean isGlowing();
-	
+
 	/**
 	 * Sets if the entity is silent.
-	 * 
+	 *
 	 * @param silent if entity is silent
 	 */
 	void setSilent(boolean silent);
-	
+
 	/**
 	 * Return if the entity is silent.
-	 * 
+	 *
 	 * @return if entity is silent
 	 */
 	boolean isSilent();
-	
+
 	/**
 	 * Writes this entity to a ProtocolOutputStream.
 	 */
