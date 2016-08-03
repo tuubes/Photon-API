@@ -18,6 +18,11 @@
  */
 package org.mcphoton.item;
 
+/**
+ * Handles items' registrations.
+ *
+ * @author TheElectronWill
+ */
 public interface ItemRegistry {
 
 	void register(ItemType type);

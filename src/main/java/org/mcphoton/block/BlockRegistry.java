@@ -18,6 +18,11 @@
  */
 package org.mcphoton.block;
 
+/**
+ * Handles block types' registrations.
+ *
+ * @author TheElectronWill
+ */
 public interface BlockRegistry {
 
 	void register(BlockType type);

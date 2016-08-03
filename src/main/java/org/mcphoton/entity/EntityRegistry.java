@@ -18,6 +18,11 @@
  */
 package org.mcphoton.entity;
 
+/**
+ * Handles entities' registrations.
+ *
+ * @author TheElectronWill
+ */
 public interface EntityRegistry {
 
 	void register(EntityType type);

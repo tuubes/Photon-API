@@ -18,6 +18,11 @@
  */
 package org.mcphoton.world;
 
+/**
+ * Handles biomes' registrations.
+ *
+ * @author TheElectronWill
+ */
 public interface BiomeRegistry {
 
 	void register(BiomeType type);
