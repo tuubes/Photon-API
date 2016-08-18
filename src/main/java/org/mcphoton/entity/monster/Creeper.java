@@ -18,7 +18,7 @@
  */
 package org.mcphoton.entity.monster;
 
-import org.mcphoton.entity.Explosive;
+import org.mcphoton.entity.misc.Explosive;
 
 public interface Creeper extends Monster, Explosive {
 

@@ -16,41 +16,52 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.entity.misc;
 
-import java.util.Optional;
-import org.mcphoton.world.Location;
+import org.mcphoton.entity.Entity;
+import org.mcphoton.entity.projectile.Shooter;
 
 /**
- * Crystal in end that heals the EnderDragon.
- *
+ * A cloud created by a lingering Potion.
+ * 
  * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-public interface EnderCrystal extends Entity {
 
+public interface AreaEffectCloud extends Entity {
+	
 	/**
-	 * Checks if the crystal is showing the bedrock slate underneath it.
-	 *
-	 * @return true if it's showing its slate, false otherwise.
+	 * Gets the cloud's radius.
 	 */
-	boolean isShowingSlate();
-
+	float getRadius();
+	
 	/**
-	 * Sets wether the ender crystal shows the bedrock slate underneath it.
-	 *
-	 * @param show true to show the slate, false to hide it.
+	 * Sets the cloud's radius.
 	 */
-	void setShowingSlate(boolean show);
-
+	void setRadius(float radius);
+	
 	/**
-	 * Gets the location that the crystal is pointing its beam to.
+	 * Gets the duration (in ticks) which the cloud will exist for.
 	 */
-	Optional<Location> getBeamTarget();
-
+	int getDuration();
+	
 	/**
-	 * Sets the location that the crystal is pointing its beam to.
+	 * Sets the duration (in ticks) which the cloud will exist for.
 	 */
-	void setBeamTarget(Location location);
-
+	void setDuration(int duration);
+	
+	/**
+	 * Gets the cloud's source.
+	 * 	
+	 * @return the shooter of the lingering Potion.
+	 */
+	Shooter getSource();
+	
+	/**
+	 * Sets the cloud's source.
+	 * 	
+	 * @param source the shooter of the lingering Potion.
+	 */
+	void setSource(Shooter source);
+	
 }

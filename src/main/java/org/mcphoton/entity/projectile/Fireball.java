@@ -18,7 +18,7 @@
  */
 package org.mcphoton.entity.projectile;
 
-import org.mcphoton.entity.Explosive;
+import org.mcphoton.entity.misc.Explosive;
 import org.mcphoton.utils.DoubleVector;
 
 /**

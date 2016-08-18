@@ -16,38 +16,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.entity.misc;
 
-import java.util.Optional;
-import org.mcphoton.item.ItemStack;
-import org.mcphoton.utils.ClockwiseRotation;
+import org.mcphoton.block.BlockType;
+import org.mcphoton.entity.Entity;
 
 /**
- * An item frame hung on a block.
+ * A falling block
  * 
  * @author DJmaxZPLAY
- * @author TheElectronWIll
+ * @author TheElectronWill
  */
-public interface ItemFrame extends Entity {
+public interface FallingBlock extends Entity {
 
 	/**
-	 * Gets the item that is in this frame.
+	 * Gets the block's type.
 	 */
-	Optional<ItemStack> getItem();
-	
-	/**
-	 * Sets the frame's item.
-	 */
-	void setItem(ItemStack item);
-	
-	/**
-	 * Gets the frame's rotation.
-	 */
-	ClockwiseRotation getRotation();
-	
-	/**
-	 * Set the frame's rotation.
-	 */
-	void setRotation(ClockwiseRotation rotation);
+	BlockType getBlockType();
 	
 }

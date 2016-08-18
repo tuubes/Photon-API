@@ -16,13 +16,42 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.entity.misc;
+
+import java.util.Optional;
+import org.mcphoton.entity.Entity;
+import org.mcphoton.world.Location;
 
 /**
- * A leash's knot.
+ * Crystal in end that heals the EnderDragon.
  *
+ * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-public interface LeashKnot extends Entity, Rotateable {
+public interface EnderCrystal extends Entity {
+
+	/**
+	 * Checks if the crystal is showing the bedrock slate underneath it.
+	 *
+	 * @return true if it's showing its slate, false otherwise.
+	 */
+	boolean isShowingSlate();
+
+	/**
+	 * Sets wether the ender crystal shows the bedrock slate underneath it.
+	 *
+	 * @param show true to show the slate, false to hide it.
+	 */
+	void setShowingSlate(boolean show);
+
+	/**
+	 * Gets the location that the crystal is pointing its beam to.
+	 */
+	Optional<Location> getBeamTarget();
+
+	/**
+	 * Sets the location that the crystal is pointing its beam to.
+	 */
+	void setBeamTarget(Location location);
 
 }

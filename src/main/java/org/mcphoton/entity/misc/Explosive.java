@@ -16,35 +16,38 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
-
-import org.mcphoton.block.BlockFace;
+package org.mcphoton.entity.misc;
 
 /**
- * A painting hung on a wall.
+ * The interface for the explosive entity.
  *
+ * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-public interface Painting extends Entity {
+public interface Explosive {
 
 	/**
-	 * Gets the painting's title.
+	 * Gets the explosion's radius.
 	 */
-	String getTitle();
+	float getRadius();
 
 	/**
-	 * Sets the painting's title. You cannot write the title you want: there are only some values that are recognized by the game client.
+	 * Sets the explosion's radius.
 	 */
-	void setTitle(String title);
+	void setRadius(float radius);
 
 	/**
-	 * Gets the direction the painting faces. Possible values are north, south, east, west.
+	 * Checks if the explosion creates fire.
+	 *
+	 * @return true if it will create fire, false if it won't.
 	 */
-	BlockFace getDirection();
+	boolean isIncendiary();
 
 	/**
-	 * Sets the direction the painting faces. Possible values are north, south, east, west.
+	 * Sets wether the explosion creates fire or not.
+	 *
+	 * @param incendiary true to make the explosion create fire.
 	 */
-	void setDirection(BlockFace dir);
+	void setIncendiary(boolean incendiary);
 
 }

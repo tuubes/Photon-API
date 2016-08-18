@@ -16,26 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.entity.misc;
 
-import org.mcphoton.item.ItemStack;
+import org.mcphoton.entity.Entity;
+import org.mcphoton.entity.Rotateable;
 
 /**
- * A dropped ItemStack.
+ * A leash's knot.
  *
- * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-public interface Item extends Entity, Rotateable {
-
-	/**
-	 * Gets the corresponding ItemStack.
-	 */
-	ItemStack getItemStack();
-
-	/**
-	 * Sets the corresponding ItemStack.
-	 */
-	void setItemStack(ItemStack itemStack);
+public interface LeashKnot extends Entity, Rotateable {
 
 }

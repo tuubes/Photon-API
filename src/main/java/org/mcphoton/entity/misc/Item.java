@@ -16,51 +16,28 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity;
+package org.mcphoton.entity.misc;
 
-import org.mcphoton.entity.projectile.Shooter;
+import org.mcphoton.entity.Entity;
+import org.mcphoton.entity.Rotateable;
+import org.mcphoton.item.ItemStack;
 
 /**
- * A cloud created by a lingering Potion.
- * 
+ * A dropped ItemStack.
+ *
  * @author DJmaxZPLAY
  * @author TheElectronWill
  */
+public interface Item extends Entity, Rotateable {
 
-public interface AreaEffectCloud extends Entity {
-	
 	/**
-	 * Gets the cloud's radius.
+	 * Gets the corresponding ItemStack.
 	 */
-	float getRadius();
-	
+	ItemStack getItemStack();
+
 	/**
-	 * Sets the cloud's radius.
+	 * Sets the corresponding ItemStack.
 	 */
-	void setRadius(float radius);
-	
-	/**
-	 * Gets the duration (in ticks) which the cloud will exist for.
-	 */
-	int getDuration();
-	
-	/**
-	 * Sets the duration (in ticks) which the cloud will exist for.
-	 */
-	void setDuration(int duration);
-	
-	/**
-	 * Gets the cloud's source.
-	 * 	
-	 * @return the shooter of the lingering Potion.
-	 */
-	Shooter getSource();
-	
-	/**
-	 * Sets the cloud's source.
-	 * 	
-	 * @param source the shooter of the lingering Potion.
-	 */
-	void setSource(Shooter source);
-	
+	void setItemStack(ItemStack itemStack);
+
 }
