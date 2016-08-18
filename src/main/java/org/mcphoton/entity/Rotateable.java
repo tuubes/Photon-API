@@ -18,34 +18,32 @@
  */
 package org.mcphoton.entity;
 
+/**
+ * Something that can rotate.
+ *
+ * @see org.mcphoton.utils.EulerAngles
+ * @author TheElectronWill
+ */
 public interface Rotateable {
 
 	/**
-	 * Gets the pitch of the entity in radian.
-	 * 
-	 * @return pitch in radian
+	 * Gets the pitch in radians.
 	 */
-	int getPitch();
+	float getPitch();
 
 	/**
-	 * Sets the pitch of the entity in radian.
-	 * 
-	 * @param pitch in radian
+	 * Sets the pitch in radians.
 	 */
-	void setPitch(int pitch);
+	void setPitch(float pitch);
 
 	/**
-	 * Gets the yaw of the entity in radian.
-	 * 
-	 * @return yaw in radian
+	 * Gets the yaw in radians.
 	 */
-	int getYaw();
+	float getYaw();
 
 	/**
-	 * Sets the yaw of the entity in radian.
-	 * 
-	 * @param yaw in radian
+	 * Sets the yaw in radians.
 	 */
-	void setYaw(int yaw);
+	void setYaw(float yaw);
 
 }

@@ -22,37 +22,20 @@ import org.mcphoton.item.ItemStack;
 
 /**
  * A dropped ItemStack.
- * 
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface Item extends Entity {
+public interface Item extends Entity, Rotateable {
 
 	/**
-	 * Gets the ItemStack of the dropped item.
-	 * 
-	 * @return itemstack of the dropped item
+	 * Gets the corresponding ItemStack.
 	 */
 	ItemStack getItemStack();
-	
+
 	/**
-	 * Sets the ItemStack of the dropped item.
-	 * 
-	 * @param itemStack itemStack of the dropped item
+	 * Sets the corresponding ItemStack.
 	 */
 	void setItemStack(ItemStack itemStack);
-	
-	/**
-	 * Gets the delay before the dropped item can be picked up.
-	 * 
-	 * @return delay before the dropped item can be picked up
-	 */
-	int getPickupDelay();
-	
-	/**
-	 * Sets the delay before the dropped item can be picked up.
-	 * 
-	 * @param delay delay before the dropped item can be picked up
-	 */
-	void setPickupDelay(int delay);
-	
+
 }

@@ -24,7 +24,7 @@ import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.Location;
 
 /**
- * Base class for entites. Entities normally don't need to be thread-safe, because the photon's implementation
+ * Base interface for entites. Entities normally don't need to be thread-safe, because the photon's implementation
  * takes care of this.
  *
  * @author TheElectronWill

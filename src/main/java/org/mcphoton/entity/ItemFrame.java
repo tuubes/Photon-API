@@ -19,42 +19,35 @@
 package org.mcphoton.entity;
 
 import java.util.Optional;
-
 import org.mcphoton.item.ItemStack;
+import org.mcphoton.utils.ClockwiseRotation;
 
 /**
- * An ItemFrame hanging on a block.
+ * An item frame hung on a block.
  * 
  * @author DJmaxZPLAY
+ * @author TheElectronWIll
  */
-public interface ItemFrame extends Entity, Hangeable {
+public interface ItemFrame extends Entity {
 
 	/**
-	 * Get the item in this ItemFrame.
-	 * 
-	 * @return the item in this ItemFrame.
+	 * Gets the item that is in this frame.
 	 */
 	Optional<ItemStack> getItem();
 	
 	/**
-	 * Set the item in this ItemFrame.
-	 * 
-	 * @param item the item to set in this ItemFrame.
+	 * Sets the frame's item.
 	 */
 	void setItem(ItemStack item);
 	
 	/**
-	 * Get the rotation (between 0 and 7) of this ItemFrame.
-	 * 
-	 * @return the rotation of this ItemFrame.
+	 * Gets the frame's rotation.
 	 */
-	int getRotation();
+	ClockwiseRotation getRotation();
 	
 	/**
-	 * Set the rotation (between 0 and 7) of this ItemFrame.
-	 * 
-	 * @param rotation the rotation to set (between 0 and 7).
+	 * Set the frame's rotation.
 	 */
-	void setRotation(int rotation);
+	void setRotation(ClockwiseRotation rotation);
 	
 }

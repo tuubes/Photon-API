@@ -18,77 +18,121 @@
  */
 package org.mcphoton.block;
 
+import org.mcphoton.utils.IntVector;
+import org.mcphoton.world.Location;
+
+/**
+ * A block face.
+ *
+ * @author TheElectronWill
+ */
 public enum BlockFace {
-	SELF(0, 0, 0),
-	NORTH(0, 0, -1),
-	SOUTH(0, 0, 1),
-	EAST(1, 0, 0),
-	WEST(-1, 0, 0),
-	UP(0, 1, 0),
-	DOWN(0, -1, 0),
-	NORTH_EAST(1, 0, -1),
-	NORTH_WEST(-1, 0, -1),
-	SOUTH_EAST(1, 0, 1),
-	SOUTH_WEST(-1, 0, 1);
-	
-	private int modX;
-	private int modY;
-	private int modZ;
-	
-	private BlockFace(int modX, int modY, int modZ){
+
+	/**
+	 * Special BlockFace with modX = modY = modZ = 0.
+	 */
+	SELF(0, 0, 0) {
+		public BlockFace getOppositeFace() {
+			return SELF;
+		}
+	},
+	NORTH(0, 0, -1) {
+		public BlockFace getOppositeFace() {
+			return SOUTH;
+		}
+	},
+	SOUTH(0, 0, 1) {
+		public BlockFace getOppositeFace() {
+			return NORTH;
+		}
+	},
+	EAST(1, 0, 0) {
+		public BlockFace getOppositeFace() {
+			return WEST;
+		}
+	},
+	WEST(-1, 0, 0) {
+		public BlockFace getOppositeFace() {
+			return EAST;
+		}
+	},
+	UP(0, 1, 0) {
+		public BlockFace getOppositeFace() {
+			return DOWN;
+		}
+	},
+	DOWN(0, -1, 0) {
+		public BlockFace getOppositeFace() {
+			return UP;
+		}
+	},
+	NORTH_EAST(1, 0, -1) {
+		public BlockFace getOppositeFace() {
+			return SOUTH_WEST;
+		}
+	},
+	NORTH_WEST(-1, 0, -1) {
+		public BlockFace getOppositeFace() {
+			return SOUTH_EAST;
+		}
+	},
+	SOUTH_EAST(1, 0, 1) {
+		public BlockFace getOppositeFace() {
+			return NORTH_WEST;
+		}
+	},
+	SOUTH_WEST(-1, 0, 1) {
+		public BlockFace getOppositeFace() {
+			return NORTH_EAST;
+		}
+	};
+
+	private final int modX, modY, modZ;
+
+	private BlockFace(int modX, int modY, int modZ) {
 		this.modX = modX;
 		this.modY = modY;
 		this.modZ = modZ;
 	}
-	
+
+	/**
+	 * Gets the modification to apply on the x coordinate to get the corresponding block.
+	 */
 	public int getModX() {
 		return modX;
 	}
-	
+
+	/**
+	 * Gets the modification to apply on the y coordinate to get the corresponding block.
+	 */
 	public int getModY() {
 		return modY;
 	}
-	
+
+	/**
+	 * Gets the modification to apply on the z coordinate to get the corresponding block.
+	 */
 	public int getModZ() {
 		return modZ;
 	}
-	
-	public BlockFace getOppositeFace() {
-		switch (this) {
-			case SELF:
-				return BlockFace.SELF;
-			
-			case NORTH:
-				return BlockFace.SOUTH;
-			
-			case SOUTH:
-				return BlockFace.NORTH;
-			
-			case EAST:
-				return BlockFace.WEST;
-			
-			case WEST:
-				return BlockFace.EAST;
-			
-			case UP:
-				return BlockFace.DOWN;
-			
-			case DOWN:
-				return BlockFace.UP;
-			
-			case NORTH_EAST:
-				return BlockFace.SOUTH_WEST;
-			
-			case NORTH_WEST:
-				return BlockFace.SOUTH_EAST;
-			
-			case SOUTH_EAST:
-				return BlockFace.NORTH_WEST;
-			
-			case SOUTH_WEST:
-				return BlockFace.NORTH_EAST;
-		}
-		return BlockFace.SELF;		
+
+	/**
+	 * Gets the opposite BlockFace.
+	 */
+	public abstract BlockFace getOppositeFace();
+
+	/**
+	 * Creates a new location by adding modX, modY and modZ to the specified location.
+	 */
+	public Location getModifiedLocation(Location loc) {
+		return loc.add(modX, modY, modZ);
 	}
-	
+
+	/**
+	 * Creates a new IntVector (modX, modY, modZ).
+	 */
+	public IntVector toIntVector() {
+		return new IntVector(modX, modY, modZ);
+	}
+
 }

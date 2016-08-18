@@ -18,34 +18,33 @@
  */
 package org.mcphoton.entity;
 
+import org.mcphoton.block.BlockFace;
+
 /**
- * A painting hanged on a wall.
- * 
- * @author DJmaxZPLAY
+ * A painting hung on a wall.
+ *
+ * @author TheElectronWill
  */
-public interface Painting extends Entity, Hangeable {
+public interface Painting extends Entity {
 
 	/**
-	 * Set the art to show on this painting.
-	 * 
-	 * @param art The art to show.
-	 * @return False if the art won't fit.
+	 * Gets the painting's title.
 	 */
-	boolean setArt(ArtType art);
+	String getTitle();
+
 	/**
-	 * Set the art to show on this painting.
-	 * 
-	 * @param art The art to show.
-	 * @param force Force the art to fit on.
-	 * @return False if the art won't fit.
+	 * Sets the painting's title. You cannot write the title you want: there are only some values that are recognized by the game client.
 	 */
-	boolean setArt(ArtType art, boolean force);
-	
+	void setTitle(String title);
+
 	/**
-	 * Get the art showed on this painting.
-	 * 
-	 * @return The art.
+	 * Gets the direction the painting faces. Possible values are north, south, east, west.
 	 */
-	ArtType getArt(ArtType art);	
-	
+	BlockFace getDirection();
+
+	/**
+	 * Sets the direction the painting faces. Possible values are north, south, east, west.
+	 */
+	void setDirection(BlockFace dir);
+
 }

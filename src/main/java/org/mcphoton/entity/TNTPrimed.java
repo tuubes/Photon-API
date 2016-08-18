@@ -19,14 +19,14 @@
 package org.mcphoton.entity;
 
 /**
- * A primed TNT.
- * 
+ * A primed (activated) TNT.
+ *
  * @author DJmaxZPLAY
  */
 public interface TNTPrimed extends Entity, Explosive {
 
 	int getFuseTicks();
-	
+
 	void setFuseTicks(int ticks);
-	
+
 }

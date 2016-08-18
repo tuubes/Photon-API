@@ -20,23 +20,20 @@ package org.mcphoton.entity;
 
 /**
  * An Experience Orb.
- * 
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public interface ExperienceOrb extends Entity {
 
 	/**
-	 * Gets how much experience contain this orb.
-	 * 
-	 * @return experience amount
+	 * Gets the amount of experience contained in this orb (maximum 32767).
 	 */
 	int getExperience();
-	
+
 	/**
-	 * Sets how much experience contain this orb.
-	 * 
-	 * @param experience experience amount
+	 * Sets the amount of experience contained in this orb (maximum 32767).
 	 */
 	void setExperience(int experience);
-	
+
 }

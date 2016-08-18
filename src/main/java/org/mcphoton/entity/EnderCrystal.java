@@ -19,42 +19,38 @@
 package org.mcphoton.entity;
 
 import java.util.Optional;
-
 import org.mcphoton.world.Location;
 
 /**
  * Crystal in end that heals the EnderDragon.
- * 
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface EnderCrystal extends Entity{
+public interface EnderCrystal extends Entity {
 
 	/**
-	 * Return true if the ender crystal show his bedrock slate.
-	 * 
-	 * @return true if bedrock slate is showed
+	 * Checks if the crystal is showing the bedrock slate underneath it.
+	 *
+	 * @return true if it's showing its slate, false otherwise.
 	 */
 	boolean isShowingSlate();
-	
+
 	/**
-	 * Sets if the ender crystal show his bedrock slate.
-	 * 
-	 * @param show show the bedrock slate
+	 * Sets wether the ender crystal shows the bedrock slate underneath it.
+	 *
+	 * @param show true to show the slate, false to hide it.
 	 */
 	void setShowingSlate(boolean show);
-	
+
 	/**
-	 * Gets the location that the ender crystal is pointing his beam to.
-	 * 
-	 * @return the location that the beam of the ender crystal is pointed 
+	 * Gets the location that the crystal is pointing its beam to.
 	 */
 	Optional<Location> getBeamTarget();
-	
+
 	/**
-	 * Sets the location that the ender crystal is pointing his beam to.
-	 * 
-	 * @param location the location that the beam of the ender crystal must point 
+	 * Sets the location that the crystal is pointing its beam to.
 	 */
-	void setBeamTarget(Optional<Location> location);
-	
+	void setBeamTarget(Location location);
+
 }

@@ -18,8 +18,11 @@
  */
 package org.mcphoton.entity;
 
-import org.mcphoton.utils.AbstractType;
-
-public abstract class ArtType extends AbstractType {
+/**
+ * A leash's knot.
+ *
+ * @author TheElectronWill
+ */
+public interface LeashKnot extends Entity, Rotateable {
 
 }
