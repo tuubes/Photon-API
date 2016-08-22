@@ -16,16 +16,13 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.monster;
+package org.mcphoton.entity.living.monster;
 
-/**
- * 
- * @author DJmaxZPLAY
- */
-public interface Blaze extends Monster {
+public interface Skeleton extends Monster {
+
+	//Type (Normal = 0, Wither = 1, Stray = 2)
+	int getSkeletonType();
 	
-	boolean isOnFire();
-	
-	void setOnFire(boolean onFire);
-	
+	//Type (Normal = 0, Wither = 1, Stray = 2)
+	void setSkeletonType();
 }

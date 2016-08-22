@@ -16,20 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.monster;
+package org.mcphoton.entity.living.monster;
 
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface ZombiePigMan extends Monster {
-
-	boolean isAdult();
+public interface Blaze extends Monster {
 	
-	void setAdult(boolean adult);
+	boolean isOnFire();
 	
-	boolean isAngry();
-	
-	void setAngry(boolean angry);
+	void setOnFire(boolean onFire);
 	
 }

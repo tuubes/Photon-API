@@ -16,13 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.monster;
+package org.mcphoton.entity.living.monster;
 
-public interface Skeleton extends Monster {
-
-	//Type (Normal = 0, Wither = 1, Stray = 2)
-	int getSkeletonType();
-	
-	//Type (Normal = 0, Wither = 1, Stray = 2)
-	void setSkeletonType();
-}
+public interface CaveSpider extends Spider {}

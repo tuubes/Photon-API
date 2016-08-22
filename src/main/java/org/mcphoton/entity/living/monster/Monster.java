@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.monster;
+package org.mcphoton.entity.living.monster;
 
-public interface Endermite extends Monster {}
+import org.mcphoton.entity.living.Creature;
+
+public interface Monster extends Creature {}

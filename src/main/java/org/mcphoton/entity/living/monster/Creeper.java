@@ -16,16 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.monster;
+package org.mcphoton.entity.living.monster;
 
-/**
- * 
- * @author DJmaxZPLAY
- */
-public interface Guardian extends Monster {
+import org.mcphoton.entity.misc.Explosive;
 
-	boolean isElderly();
+public interface Creeper extends Monster, Explosive {
+
+	boolean isPowered();
 	
-	void setElderly(boolean elderly);
+	void setPowered(boolean powered);
 	
 }
