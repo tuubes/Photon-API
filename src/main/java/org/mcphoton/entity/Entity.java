@@ -20,12 +20,16 @@ package org.mcphoton.entity;
 
 import java.util.Optional;
 import java.util.UUID;
+import org.mcphoton.entity.vehicle.Vehicle;
+import org.mcphoton.network.Client;
 import org.mcphoton.network.ProtocolOutputStream;
+import org.mcphoton.utils.DoubleVector;
 import org.mcphoton.world.Location;
 
 /**
- * Base interface for entites. Entities normally don't need to be thread-safe, because the photon's implementation
- * takes care of this.
+ * Base interface for entites.
+ * <h2>About thread-safety</h2>
+ * Thanks to the new photon thread model, the entities generally don't need to be thread-safe.
  *
  * @author TheElectronWill
  * @author DJmaxZPLAY
@@ -33,12 +37,12 @@ import org.mcphoton.world.Location;
 public interface Entity {
 
 	/**
-	 * Gets the id of the entity.
+	 * @return the entity's id.
 	 */
 	int getEntityId();
 
 	/**
-	 * Gets the unique id of the entity.
+	 * @return the entity's UUID.
 	 */
 	UUID getUniqueId();
 
@@ -48,19 +52,24 @@ public interface Entity {
 	void initEntityId(int id);
 
 	/**
-	 * Gets the type of the entity.
+	 * @return the entity's type.
 	 */
 	EntityType getType();
 
 	/**
-	 * Gets the custom name of the entity.
+	 * @return the entity's custom name.
 	 */
 	String getCustomName();
 
 	/**
-	 * Sets the custom name of the entity.
+	 * Sets the entity's custom name.
 	 */
 	void setCustomName(String customName);
+
+	/**
+	 * @return true if custom name is visible
+	 */
+	boolean isCustomNameVisible();
 
 	/**
 	 * Sets if the custom name of the entity is visible.
@@ -70,139 +79,148 @@ public interface Entity {
 	void setCustomNameVisible(boolean visibility);
 
 	/**
-	 * Return if the custom name of the entity is visible.
-	 *
-	 * @return true if custom name is visible
+	 * @return the velocity (speed) per ticks of the entity.
 	 */
-	boolean isCustomNameVisible();
+	DoubleVector getVelocity();
 
 	/**
-	 * Gets the location of the entity.
+	 * Sets the entity's velocity. Please consider using {@link #getVelocity()} and modifying the DoubleVector
+	 * instead of using this method.
 	 *
-	 * @return Location of the entity
+	 * @param v the new entity velocity.
+	 */
+	void setVelocity(DoubleVector v);
+
+	/**
+	 * @return the current entity's location.
 	 */
 	Location getLocation();
 
 	/**
-	 * Return if the entity is on ground.
+	 * Teleports the entity.
 	 *
-	 * @return true if the entity is on ground
-	 */
-	boolean isOnGround();
-
-	/**
-	 * Teleport the entity to the location
-	 *
-	 * @param location location where the entity must be teleport.
-	 * @return true if teleport success
+	 * @param location the location to teleport the entity to.
+	 * @return true if the teleportation succeeds.
 	 */
 	boolean teleport(Location location);
 
 	/**
-	 * Return the ticks before the entity stops being on fire.
+	 * @return true if the entity is on the ground.
+	 */
+	boolean isOnGround();
+
+	/**
+	 * Sets if the entity is on the ground.
+	 *
+	 * @param onGround true if the entity on the ground.
+	 */
+	void setOnGround(boolean onGround);
+
+	/**
+	 * @return true if the entity is on fire.
+	 */
+	boolean isOnFire();
+
+	/**
+	 * Sets if the entity is on fire.
+	 *
+	 * @param onFire true if the entity is on fire. Setting this to false will also sets the "fire ticks"
+	 * counter to 0.
+	 */
+	void setOnFire(boolean onFire);
+
+	/**
+	 * @return the number of ticks this entity will stay in fire. 0 if it's not in fire.
 	 */
 	int getFireTicks();
 
 	/**
-	 * Return the entity's maximum fire ticks.
-	 */
-	int getMaxFireTicks();
-
-	/**
-	 * Sets the ticks before the entity stops being on fire.
+	 * Sets the number of ticks this entity will stay in fire.
 	 *
-	 * @param ticks ticks before the entity stops being on fire
+	 * @param ticks number of ticks this entity will stay in fire. 0 to stop the fire.
 	 */
 	void setFireTicks(int ticks);
 
 	/**
-	 * Gets the primary passenger of a vehicle. Vehicle which can have multiple passengers,
-	 * it return only the primary passenger.
+	 * @return true if this entity is crouched.
 	 */
-	Optional<Entity> getPassenger();
+	boolean isCrouched();
 
 	/**
-	 * Return if the entity has a passenger.
-	 */
-	boolean hasPassenger();
-
-	/**
-	 * Set the passenger of the entity.
+	 * Sets if the entity is crouched.
 	 *
-	 * @param passenger The new passenger.
-	 * @return false if it couldn't be done.
+	 * @param crouched true if it's crouched.
 	 */
-	boolean setPassenger(Entity passenger);
+	void setCrouched(boolean crouched);
 
 	/**
-	 * Eject the passenger of this entity.
+	 * @return true if the entity is sprinting.
+	 */
+	boolean isSprinting();
+
+	/**
+	 * Sets if the entity is sprinting.
 	 *
-	 * @return true if there was a passenger
+	 * @param sprinting true if it's sprinting.
 	 */
-	boolean ejectPassenger();
+	void setSprinting(boolean sprinting);
 
 	/**
-	 * Return if the entity is in a vehicle.
-	 */
-	boolean isInVehicle();
-
-	/**
-	 * Eject the entity of his vehicle.
-	 *
-	 * @return true if the entity was ejected.
-	 */
-	boolean leaveVehicle();
-
-	/**
-	 * Return the vehicle of the entity.
-	 */
-	Optional<Entity> getVehicle();
-
-	/**
-	 * Sets if gravity is applied on the entity.
-	 *
-	 * @param gravity gravity applied
-	 */
-	void setGravity(boolean gravity);
-
-	/**
-	 * Return if gravity is applied on the entity.
-	 *
-	 * @return true if gravity is applied
+	 * @return true if the entity is subject to gravity.
 	 */
 	boolean hasGravity();
 
 	/**
-	 * Sets if the entity glow. (Color belong on Team Color).
+	 * Sets if the entity is subject to gravity.
 	 *
-	 * @param glow entity must glow
+	 * @param gravity true if the gravity should be applied.
 	 */
-	void setGlowing(boolean glow);
+	void setGravity(boolean gravity);
 
 	/**
-	 * Return if the entity glow.
-	 *
-	 * @return entity is glowing
+	 * @return true if the entity is glowing.
 	 */
 	boolean isGlowing();
 
 	/**
+	 * Sets if the entity glows.
+	 *
+	 * @param glow true if the entity glows.
+	 */
+	void setGlowing(boolean glow);
+
+	/**
+	 * @return true if the entity is silent.
+	 */
+	boolean isSilent();
+
+	/**
 	 * Sets if the entity is silent.
 	 *
-	 * @param silent if entity is silent
+	 * @param silent true if the entity is silent.
 	 */
 	void setSilent(boolean silent);
 
 	/**
-	 * Return if the entity is silent.
-	 *
-	 * @return if entity is silent
+	 * @return the vehicle this entity is in.
 	 */
-	boolean isSilent();
+	Optional<Vehicle> getVehicle();
+
+	/**
+	 * Makes the entity leave its vehicle. If the entity isn't in a vehicle then this method has no effect.
+	 */
+	void leaveVehicle();
 
 	/**
 	 * Writes this entity to a ProtocolOutputStream.
 	 */
 	void writeTo(ProtocolOutputStream out);
+
+	/**
+	 * Updates the entity's metadata client side.
+	 *
+	 * @param clients the clients to send the update to.
+	 */
+	void sendMetadataUpdates(Client... clients);
 
 }
