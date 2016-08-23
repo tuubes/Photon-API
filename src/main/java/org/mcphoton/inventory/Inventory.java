@@ -19,6 +19,7 @@
 package org.mcphoton.inventory;
 
 import java.util.Collection;
+import java.util.Iterator;
 import org.mcphoton.item.ItemStack;
 
 /**
@@ -30,30 +31,37 @@ import org.mcphoton.item.ItemStack;
 public interface Inventory extends Iterable<ItemStack> {
 
 	/**
-	 * Gets the inventory's capacity.
+	 * @return the total number of slots in the inventory.
 	 */
-	int capacity();
+	int getSlotsNumber();
 
 	/**
-	 * Returns a Collection object that contains the ItemStacks or this inventory. Any modification to this
+	 * @return a Collection that contains the ItemStacks of the inventory. Any modification to this
 	 * collection is reflected in the inventory, and vice-versa.
 	 */
 	Collection<ItemStack> getContent();
 
-	/**
-	 * Gets the stack at the specified index, or null if there is none.
-	 */
-	ItemStack getStack(int index);
+	@Override
+	default Iterator<ItemStack> iterator() {
+		return getContent().iterator();
+	}
 
 	/**
-	 * Gets the title of the inventory.
+	 * @return the inventory's title.
 	 */
 	String getTitle();
 
 	/**
-	 * Gets the type of the inventory.
+	 * Sets the inventory's title.
+	 *
+	 * @param title the title to set.
 	 */
-	InventoryType getType();
+	void setTitle(String title);
+
+	/**
+	 * @return the stack at the specified index, or null if there is none.
+	 */
+	ItemStack getStack(int index);
 
 	/**
 	 * Sets the stack at the specified index.
@@ -63,29 +71,22 @@ public interface Inventory extends Iterable<ItemStack> {
 	ItemStack setStack(int index, ItemStack stack);
 
 	/**
-	 * Sets the title of the inventory.
-	 */
-	void setTitle(String title);
-
-	/**
 	 * Adds a stack to this inventory. The ItemStack is placed in the first available slot.
 	 *
-	 * @return true if the stack was added
+	 * @return true if the stack was added.
 	 */
 	boolean addStack(ItemStack stack);
 
 	/**
 	 * Removes the stack at the specified index.
 	 *
-	 * @return the removed stack
+	 * @return the removed stack.
 	 */
 	ItemStack removeStack(int index);
 
 	/**
-	 * Gets the holder (block or entity) of this inventory.
-	 * 
-	 * @return the holder (block or entity)
+	 * @return the inventory's holder (block or entity)
 	 */
 	InventoryHolder getHolder();
-	
+
 }

@@ -18,21 +18,89 @@
  */
 package org.mcphoton.inventory;
 
+import org.mcphoton.entity.living.Player;
+import org.mcphoton.item.ItemStack;
+
 /**
- * The inventory of an player.
+ * A player's inventory.
  *
+ * @see http://wiki.vg/Inventory
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface PlayerInventory extends EntityInventory {
+public interface PlayerInventory extends Inventory {
 
 	/**
-	 * Gets the slot number of the currently held stack.
+	 * @return the content of the boots slot.
+	 */
+	ItemStack getBoots();
+
+	/**
+	 * Sets the ItemStack in the boots slot of an entity.
+	 */
+	void setBoots(ItemStack stack);
+
+	/**
+	 * Gets the ItemStack from the leggings slot of an entity.
+	 */
+	ItemStack getLeggings();
+
+	/**
+	 * Sets the ItemStack in the leggings slot of an entity.
+	 */
+	void setLeggings(ItemStack stack);
+
+	/**
+	 * @return the content of the chestplate slot.
+	 */
+	ItemStack getChestplate();
+
+	/**
+	 * Sets the ItemStack in the chestplate slot of an entity.
+	 */
+	void setChestplate(ItemStack stack);
+
+	/**
+	 * @return the content of the helmet slot.
+	 */
+	ItemStack getHelmet();
+
+	/**
+	 * Sets the ItemStack in the helmet slot of an entity.
+	 */
+	void setHelmet(ItemStack stack);
+
+	/**
+	 * @return the ItemStack currently selected by the player, and in its main hand.
+	 */
+	ItemStack getItemInMainHand();
+
+	/**
+	 * Sets the ItemStack in the main hand of an entity.
+	 */
+	void setItemInMainHand(ItemStack stack);
+
+	/**
+	 * @return the content of the offhand slot.
+	 */
+	ItemStack getItemInOffHand();
+
+	/**
+	 * Sets the ItemStack in the off hand of an entity.
+	 */
+	void setItemInOffHand(ItemStack stack);
+
+	/**
+	 * @return the slot number of the currently held stack.
 	 */
 	int getHeldSlot();
 
 	/**
 	 * Sets the slot number of the slot to be held.
 	 */
-	void setHeldSlot();
+	void setHeldSlot(int heldSlot);
+
+	@Override
+	Player getHolder();
 
 }

@@ -21,22 +21,16 @@ package org.mcphoton.inventory;
 import org.mcphoton.item.ItemStack;
 
 /**
- * An horse's inventory.
+ * An donkey's (or mule's) inventory.
  *
- * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-public interface HorseInventory extends Inventory {
+public interface DonkeyInventory extends Inventory {
 
 	/**
 	 * @return the Itemstack in the saddle slot.
 	 */
 	ItemStack getSaddle();
-
-	/**
-	 * @return the Itemstack in the armor slot.
-	 */
-	ItemStack getArmor();
 
 	/**
 	 * Sets the Itemstack in the saddle slot.
@@ -45,10 +39,4 @@ public interface HorseInventory extends Inventory {
 	 */
 	void setSaddle(ItemStack saddle);
 
-	/**
-	 * Sets the Itemstack in the armor slot.
-	 *
-	 * @param armor the new armor
-	 */
-	void setArmor(ItemStack armor);
 }
