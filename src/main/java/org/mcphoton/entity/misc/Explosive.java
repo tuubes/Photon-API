@@ -36,7 +36,7 @@ public interface Explosive {
 	 *
 	 * @param radius the radius in blocks.
 	 */
-	void setExplosionRadius(float radius);
+	void setExplosionRadius(int radius);
 
 	/**
 	 * @return true if this explosion will create fire, false if it won't.

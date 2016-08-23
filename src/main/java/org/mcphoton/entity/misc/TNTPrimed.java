@@ -24,11 +24,20 @@ import org.mcphoton.entity.Entity;
  * A primed (activated) TNT.
  *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public interface TNTPrimed extends Entity, Explosive {
 
+	/**
+	 * @return the number of ticks before the TNT explodes.
+	 */
 	int getFuseTicks();
 
+	/**
+	 * Sets the number of ticks before the TNT explodes.
+	 *
+	 * @param ticks the number of ticks before the TNT explodes.
+	 */
 	void setFuseTicks(int ticks);
 
 }

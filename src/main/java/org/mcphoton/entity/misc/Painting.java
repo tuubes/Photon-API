@@ -24,27 +24,34 @@ import org.mcphoton.entity.Entity;
 /**
  * A painting hung on a wall.
  *
+ * @see http://minecraft.gamepedia.com/Painting
  * @author TheElectronWill
  */
 public interface Painting extends Entity {
 
 	/**
-	 * Gets the painting's title.
+	 * @return the painting's title.
 	 */
 	String getTitle();
 
 	/**
-	 * Sets the painting's title. You cannot write the title you want: there are only some values that are recognized by the game client.
+	 * Sets the painting's title. You cannot write the title you want: there are only some values that are
+	 * recognized by the game client.
+	 *
+	 * @param title the title to set.
+	 * @see http://minecraft.gamepedia.com/Painting#Canvases
 	 */
 	void setTitle(String title);
 
 	/**
-	 * Gets the direction the painting faces. Possible values are north, south, east, west.
+	 * @return the direction the painting faces. Possible values are north, south, east, west.
 	 */
 	BlockFace getDirection();
 
 	/**
 	 * Sets the direction the painting faces. Possible values are north, south, east, west.
+	 *
+	 * @param dir the direction to set.
 	 */
 	void setDirection(BlockFace dir);
 

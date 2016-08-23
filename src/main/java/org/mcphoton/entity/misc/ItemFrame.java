@@ -25,30 +25,34 @@ import org.mcphoton.utils.ClockwiseRotation;
 
 /**
  * An item frame hung on a block.
- * 
+ *
  * @author DJmaxZPLAY
  * @author TheElectronWIll
  */
 public interface ItemFrame extends Entity {
 
 	/**
-	 * Gets the item that is in this frame.
+	 * @¶eturn the item that is contained in this frame.
 	 */
 	Optional<ItemStack> getItem();
-	
+
 	/**
 	 * Sets the frame's item.
+	 *
+	 * @param item the item to set.
 	 */
 	void setItem(ItemStack item);
-	
+
 	/**
-	 * Gets the frame's rotation.
+	 * @return the frame's rotation.
 	 */
 	ClockwiseRotation getRotation();
-	
+
 	/**
 	 * Set the frame's rotation.
+	 *
+	 * @param rotation the clockwise rotation to set.
 	 */
 	void setRotation(ClockwiseRotation rotation);
-	
+
 }

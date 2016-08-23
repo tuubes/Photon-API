@@ -31,12 +31,14 @@ import org.mcphoton.item.ItemStack;
 public interface Item extends Entity, Rotateable {
 
 	/**
-	 * Gets the corresponding ItemStack.
+	 * @return the corresponding ItemStack.
 	 */
 	ItemStack getItemStack();
 
 	/**
 	 * Sets the corresponding ItemStack.
+	 *
+	 * @param itemStack the ItemStack to set.
 	 */
 	void setItemStack(ItemStack itemStack);
 

@@ -31,26 +31,26 @@ import org.mcphoton.world.Location;
 public interface EnderCrystal extends Entity {
 
 	/**
-	 * Checks if the crystal is showing the bedrock slate underneath it.
-	 *
-	 * @return true if it's showing its slate, false otherwise.
+	 * @return true if the crystal is showing the bedrock slate underneath it.
 	 */
 	boolean isShowingSlate();
 
 	/**
-	 * Sets wether the ender crystal shows the bedrock slate underneath it.
+	 * Sets if the ender crystal shows the bedrock slate underneath it.
 	 *
 	 * @param show true to show the slate, false to hide it.
 	 */
 	void setShowingSlate(boolean show);
 
 	/**
-	 * Gets the location that the crystal is pointing its beam to.
+	 * @return the location that the crystal is pointing its beam to.
 	 */
 	Optional<Location> getBeamTarget();
 
 	/**
 	 * Sets the location that the crystal is pointing its beam to.
+	 *
+	 * @param location the beam's target location.
 	 */
 	void setBeamTarget(Location location);
 

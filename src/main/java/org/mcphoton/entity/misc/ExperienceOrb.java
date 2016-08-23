@@ -29,12 +29,14 @@ import org.mcphoton.entity.Entity;
 public interface ExperienceOrb extends Entity {
 
 	/**
-	 * Gets the amount of experience contained in this orb (maximum 32767).
+	 * @return the amount of experience contained in this orb (maximum 32767).
 	 */
 	int getExperience();
 
 	/**
-	 * Sets the amount of experience contained in this orb (maximum 32767).
+	 * Sets the amount of experience contained in this orb.
+	 *
+	 * @param experience the amount of experience to set (maximum 32767).
 	 */
 	void setExperience(int experience);
 

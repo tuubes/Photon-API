@@ -18,20 +18,27 @@
  */
 package org.mcphoton.entity.misc;
 
-import org.mcphoton.block.BlockType;
+import org.mcphoton.block.BlockData;
 import org.mcphoton.entity.Entity;
 
 /**
- * A falling block
- * 
+ * A falling block.
+ *
  * @author DJmaxZPLAY
  * @author TheElectronWill
  */
 public interface FallingBlock extends Entity {
 
 	/**
-	 * Gets the block's type.
+	 * @return the block's data (type + metadata).
 	 */
-	BlockType getBlockType();
-	
+	BlockData getBlockData();
+
+	/**
+	 * Sets the block's data.
+	 *
+	 * @param data the block data to set (type + metadata).
+	 */
+	void setBlockData(BlockData data);
+
 }
