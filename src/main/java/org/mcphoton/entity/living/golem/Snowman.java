@@ -16,6 +16,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.living.golem;
 
-public interface MagmaCube extends Slime {}
+/**
+ * 
+ * @author DJmaxZPLAY
+ */
+public interface Snowman extends Golem {
+
+	boolean isWearingPumpkin();
+	
+	void setWearingPumpkin(boolean wearingPumpkin);
+}

@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.living.monster;
+
+import org.mcphoton.entity.living.FlyingEntity;
 
 public interface Ghast extends FlyingEntity {}

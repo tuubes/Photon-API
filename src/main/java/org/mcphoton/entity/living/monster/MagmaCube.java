@@ -16,6 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.living.monster;
 
-public interface Shulker extends Golem {}
+public interface MagmaCube extends Slime {}

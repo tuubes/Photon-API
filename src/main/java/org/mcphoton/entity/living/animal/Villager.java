@@ -16,8 +16,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.living.animal;
 
+import org.mcphoton.entity.living.AgeableEntity;
+import org.mcphoton.entity.living.Player;
 import org.mcphoton.inventory.InventoryHolder;
 
 // TODO: 25/07/2016 Add trade 

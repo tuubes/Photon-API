@@ -16,12 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.living.golem;
 
-public interface Bat extends AmbientEntity {
-	
-	boolean isHanging();
-	
-	void setHanging(boolean hanging);
-	
-}
+import org.mcphoton.entity.living.Creature;
+
+public interface Golem extends Creature {}
