@@ -21,7 +21,7 @@ package org.mcphoton.inventory;
 import org.mcphoton.item.ItemStack;
 
 /**
- * An horse's inventory.
+ * A horse's inventory.
  *
  * @author DJmaxZPLAY
  * @author TheElectronWill
