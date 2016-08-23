@@ -16,18 +16,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity;
 
 import org.mcphoton.entity.Rotateable;
 
+/**
+ * Can rotates its head side way.
+ *
+ * @author TheElectronWill
+ */
 public interface HeadRotateable extends Rotateable {
 
-	int getHeadPitch();
+	/**
+	 * @return the head yaw, in radians.
+	 */
+	float getHeadYaw();
 
-	void setHeadPitch(int headPitch);
-
-	int getHeadYaw();
-
-	void setHeadYaw(int headYaws);
+	/**
+	 * Sets the head yaw in radians.
+	 *
+	 * @param headYaw the yaw to set.
+	 */
+	void setHeadYaw(float headYaw);
 
 }
