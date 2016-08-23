@@ -20,4 +20,25 @@ package org.mcphoton.entity.living.monster;
 
 import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Spider extends InsentientEntity {}
+/**
+ * A spider.
+ *
+ * @see http://minecraft.gamepedia.com/Spider
+ * @see http://wiki.vg/Entities#Spider
+ * @author DJmaxZPLAY
+ * @author TheElectronWill
+ */
+public interface Spider extends InsentientEntity {
+
+	/**
+	 * @return true if the spider is climbing.
+	 */
+	boolean isClimbing();
+
+	/**
+	 * Sets if the spider is climbing.
+	 *
+	 * @param climbing true if the spider is climbing.
+	 */
+	void setClimbing(boolean climbing);
+}

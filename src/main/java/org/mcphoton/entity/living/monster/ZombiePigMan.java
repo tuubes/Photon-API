@@ -21,17 +21,37 @@ package org.mcphoton.entity.living.monster;
 import org.mcphoton.entity.living.InsentientEntity;
 
 /**
- * 
- * @author DJmaxZPLAY
+ * Azombie pigman.
+ *
+ * @see http://minecraft.gamepedia.com/Zombie_Pigman
+ * @author TheElectronWill
  */
 public interface ZombiePigMan extends InsentientEntity {
 
-	boolean isAdult();
-	
-	void setAdult(boolean adult);
-	
-	boolean isAngry();
-	
-	void setAngry(boolean angry);
-	
+	/**
+	 * @return true if the zombie is a baby.
+	 */
+	boolean isBaby();
+
+	/**
+	 * Sets true if the zombie is a baby.
+	 *
+	 * @param baby true if the zombie is a baby.
+	 */
+	void setBaby(boolean baby);
+
+	/**
+	 * @return the anger level of the zombie pigman, ie the number of ticks until it becomes neutral. Less or
+	 * equal to 0 = neutral; bigger than 0 = angry. This value decreases every tick if its greater than 0.
+	 */
+	int getAnger();
+
+	/**
+	 * Sets the anger level of the zombie pigman.
+	 *
+	 * @param anger the number of ticks until it becomes neutral. Less or equal to 0 = neutral; bigger than 0
+	 * = angry. This value decreases every tick if its greater than 0.
+	 */
+	void setAnger(int anger);
+
 }

@@ -18,6 +18,40 @@
  */
 package org.mcphoton.entity.living.monster;
 
+import java.util.Optional;
+import org.mcphoton.block.BlockData;
 import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Enderman extends InsentientEntity {}
+/**
+ * An enderman.
+ *
+ * @see http://minecraft.gamepedia.com/Enderman
+ * @see http://wiki.vg/Entities#Enderman
+ * @author TheElectronWill
+ */
+public interface Enderman extends InsentientEntity {
+
+	/**
+	 * @return the block that the enderman carries.
+	 */
+	Optional<BlockData> getCarriedBlock();
+
+	/**
+	 * Sets the block that the enderman carries.
+	 *
+	 * @param block the new block (id + metadata).
+	 */
+	void setCarriedBlock(BlockData block);
+
+	/**
+	 * @return true if the enderman is screaming.
+	 */
+	boolean isScreaming();
+
+	/**
+	 * Sets if the enderman is screaming.
+	 *
+	 * @param screaming true if the enderman is screaming.
+	 */
+	void setScreaming(boolean screaming);
+}

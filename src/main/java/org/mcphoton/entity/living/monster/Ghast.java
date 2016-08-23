@@ -18,6 +18,27 @@
  */
 package org.mcphoton.entity.living.monster;
 
-import org.mcphoton.entity.living.FlyingEntity;
+import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Ghast extends FlyingEntity {}
+/**
+ * A ghast.
+ *
+ * @see http://minecraft.gamepedia.com/Ghast
+ * @see http://wiki.vg/Entities#Ghast
+ * @author TheElectronWill
+ */
+public interface Ghast extends InsentientEntity {
+
+	/**
+	 * @return the explosion power of the ghat's fireballs.
+	 */
+	int getExplosionPower();
+
+	/**
+	 * Sets the explosion power of the ghat's fireballs.
+	 *
+	 * @param power the explosion power of the ghat's fireballs.
+	 */
+	void setExplosionPower(int power);
+
+}

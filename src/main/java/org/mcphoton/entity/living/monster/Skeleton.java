@@ -20,11 +20,27 @@ package org.mcphoton.entity.living.monster;
 
 import org.mcphoton.entity.living.InsentientEntity;
 
+/**
+ * A skeleton.
+ *
+ * @see http://wiki.vg/Entities#Skeleton
+ * @see http://minecraft.gamepedia.com/Skeleton
+ * @author DJmaxZPLAY
+ * @author TheElectronWill
+ */
 public interface Skeleton extends InsentientEntity {
 
-	//Type (Normal = 0, Wither = 1, Stray = 2)
+	int TYPE_NORMAL = 0, TYPE_WITHER = 1, TYPE_STRAY = 2;
+
+	/**
+	 * @return the skeleton's type.
+	 */
 	int getSkeletonType();
-	
-	//Type (Normal = 0, Wither = 1, Stray = 2)
-	void setSkeletonType();
+
+	/**
+	 * Sets the skeleton's type.
+	 *
+	 * @param type the skeleton's type.
+	 */
+	void setSkeletonType(int type);
 }

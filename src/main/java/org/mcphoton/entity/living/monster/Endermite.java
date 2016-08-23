@@ -20,4 +20,35 @@ package org.mcphoton.entity.living.monster;
 
 import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Endermite extends InsentientEntity {}
+/**
+ * An endermite.
+ *
+ * @see http://minecraft.gamepedia.com/Endermite
+ * @author TheElectronWill
+ */
+public interface Endermite extends InsentientEntity {
+
+	/**
+	 * @return the number of ticks the endermite has been living for.
+	 */
+	int getLifeTicks();
+
+	/**
+	 * Sets the number of ticks the endermite has been flying for.
+	 *
+	 * @param ticks the number of ticks the endermite has been flying for.
+	 */
+	void setLifeTicks(int ticks);
+
+	/**
+	 * @return the number of ticks before the endermite dies (it dies when lifeTicks == lifeTime).
+	 */
+	int getLifeTime();
+
+	/**
+	 * Sets the rocket's lifetime.
+	 *
+	 * @param ticks the number of ticks before the endermite dies (it dies when lifeTicks == lifeTime).
+	 */
+	void setLifeTime(int ticks);
+}

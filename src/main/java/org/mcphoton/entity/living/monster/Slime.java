@@ -21,13 +21,24 @@ package org.mcphoton.entity.living.monster;
 import org.mcphoton.entity.living.LivingEntity;
 
 /**
- * 
+ * A slime.
+ *
+ * @see http://minecraft.gamepedia.com/Slime
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public interface Slime extends LivingEntity {
 
+	/**
+	 * @return the slime size. The smallest is 0.
+	 */
 	int getSize();
-	
+
+	/**
+	 * Sets the slime size.
+	 *
+	 * @param size the slime size. The smallest is 0.
+	 */
 	void setSize(int size);
-	
+
 }

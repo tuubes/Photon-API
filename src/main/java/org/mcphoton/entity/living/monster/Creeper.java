@@ -18,13 +18,40 @@
  */
 package org.mcphoton.entity.living.monster;
 
-import org.mcphoton.entity.misc.Explosive;
 import org.mcphoton.entity.living.InsentientEntity;
+import org.mcphoton.entity.misc.Explosive;
 
+/**
+ * A creeper.
+ *
+ * @see http://minecraft.gamepedia.com/Creeper
+ * @see http://wiki.vg/Entities#Creeper
+ * @author TheElectronWill
+ */
 public interface Creeper extends InsentientEntity, Explosive {
 
-	boolean isPowered();
-	
-	void setPowered(boolean powered);
-	
+	/**
+	 * @return true if the creeper is charged.
+	 */
+	boolean isCharged();
+
+	/**
+	 * Sets if the creeper is charged.
+	 *
+	 * @param charged true if the creeper is charged.
+	 */
+	void setCharged(boolean charged);
+
+	/**
+	 * @return true if the creeper is ignited.
+	 */
+	boolean isIgnited();
+
+	/**
+	 * Sets if the creeper is ignited.
+	 *
+	 * @param ignited true if the creeper is ignited.
+	 */
+	void setIgnited(boolean ignited);
+
 }

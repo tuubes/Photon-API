@@ -21,17 +21,40 @@ package org.mcphoton.entity.living.monster;
 import org.mcphoton.entity.living.InsentientEntity;
 
 /**
- * 
- * @author DJmaxZPLAY
+ * A zombie.
+ *
+ * @see http://minecraft.gamepedia.com/Zombie
+ * @see http://minecraft.gamepedia.com/Zombie#Data_values
+ * @see http://wiki.vg/Entities#Zombie
+ * @author TheElectronWill
  */
 public interface Zombie extends InsentientEntity {
 
-	boolean isAdult();
-	
-	void setAdult(boolean adult);
-	
-	boolean isVillager();
-	
-	void setVillager(boolean villager);
-	
+	/**
+	 * @return true if the zombie is a baby.
+	 */
+	boolean isBaby();
+
+	/**
+	 * Sets true if the zombie is a baby.
+	 *
+	 * @param baby true if the zombie is a baby.
+	 */
+	void setBaby(boolean baby);
+
+	/**
+	 * @return the zombie's type. 0: original zombie, 1: zombie farmer villager, 2: zombie librarian villager,
+	 * 3: zombie priest villager, 4: zombie blacksmith villager, 5: zombie butcher villager, 6: husk
+	 */
+	int getZombieType();
+
+	/**
+	 * Sets the zombie's type.
+	 *
+	 * @param type the zombie's type to set. 0: original zombie, 1: zombie farmer villager, 2: zombie
+	 * librarian villager, 3: zombie priest villager, 4: zombie blacksmith villager, 5: zombie butcher
+	 * villager, 6: husk
+	 */
+	void setZombieType(int type);
+
 }

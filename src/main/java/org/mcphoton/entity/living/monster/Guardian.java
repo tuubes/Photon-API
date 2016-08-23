@@ -21,13 +21,37 @@ package org.mcphoton.entity.living.monster;
 import org.mcphoton.entity.living.InsentientEntity;
 
 /**
- * 
+ * A guardian.
+ *
+ * @see http://minecraft.gamepedia.com/Guardian
+ * @see http://wiki.vg/Entities#Guardian
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public interface Guardian extends InsentientEntity {
 
-	boolean isElderly();
-	
-	void setElderly(boolean elderly);
-	
+	/**
+	 * @return true if the guardian is retractingits spikes.
+	 */
+	boolean isRetractingSpikes();
+
+	/**
+	 * Sets if the guardian is retractingspikes.
+	 *
+	 * @param retractingSpikes true if the guardian is retracting its spikes.
+	 */
+	void setRetractingSpikes(boolean retractingSpikes);
+
+	/**
+	 * @return true if the guardian is elder.
+	 */
+	boolean isElder();
+
+	/**
+	 * Sets if the guardian is elder.
+	 *
+	 * @param elder true if the guardian is elder.
+	 */
+	void setElder(boolean elder);
+
 }

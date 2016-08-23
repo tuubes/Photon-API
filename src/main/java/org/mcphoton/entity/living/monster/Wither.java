@@ -20,4 +20,24 @@ package org.mcphoton.entity.living.monster;
 
 import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Wither extends InsentientEntity {}
+/**
+ * A wither.
+ *
+ * @see http://minecraft.gamepedia.com/Wither
+ * @see http://wiki.vg/Entities#Wither
+ * @author TheElectronWill
+ */
+public interface Wither extends InsentientEntity {
+
+	/**
+	 * @return the number of ticks while the wither is invulnerable.
+	 */
+	int getInvulnerableTicks();
+
+	/**
+	 * Sets the number of ticks while the wither is invulnerable.
+	 *
+	 * @param ticks the number of ticks while the wither is invulnerable.
+	 */
+	void setInvulnerableTicks(int ticks);
+}

@@ -20,4 +20,24 @@ package org.mcphoton.entity.living.monster;
 
 import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Witch extends InsentientEntity {}
+/**
+ * A witch.
+ *
+ * @see http://minecraft.gamepedia.com/Witch
+ * @see http://wiki.vg/Entities#Witch
+ * @author TheElectronWill
+ */
+public interface Witch extends InsentientEntity {
+
+	/**
+	 * @return true if the witch is aggressive.
+	 */
+	boolean isAggressive();
+
+	/**
+	 * Sets if the witch is aggressive.
+	 *
+	 * @param aggressive true if the witch is aggressive.
+	 */
+	void setAggressive(boolean aggressive);
+}

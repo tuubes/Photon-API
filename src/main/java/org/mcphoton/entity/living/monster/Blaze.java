@@ -21,13 +21,25 @@ package org.mcphoton.entity.living.monster;
 import org.mcphoton.entity.living.InsentientEntity;
 
 /**
- * 
+ * A blaze.
+ *
+ * @see http://minecraft.gamepedia.com/Blaze
+ * @see http://wiki.vg/Entities#Blaze
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public interface Blaze extends InsentientEntity {
-	
+
+	/**
+	 * @return true if the blaze is on fire.
+	 */
 	boolean isOnFire();
-	
+
+	/**
+	 * Sets if the blaze is on fire.
+	 *
+	 * @param onFire true if it's on fire.
+	 */
 	void setOnFire(boolean onFire);
-	
+
 }
