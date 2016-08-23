@@ -19,49 +19,48 @@
 package org.mcphoton.entity.misc;
 
 import org.mcphoton.entity.Entity;
-import org.mcphoton.entity.projectile.Shooter;
+import org.mcphoton.entity.projectile.ThrownPotion;
 
 /**
- * A cloud created by a lingering Potion.
- * 
+ * A cloud created by a lingering (persistent) Potion.
+ *
  * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-
 public interface AreaEffectCloud extends Entity {
-	
+
 	/**
-	 * Gets the cloud's radius.
+	 * @return the cloud's radius.
 	 */
 	float getRadius();
-	
+
 	/**
 	 * Sets the cloud's radius.
+	 *
+	 * @param radius the cloud's radius.
 	 */
 	void setRadius(float radius);
-	
+
 	/**
-	 * Gets the duration (in ticks) which the cloud will exist for.
+	 * @return the duration (in ticks) which the cloud will exist for.
 	 */
 	int getDuration();
-	
+
 	/**
 	 * Sets the duration (in ticks) which the cloud will exist for.
+	 *
+	 * @param duration the ticks which the cloud will exist for.
 	 */
 	void setDuration(int duration);
-	
+
 	/**
-	 * Gets the cloud's source.
-	 * 	
-	 * @return the shooter of the lingering Potion.
+	 * @return the lingering Potion that created this cloud.
 	 */
-	Shooter getSource();
-	
+	ThrownPotion getSource();
+
 	/**
-	 * Sets the cloud's source.
-	 * 	
-	 * @param source the shooter of the lingering Potion.
+	 * @param source the lingering potion that created this cloud.
 	 */
-	void setSource(Shooter source);
-	
+	void setSource(ThrownPotion source);
+
 }

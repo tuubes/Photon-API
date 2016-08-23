@@ -19,7 +19,7 @@
 package org.mcphoton.entity.misc;
 
 /**
- * The interface for the explosive entity.
+ * An explosive entity.
  *
  * @author DJmaxZPLAY
  * @author TheElectronWill
@@ -27,24 +27,24 @@ package org.mcphoton.entity.misc;
 public interface Explosive {
 
 	/**
-	 * Gets the explosion's radius.
+	 * @return the explosion's radius, in blocks.
 	 */
-	float getRadius();
+	int getExplosionRadius();
 
 	/**
 	 * Sets the explosion's radius.
+	 *
+	 * @param radius the radius in blocks.
 	 */
-	void setRadius(float radius);
+	void setExplosionRadius(float radius);
 
 	/**
-	 * Checks if the explosion creates fire.
-	 *
-	 * @return true if it will create fire, false if it won't.
+	 * @return true if this explosion will create fire, false if it won't.
 	 */
 	boolean isIncendiary();
 
 	/**
-	 * Sets wether the explosion creates fire or not.
+	 * Sets whether the explosion will create fire or not.
 	 *
 	 * @param incendiary true to make the explosion create fire.
 	 */
