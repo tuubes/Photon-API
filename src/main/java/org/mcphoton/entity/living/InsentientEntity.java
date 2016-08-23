@@ -16,18 +16,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living.animal;
+package org.mcphoton.entity.living;
 
-import java.util.Optional;
+/**
+ * An entity that is controlled by an artificial intelligence.
+ *
+ * @author DJmaxZPLAY
+ * @author TheElectronWill
+ */
+public interface InsentientEntity {
 
-import org.mcphoton.entity.Entity;
+	boolean hasAI();
 
-public interface Tameable {
+	void setAI(boolean ai);
 
-	Optional<Entity> getTamer();
+	boolean isLeftHanded();
 
-	void setTamer(Entity tamer);
-
-	boolean isTamed();
+	void setLeftHanded(boolean leftHanded);
 
 }

@@ -16,14 +16,45 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.living;
+package org.mcphoton.entity.living.animal;
 
 import java.util.Optional;
+import org.mcphoton.entity.Entity;
 
-public interface Creature extends LivingEntity, Insentient {
+/**
+ * An entity that can be tamed.
+ *
+ * @author TheElectronWill
+ */
+public interface TameableEntity extends Entity {
 
-	Optional<LivingEntity> getTarget();
-	
-	void setTarget(LivingEntity target);
-	
+	/**
+	 * @return the entity's tamer.
+	 */
+	Optional<Entity> getTamer();
+
+	/**
+	 * Sets the entity's tamer.
+	 *
+	 * @param tamer the tamer to set.
+	 */
+	void setTamer(Entity tamer);
+
+	/**
+	 * @return true if the entity is tamed.
+	 */
+	boolean isTamed();
+
+	/**
+	 * @return true if the entity is sitting.
+	 */
+	boolean isSitting();
+
+	/**
+	 * Sets if the entity is sitting.
+	 *
+	 * @param sitting true if it's sitting.
+	 */
+	void setSitting(boolean sitting);
+
 }

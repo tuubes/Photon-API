@@ -18,13 +18,14 @@
  */
 package org.mcphoton.entity.living.animal;
 
+import org.mcphoton.entity.living.AgeableEntity;
 import org.mcphoton.entity.vehicle.Vehicle;
 
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Pig extends Animal, Vehicle{
+public interface Pig extends AgeableEntity, Vehicle{
 
 	boolean hasSaddle();
 	

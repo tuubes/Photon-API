@@ -18,12 +18,28 @@
  */
 package org.mcphoton.entity.living.animal;
 
-import org.mcphoton.entity.living.AmbientEntity;
+import org.mcphoton.entity.living.LivingEntity;
 
-public interface Bat extends AmbientEntity {
-	
+/**
+ * A bat.
+ *
+ * @see http://minecraft.gamepedia.com/Bat
+ * @see http://wiki.vg/Entities#Bat
+ * @author DJmaxZPLAY
+ * @author TheElectronWill
+ */
+public interface Bat extends LivingEntity {
+
+	/**
+	 * @return true if the bat is hanging.
+	 */
 	boolean isHanging();
-	
+
+	/**
+	 * Sets if the bat is hanging.
+	 *
+	 * @param hanging true if it's hanging.
+	 */
 	void setHanging(boolean hanging);
-	
+
 }

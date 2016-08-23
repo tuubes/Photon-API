@@ -18,11 +18,13 @@
  */
 package org.mcphoton.entity.living.animal;
 
+import org.mcphoton.entity.living.AgeableEntity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Rabbit extends Animal {
+public interface Rabbit extends AgeableEntity {
 
 	Type getRabbitType();
 	

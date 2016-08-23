@@ -18,4 +18,4 @@
  */
 package org.mcphoton.entity.living;
 
-public interface FlyingEntity extends LivingEntity, Insentient {}
+public interface FlyingEntity extends LivingEntity, InsentientEntity {}

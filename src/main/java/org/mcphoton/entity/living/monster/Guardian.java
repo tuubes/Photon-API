@@ -18,11 +18,13 @@
  */
 package org.mcphoton.entity.living.monster;
 
+import org.mcphoton.entity.living.InsentientEntity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Guardian extends Monster {
+public interface Guardian extends InsentientEntity {
 
 	boolean isElderly();
 	

@@ -18,4 +18,6 @@
  */
 package org.mcphoton.entity.living.animal;
 
-public interface Chicken extends Animal {}
+import org.mcphoton.entity.living.AgeableEntity;
+
+public interface Chicken extends AgeableEntity {}

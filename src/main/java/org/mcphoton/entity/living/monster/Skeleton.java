@@ -18,7 +18,9 @@
  */
 package org.mcphoton.entity.living.monster;
 
-public interface Skeleton extends Monster {
+import org.mcphoton.entity.living.InsentientEntity;
+
+public interface Skeleton extends InsentientEntity {
 
 	//Type (Normal = 0, Wither = 1, Stray = 2)
 	int getSkeletonType();

@@ -19,18 +19,37 @@
 package org.mcphoton.entity.living.animal;
 
 /**
- * 
+ * A wolf.
+ *
+ * http://wiki.vg/Entities#Wolf
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface Wolf extends TameableAnimal {
+public interface Wolf extends TameableEntity {
 
-	boolean isSitting();
-	
-	void setSitting(boolean sitting);
-	
+	/**
+	 * @return true if the wolf is angry.
+	 */
 	boolean isAngry();
-	
+
+	/**
+	 * Sets if the wolf is angry.
+	 *
+	 * @param angry true if it's angry.
+	 */
 	void setAngry(boolean angry);
-	
-	
+
+	/**
+	 * @return the color of the wolf's collar.
+	 */
+	int getCollarColor();
+
+	/**
+	 * Sets the color of the wolf's collar.
+	 *
+	 * @param color the color of the wolf's collar.
+	 */
+	void setCollarColor(int color);
+
 }

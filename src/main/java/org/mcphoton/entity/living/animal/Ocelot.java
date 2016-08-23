@@ -19,27 +19,29 @@
 package org.mcphoton.entity.living.animal;
 
 /**
- * 
+ * An ocelot (also known as "cat").
+ *
+ * @see http://wiki.vg/Entities#Ocelot
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface Ocelot extends TameableAnimal {
+public interface Ocelot extends TameableEntity {
 
 	/**
-	 * Get the type of the cat. 0:Wild, 1:Black, 2:Red, 3:Siamese.
-	 * 
-	 * @return Type of the cat. 0:Wild, 1:Black, 2:Red, 3:Siamese.
+	 * An ocelot's type.
 	 */
-	int getCatType();
-	
+	int TYPE_WILD = 0, TYPE_BLACK = 1, TYPE_RED = 2, TYPE_SIAMESE = 3;
+
 	/**
-	 * Set the type of the cat. 0:Wild, 1:Black, 2:Red, 3:Siamese.
-	 * 
-	 * @param type The new type of the cat. 0:Wild, 1:Black, 2:Red, 3:Siamese.
+	 * @return the ocelot's type. 0:Wild, 1:Black, 2:Red, 3:Siamese.
 	 */
-	void setCatType(int type);
-	
-	boolean isSitting();
-	
-	void setSitting(boolean sitting);
+	int getOcelotType();
+
+	/**
+	 * Set the ocelot's type.
+	 *
+	 * @param type the type to set. 0:Wild, 1:Black, 2:Red, 3:Siamese.
+	 */
+	void setOcelotType(int type);
 	
 }

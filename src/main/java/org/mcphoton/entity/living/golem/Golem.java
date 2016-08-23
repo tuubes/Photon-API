@@ -18,6 +18,6 @@
  */
 package org.mcphoton.entity.living.golem;
 
-import org.mcphoton.entity.living.Creature;
+import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Golem extends Creature {}
+public interface Golem extends InsentientEntity {}

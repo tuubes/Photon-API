@@ -18,11 +18,13 @@
  */
 package org.mcphoton.entity.living.monster;
 
+import org.mcphoton.entity.living.InsentientEntity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Zombie extends Monster {
+public interface Zombie extends InsentientEntity {
 
 	boolean isAdult();
 	

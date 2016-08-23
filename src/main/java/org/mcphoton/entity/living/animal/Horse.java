@@ -23,51 +23,75 @@ import org.mcphoton.inventory.HorseInventory;
 import org.mcphoton.inventory.InventoryHolder;
 
 /**
- * 
+ * A horse.
+ *
+ * @see http://minecraft.gamepedia.com/Horse
+ * @see http://minecraft.gamepedia.com/Horse#Data_values
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface Horse extends TameableAnimal, Vehicle, InventoryHolder {
+public interface Horse extends TameableEntity, Vehicle, InventoryHolder {
 
+	/**
+	 * @return true if the horse is carrying a chest.
+	 */
 	boolean isCarryingChest();
-	
+
+	/**
+	 * Sets if the horse is carrying a chest.
+	 *
+	 * @param chest true if the horse is carrying a chest.
+	 */
 	void setCarryingChest(boolean chest);
-	
-	int getDomestication();
-	
-	void setDomestication(int level);
-	
-	int getMaxDomestication();
-	
-	void setMaxDomestication(int maxLevel);
-	
-	double getJumpStrength();
-	
-	void setJumpStrength(double strength);
-	
+
+	/**
+	 * @return the horse's taming level, between 0 and 100.
+	 */
+	int getTamingLevel();
+
+	/**
+	 * Sets the horse's taming level.
+	 *
+	 * @param level the level to set, between 0 and 100.
+	 */
+	void setTamingLevel(int level);
+
+	/**
+	 * @return the height, in blocks, that this horse can jump to.
+	 */
+	double getJumpHeight();
+
+	/**
+	 * Sets the height that this horse can jump to.
+	 *
+	 * @param strength the height in blocks.
+	 */
+	void setJumpHeight(double height);
+
 	@Override
 	HorseInventory getInventory();
-	
+
 	Variant getVariant();
-	
+
 	void setVariant(Variant variant);
-	
+
 	Color getColor();
-	
+
 	void setColor(Color color);
-	
+
 	Style getStyle();
-	
+
 	void setStyle(Style style);
-	
-	public enum Variant {
+
+	enum Variant {
 		HORSE,
 		DONKEY,
 		MULE,
 		ZOMBIFIED,
 		SKELETON;
 	}
-	
-	public enum Color {
+
+	enum Color {
 		WHITE,
 		CREAMY,
 		CHESTNUT,
@@ -76,13 +100,13 @@ public interface Horse extends TameableAnimal, Vehicle, InventoryHolder {
 		GRAY,
 		DARK_BROWN;
 	}
-	
-	public enum Style {
+
+	enum Style {
 		NONE,
 		WHITE,
 		WHITEFIELD,
 		WHITE_DOTS,
 		BLACK_DOTS;
 	}
-	
+
 }

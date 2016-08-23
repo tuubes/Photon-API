@@ -18,11 +18,13 @@
  */
 package org.mcphoton.entity.living.monster;
 
+import org.mcphoton.entity.living.InsentientEntity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Blaze extends Monster {
+public interface Blaze extends InsentientEntity {
 	
 	boolean isOnFire();
 	

@@ -18,4 +18,36 @@
  */
 package org.mcphoton.entity.living;
 
-public interface AgeableEntity extends Creature, Ageable {}
+import org.mcphoton.entity.Entity;
+
+/**
+ * An entity with an age.
+ *
+ * @author TheElectronWill
+ */
+public interface AgeableEntity extends Entity {
+
+	/**
+	 * @return the entity's age.
+	 */
+	int getAge();
+
+	/**
+	 * Sets the entity's age.
+	 *
+	 * @param age the age to set.
+	 */
+	void setAge(int age);
+
+	/**
+	 * @return true if the entity is an adult.
+	 */
+	boolean isAdult();
+
+	/**
+	 * Sets if the entity is an adult.
+	 *
+	 * @param adult true if the entity is an adult.
+	 */
+	void setAdult(boolean adult);
+}

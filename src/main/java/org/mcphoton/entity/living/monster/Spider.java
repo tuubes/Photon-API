@@ -18,4 +18,6 @@
  */
 package org.mcphoton.entity.living.monster;
 
-public interface Spider extends Monster {}
+import org.mcphoton.entity.living.InsentientEntity;
+
+public interface Spider extends InsentientEntity {}

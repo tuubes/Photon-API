@@ -19,8 +19,9 @@
 package org.mcphoton.entity.living.monster;
 
 import org.mcphoton.entity.misc.Explosive;
+import org.mcphoton.entity.living.InsentientEntity;
 
-public interface Creeper extends Monster, Explosive {
+public interface Creeper extends InsentientEntity, Explosive {
 
 	boolean isPowered();
 	

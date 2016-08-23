@@ -18,11 +18,13 @@
  */
 package org.mcphoton.entity.living.animal;
 
+import org.mcphoton.entity.living.AgeableEntity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface Sheep extends Animal {
+public interface Sheep extends AgeableEntity {
 
 	boolean isSheared();
 	

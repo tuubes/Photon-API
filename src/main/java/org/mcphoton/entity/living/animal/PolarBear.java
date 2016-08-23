@@ -18,11 +18,13 @@
  */
 package org.mcphoton.entity.living.animal;
 
+import org.mcphoton.entity.living.AgeableEntity;
+
 /**
  * 
  * @author DJmaxZPLAY
  */
-public interface PolarBear extends Animal {
+public interface PolarBear extends AgeableEntity {
 
 	void setStandingUp(boolean standUp);
 	
