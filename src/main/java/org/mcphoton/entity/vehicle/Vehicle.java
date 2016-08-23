@@ -18,23 +18,41 @@
  */
 package org.mcphoton.entity.vehicle;
 
-import org.mcphoton.utils.DoubleVector;
+import java.util.List;
+import org.mcphoton.entity.Entity;
 
 /**
- * This interface is used by Minecarts, Horses, Boats and Pigs.
- * 
- * @author DJmaxZPLAY
+ * A vehicle that can carry passengers.
+ *
+ * @author TheElectronWill
  */
 public interface Vehicle {
-	
+
 	/**
-	 * Gets a Vector from the vehicle's velocity.
+	 * @return the list of the vehicle's passengers. Modifying this list doesn't update the vehicle on the
+	 * client side and doesn't update the added/removed passenger entities.
 	 */
-	DoubleVector getVelocity();
-	
+	List<Entity> getPassengers();
+
 	/**
-	 * Sets the vehicle's velocity with a Vector.
+	 * Sets the vehicle's passengers, and updates the vehicle and the passengers.
+	 *
+	 * @param passengers the passengers to set.
 	 */
-	void setVelocity(DoubleVector velocity);
-	
+	void setPassengers(Entity... passengers);
+
+	/**
+	 * Adds a passenger to the vehicle, and updates the vehicle and the passengers.
+	 *
+	 * @param passenger the passenger to add.
+	 */
+	void addPassenger(Entity passenger);
+
+	/**
+	 * Removes a passenger from the vehicle, and updates the vehicle and the passengers.
+	 *
+	 * @param passenger the passenger to remove.
+	 */
+	void removePassenger(Entity passenger);
+
 }

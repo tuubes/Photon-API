@@ -19,13 +19,24 @@
 package org.mcphoton.entity.projectile;
 
 /**
- * 
+ * A wither skull.
+ *
+ * @see http://minecraft.gamepedia.com/Wither#Wither_skull
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface WitherSkull extends Fireball {
+public interface WitherSkull extends Projectile {
 
+	/**
+	 * @return true if the wither skull is charged
+	 */
 	boolean isCharged();
-	
+
+	/**
+	 * Sets if the wither skull is charged.
+	 *
+	 * @param charged true if it's charged.
+	 */
 	void setCharged(boolean charged);
-	
+
 }

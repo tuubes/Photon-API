@@ -19,13 +19,22 @@
 package org.mcphoton.entity.vehicle;
 
 /**
- * 
+ * A minecart with furnace.
+ *
  * @author DJmaxZPLAY
  */
 public interface FurnaceMinecart extends Minecart {
 
+	/**
+	 * @return true if the minecart is powered.
+	 */
 	boolean isPowered();
-	
+
+	/**
+	 * Sets if the minecart is powered.
+	 *
+	 * @param powered true if it's powered.
+	 */
 	void setPowered(boolean powered);
-	
+
 }

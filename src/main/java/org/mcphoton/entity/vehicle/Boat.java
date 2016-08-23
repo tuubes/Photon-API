@@ -18,17 +18,34 @@
  */
 package org.mcphoton.entity.vehicle;
 
-import java.util.Optional;
-
-import org.mcphoton.entity.Entity;
-
 /**
- * 
- * @author DJmaxZPLAY
+ * A boat.
+ *
+ * @author TheElectronWill
  */
 public interface Boat extends Vehicle {
-	
-	Optional<Entity> getSecondPassenger();
-	
-	void setSecondPassenger(Entity passenger);
+
+	/**
+	 * @return true if the boat is turning with its right paddle.
+	 */
+	boolean isTurningRight();
+
+	/**
+	 * Sets if the boat turns right.
+	 *
+	 * @param turning true if the boat is turning with its right paddle.
+	 */
+	void setTurningRight(boolean turning);
+
+	/**
+	 * @return true if the boat is turning with its left paddle.
+	 */
+	boolean isTurningLeft();
+
+	/**
+	 * Sets if the boat turns left.
+	 *
+	 * @param turning true if the boat is turning with its left paddle.
+	 */
+	void setTurningLeft(boolean turning);
 }

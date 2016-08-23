@@ -18,46 +18,51 @@
  */
 package org.mcphoton.entity.projectile;
 
+import org.mcphoton.item.ItemStack;
+
 /**
- * An arrow.
+ * A firework rocket.
  *
- * @author DJmaxZPLAY
  * @author TheElectronWill
  */
-public interface Arrow extends Projectile {
+public interface FireworkRocket extends Projectile {
 
 	/**
-	 * @return the knockback strength.
+	 * @return the number of ticks this firework rocket has been flying for.
 	 */
-	int getKnockbackStrength();
+	int getLifeTicks();
 
 	/**
-	 * Sets the knockback strength.
+	 * Sets the number of ticks this rocket has been flying for.
 	 *
-	 * @param knockback
+	 * @param ticks the number of ticks this rocket has been flying for.
 	 */
-	void setKnockbackStrength(int strength);
+	void setLifeTicks(int ticks);
 
 	/**
-	 * @return true if it's critical
+	 * @return the number of ticks before this firework rocket explodes (it explodes when lifeTicks ==
+	 * lifeTime).
 	 */
-	boolean isCritical();
+	int getLifeTime();
 
 	/**
-	 * Sets if the arrow delivers critical damage.
-	 */
-	void setCritical(boolean critical);
-
-	/**
-	 * @return the particle color, in an arbitrary format (we still need to determine how this works).
-	 */
-	int getParticlesColor();
-
-	/**
-	 * Sets the particles color.
+	 * Sets the rocket's lifetime.
 	 *
-	 * @param color the particle color, in an arbitrary format (we still need to determine how this works).
+	 * @param ticks the number of ticks before this firework rocket explodes (it explodes when lifeTicks ==
+	 * lifeTime).
 	 */
-	void setParticlesColor(int color);
+	void setLifeTime(int ticks);
+
+	/**
+	 * @return all the firework rocket's informations, contained in an ItemStack (and especially its NBT
+	 * data).
+	 */
+	ItemStack getInfos();
+
+	/**
+	 * @param infos all the firework rocket's informations, contained in an ItemStack (and especially its NBT
+	 * data).
+	 */
+	void setInfos(ItemStack infos);
 
 }

@@ -21,38 +21,23 @@ package org.mcphoton.entity.projectile;
 import org.mcphoton.entity.Entity;
 
 /**
- * 
+ * A projectile.
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface Projectile extends Entity{
-	
+public interface Projectile extends Entity {
+
 	/**
-	 * Get the shooter of this projectile.
-	 * 
-	 * @return a Shooter who has shoot this projectile.
+	 * @return the projectile's shooter, generally an entity or a block.
 	 */
-	Shooter getShooter();
-	
+	Object getShooter();
+
 	/**
-	 * Set the shooter of this projectile.
-	 * 
-	 * @param shooter the Shooter that shot this projectile.
+	 * Set the projectile's shooter.
+	 *
+	 * @param shooter the "thing" that shot this projectile.
 	 */
-	void setShooter(Shooter shooter);
-	
-	/**
-	 * Determine if this projectile should bounce when it hits.
-	 * If a fireball does bounce it would'nt set the target on fire.
-	 * 
-	 * @returne true if it should bounce on hits.
-	 */
-	boolean doesBounce();
-	
-	/**
-	 * Set if this projectile should bounce when it hits something.
-	 * 
-	 * @param bounce true if it should bounce.
-	 */
-	void setBounce(boolean bounce);
+	void setShooter(Object shooter);
 
 }

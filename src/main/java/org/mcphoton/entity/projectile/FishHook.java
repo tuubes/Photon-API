@@ -19,9 +19,16 @@
 package org.mcphoton.entity.projectile;
 
 /**
- * 
+ * A fish hook.
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public interface FishHook extends Projectile {
+
+	/**
+	 * @return the (entity) id of the hooked entity.
+	 */
+	int getHookedEntityId();
 
 }

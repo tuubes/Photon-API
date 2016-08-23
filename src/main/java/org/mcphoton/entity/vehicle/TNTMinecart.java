@@ -18,4 +18,5 @@
  */
 package org.mcphoton.entity.vehicle;
 
-public interface TNTMinecart extends Minecart {}
+public interface TNTMinecart extends Minecart {
+}

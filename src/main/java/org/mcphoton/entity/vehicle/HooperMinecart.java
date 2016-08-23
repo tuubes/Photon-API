@@ -20,4 +20,5 @@ package org.mcphoton.entity.vehicle;
 
 import org.mcphoton.inventory.InventoryHolder;
 
-public interface HooperMinecart extends Minecart, InventoryHolder {}
+public interface HooperMinecart extends Minecart, InventoryHolder {
+}

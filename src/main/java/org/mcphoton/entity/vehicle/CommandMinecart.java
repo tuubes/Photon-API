@@ -21,17 +21,17 @@ package org.mcphoton.entity.vehicle;
 import org.mcphoton.messaging.ChatMessage;
 
 /**
- * 
+ *
  * @author DJmaxZPLAY
  */
 public interface CommandMinecart extends Minecart {
 
 	String getCommand();
-	
+
 	void setCommand(String command);
-	
+
 	ChatMessage getLastOutput();
-	
+
 	void setLastOutput(ChatMessage lastOutput);
-	
+
 }

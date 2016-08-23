@@ -16,12 +16,46 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.entity.projectile;
+package org.mcphoton.entity.vehicle;
+
+import java.util.Optional;
+import org.mcphoton.block.BlockData;
 
 /**
- * 
+ * A minecart.
+ *
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
-public interface Shooter {
+public interface Minecart extends Vehicle {
+
+	/**
+	 * @return the current shaking force.
+	 */
+	int getShakingForce();
+
+	/**
+	 * Sets the minecart's shaking force.
+	 *
+	 * @param force the shaking force, in arbitrary units (we still need to figure out how it works).
+	 */
+	void setShakingForce(int force);
+
+	/**
+	 * @return the block in the minecart.
+	 */
+	Optional<BlockData> getDisplayBlock();
+
+	/**
+	 * Sets the blocks that displays in the minecart.
+	 *
+	 * @param block the block in the minecart.
+	 */
+	void setDisplayBlock(BlockData block);
+
+	/**
+	 * @return the y position of the block that displays in the minecart, in arbitrary units.
+	 */
+	int getDisplayBlockPosition();
 
 }

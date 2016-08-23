@@ -21,12 +21,20 @@ package org.mcphoton.entity.projectile;
 import org.mcphoton.item.ItemStack;
 
 /**
- * 
- * @author DJmaxZPLAY
+ * A thrown potion.
+ *
+ * @author TheElectronWill
  */
 public interface ThrownPotion extends Projectile {
 
-	ItemStack getItem();
-	
-	void setItem(ItemStack item);
+	/**
+	 * @return all the potion's informations, contained in an ItemStack (and especially its NBT data).
+	 */
+	ItemStack getInfos();
+
+	/**
+	 * @param infos all the potion's informations, contained in an ItemStack (and especially its NBT data).
+	 */
+	void setInfos(ItemStack infos);
+
 }
