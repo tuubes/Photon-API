@@ -22,7 +22,9 @@ package org.mcphoton.utils;
  * An EulerAngle is composed of 3 rotations (yaw, pitch, roll) on 3 axis. All angles are in radians.
  * This class isn't thread-safe.
  *
+ * @see https://en.wikipedia.org/wiki/Euler_angles
  * @author DJmaxZPLAY
+ * @author TheElectronWill
  */
 public class EulerAngles {
 
