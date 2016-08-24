@@ -188,13 +188,11 @@ public final class Location implements Cloneable {
 	}
 
 	/**
-	 * Creates a location in the middle of the two specified locations.
+	 * Creates a location in the middle of the two specified locations. The world will be the one of
+	 * <code>l1</code>.
 	 */
 	public static Location middle(Location l1, Location l2) {
-		if (l1.w != l2.w) {
-			throw new IllegalArgumentException("The two locations must be in the same world.");
-		}
-		double x = (l1.x + l2.x) / 2d, y = (l1.y + l2.y) / 2d, z = (l1.z + l2.z) / 2d;
+		final double x = (l1.x + l2.x) / 2d, y = (l1.y + l2.y) / 2d, z = (l1.z + l2.z) / 2d;
 		return new Location(x, y, z, l1.w);
 	}
 }
