@@ -19,7 +19,7 @@
 package org.mcphoton.entity;
 
 import java.util.UUID;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 import org.mcphoton.world.World;
 
 /**

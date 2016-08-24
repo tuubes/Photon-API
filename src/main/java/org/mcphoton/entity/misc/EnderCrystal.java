@@ -20,7 +20,7 @@ package org.mcphoton.entity.misc;
 
 import java.util.Optional;
 import org.mcphoton.entity.Entity;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 
 /**
  * Crystal in end that heals the EnderDragon.

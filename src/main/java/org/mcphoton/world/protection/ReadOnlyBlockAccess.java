@@ -20,7 +20,7 @@ package org.mcphoton.world.protection;
 
 import org.mcphoton.block.BlockType;
 import org.mcphoton.world.BiomeType;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 
 public interface ReadOnlyBlockAccess {
 

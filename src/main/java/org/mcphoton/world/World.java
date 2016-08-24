@@ -18,6 +18,7 @@
  */
 package org.mcphoton.world;
 
+import org.mcphoton.utils.Location;
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;

@@ -16,11 +16,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.mcphoton.world;
+package org.mcphoton.utils;
 
 import java.util.Objects;
-import org.mcphoton.utils.DoubleVector;
-import org.mcphoton.utils.IntVector;
+import org.mcphoton.world.World;
 
 /**
  * A location is a precise point defined by 3 coordinates (x,y,z) and one World. A Location is immutable, so
@@ -45,14 +44,14 @@ public final class Location implements Cloneable {
 	 * Creates a new location that is the result of adding the vector v to this location.
 	 */
 	public Location add(DoubleVector v) {
-		return new Location(x + v.getX(), y + v.getY(), z + v.getZ(), w);
+		return new Location(x + v.x, y + v.y, z + v.z, w);
 	}
 
 	/**
 	 * Creates a new location that is the result of adding the vector v to this location.
 	 */
 	public Location add(IntVector v) {
-		return new Location(x + v.getX(), y + v.getY(), z + v.getZ(), w);
+		return new Location(x + v.x, y + v.y, z + v.z, w);
 	}
 
 	/**

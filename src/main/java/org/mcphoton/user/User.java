@@ -22,7 +22,7 @@ import java.util.UUID;
 import org.mcphoton.inventory.Inventory;
 import org.mcphoton.inventory.InventoryHolder;
 import org.mcphoton.permissions.Permissible;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 
 /**
  *

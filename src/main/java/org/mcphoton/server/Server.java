@@ -26,7 +26,7 @@ import org.mcphoton.command.ServerCommandRegistry;
 import org.mcphoton.entity.living.Player;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.plugin.ServerPluginsManager;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 import org.mcphoton.world.World;
 
 public interface Server {

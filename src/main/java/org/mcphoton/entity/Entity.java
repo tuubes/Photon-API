@@ -24,7 +24,7 @@ import org.mcphoton.entity.vehicle.Vehicle;
 import org.mcphoton.network.Client;
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.utils.DoubleVector;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 
 /**
  * Base interface for entites.

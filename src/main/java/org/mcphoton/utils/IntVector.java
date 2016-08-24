@@ -18,7 +18,6 @@
  */
 package org.mcphoton.utils;
 
-import org.mcphoton.world.Location;
 import org.mcphoton.world.World;
 
 /**

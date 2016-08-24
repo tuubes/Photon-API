@@ -19,7 +19,7 @@
 package org.mcphoton.block;
 
 import org.mcphoton.utils.IntVector;
-import org.mcphoton.world.Location;
+import org.mcphoton.utils.Location;
 
 /**
  * A block face.
