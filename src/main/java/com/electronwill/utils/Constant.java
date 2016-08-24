@@ -19,7 +19,8 @@
 package com.electronwill.utils;
 
 /**
- * A constant value. Once its value has been set it cannot be changed. A constant is thread-safe.
+ * A constant <b>non-null</b> value. Once its value has been set it cannot be changed. A constant is
+ * thread-safe.
  *
  * @author TheElectronWill
  */
@@ -44,7 +45,7 @@ public final class Constant<T> {
 	/**
 	 * Initializes this constant. This method can only be called once.
 	 *
-	 * @param value
+	 * @param value the value to set.
 	 */
 	public synchronized void init(T value) {
 		if (this.value != null) {
@@ -55,6 +56,8 @@ public final class Constant<T> {
 
 	/**
 	 * Gets the value.
+	 *
+	 * @return the constant value.
 	 */
 	public T get() {
 		return value;
@@ -62,6 +65,8 @@ public final class Constant<T> {
 
 	/**
 	 * Checks if this constant has been initialized.
+	 *
+	 * @return true if it has been initialized.
 	 */
 	public boolean isInitialized() {
 		return value != null;

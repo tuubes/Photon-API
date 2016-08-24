@@ -31,7 +31,7 @@ import java.util.function.Function;
  * <h1>How to use</h1>
  * <p>
  * Define rules for keys' values with the define() methods. Compound keys are accepted, of course.
- * Eachlast-level key that you want to be valid must be specified, because any unspecified key is removed by
+ * Each last-level key that you want to be valid must be specified, because any unspecified key is removed by
  * {@link Configuration#correct(ConfigurationSpecification)}.
  * </p>
  *

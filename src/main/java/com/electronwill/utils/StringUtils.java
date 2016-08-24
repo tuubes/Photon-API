@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility class for manipulating Strings. TextUtils is faster than the equivalent methods of the standard
- * Java library.
+ * Utility class for manipulating Strings. It provides faster methods than the standard Java library.
  *
  * @author TheElectronWill
  *

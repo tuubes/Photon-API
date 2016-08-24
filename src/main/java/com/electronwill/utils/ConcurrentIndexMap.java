@@ -48,7 +48,7 @@ import java.util.function.Function;
 public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> implements ConcurrentMap<Integer, E> {
 
 	/**
-	 * The array that contains values. Indexes are the keys.
+	 * The array that contains the values. Indexes are the keys.
 	 */
 	private volatile Object[] array;
 
@@ -200,7 +200,7 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * the map are reflected in the set, and vice-versa. The view's iterators and spliterators are weakly
 	 * consistent.
 	 *
-	 * @return a set view of the mappings contained in this map
+	 * @return a set view of the mappings contained in this map.
 	 */
 	@Override
 	public EntrySet entrySet() {
@@ -211,7 +211,7 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the
 	 * key.
 	 *
-	 * @param key the key
+	 * @param key the key.
 	 * @return the associated value, or null if there is no mapping for that key.
 	 */
 	@Override
@@ -226,7 +226,7 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the
 	 * key.
 	 *
-	 * @param key the key
+	 * @param key the key.
 	 * @return the associated value, or null if there is no mapping for that key.
 	 */
 	public E get(int key) {
@@ -244,13 +244,12 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 
 	/**
 	 * Returns the value to which the specified key is mapped, or defaultValue if this map contains no mapping
-	 * for the
-	 * key.
+	 * for the key.
 	 *
-	 * @param key the key
-	 * @param defaultValue the value to be returned if this map contains no mapping for the key
+	 * @param key the key.
+	 * @param defaultValue the value to be returned if this map contains no mapping for the key.
 	 * @return the value to which the specified key is mapped, or defaultValue if this map contains no mapping
-	 * for the key
+	 * for the key.
 	 */
 	public E getOrDefault(int key, E defaultValue) {
 		final E value = get(key);
@@ -283,8 +282,8 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * Associates the specified value with the specified key in this map. If the map previously contained a
 	 * mapping for the key, the old value is replaced by the specified value.
 	 *
-	 * @param key the key
-	 * @param value the associated value
+	 * @param key the key.
+	 * @param value the associated value.
 	 * @return the previous value if there is one, or null if there is none.
 	 */
 	@Override
@@ -296,8 +295,8 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * Associates the specified value with the specified key in this map. If the map previously contained a
 	 * mapping for the key, the old value is replaced by the specified value.
 	 *
-	 * @param key the key
-	 * @param value the associated value
+	 * @param key the key.
+	 * @param value the associated value.
 	 * @return the previous value if there is one, or null if there is none.
 	 */
 	public E put(int key, E value) {
@@ -352,8 +351,8 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * If the specified key is not already associated with a value associates it with the given value and
 	 * returns null, else returns the current value.
 	 *
-	 * @param key the key
-	 * @param value value to be associated with the key
+	 * @param key the key.
+	 * @param value value to be associated with the key.
 	 * @return the previous value associated with the key, or null if there was no mapping for the key.
 	 */
 	@Override
@@ -365,8 +364,8 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * If the specified key is not already associated with a value associates it with the given value and
 	 * returns null, else returns the current value.
 	 *
-	 * @param key the key
-	 * @param value value to be associated with the key
+	 * @param key the key.
+	 * @param value value to be associated with the key.
 	 * @return the previous value associated with the key, or null if there was no mapping for the key.
 	 */
 	public E putIfAbsent(int key, E value) {
@@ -396,7 +395,7 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * Returns the value to which this map previously associated the key, or null if the map contained no
 	 * mapping for the key.
 	 *
-	 * @param key the key
+	 * @param key the key.
 	 * @return the previous value if there is one or null if there is none.
 	 */
 	@Override
@@ -412,7 +411,7 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	 * Returns the value to which this map previously associated the key, or null if the map contained no
 	 * mapping for the key.
 	 *
-	 * @param key the key
+	 * @param key the key.
 	 * @return the previous value if there is one or null if there is none.
 	 */
 	public E remove(int key) {
@@ -442,8 +441,8 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	/**
 	 * Removes the entry for the specified key only if it is currently mapped to the specified value.
 	 *
-	 * @param key the key
-	 * @param value the associated value
+	 * @param key the key.
+	 * @param value the associated value.
 	 * @return true if it was removed, false if it doesn't exist.
 	 */
 	public boolean remove(int key, Object value) {
@@ -474,10 +473,10 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	/**
 	 * Replaces the entry for the specified key only if currently mapped to the specified value.
 	 *
-	 * @param key key with which the specified value is associated oldValue
-	 * @param oldValue value expected to be associated with the specified key
-	 * @param newValue value to be associated with the specified key
-	 * @return true if the value was replaced
+	 * @param key key with which the specified value is associated oldValue.
+	 * @param oldValue value expected to be associated with the specified key.
+	 * @param newValue value to be associated with the specified key.
+	 * @return true if the value was replaced.
 	 */
 	public boolean replace(int key, E oldValue, E newValue) {
 		if (oldValue == null || newValue == null) {
@@ -507,8 +506,8 @@ public final class ConcurrentIndexMap<E> extends AbstractMap<Integer, E> impleme
 	/**
 	 * Replaces the entry for the specified key only if it is currently mapped to some value.
 	 *
-	 * @param key key with which the specified value is associated value
-	 * @param value value to be associated with the specified key
+	 * @param key key with which the specified value is associated value.
+	 * @param value value to be associated with the specified key.
 	 * @return the previous value associated with the specified key, or null if there was no mapping for the
 	 * key.
 	 */

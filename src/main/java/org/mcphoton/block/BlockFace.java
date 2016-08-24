@@ -96,40 +96,40 @@ public enum BlockFace {
 	}
 
 	/**
-	 * Gets the modification to apply on the x coordinate to get the corresponding block.
+	 * @return the modification to apply on the x coordinate to get the corresponding block.
 	 */
 	public int getModX() {
 		return modX;
 	}
 
 	/**
-	 * Gets the modification to apply on the y coordinate to get the corresponding block.
+	 * @return the modification to apply on the y coordinate to get the corresponding block.
 	 */
 	public int getModY() {
 		return modY;
 	}
 
 	/**
-	 * Gets the modification to apply on the z coordinate to get the corresponding block.
+	 * @return the modification to apply on the z coordinate to get the corresponding block.
 	 */
 	public int getModZ() {
 		return modZ;
 	}
 
 	/**
-	 * Gets the opposite BlockFace.
+	 * @return the opposite BlockFace.
 	 */
 	public abstract BlockFace getOppositeFace();
 
 	/**
-	 * Creates a new location by adding modX, modY and modZ to the specified location.
+	 * @return a new location that is the result of adding modX, modY and modZ to the specified location.
 	 */
 	public Location getModifiedLocation(Location loc) {
 		return loc.add(modX, modY, modZ);
 	}
 
 	/**
-	 * Creates a new IntVector (modX, modY, modZ).
+	 * @return a new IntVector (modX, modY, modZ).
 	 */
 	public IntVector toIntVector() {
 		return new IntVector(modX, modY, modZ);

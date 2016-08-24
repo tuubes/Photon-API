@@ -45,7 +45,7 @@ public final class IntConstant {
 	/**
 	 * Initializes the constant. This method can only be called once.
 	 *
-	 * @param value
+	 * @param value the value to set.
 	 */
 	public void init(int value) {
 		if (value == -1) {
@@ -61,6 +61,8 @@ public final class IntConstant {
 
 	/**
 	 * Gets the value.
+	 *
+	 * @return the constant value.
 	 */
 	public int get() {
 		return value;
@@ -68,6 +70,8 @@ public final class IntConstant {
 
 	/**
 	 * Checks if this constant has been initialized.
+	 *
+	 * @return true if it has been initialized.
 	 */
 	public boolean isInitialized() {
 		return value != -1;

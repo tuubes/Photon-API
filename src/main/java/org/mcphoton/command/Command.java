@@ -50,12 +50,12 @@ public interface Command {
 	void execute(Messageable source, String[] args);
 
 	/**
-	 * Gets the name of this command.
+	 * @¶eturn the name of this command.
 	 */
 	String getName();
 
 	/**
-	 * Gets the aliases of this command.
+	 * @return the aliases of this command.
 	 */
 	default String[] getAliases() {
 		return new String[0];

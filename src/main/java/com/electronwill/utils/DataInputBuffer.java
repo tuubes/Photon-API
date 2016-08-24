@@ -24,6 +24,7 @@ import java.nio.ByteBuffer;
 import org.mcphoton.network.ProtocolHelper;
 
 /**
+ * A simple DataInput implementation based on a ByteBuffer.
  *
  * @author TheElectronWill
  */
@@ -31,6 +32,11 @@ public class DataInputBuffer implements DataInput {
 
 	protected final ByteBuffer buff;
 
+	/**
+	 * Creates a new DataInputBuffer based on the specified ByteBuffer.
+	 *
+	 * @param buff the ByteBuffer to use.
+	 */
 	public DataInputBuffer(ByteBuffer buff) {
 		this.buff = buff;
 	}

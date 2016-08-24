@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * A reziseable collection based on an array. The delete operation is in constant time because we just move
+ * A resizeable collection based on an array. The delete operation is in constant time because it just moves
  * the last element to fill the gap.
  *
  * @author TheElectronWill
