@@ -20,7 +20,6 @@ package org.mcphoton.item;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.mcphoton.Photon;
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.network.ProtocolWriteable;
@@ -32,102 +31,99 @@ import org.mcphoton.network.ProtocolWriteable;
  */
 public class ItemStack implements ProtocolWriteable {
 
-	protected final ItemType type;
-	protected final int maxSize;
-	protected AtomicInteger size, damage;
+	protected ItemType type;
+	protected int maxSize;
+	protected int size, damage;
 
 	public ItemStack(ItemType type, int maxSize, int size, int damage) {
 		this.type = type;
 		this.maxSize = maxSize;
-		this.size = new AtomicInteger(size);
-		this.damage = new AtomicInteger(damage);
+		this.size = size;
+		this.damage = damage;
 	}
 
 	/**
-	 * Checks if the stack is empty.
+	 * @return true if the stack is empty.
 	 */
 	boolean isEmpty() {
-		return size.get() == 0;
+		return size == 0;
 	}
 
 	/**
-	 * Checks if the stack is full, ie if its size is equal to its max size.
+	 * @return true if the stack is full, ie if its size is equal to its max size.
 	 */
 	boolean isFull() {
-		return size.get() == maxSize;
+		return size == maxSize;
 	}
 
 	/**
-	 * Gets the stack's size.
+	 * @return the stack's size.
 	 */
 	int getSize() {
-		return size.get();
+		return size;
 	}
 
 	/**
-	 * Atomically adds the given value to the current size value.
+	 * Adds the given value to the current size value.
 	 *
 	 * @param delta the value to add
-	 * @return the previous value
 	 */
-	int getAndAddSize(int delta) {
-		return size.getAndAdd(delta);
+	void addSize(int delta) {
+		size += delta;
 	}
 
 	/**
 	 * Sets the stack's size.
 	 */
 	void setSize(int size) {
-		this.size.set(size);
+		this.size = size;
 	}
 
 	/**
-	 * Gets the max stack's size.
+	 * @return the max stack's size.
 	 */
 	int getMaxSize() {
 		return maxSize;
 	}
 
 	/**
-	 * Gets the item type.
+	 * @return the item's type.
 	 */
 	ItemType getType() {
 		return type;
 	}
 
 	/**
-	 * Gets the stack's damage.
+	 * @return the stack's damage.
 	 */
 	int getDamage() {
-		return damage.get();
+		return damage;
 	}
 
 	/**
-	 * Atomically adds the given value to the current damage value.
+	 * Adds the given value to the current damage value.
 	 *
 	 * @param delta the value to add
-	 * @return the previous value
 	 */
-	int getAndAddDamage(int delta) {
-		return damage.getAndAdd(delta);
+	void addDamage(int delta) {
+		this.damage += delta;
 	}
 
 	/**
 	 * Sets the stack's damage.
 	 */
 	void setDamage(int damage) {
-		this.damage.set(damage);
+		this.damage = damage;
 	}
 
 	@Override
 	public void writeTo(ProtocolOutputStream out) throws IOException {
-		int capturedSize = size.get(), capturedDamage = damage.get();//capture the values here to make sure that the written values don't change during the write operation.
-		if (capturedSize == 0) {//empty
+		if (size == 0) {//empty
 			out.writeShort(-1);
 		} else {
 			out.writeShort(type.getUniqueId());
-			out.writeByte(capturedSize);
-			out.writeShort(capturedDamage);
+			out.writeByte(size);
+			out.writeShort(damage);
 			out.writeByte(0);//TODO write NBT data like enchantments
 		}
 	}
