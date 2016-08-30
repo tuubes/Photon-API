@@ -30,7 +30,7 @@ public abstract class AbstractType implements Type {
 	private final IntConstant id = new IntConstant();
 
 	@Override
-	public int getUniqueId() {
+	public int getId() {
 		return id.get();
 	}
 

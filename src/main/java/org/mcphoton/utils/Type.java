@@ -38,6 +38,6 @@ public interface Type {
 	/**
 	 * @return the unique id of this type.
 	 */
-	int getUniqueId();
+	int getId();
 
 }

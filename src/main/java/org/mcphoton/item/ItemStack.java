@@ -121,7 +121,7 @@ public class ItemStack implements ProtocolWriteable {
 		if (size == 0) {//empty
 			out.writeShort(-1);
 		} else {
-			out.writeShort(type.getUniqueId());
+			out.writeShort(type.getId());
 			out.writeByte(size);
 			out.writeShort(damage);
 			out.writeByte(0);//TODO write NBT data like enchantments

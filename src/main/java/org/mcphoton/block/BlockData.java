@@ -60,7 +60,7 @@ public final class BlockData {
 	 * @return the block's type id, without the additional data.
 	 */
 	public int getTypeId() {
-		return type.getUniqueId();
+		return type.getId();
 	}
 
 	/**
@@ -77,7 +77,7 @@ public final class BlockData {
 	 * @return the block's full id.
 	 */
 	public int getFullId() {
-		return type.getUniqueId() << 4 | (additional & 15);
+		return type.getId() << 4 | (additional & 15);
 	}
 
 }
