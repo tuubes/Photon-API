@@ -18,7 +18,6 @@
  */
 package org.mcphoton.world;
 
-import org.mcphoton.utils.Location;
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
@@ -26,6 +25,7 @@ import org.mcphoton.command.WorldCommandRegistry;
 import org.mcphoton.entity.living.Player;
 import org.mcphoton.event.WorldEventsManager;
 import org.mcphoton.plugin.WorldPluginsManager;
+import org.mcphoton.utils.Location;
 import org.mcphoton.world.areas.Area;
 import org.mcphoton.world.protection.CheckedWorldAccess;
 import org.mcphoton.world.protection.UnlockedAreaAccess;

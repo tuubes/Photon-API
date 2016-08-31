@@ -18,8 +18,10 @@
  */
 package org.mcphoton.block;
 
+import org.mcphoton.utils.ImmutableLocation;
 import org.mcphoton.utils.IntVector;
 import org.mcphoton.utils.Location;
+import org.mcphoton.utils.MutableLocation;
 
 /**
  * A block face.
@@ -122,10 +124,32 @@ public enum BlockFace {
 	public abstract BlockFace getOppositeFace();
 
 	/**
-	 * @return a new location that is the result of adding modX, modY and modZ to the specified location.
+	 * Adds modX, modY and modZ to the specified MutableLocation.
+	 *
+	 * @return a the specified location.
 	 */
-	public Location getModifiedLocation(Location loc) {
+	public MutableLocation getModifiedLocation(MutableLocation loc) {
 		return loc.add(modX, modY, modZ);
+	}
+
+	/**
+	 * Adds modX, modY and modZ to the specified ImmutableLocation.
+	 *
+	 * @return a new ImmutableLocation that is the result of adding modX, modY and modZ to the specified
+	 * location.
+	 */
+	public ImmutableLocation getModifiedLocation(ImmutableLocation loc) {
+		return loc.add(modX, modY, modZ);
+	}
+
+	/**
+	 * Adds modX, modY and modZ to the specified Location.
+	 *
+	 * @return a new ImmutableLocation that is the result of adding modX, modY and modZ to the specified
+	 * location.
+	 */
+	public ImmutableLocation getModifiedLocation(Location loc) {
+		return new ImmutableLocation(loc.getX() + modX, loc.getY() + modY, loc.getZ() + modZ, loc.getWorld());
 	}
 
 	/**

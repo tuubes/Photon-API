@@ -220,12 +220,21 @@ public final class DoubleVector implements Cloneable {
 	}
 
 	/**
-	 * Creates a new Location with the coordinates of this vector.
+	 * Creates a new MutableLocation with the coordinates of this vector.
 	 *
 	 * @param w the location's world.
 	 */
-	public Location toLocation(World w) {
-		return new Location(x, y, z, w);
+	public MutableLocation toMutableLocation(World w) {
+		return new MutableLocation(x, y, z, w);
+	}
+	
+	/**
+	 * Creates a new ImmutableLocation with the coordinates of this vector.
+	 *
+	 * @param w the location's world.
+	 */
+	public ImmutableLocation toImmutableLocation(World w) {
+		return new ImmutableLocation(x, y, z, w);
 	}
 
 	/**

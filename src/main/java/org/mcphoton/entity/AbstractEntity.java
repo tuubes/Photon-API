@@ -20,7 +20,7 @@ package org.mcphoton.entity;
 
 import java.util.UUID;
 import org.mcphoton.utils.Location;
-import org.mcphoton.world.World;
+import org.mcphoton.utils.MutableLocation;
 
 /**
  * Abstract base class for entities.
@@ -31,8 +31,7 @@ public abstract class AbstractEntity implements Entity {
 
 	private int entityId = -1;
 	private UUID uniqueId;
-	private double x, y, z;
-	private World world;
+	private MutableLocation loc = new MutableLocation(0, 0, 0, null);//TODO set world
 	private String customName;
 	private boolean customNameVisible = true;
 
@@ -53,7 +52,7 @@ public abstract class AbstractEntity implements Entity {
 
 	@Override
 	public Location getLocation() {
-		return new Location(x, y, z, world);
+		return loc;
 	}
 
 	@Override

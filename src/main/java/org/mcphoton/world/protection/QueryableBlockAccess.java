@@ -19,17 +19,49 @@
 package org.mcphoton.world.protection;
 
 import org.mcphoton.block.BlockType;
-import org.mcphoton.world.BiomeType;
 import org.mcphoton.utils.Location;
+import org.mcphoton.world.BiomeType;
 
+/**
+ * A QueryableBlockAccess provides methods to check if a specific action is allowed.
+ *
+ * @author TheElectronWill
+ */
 public interface QueryableBlockAccess {
 
+	/**
+	 * Checks if a block may be broken.
+	 *
+	 * @param x the block's x coordinate.
+	 * @param y the block's y coordinate.
+	 * @param z the block's z coordinate.
+	 * @param breaker the block's breaker.
+	 * @return true if it may be broken, false otherwise.
+	 */
 	boolean mayBreakBlock(int x, int y, int z, Object breaker);
 
+	/**
+	 * Checks if a block may be broken.
+	 *
+	 * @param x the block's x coordinate.
+	 * @param y the block's y coordinate.
+	 * @param z the block's z coordinate.
+	 * @param breaker the block's breaker.
+	 * @return true if it may be broken, false otherwise.
+	 */
 	default boolean mayBreakBlock(Location loc, Object breaker) {
 		return mayBreakBlock(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), breaker);
 	}
 
+	/**
+	 * Checks if a block may be set.
+	 *
+	 * @param x the block's x coordinate.
+	 * @param y the block's y coordinate.
+	 * @param z the block's z coordinate.
+	 * @param breaker the block's setter.
+	 * @return true if it may be set, false otherwise.
+	 */
 	boolean maySetBlockType(int x, int y, int z, BlockType type, Object setter);
 
 	default boolean maySetBlockType(Location loc, BlockType type, Object setter) {
