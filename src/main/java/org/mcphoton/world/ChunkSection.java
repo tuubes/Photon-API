@@ -24,11 +24,62 @@ import org.mcphoton.network.ProtocolWriteable;
  * A chunk section: 16x16x16 blocks.
  *
  * @author TheElectronWill
+ * @see https://github.com/mcphoton/Photon-API/wiki/IDs-of-blocks,-items-and-entities
  */
 public interface ChunkSection extends ProtocolWriteable {
 
+	/**
+	 * @param x X coordinate in the section.
+	 * @param y Y coordinate in the section.
+	 * @param z Z coordinate in the section.
+	 * @return the block's simple id (without its metadata).
+	 */
 	int getBlockId(int x, int y, int z);
 
+	/**
+	 * Sets a block's id (simple id, without the metadata).
+	 *
+	 * @param x X coordinate in the section.
+	 * @param y Y coordinate in the section.
+	 * @param z Z coordinate in the section.
+	 * @param blockId the block's simple id (without its metadata).
+	 */
 	void setBlockId(int x, int y, int z, int blockId);
+
+	/**
+	 * @param x X coordinate in the section.
+	 * @param y Y coordinate in the section.
+	 * @param z Z coordinate in the section.
+	 * @return the block's full id (with its metadata).
+	 */
+	int getBlockFullId(int x, int y, int z);
+
+	/**
+	 * Sets a block's full id (with the metadata).
+	 *
+	 * @param x X coordinate in the section.
+	 * @param y Y coordinate in the section.
+	 * @param z Z coordinate in the section.
+	 * @param blockFullId the block's full id (with its metadata).
+	 */
+	void setBlockFullId(int x, int y, int z, int blockFullId);
+
+	/**
+	 * @param x X coordinate in the section.
+	 * @param y Y coordinate in the section.
+	 * @param z Z coordinate in the section.
+	 * @return the block's metadata (without its id).
+	 */
+	int getBlockMetadata(int x, int y, int z);
+
+	/**
+	 * Sets a block's metadata (without the id).
+	 *
+	 * @param x X coordinate in the section.
+	 * @param y Y coordinate in the section.
+	 * @param z Z coordinate in the section.
+	 * @param blockMetadata the block's metadata (without its id).
+	 */
+	void setBlockMetadata(int x, int y, int z, int blockMetadata);
 
 }
