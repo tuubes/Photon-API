@@ -19,10 +19,12 @@
 package org.mcphoton.block;
 
 import java.util.Objects;
+import org.mcphoton.Photon;
 
 /**
  * Represents the data that defines a block: its type and its metadata.
  *
+ * @see https://github.com/mcphoton/Photon-API/wiki/IDs-of-blocks,-items-and-entities
  * @author TheElectronWill
  */
 public final class BlockData implements Cloneable {
@@ -49,6 +51,17 @@ public final class BlockData implements Cloneable {
 	public BlockData(BlockType type) {
 		this.type = type;
 		this.metadata = 0;
+	}
+
+	/**
+	 * Creates a new BlockData with a full block id.
+	 *
+	 * @param fullId the block's full id, ie its type id and its metadata.
+	 * @see #getFullId()
+	 */
+	public BlockData(int fullId) {
+		this.type = Photon.getGameRegistry().getRegisteredBlock(fullId >> 4);
+		this.metadata = (byte) (fullId & 15);
 	}
 
 	/**
