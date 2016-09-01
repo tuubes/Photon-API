@@ -124,7 +124,7 @@ public interface ChunkColumn {
 	 * @param blockMetadata the block's metadata (without its id).
 	 */
 	void setBlockMetadata(int x, int y, int z, int blockMetadata);
-	
+
 	/**
 	 * Fills a part of this chunk column with the specified block type.
 	 *
@@ -150,5 +150,21 @@ public interface ChunkColumn {
 	 * @param blockFullId the block's full id (with its metadata).
 	 */
 	void fillBlockFullId(int x0, int y0, int z0, int x1, int y1, int z1, int blockFullId);
+
+	/**
+	 * Replaces every occurence of a block's id.
+	 *
+	 * @param toReplace the id (without metadata) to replace.
+	 * @param replacement the replacement.
+	 */
+	void replaceBlockId(int toReplace, int replacement);
+
+	/**
+	 * Replaces every occurence of a block's full id.
+	 *
+	 * @param toReplace the full id to replace.
+	 * @param replacement the replacement.
+	 */
+	void replaceBlockFullId(int toReplace, int replacement);
 
 }
