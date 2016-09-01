@@ -20,6 +20,7 @@ package org.mcphoton.item;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.Objects;
 import org.mcphoton.Photon;
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.network.ProtocolWriteable;
@@ -32,8 +33,7 @@ import org.mcphoton.network.ProtocolWriteable;
 public class ItemStack implements ProtocolWriteable {
 
 	protected ItemType type;
-	protected int maxSize;
-	protected int size, damage;
+	protected int maxSize, size, damage;
 
 	public ItemStack(ItemType type, int maxSize, int size, int damage) {
 		this.type = type;
@@ -147,6 +147,28 @@ public class ItemStack implements ProtocolWriteable {
 	@Override
 	public String toString() {
 		return "ItemStack{" + "type=" + type + ", maxSize=" + maxSize + ", size=" + size + ", damage=" + damage + '}';
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 47 * hash + Objects.hashCode(this.type);
+		hash = 47 * hash + this.maxSize;
+		hash = 47 * hash + this.size;
+		hash = 47 * hash + this.damage;
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj instanceof ItemStack) {
+			ItemStack other = (ItemStack) obj;
+			return size == other.size && type.equals(other.type) && maxSize == other.maxSize;
+		}
+		return false;
 	}
 
 }
