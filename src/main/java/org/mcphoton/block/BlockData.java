@@ -19,34 +19,34 @@
 package org.mcphoton.block;
 
 /**
- * Represents the data that defines a block: its BlockType + its additional data.
+ * Represents the data that defines a block: its type and its metadata.
  *
  * @author TheElectronWill
  */
 public final class BlockData {
 
 	private final BlockType type;
-	private final byte additional;
+	private final byte metadata;
 
 	/**
 	 * Creates a new BlockData.
 	 *
 	 * @param type the block's type.
-	 * @param additional the block's additional data, maximum value = 15.
+	 * @param metadata the block's meta data, between 0 and 15 (inclusive).
 	 */
-	public BlockData(BlockType type, byte additional) {
+	public BlockData(BlockType type, byte metadata) {
 		this.type = type;
-		this.additional = additional;
+		this.metadata = metadata;
 	}
 
 	/**
-	 * Creates a new BlockData with an additional data of 0.
+	 * Creates a new BlockData with a metadata of 0.
 	 *
 	 * @param type the block's type.
 	 */
 	public BlockData(BlockType type) {
 		this.type = type;
-		this.additional = 0;
+		this.metadata = 0;
 	}
 
 	/**
@@ -57,27 +57,27 @@ public final class BlockData {
 	}
 
 	/**
-	 * @return the block's type id, without the additional data.
+	 * @return the block's type id, without the metadata.
 	 */
 	public int getTypeId() {
 		return type.getId();
 	}
 
 	/**
-	 * @return the block's additional data
+	 * @return the block's metadata, between 0 and 15 (inclusive).
 	 */
-	public byte getAdditionalData() {
-		return additional;
+	public byte getMetadata() {
+		return metadata;
 	}
 
 	/**
-	 * Calculates and returns the "full" block id: its type id + its additional data, constructed like this:
-	 * {@code int fullId = type.getUniqueId() << 4 | (additional & 15)}
+	 * Calculates and returns the "full" block id: its type id + its metadata, constructed like this:
+	 * {@code int fullId = type.getId() << 4 | (meta & 15)}
 	 *
 	 * @return the block's full id.
 	 */
 	public int getFullId() {
-		return type.getId() << 4 | (additional & 15);
+		return type.getId() << 4 | (metadata & 15);
 	}
 
 }
