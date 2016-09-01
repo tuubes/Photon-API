@@ -41,4 +41,21 @@ public abstract class AbstractType implements Type {
 		this.id.init(id);
 	}
 
+	@Override
+	public int hashCode() {
+		return id.get();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		final AbstractType other = (AbstractType) obj;
+		return getId() == other.getId();
+	}
+
 }
