@@ -18,12 +18,14 @@
  */
 package org.mcphoton.block;
 
+import java.util.Objects;
+
 /**
  * Represents the data that defines a block: its type and its metadata.
  *
  * @author TheElectronWill
  */
-public final class BlockData {
+public final class BlockData implements Cloneable {
 
 	private final BlockType type;
 	private final byte metadata;
@@ -78,6 +80,31 @@ public final class BlockData {
 	 */
 	public int getFullId() {
 		return type.getId() << 4 | (metadata & 15);
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 89 * hash + Objects.hashCode(this.type);
+		hash = 89 * hash + this.metadata;
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj instanceof BlockData) {
+			BlockData other = (BlockData) obj;
+			return metadata == other.metadata && type.equals(other.type);
+		}
+		return false;
+	}
+
+	@Override
+	public BlockData clone() {
+		return new BlockData(type, metadata);
 	}
 
 }
