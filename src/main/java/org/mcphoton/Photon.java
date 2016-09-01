@@ -20,9 +20,6 @@ package org.mcphoton;
 
 import java.io.File;
 import java.util.concurrent.ScheduledExecutorService;
-import org.mcphoton.block.BlockRegistry;
-import org.mcphoton.entity.EntityRegistry;
-import org.mcphoton.item.ItemRegistry;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.server.Server;
@@ -69,15 +66,7 @@ public final class Photon {
 		return null;
 	}
 
-	public static EntityRegistry getEntityRegistry() {
-		return null;
-	}
-
-	public static BlockRegistry getBlockRegistry() {
-		return null;
-	}
-
-	public static ItemRegistry getItemRegistry() {
+	public static GameRegistry getGameRegistry(){
 		return null;
 	}
 

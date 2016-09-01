@@ -42,6 +42,10 @@ public class ItemStack implements ProtocolWriteable {
 		this.damage = damage;
 	}
 
+	public ItemStack(ItemType type) {
+		this(type, 64, 0, 0);
+	}
+
 	/**
 	 * @return true if the stack is empty.
 	 */
@@ -131,12 +135,12 @@ public class ItemStack implements ProtocolWriteable {
 	public static ItemStack readFrom(ByteBuffer buff) throws IOException {
 		int typeId = buff.getShort();
 		if (typeId == -1) {
-			return new ItemStack(Photon.getItemRegistry().getRegistered(0), 64, 0, 0);
+			return new ItemStack(Photon.getGameRegistry().getRegisteredItem(0));
 		} else {
 			int size = buff.get();
 			int damage = buff.getShort();
 			//TODO read NBT data like enchantments
-			return new ItemStack(Photon.getItemRegistry().getRegistered(size), 64, size, damage);
+			return new ItemStack(Photon.getGameRegistry().getRegisteredItem(typeId), 64, size, damage);
 		}
 	}
 
