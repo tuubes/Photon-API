@@ -23,13 +23,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.server.Server;
-import org.mcphoton.world.BiomeRegistry;
 
 /**
  * The centralized API core. Gives access to many core points of the API, like the {@link PermissionsManager}.
  *
  * @author TheElectronWill
- * @author Maaattt
  */
 public final class Photon {
 
@@ -53,55 +51,93 @@ public final class Photon {
 	 * small tasks together into one bigger task.</li>
 	 * </ol>
 	 * </p>
+	 *
+	 * @return the ScheduledExecutorService
 	 */
 	public static ScheduledExecutorService getExecutorService() {
 		return null;
 	}
 
+	/**
+	 * Gets the Photon's PacketsManager, which handles the registration of the packets and of their handlers,
+	 * and allows to send packets to clients.
+	 *
+	 * @return the PacketsManager
+	 */
 	public static PacketsManager getPacketsManager() {
 		return null;
 	}
 
+	/**
+	 * Gets the Photon's PermissionsManager, which handles players' permissions.
+	 *
+	 * @return the PermissionsManager
+	 */
 	public static PermissionsManager getPermissionsManager() {
 		return null;
 	}
 
-	public static GameRegistry getGameRegistry(){
+	/**
+	 * Gets the Photon's GameRegistry, which handles the registration of biomes, blocks, items and entities.
+	 *
+	 * @return the GameRegistry
+	 */
+	public static GameRegistry getGameRegistry() {
 		return null;
 	}
 
-	public static BiomeRegistry getBiomeRegistry() {
-		return null;
-	}
-
+	/**
+	 * @return true if we're client side.
+	 */
 	public static boolean isClient() {
 		return false;
 	}
 
+	/**
+	 * @return true if we're server side.
+	 */
 	public static boolean isServer() {
 		return false;
 	}
 
+	/**
+	 * @return true if the console is advanced, ie if it can display colors and text effects.
+	 */
 	public static boolean isConsoleAdvanced() {
 		return false;
 	}
 
+	/**
+	 * @return the API version.
+	 */
 	public static String getVersion() {
 		return "dev-alpha";
 	}
 
+	/**
+	 * @return the Minecraft version the API works with.
+	 */
 	public static String getMinecraftVersion() {
 		return "1.10";
 	}
 
+	/**
+	 * @return the main directory.
+	 */
 	public static File getMainDirectory() {
 		return null;
 	}
 
+	/**
+	 * @return the plugins' directory.
+	 */
 	public static File getPluginsDirectory() {
 		return null;
 	}
 
+	/**
+	 * @return the Server instance (if server-side).
+	 */
 	public static Server getServer() {
 		return null;
 	}
