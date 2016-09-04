@@ -39,7 +39,7 @@ import org.mcphoton.world.protection.WorldAccessManager;
  */
 public interface World {
 
-	// === Properties ===
+	//---- Properties ----
 	String getName();
 
 	void renameTo(String name);
@@ -54,21 +54,26 @@ public interface World {
 
 	void setSpawn(Location spawn);
 
-	// === Misc ===
+	//---- Misc ----
 	Collection<Player> getPlayers();
 
 	void save();
 
 	void delete();
 
-	// === Registries and Managers ===
+	//---- Registries and Managers ----
 	WorldCommandRegistry getCommandRegistry();
 
 	WorldEventsManager getEventsManager();
 
 	WorldPluginsManager getPluginsManager();
+	
+	//---- World generation ----
+	ChunkGenerator getChunkGenerator();
+	
+	void setChunkGenerator(ChunkGenerator generator);
 
-	// === Block Access ===
+	//---- Block Access ----
 	WorldAccessManager getAccessManager();
 
 	void setAccessManager(WorldAccessManager manager);
