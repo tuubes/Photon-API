@@ -23,7 +23,7 @@ import org.mcphoton.utils.Location;
 import org.mcphoton.world.BiomeType;
 
 /**
- * A checked area access. Every action is checked.
+ * A checked world access. Every action is checked.
  *
  * @author TheElectronWill
  */
