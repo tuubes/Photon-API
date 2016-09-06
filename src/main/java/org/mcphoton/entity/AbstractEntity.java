@@ -18,7 +18,10 @@
  */
 package org.mcphoton.entity;
 
+import java.util.Optional;
 import java.util.UUID;
+import org.mcphoton.entity.vehicle.Vehicle;
+import org.mcphoton.utils.DoubleVector;
 import org.mcphoton.utils.Location;
 import org.mcphoton.utils.MutableLocation;
 
@@ -31,13 +34,60 @@ public abstract class AbstractEntity implements Entity {
 
 	private int entityId = -1;
 	private UUID uniqueId;
-	private MutableLocation loc = new MutableLocation(0, 0, 0, null);//TODO set world
+
 	private String customName;
-	private boolean customNameVisible = true;
+	private boolean customNameVisible;
+
+	private int fireTicks;
+	private boolean onGround, onFire, crouched, glowing, gravity, silent, sprinting;
+	private Optional<Vehicle> vehicle = Optional.empty();
+
+	private MutableLocation loc = new MutableLocation(0, 0, 0, null);//TODO set world
+	private DoubleVector velocity = new DoubleVector();
+
+	@Override
+	public String getCustomName() {
+		return customName;
+	}
+
+	@Override
+	public void setCustomName(String customName) {
+		this.customName = customName;
+	}
+
+	@Override
+	public boolean isCustomNameVisible() {
+		return customNameVisible;
+	}
+
+	@Override
+	public void setCustomNameVisible(boolean visibility) {
+		this.customNameVisible = visibility;
+	}
 
 	@Override
 	public int getEntityId() {
 		return entityId;
+	}
+
+	@Override
+	public int getFireTicks() {
+		return fireTicks;
+	}
+
+	@Override
+	public void setFireTicks(int ticks) {
+		this.fireTicks = ticks;
+	}
+
+	@Override
+	public void setGravity(boolean gravity) {
+		this.gravity = gravity;
+	}
+
+	@Override
+	public Location getLocation() {
+		return loc;
 	}
 
 	@Override
@@ -46,13 +96,23 @@ public abstract class AbstractEntity implements Entity {
 	}
 
 	@Override
-	public String getCustomName() {
-		return customName;
+	public Optional<Vehicle> getVehicle() {
+		return vehicle;
 	}
 
 	@Override
-	public Location getLocation() {
-		return loc;
+	public DoubleVector getVelocity() {
+		return velocity;
+	}
+
+	@Override
+	public void setVelocity(DoubleVector v) {
+		this.velocity = v;
+	}
+
+	@Override
+	public boolean hasGravity() {
+		return gravity;
 	}
 
 	@Override
@@ -65,18 +125,63 @@ public abstract class AbstractEntity implements Entity {
 	}
 
 	@Override
-	public void setCustomName(String customName) {
-		this.customName = customName;
+	public boolean isCrouched() {
+		return crouched;
 	}
 
 	@Override
-	public void setCustomNameVisible(boolean visibility) {
-		this.customNameVisible = visibility;
+	public void setCrouched(boolean crouched) {
+		this.crouched = crouched;
 	}
 
 	@Override
-	public boolean isCustomNameVisible() {
-		return customNameVisible;
+	public boolean isGlowing() {
+		return glowing;
+	}
+
+	@Override
+	public void setGlowing(boolean glow) {
+		this.glowing = glow;
+	}
+
+	@Override
+	public boolean isOnFire() {
+		return onFire;
+	}
+
+	@Override
+	public void setOnFire(boolean onFire) {
+		this.onFire = onFire;
+	}
+
+	@Override
+	public boolean isOnGround() {
+		return onGround;
+	}
+
+	@Override
+	public void setOnGround(boolean onGround) {
+		this.onGround = onGround;
+	}
+
+	@Override
+	public boolean isSilent() {
+		return silent;
+	}
+
+	@Override
+	public void setSilent(boolean silent) {
+		this.silent = silent;
+	}
+
+	@Override
+	public boolean isSprinting() {
+		return sprinting;
+	}
+
+	@Override
+	public void setSprinting(boolean sprinting) {
+		this.sprinting = sprinting;
 	}
 
 }
