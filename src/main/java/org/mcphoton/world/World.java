@@ -82,7 +82,9 @@ public interface World {
 	 *
 	 * @param spawn the spawn's location.
 	 */
-	void setSpawn(Location spawn);
+	default void setSpawn(Location spawn) {
+		setSpawn(spawn.getX(), spawn.getY(), spawn.getZ());
+	}
 
 	//---- Entities ---
 	/**
