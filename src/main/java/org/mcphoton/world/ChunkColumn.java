@@ -18,8 +18,6 @@
  */
 package org.mcphoton.world;
 
-import java.util.Collection;
-
 /**
  * A chunk column: up to 16 chunk sections aligned vertically, for a total of 16x256x16 = 65536 blocks.
  *
@@ -28,30 +26,22 @@ import java.util.Collection;
 public interface ChunkColumn {
 
 	/**
-	 * Gets the chunk x coordinate, which isn't the x coordinate of the first block in this chunk! The first
-	 * chunk is (0,0), the adjacent one is (0,1) etc.
+	 * Gets the chunk section at the given index. The first section, at index 0, contains the blocks from y=0
+	 * to y=15, and so on.
 	 *
-	 * @return the chunk x coordinate.
+	 * @param index the section's index.
+	 * @return the chunk section at the given index.
 	 */
-	int getX();
+	ChunkSection getSection(int index);
 
 	/**
-	 * Gets the chunk z coordinate, which isn't the z coordinate of the first block in this chunk! The first
-	 * chunk is (0,0), the adjacent one is (0,1) etc.
+	 * Sets the chunk section at the given index. The first section, at index 0, contains the blocks from y=0
+	 * to y=15. The second section, at index 1, contains the blocks from y=16 to y=31.
 	 *
-	 * @return the chunk z coordinate.
+	 * @param index the section's index.
+	 * @section the ChunkSection to set.
 	 */
-	int getZ();
-
-	/**
-	 * @return the world this chunk is in.
-	 */
-	World getWorld();
-
-	/**
-	 * @return an unmodifiable collection containing the chunk sections.
-	 */
-	Collection<ChunkSection> getSections();
+	void setSection(int index, ChunkSection section);
 
 	/**
 	 * Gets the biome's id of a given XZ column.
