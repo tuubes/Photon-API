@@ -48,6 +48,21 @@ public class ChunkDataPacket implements Packet {
 		return false;
 	}
 
+	public ChunkDataPacket(int chunkX, int chunkZ, ChunkSection[] sections, byte[] biomes) {
+		this.chunkX = chunkX;
+		this.chunkZ = chunkZ;
+		this.groundUpContinuous=true;
+		this.sections = sections;
+		this.biomes = biomes;
+		this.nbtArray = new NbtConfiguration[0];
+		this.bitMask = 0;
+		for (int i = 0; i < sections.length; i++) {
+			if (sections[i] != null) {
+				bitMask |= (1 << i);
+			}
+		}
+	}
+
 	@Override
 	public void writeTo(ProtocolOutputStream out) throws IOException {
 		out.writeInt(chunkX);
