@@ -18,6 +18,9 @@
  */
 package org.mcphoton.world;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 /**
  * A chunk column: up to 16 chunk sections aligned vertically, for a total of 16x256x16 = 65536 blocks.
  *
@@ -156,5 +159,12 @@ public interface ChunkColumn {
 	 * @param replacement the replacement.
 	 */
 	void replaceBlockFullId(int toReplace, int replacement);
+
+	/**
+	 * Writes this ChunkColumn to an OutputStream. This is mainly used to save the chunk in a file.
+	 *
+	 * @param out the stream to write this chunk to.
+	 */
+	void writeTo(OutputStream out) throws IOException;
 
 }

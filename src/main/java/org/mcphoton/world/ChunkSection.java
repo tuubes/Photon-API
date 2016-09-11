@@ -18,6 +18,8 @@
  */
 package org.mcphoton.world;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import org.mcphoton.network.ProtocolWriteable;
 
 /**
@@ -81,7 +83,7 @@ public interface ChunkSection extends ProtocolWriteable {
 	 * @param blockMetadata the block's metadata (without its id).
 	 */
 	void setBlockMetadata(int x, int y, int z, int blockMetadata);
-	
+
 	/**
 	 * Fills a part of this section with the specified block type.
 	 *
@@ -107,7 +109,7 @@ public interface ChunkSection extends ProtocolWriteable {
 	 * @param blockFullId the block's full id (with its metadata).
 	 */
 	void fillBlockFullId(int x0, int y0, int z0, int x1, int y1, int z1, int blockFullId);
-	
+
 	/**
 	 * Replaces every occurence of a block's id.
 	 *
@@ -123,5 +125,12 @@ public interface ChunkSection extends ProtocolWriteable {
 	 * @param replacement the replacement.
 	 */
 	void replaceBlockFullId(int toReplace, int replacement);
+
+	/**
+	 * Writes this ChunkSection to an OutputStream. This is mainly used to save the section in a file.
+	 *
+	 * @param out the stream to write this section to.
+	 */
+	void writeTo(OutputStream out) throws IOException;
 
 }
