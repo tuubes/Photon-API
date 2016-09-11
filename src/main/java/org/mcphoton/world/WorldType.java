@@ -18,13 +18,13 @@
  */
 package org.mcphoton.world;
 
-import org.mcphoton.utils.AbstractType;
-
 /**
  * Defines a type of world.
  *
- * @author Maaattt
+ * @author TheElectronWill
  */
-public abstract class WorldType extends AbstractType {
+public enum WorldType {
+
+	OVERWORLD, NETHER, END;
 
 }
