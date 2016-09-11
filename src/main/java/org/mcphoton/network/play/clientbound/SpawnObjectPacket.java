@@ -76,8 +76,8 @@ public class SpawnObjectPacket implements Packet {
 		x = buff.getDouble();
 		y = buff.getDouble();
 		z = buff.getDouble();
-		pitch = ProtocolHelper.toDegrees(buff.get());
-		yaw = ProtocolHelper.toDegrees(buff.get());
+		pitch = ProtocolHelper.toRadians(buff.get());
+		yaw = ProtocolHelper.toRadians(buff.get());
 		data = buff.getInt();
 		velocityX = buff.getShort();
 		velocityY = buff.getShort();

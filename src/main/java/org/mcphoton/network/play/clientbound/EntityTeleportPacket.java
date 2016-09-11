@@ -62,8 +62,8 @@ public class EntityTeleportPacket implements Packet {
 		x = buff.getDouble();
 		y = buff.getDouble();
 		z = buff.getDouble();
-		yaw = ProtocolHelper.toDegrees(buff.get());
-		pitch = ProtocolHelper.toDegrees(buff.get());
+		yaw = ProtocolHelper.toRadians(buff.get());
+		pitch = ProtocolHelper.toRadians(buff.get());
 		onGround = ProtocolHelper.readBoolean(buff);
 		return this;
 	}

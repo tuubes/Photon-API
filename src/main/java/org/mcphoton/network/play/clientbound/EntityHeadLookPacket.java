@@ -51,7 +51,7 @@ public class EntityHeadLookPacket implements Packet {
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
 		entityId = ProtocolHelper.readVarInt(buff);
-		headYaw = ProtocolHelper.toDegrees(buff.get());
+		headYaw = ProtocolHelper.toRadians(buff.get());
 		return this;
 	}
 
