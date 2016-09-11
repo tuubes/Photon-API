@@ -21,6 +21,7 @@ package org.mcphoton.network.play.clientbound;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 import java.util.function.Consumer;
+import org.mcphoton.entity.MetadataWriter;
 import org.mcphoton.entity.living.Player;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
@@ -46,7 +47,7 @@ public class SpawnPlayerPacket implements Packet {
 		this.z = p.getLocation().getZ();
 		this.yaw = p.getYaw();
 		this.pitch = p.getPitch();
-		this.metadataWriter = p::writeMetadata;
+		this.metadataWriter = (out) -> p.writeMetadata(new MetadataWriter(out));
 	}
 
 	@Override
