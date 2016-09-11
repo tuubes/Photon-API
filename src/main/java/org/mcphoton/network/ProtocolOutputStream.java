@@ -23,8 +23,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * An OutputStream with methods for writing common data types of the Minecraft protocol. A
- * ProtocolOutputStream
- * automatically increases its size when needed.
+ * ProtocolOutputStream automatically increases its size when needed.
  *
  * @author TheElectronWill
  *
