@@ -18,8 +18,6 @@
  */
 package org.mcphoton.entity;
 
-import org.mcphoton.entity.Rotateable;
-
 /**
  * Can rotates its head side way.
  *
