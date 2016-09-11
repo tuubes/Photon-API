@@ -196,23 +196,23 @@ public final class ProtocolHelper {
 	}
 
 	/**
-	 * Converts an angle in degrees to an angle in steps of 1/256 of a full turn.
+	 * Converts an angle in radians to an angle in steps of 1/256 of a full turn.
 	 *
-	 * @param degrees the angle, in degrees, as a float.
+	 * @param radians the angle, in radians, as a float.
 	 * @return the angle, in steps of 1/256 of a full turn, as an unsigned byte.
 	 */
-	public static int toRotationStep(float degrees) {
-		return (int) (degrees / 360f * 256f);
+	public static int toRotationStep(float radians) {
+		return (int) (radians / 2d / Math.PI * 256f);
 	}
 
 	/**
-	 * Converts an angle in steps of 1/256 of a full turn to an angle in degrees.
+	 * Converts an angle in steps of 1/256 of a full turn to an angle in radians.
 	 *
 	 * @param steps the angle, in steps of 1/256 of a full turn, as an unsigned byte
-	 * @return the angle, in degrees, as a float.
+	 * @return the angle, in radians, as a float.
 	 */
-	public static float toDegrees(int steps) {
-		return (float) (steps / 256f * 360f);
+	public static float toRadians(int steps) {
+		return (float) (steps / 256d * 2d * Math.PI);
 	}
 
 	/**
