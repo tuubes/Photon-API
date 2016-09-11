@@ -20,6 +20,8 @@ package org.mcphoton.network.play.clientbound;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;
+import java.util.function.Consumer;
+import org.mcphoton.entity.living.Player;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolHelper;
 import org.mcphoton.network.ProtocolOutputStream;
@@ -33,8 +35,19 @@ public class SpawnPlayerPacket implements Packet {
 	public int entityId;
 	public UUID playerUUID;
 	public double x, y, z;
-	public float yaw, pitch;
-	public byte metadata;
+	public float yaw, pitch;//in radians
+	public Consumer<ProtocolOutputStream> metadataWriter;
+
+	public SpawnPlayerPacket(Player p) {
+		this.entityId = p.getEntityId();
+		this.playerUUID = p.getAccountId();
+		this.x = p.getLocation().getX();
+		this.y = p.getLocation().getY();
+		this.z = p.getLocation().getZ();
+		this.yaw = p.getYaw();
+		this.pitch = p.getPitch();
+		this.metadataWriter = p::writeMetadata;
+	}
 
 	@Override
 	public int getId() {
@@ -56,27 +69,16 @@ public class SpawnPlayerPacket implements Packet {
 		out.writeDouble(z);
 		out.writeByte(ProtocolHelper.toRotationStep(yaw));
 		out.writeByte(ProtocolHelper.toRotationStep(pitch));
-		out.writeByte(metadata);
-
+		metadataWriter.accept(out);
 	}
 
 	@Override
 	public Packet readFrom(ByteBuffer buff) {
-		entityId = ProtocolHelper.readVarInt(buff);
-		long MSB = buff.getLong();
-		long LSB = buff.getLong();
-		playerUUID = new UUID(MSB, LSB);
-		x = buff.getDouble();
-		y = buff.getDouble();
-		z = buff.getDouble();
-		yaw = ProtocolHelper.toDegrees(buff.get());
-		pitch = ProtocolHelper.toDegrees(buff.get());
-		metadata = buff.get();
-		return this;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public String toString() {
-		return "SpawnPlayerPacket{" + "entityId=" + entityId + ", playerUUID=" + playerUUID + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", metadata=" + metadata + '}';
+		return "SpawnPlayerPacket{" + "entityId=" + entityId + ", playerUUID=" + playerUUID + ", x=" + x + ", y=" + y + ", z=" + z + ", yaw=" + yaw + ", pitch=" + pitch + ", metadataWriter (function) =" + metadataWriter + '}';
 	}
 }
