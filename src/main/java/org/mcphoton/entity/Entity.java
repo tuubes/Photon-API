@@ -21,10 +21,10 @@ package org.mcphoton.entity;
 import java.util.Optional;
 import java.util.UUID;
 import org.mcphoton.entity.vehicle.Vehicle;
-import org.mcphoton.network.Client;
-import org.mcphoton.network.ProtocolOutputStream;
+import org.mcphoton.network.Packet;
 import org.mcphoton.utils.DoubleVector;
 import org.mcphoton.utils.Location;
+import org.mcphoton.world.World;
 
 /**
  * Base interface for entites.
@@ -47,9 +47,19 @@ public interface Entity {
 	UUID getUniqueId();
 
 	/**
-	 * Initializes the entity id. This method may only be called once.
+	 * Initializes the entity. This method may only be called once.
 	 */
-	void initEntityId(int id);
+	void init(int entityId, double x, double y, double z, World w);
+
+	/**
+	 * @return true if the entity is valid, ie if it has been initialized but not invalidated yet.
+	 */
+	boolean isValid();
+
+	/**
+	 * Invalidates the entity.
+	 */
+	void invalidate();
 
 	/**
 	 * @return the entity's type.
@@ -212,15 +222,15 @@ public interface Entity {
 	void leaveVehicle();
 
 	/**
-	 * Writes this entity to a ProtocolOutputStream.
+	 * Writes the entity's metadata to a MetadataWriter.
 	 */
-	void writeTo(ProtocolOutputStream out);
+	void writeMetadata(MetadataWriter writer);
 
 	/**
-	 * Updates the entity's metadata client side.
+	 * Constructs a packet that can be sent to a client to spawn the entity.
 	 *
-	 * @param clients the clients to send the update to.
+	 * @return a spawn packet.
 	 */
-	void sendMetadataUpdates(Client... clients);
+	Packet constructSpawnPacket();
 
 }

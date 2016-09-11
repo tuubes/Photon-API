@@ -24,6 +24,7 @@ import org.mcphoton.entity.vehicle.Vehicle;
 import org.mcphoton.utils.DoubleVector;
 import org.mcphoton.utils.Location;
 import org.mcphoton.utils.MutableLocation;
+import org.mcphoton.world.World;
 
 /**
  * Abstract base class for entities.
@@ -42,7 +43,7 @@ public abstract class AbstractEntity implements Entity {
 	private boolean onGround, onFire, crouched, glowing, gravity, silent, sprinting;
 	private Optional<Vehicle> vehicle = Optional.empty();
 
-	private MutableLocation loc = new MutableLocation(0, 0, 0, null);//TODO set world
+	private MutableLocation loc;
 	private DoubleVector velocity = new DoubleVector();
 
 	@Override
@@ -116,12 +117,23 @@ public abstract class AbstractEntity implements Entity {
 	}
 
 	@Override
-	public void initEntityId(int id) {
+	public void init(int entityId, double x, double y, double z, World w) {
 		if (entityId != -1) {
 			throw new IllegalStateException("Entity id already initialized!");
 		}
-		this.entityId = id;
+		this.entityId = entityId;
 		this.uniqueId = new UUID(0, entityId);
+		this.loc = new MutableLocation(x, y, z, w);
+	}
+
+	@Override
+	public boolean isValid() {
+		return entityId >= 0;
+	}
+
+	@Override
+	public void invalidate() {
+		entityId = -1;
 	}
 
 	@Override
