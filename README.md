@@ -6,6 +6,7 @@ All the files in this repository (except the LICENSE file which is copyrighted b
 
 ## How to build
 Photon uses [gradle](http://gradle.org) to manage its dependencies. Building the project is very easy:
+
 1. Install the Java 8 SDK (aka JDK 8) if you don't already have it.
 2. Run the following command in the project's root directory: `./gradlew build`
 
@@ -16,3 +17,6 @@ You can fork this project and send me pull requests :)
 
 ## Branches
 The *develop* branch contains the latest **in development** version of the Photon API. It's probably unstable and may change a lot. More stable releases can be found in the *master* branch.
+
+## Current status
+The Photon API **isn't ready** yet, that is, it lacks some important features and may change a lot in the future. But we've worked a lot and it is on the right track.
