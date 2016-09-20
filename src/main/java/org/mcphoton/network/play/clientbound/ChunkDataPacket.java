@@ -21,6 +21,7 @@ package org.mcphoton.network.play.clientbound;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.mcphoton.config.NbtConfiguration;
+import org.mcphoton.network.ByteArrayProtocolOutputStream;
 import org.mcphoton.network.Packet;
 import org.mcphoton.network.ProtocolOutputStream;
 import org.mcphoton.world.ChunkSection;
@@ -51,14 +52,14 @@ public class ChunkDataPacket implements Packet {
 	public ChunkDataPacket(int chunkX, int chunkZ, ChunkSection[] sections, byte[] biomes) {
 		this.chunkX = chunkX;
 		this.chunkZ = chunkZ;
-		this.groundUpContinuous=true;
+		this.groundUpContinuous = true;
 		this.sections = sections;
 		this.biomes = biomes;
 		this.nbtArray = new NbtConfiguration[0];
 		this.bitMask = 0;
 		for (int i = 0; i < sections.length; i++) {
 			if (sections[i] != null) {
-				bitMask |= (1 << i);
+				this.bitMask |= (1 << i);
 			}
 		}
 	}
@@ -69,15 +70,19 @@ public class ChunkDataPacket implements Packet {
 		out.writeInt(chunkZ);
 		out.writeBoolean(groundUpContinuous);
 		out.writeVarInt(bitMask);
-		out.writeVarInt(sections.length);
+
+		ByteArrayProtocolOutputStream blockData = new ByteArrayProtocolOutputStream();//TODO optimize: don't use an intermediate buffer (if possible)
 		for (ChunkSection section : sections) {
 			if (section != null) {
-				section.writeTo(out);
+				section.writeTo(blockData);
 			}
 		}
 		if (groundUpContinuous) {
-			out.write(biomes);
+			blockData.write(biomes);
 		}
+		out.writeVarInt(blockData.size());
+		out.write(blockData.getBytes(), 0, blockData.size());
+		
 		out.writeVarInt(nbtArray.length);
 		for (NbtConfiguration nbt : nbtArray) {
 			nbt.writeTo(out);
