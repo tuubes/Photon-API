@@ -25,6 +25,12 @@ package org.mcphoton.world;
  */
 public enum WorldType {
 
-	OVERWORLD, NETHER, END;
+	OVERWORLD(0), NETHER(-1), END(1);
+
+	public final int id;
+
+	private WorldType(int id) {
+		this.id = id;
+	}
 
 }
