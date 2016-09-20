@@ -96,7 +96,7 @@ public class ByteArrayProtocolOutputStream extends ProtocolOutputStream {
 
 	protected void ensureCapacity(int cap) {
 		if (buff.length < cap) {
-			byte[] buff2 = new byte[Math.max(cap, buff.length * 2)];
+			byte[] buff2 = new byte[Math.max(cap, buff.length * 3 / 2 + 1)];
 			System.arraycopy(buff, 0, buff2, 0, count);
 			buff = buff2;
 		}
