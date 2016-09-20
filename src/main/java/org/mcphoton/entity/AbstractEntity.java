@@ -118,7 +118,7 @@ public abstract class AbstractEntity implements Entity {
 
 	@Override
 	public void init(int entityId, double x, double y, double z, World w) {
-		if (entityId != -1) {
+		if (this.entityId != -1) {
 			throw new IllegalStateException("Entity id already initialized!");
 		}
 		this.entityId = entityId;
