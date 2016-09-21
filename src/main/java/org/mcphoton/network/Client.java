@@ -21,6 +21,7 @@ package org.mcphoton.network;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Optional;
+import java.util.concurrent.ScheduledFuture;
 
 import org.mcphoton.entity.living.Player;
 
@@ -67,5 +68,7 @@ public interface Client {
 	 * @return if the client is locally connected or not.
 	 */
 	boolean isLocal();
+	
+	ScheduledFuture<?> getKeepClientRunnable();
 	
 }
