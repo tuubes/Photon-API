@@ -58,4 +58,14 @@ public interface Client {
 	 */
 	void closeConnection() throws IOException;
 
+	/**
+	 * @return if the client connection is closed.
+	 */
+	boolean isClosed();
+	
+	/**
+	 * @return if the client is locally connected or not.
+	 */
+	boolean isLocal();
+	
 }
