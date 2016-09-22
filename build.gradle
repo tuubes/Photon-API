@@ -29,15 +29,17 @@ license {
 // Dependencies
 repositories {
 	mavenCentral()
-	maven { url 'https://jitpack.io' }
+	maven { url 'https://repo.spacehq.org/content/repositories/snapshots/'}
 }
 
 dependencies {
 	compile 'org.slf4j:slf4j-api:1.7.13+'
 	compile 'commons-cli:commons-cli:1.3.1'
+	compile 'org.spacehq:mcprotocollib:1.10.2-SNAPSHOT'
 }
 
 // Wrapper config
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.14.1'
+	gradleVersion = '3.1'
 }
+
