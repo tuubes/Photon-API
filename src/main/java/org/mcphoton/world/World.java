@@ -25,6 +25,7 @@ import org.mcphoton.command.WorldCommandRegistry;
 import org.mcphoton.entity.Entity;
 import org.mcphoton.entity.living.Player;
 import org.mcphoton.event.WorldEventsManager;
+import org.mcphoton.inventory.recipe.WorldRecipeRegistry;
 import org.mcphoton.plugin.WorldPluginsManager;
 import org.mcphoton.utils.Location;
 import org.mcphoton.world.areas.Area;
@@ -150,6 +151,11 @@ public interface World {
 	 * @return the world's command registry.
 	 */
 	WorldCommandRegistry getCommandRegistry();
+
+	/**
+	 * @return the world's recipe registry.
+	 */
+	WorldRecipeRegistry getRecipeRegistry();
 
 	/**
 	 * @return the world's events manager.
