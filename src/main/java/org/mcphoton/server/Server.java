@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.UUID;
 import org.mcphoton.command.ServerCommandRegistry;
 import org.mcphoton.entity.living.Player;
+import org.mcphoton.inventory.recipe.ServerRecipeRegistry;
 import org.mcphoton.network.PacketsManager;
 import org.mcphoton.plugin.ServerPluginsManager;
 import org.mcphoton.utils.Location;
@@ -50,6 +51,8 @@ public interface Server {
 	WhitelistManager getWhitelistManager();
 
 	ServerCommandRegistry getCommandRegistry();
+	
+	ServerRecipeRegistry getRecipeRegistry();
 
 	// === Network ===
 	InetSocketAddress getBoundAddress();
