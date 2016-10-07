@@ -27,12 +27,16 @@ license {
 }
 
 // Dependencies
-repositories {
-	mavenCentral()
-	maven { url 'https://repo.spacehq.org/content/repositories/snapshots/'}
+[rootProject, this].each {
+    it.repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+		maven {url 'https://repo.spacehq.org/content/repositories/releases/'}
+    	maven {url 'https://repo.spacehq.org/content/repositories/snapshots/'}
+	}
 }
-
 dependencies {
+	compile project(':Photon-ProtocolLib')
 	compile 'org.slf4j:slf4j-api:1.7.13+'
 	compile 'commons-cli:commons-cli:1.3.1'
 	compile 'org.spacehq:mcprotocollib:1.10.2-SNAPSHOT'
