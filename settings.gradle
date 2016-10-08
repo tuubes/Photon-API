@@ -1,2 +1,0 @@
-include ':Photon-ProtocolLib'
-project(':Photon-ProtocolLib').projectDir = new File('../Photon-ProtocolLib')
