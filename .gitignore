@@ -1,3 +1,20 @@
+# Build files
+bin/
+build/
+
+# Gradle cache
+.gradle*
+
+# Netbeans files
 .nb-gradle*
-.gradle
-build
+nbproject
+
+# Eclipse files
+.classpath
+.project
+.settings
+
+# IntelliJ files
+*.iml
+.idea
+
