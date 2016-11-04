@@ -18,19 +18,20 @@
  */
 package org.mcphoton.item;
 
+import org.mcphoton.Photon;
+import org.mcphoton.network.NetOutput;
+import org.mcphoton.network.NetWriteable;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Objects;
-import org.mcphoton.Photon;
-import org.mcphoton.network.ProtocolOutputStream;
-import org.mcphoton.network.ProtocolWriteable;
 
 /**
  * A stack of items.
  *
  * @author TheElectronWill
  */
-public class ItemStack implements ProtocolWriteable {
+public class ItemStack implements NetWriteable {
 
 	protected ItemType type;
 	protected int maxSize, size, damage;
@@ -121,7 +122,7 @@ public class ItemStack implements ProtocolWriteable {
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) throws IOException {
+	public void writeTo(NetOutput out) throws IOException {
 		if (size == 0) {//empty
 			out.writeShort(-1);
 		} else {

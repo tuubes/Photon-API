@@ -18,14 +18,15 @@
  */
 package org.mcphoton.config;
 
+import org.mcphoton.network.NetOutput;
+import org.mcphoton.network.NetWriteable;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.Map;
-import org.mcphoton.network.ProtocolOutputStream;
-import org.mcphoton.network.ProtocolWriteable;
 
 /**
  * A NBT configuration.
@@ -33,7 +34,7 @@ import org.mcphoton.network.ProtocolWriteable;
  * @see http://wiki.vg/NBT
  * @author TheElectronWill
  */
-public class NbtConfiguration extends BaseConfiguration implements ProtocolWriteable {
+public class NbtConfiguration extends BaseConfiguration implements NetWriteable {
 
 	public NbtConfiguration() {
 		// defined by the photon's implementation
@@ -99,7 +100,7 @@ public class NbtConfiguration extends BaseConfiguration implements ProtocolWrite
 	}
 
 	@Override
-	public void writeTo(ProtocolOutputStream out) throws IOException {
+	public void writeTo(NetOutput out) throws IOException {
 		//defined by the photon's implementation
 	}
 
