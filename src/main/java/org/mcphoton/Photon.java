@@ -20,7 +20,6 @@ package org.mcphoton;
 
 import java.io.File;
 import java.util.concurrent.ScheduledExecutorService;
-import org.mcphoton.network.PacketsManager;
 import org.mcphoton.permissions.PermissionsManager;
 import org.mcphoton.server.Server;
 
@@ -35,8 +34,7 @@ public final class Photon {
 	 * Every method here returns null and it's completely normal. Actually the photon implementation redefines
 	 * this class and completes its methods.
 	 */
-	private Photon() {
-	}
+	private Photon() {}
 
 	/**
 	 * Gets the Photon's ScheduledExecutorService, which is used to schedule tasks across multiple
@@ -55,16 +53,6 @@ public final class Photon {
 	 * @return the ScheduledExecutorService
 	 */
 	public static ScheduledExecutorService getExecutorService() {
-		return null;
-	}
-
-	/**
-	 * Gets the Photon's PacketsManager, which handles the registration of the packets and of their handlers,
-	 * and allows to send packets to clients.
-	 *
-	 * @return the PacketsManager
-	 */
-	public static PacketsManager getPacketsManager() {
 		return null;
 	}
 
