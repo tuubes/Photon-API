@@ -20,22 +20,67 @@ package org.mcphoton.permissions;
 
 import java.util.Collection;
 
+/**
+ * A PermissionsManager manages all the permissions.
+ */
 public interface PermissionsManager {
 
-	void addSetting(PermissionSetting setting);
+	/**
+	 * Checks if a given Permissible object has the specified permission.
+	 *
+	 * @param p        the permissible.
+	 * @param perm     the permission to check.
+	 * @param ifNotSet the value to return if the permission is undefined for the given permissible.
+	 * @return {@code true} if the permission is granted, {@code false} if it is denied.
+	 */
+	boolean hasPermission(Permissible p, String perm, boolean ifNotSet);
 
-	void removeSetting(PermissionSetting setting);
+	/**
+	 * Checks if a given permission is set on a Permissible.
+	 *
+	 * @param p    the permissible.
+	 * @param perm the permission.
+	 * @return {@code true} if the permission is set, {@code false} if it isn't.
+	 */
+	boolean isPermissionSet(Permissible p, String perm);
 
-	void set(String permission, Permissible permissible, boolean granted);
+	/**
+	 * Sets a permission for a Permissible.
+	 *
+	 * @param p       the permissible.
+	 * @param perm    the permission.
+	 * @param setting {@code true} to grant the permission, {@code false} to deny it.
+	 */
+	void setPermission(Permissible p, String perm, boolean setting);
 
-	void reset(String permission, Permissible permissible);
+	/**
+	 * Unsets a permission.
+	 *
+	 * @param p    the permissible.
+	 * @param perm the permission to unset.
+	 */
+	void unsetPermission(Permissible p, String perm);
 
-	boolean isLoaded(Permissible permissible);
+	/**
+	 * Creates a new empty PermissionGroup.
+	 *
+	 * @return an empty PermissionGroup.
+	 */
+	PermissionGroup createGroup();
 
-	void load(Permissible permissible);
+	/**
+	 * Deletes a PermissionGroup. The group's member don't get deleted, they are just removed from the group.
+	 *
+	 * @param group the group to delete.
+	 */
+	void deleteGroup(PermissionGroup group);
 
-	boolean hasPermission(String permission, Permissible permissible);
+	/**
+	 * Gets a collection of all the existing permission groups. The returned collection isn't modifiable.
+	 *
+	 * @return the existing permission groups.
+	 */
+	Collection<PermissionGroup> getGroups();
 
-	Collection<Permissible> getWithPermission(String permission, boolean granted);
 
 }
