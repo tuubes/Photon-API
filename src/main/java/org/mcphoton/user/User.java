@@ -18,43 +18,65 @@
  */
 package org.mcphoton.user;
 
-import java.util.UUID;
-import org.mcphoton.inventory.Inventory;
+import org.mcphoton.entity.living.Player;
 import org.mcphoton.inventory.InventoryHolder;
 import org.mcphoton.permissions.Permissible;
 import org.mcphoton.utils.Location;
 
+import java.util.UUID;
+
 /**
+ * Represents the informations that the Photon server has about a particular user.
  *
  * @author TheElectronWill
  * @author DJmaxZPLAY
  */
 public interface User extends Permissible, InventoryHolder {
 
+	/**
+	 * Gets the user's name, which can be changed by the user.
+	 *
+	 * @return the user's name.
+	 */
 	String getName();
 
+	/**
+	 * Gets the user's account id, which uniquely identifies this user.
+	 *
+	 * @return the user's account id.
+	 */
 	UUID getAccountId();
 
+	/**
+	 * Gets the user's location. If the user is currently connected, this method returns his/her current
+	 * location. If he/she isn't connected, this method returns the last known location of the user; where
+	 * he/she will spawn the next time he/she connects.
+	 *
+	 * @return the user's location.
+	 */
 	Location getLocation();
 
+	/**
+	 * Sets the user's location. If the user is currently connected, this method teleports him/her. If he/she
+	 * isn't connected, this method modifies the server's data so that the user will spawn at this position
+	 * the next time he/she connects.
+	 *
+	 * @param l the location to set.
+	 */
 	void setLocation(Location l);
 
-	void setBanned(boolean b);
+	/**
+	 * Checks if this user is currently connected.
+	 *
+	 * @return {@code true} if the user is connected, else {@code false}.
+	 */
+	boolean isConnected();
 
-	void setOp(boolean b);
-
-	void setWhitelisted(boolean b);
-
-	boolean isBanned();
-
-	boolean hasPlayedBefore();
-
-	boolean isOnline();
-
-	boolean isOp();
-
-	boolean isWhitelisted();
-	
-	Inventory getEnderChest();
-
+	/**
+	 * Returns this user as a {@link Player} instance, if he/she is connected to the server.
+	 *
+	 * @return the Player instance that corresponds to the user.
+	 * @throws IllegalStateException if the user isn't connected.
+	 */
+	Player asPlayer();
 }
