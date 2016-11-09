@@ -18,58 +18,56 @@
  */
 package org.mcphoton.server;
 
-import java.awt.image.BufferedImage;
-import java.net.InetSocketAddress;
 import java.util.Collection;
-import java.util.UUID;
-import org.mcphoton.command.ServerCommandRegistry;
 import org.mcphoton.entity.living.Player;
-import org.mcphoton.network.PacketsManager;
-import org.mcphoton.plugin.ServerPluginsManager;
-import org.mcphoton.utils.Location;
 import org.mcphoton.world.World;
 
+/**
+ * Represents a game server.
+ */
 public interface Server {
 
-	// === Players ===
-	Collection<Player> getOnlinePlayers();
-
-	int getMaxPlayers();
-
-	Player getPlayer(UUID id);
-
-	Player getPlayer(String name);
-
-	//=== Managers & Registries ===
-	PacketsManager getPacketsManager();
-
-	ServerPluginsManager getPluginsManager();
-
+	/**
+	 * @return the server's BansManager.
+	 */
 	BansManager getBansManager();
 
+	/**
+	 * @return the server's WhitelistManager.
+	 */
 	WhitelistManager getWhitelistManager();
 
-	ServerCommandRegistry getCommandRegistry();
+	/**
+	 * Gets a collection containing all the currently connected players. The returned collection isn't
+	 * modifiable.
+	 *
+	 * @return the online players.
+	 */
+	Collection<Player> getOnlinePlayers();
 
-	// === Network ===
-	InetSocketAddress getBoundAddress();
-
-	boolean isOnlineMode();
-
-	// === Worlds ===
+	/**
+	 * Gets a collection containing all the server's worlds. The returned collection isn't modifiable.
+	 *
+	 * @return the server's worlds.
+	 */
 	Collection<World> getWorlds();
 
+	/**
+	 * Gets the world with the specified name.
+	 *
+	 * @param name the world's name.
+	 * @return the world with the specified name.
+	 */
 	World getWorld(String name);
 
-	void registerWorld(World w);
+	/**
+	 * @return the server's configuration.
+	 */
+	ServerConfiguration getConfiguration();
 
-	void unregisterWorld(World w);
-
-	Location getSpawn();
-
-	void setSpawn(Location spawn);
-
-	//=== Misc ===
-	void setFavicon(BufferedImage icon) throws Exception;
+	/**
+	 * @return the server's implementation version.
+	 */
+	String getVersion();
 
 }
