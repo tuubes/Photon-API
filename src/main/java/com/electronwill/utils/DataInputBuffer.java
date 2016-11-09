@@ -21,7 +21,6 @@ package com.electronwill.utils;
 import java.io.DataInput;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import org.mcphoton.network.ProtocolHelper;
 
 /**
  * A simple DataInput implementation based on a ByteBuffer.
@@ -70,7 +69,7 @@ public class DataInputBuffer implements DataInput {
 
 	@Override
 	public int readUnsignedByte() throws IOException {
-		return ProtocolHelper.readUnsignedByte(buff.get());
+		return buff.get() & 0xff;
 	}
 
 	@Override
@@ -80,7 +79,7 @@ public class DataInputBuffer implements DataInput {
 
 	@Override
 	public int readUnsignedShort() throws IOException {
-		return (int) (buff.getShort() & 0x0000ffff);
+		return buff.getShort() & 0xffff;
 	}
 
 	@Override
