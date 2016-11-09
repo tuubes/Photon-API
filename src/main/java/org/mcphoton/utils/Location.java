@@ -121,7 +121,7 @@ public interface Location extends Cloneable {
 
 	/**
 	 * Calculates the distance between this location and the l location. If you want the squared distance use
-	 * {@link #squaredDistance(org.mcphoton.utils.ILocation)}.
+	 * {@link #squaredDistance(org.mcphoton.utils.Location)}.
 	 *
 	 * @return the distance between this location and l.
 	 */
