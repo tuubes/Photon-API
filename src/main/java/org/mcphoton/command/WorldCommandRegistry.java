@@ -18,8 +18,9 @@
  */
 package org.mcphoton.command;
 
-import java.util.List;
 import org.mcphoton.plugin.Plugin;
+
+import java.util.List;
 
 /**
  * Registers commands for one world.
@@ -31,29 +32,29 @@ public interface WorldCommandRegistry {
 	/**
 	 * Registers a command.
 	 *
-	 * @param cmd the command to register.
+	 * @param cmd    the command to register.
 	 * @param plugin the plugin that registers the command.
 	 */
-	void register(Command cmd, Plugin plugin);
+	void registerCommand(Command cmd, Plugin plugin);
 
 	/**
 	 * Unregister a command.
 	 *
-	 * @param cmd the command to unregister.
+	 * @param cmd    the command to unregister.
 	 * @param plugin the plugin that previously registered the command.
 	 */
-	void unregister(Command cmd, Plugin plugin);
+	void unregisterCommand(Command cmd, Plugin plugin);
 
 	/**
 	 * Gets a registered command by its name.
 	 *
 	 * @param cmdName the command's name, or the name of an alias.
 	 */
-	Command getRegistered(String cmdName);
+	Command getRegisteredCommand(String cmdName);
 
 	/**
 	 * Gets a list of all the commands registered by a plugin.
 	 */
-	List<Command> getAllRegistered(Plugin plugin);
+	List<Command> getRegisteredCommands(Plugin plugin);
 
 }

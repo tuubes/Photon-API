@@ -27,11 +27,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A ServerPlugin is loaded for the entire server (unlike a WorldPlugin).
+ * A GlobalPlugin is loaded for the entire server (unlike a WorldPlugin).
  *
  * @author TheElectronWill
  */
-public abstract class ServerPlugin implements Plugin {
+public abstract class GlobalPlugin implements Plugin {
 
 	protected final Logger logger = LoggerFactory.getLogger(getName());
 	private final File directory = new File(Photon.getPluginsDirectory(), getName());

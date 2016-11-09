@@ -18,52 +18,54 @@
  */
 package org.mcphoton.event;
 
-import org.mcphoton.plugin.ServerPlugin;
+import org.mcphoton.plugin.GlobalPlugin;
 
 /**
- * Manages events for the ServerPlugins.
+ * Manages events for the GlobalPlugins.
  *
  * @author TheElectronWill
  */
-public interface ServerEventsManager {
+public interface GlobalEventsManager {
 
 	/**
 	 * Registers all the events handlers defined in the specified listener object. The handlers are registered
-	 * in every world where the ServerPlugin is loaded.
+	 * in every world where the GlobalPlugin is loaded.
 	 *
 	 * @param listener an object that contains some event handlers definitions.
-	 * @param plugin the ServerPlugin that registers these event handlers.
+	 * @param plugin   the GlobalPlugin that registers these event handlers.
 	 */
-	void registerAll(Object listener, ServerPlugin plugin);
+	void registerHandlers(Object listener, GlobalPlugin plugin);
 
 	/**
 	 * Unregisters all the events handlers defined in the specified listener object.
 	 *
 	 * @param listener an object that contains some event handlers definitions.
-	 * @param plugin the ServerPlugin that previously registered the event handlers.
+	 * @param plugin   the GlobalPlugin that previously registered the event handlers.
 	 */
-	void unregisterAll(Object listener, ServerPlugin plugin);
+	void unregisterHandlers(Object listener, GlobalPlugin plugin);
 
 	/**
-	 * Registers an event handler. The handler is registered in every world where the ServerPlugin is loaded.
+	 * Registers an event handler. The handler is registered in every world where the GlobalPlugin is loaded.
 	 *
-	 * @param <E> the event's type
-	 * @param eventClass the event's class
+	 * @param <E>          the event's type
+	 * @param eventClass   the event's class
 	 * @param eventHandler the handler to register
-	 * @param listenOrder the handler's order
-	 * @param plugin the plugin that registers the handler
+	 * @param listenOrder  the handler's order
+	 * @param plugin       the plugin that registers the handler
 	 */
-	<E extends Event> void register(Class<E> eventClass, EventHandler<? super E> eventHandler, ListenOrder listenOrder, ServerPlugin plugin);
+	<E extends Event> void registerHandler(Class<E> eventClass, EventHandler<? super E> eventHandler,
+										   ListenOrder listenOrder, GlobalPlugin plugin);
 
 	/**
 	 * Unregisters an event handler.
 	 *
-	 * @param <E> the event's type
-	 * @param eventClass the event's class
+	 * @param <E>          the event's type
+	 * @param eventClass   the event's class
 	 * @param eventHandler the handler to register
-	 * @param listenOrder the handler's order
-	 * @param plugin the plugin that previously registered the handler
+	 * @param listenOrder  the handler's order
+	 * @param plugin       the plugin that previously registered the handler
 	 */
-	<E extends Event> void unregister(Class<E> eventClass, EventHandler<? super E> eventHandler, ListenOrder listenOrder, ServerPlugin plugin);
+	<E extends Event> void unregisterHandler(Class<E> eventClass, EventHandler<? super E> eventHandler,
+											 ListenOrder listenOrder, GlobalPlugin plugin);
 
 }

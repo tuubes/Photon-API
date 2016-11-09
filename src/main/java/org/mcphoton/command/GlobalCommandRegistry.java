@@ -18,29 +18,30 @@
  */
 package org.mcphoton.command;
 
-import org.mcphoton.plugin.ServerPlugin;
+import org.mcphoton.plugin.GlobalPlugin;
 
 /**
- * Registers commands for the ServerPlugins.
+ * Registers commands for the global plugins.
  *
  * @author TheElectronWill
+ * @see GlobalPlugin
  */
-public interface ServerCommandRegistry {
+public interface GlobalCommandRegistry {
 
 	/**
-	 * Registers a command. The command is registered in every world where the ServerPlugin is loaded.
+	 * Registers a command. The command is registered in every world where the GlobalPlugin is loaded.
 	 *
-	 * @param cmd the command to register.
+	 * @param cmd    the command to register.
 	 * @param plugin the plugin that registers the command.
 	 */
-	void register(Command cmd, ServerPlugin plugin);
+	void registerCommand(Command cmd, GlobalPlugin plugin);
 
 	/**
-	 * Unregister a command.
+	 * Unregisters a command.
 	 *
-	 * @param cmd the command to unregister.
+	 * @param cmd    the command to unregister.
 	 * @param plugin the plugin that previously registered the command.
 	 */
-	void unregister(Command cmd, ServerPlugin plugin);
+	void unregisterCommand(Command cmd, GlobalPlugin plugin);
 
 }

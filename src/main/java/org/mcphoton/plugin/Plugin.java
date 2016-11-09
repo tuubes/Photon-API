@@ -79,55 +79,51 @@ import org.slf4j.Logger;
  * </ul>
  * </li>
  * </ul>
- *
- *
  */
 public interface Plugin {
 
 	/**
-	 * Gets the plugin's name.
+	 * @return the plugin's name.
 	 */
 	String getName();
 
 	/**
-	 * Gets the plugin's author(s).
+	 * @return the plugin's author(s).
 	 */
 	String getAuthor();
 
 	/**
-	 * Gets the plugin's version. The version should follow the principles of
+	 * @return the plugin's version. The version should follow the principles of
 	 * <a href="http://semver.org/">Semantic versioning</a>.
 	 */
 	String getVersion();
 
 	/**
-	 * Gets the plugin's required dependencies. If there is no dependancy it doesn't return null but an empty
+	 * @return the plugin's required dependencies. If there is no dependancy it doesn't return null but an empty
 	 * array instead.
-	 *
 	 * @see Plugin the dependency format
 	 */
 	String[] getRequiredDependencies();
 
 	/**
-	 * Gets the plugin's optional dependencies. If there is no dependancy it doesn't return null but an
+	 * @return the plugin's optional dependencies. If there is no dependancy it doesn't return null but an
 	 * empty array instead.
-	 *
 	 * @see Plugin the dependency format
 	 */
 	String[] getOptionalDependencies();
 
 	/**
-	 * Gets the directory that this plugin may use to store files.
+	 * @return the directory that this plugin may use to store files.
 	 */
 	File getDirectory();
 
 	/**
-	 * Gets the plugin's main config file.
+	 * @return the plugin's main config file.
 	 */
 	File getConfigFile();
 
 	/**
-	 * Gets the plugin's logger.
+	 * @return the plugin's logger.
 	 */
 	Logger getLogger();
 
