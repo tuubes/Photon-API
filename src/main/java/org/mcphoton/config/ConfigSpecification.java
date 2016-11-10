@@ -20,8 +20,8 @@ public class ConfigSpecification {
 	 * @param path         the path.
 	 * @param defaultValue the default value.
 	 */
-	public void define(String path, Object defaultValue) {
-		define(path, defaultValue, (v) -> defaultValue.getClass().isAssignableFrom(v.getClass()));
+	public void defineValue(String path, Object defaultValue) {
+		defineValue(path, defaultValue, (v) -> defaultValue.getClass().isAssignableFrom(v.getClass()));
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class ConfigSpecification {
 	 * @param defaultValue the default value.
 	 * @param validator    the validator that whill check if the actual path's value is correct.
 	 */
-	public void define(String path, Object defaultValue, Predicate<Object> validator) {
+	public void defineValue(String path, Object defaultValue, Predicate<Object> validator) {
 		ValueSpecification spec = new ValueSpecification(defaultValue, validator);
 		map.put(path, spec);
 	}
@@ -46,8 +46,8 @@ public class ConfigSpecification {
 	 * @param acceptableClass the class that will be accepted by the validator.
 	 * @param <T>             the type of the default value.
 	 */
-	public <T> void define(String path, T defaultValue, Class<? super T> acceptableClass) {
-		define(path, defaultValue, (v) -> acceptableClass.isAssignableFrom(v.getClass()));
+	public <T> void defineValue(String path, T defaultValue, Class<? super T> acceptableClass) {
+		defineValue(path, defaultValue, (v) -> acceptableClass.isAssignableFrom(v.getClass()));
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ConfigSpecification {
 	 * @param acceptableValues all the acceptable values. Must contains the default value.
 	 */
 	public void defineString(String path, String defaultValue, Collection<String> acceptableValues) {
-		define(path, defaultValue, acceptableValues::contains);
+		defineValue(path, defaultValue, acceptableValues::contains);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ConfigSpecification {
 	 * @param regexToMatch the regular expression that the actual value has to match to be valid.
 	 */
 	public void defineString(String path, String defaultValue, String regexToMatch) {
-		define(path, defaultValue, (v) -> (v instanceof String) && ((String)v).matches(regexToMatch));
+		defineValue(path, defaultValue, (v) -> (v instanceof String) && ((String)v).matches(regexToMatch));
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class ConfigSpecification {
 	 * @param max          the biggest acceptable value.
 	 */
 	public void defineInt(String path, int defaultValue, int min, int max) {
-		define(path, defaultValue, (v) -> (v instanceof Integer) && ((int)v) >= min && ((int)v) <= max);
+		defineValue(path, defaultValue, (v) -> (v instanceof Integer) && ((int)v) >= min && ((int)v) <= max);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class ConfigSpecification {
 	 * @param max          the biggest acceptable value.
 	 */
 	public void defineLong(String path, long defaultValue, long min, long max) {
-		define(path, defaultValue, (v) -> (v instanceof Long) && ((long)v) >= min && ((long)v) <= max);
+		defineValue(path, defaultValue, (v) -> (v instanceof Long) && ((long)v) >= min && ((long)v) <= max);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class ConfigSpecification {
 	 * @param max          the biggest acceptable value.
 	 */
 	public void defineFloat(String path, float defaultValue, float min, float max) {
-		define(path, defaultValue, (v) -> (v instanceof Float) && ((float)v) >= min && ((float)v) <= max);
+		defineValue(path, defaultValue, (v) -> (v instanceof Float) && ((float)v) >= min && ((float)v) <= max);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class ConfigSpecification {
 	 * @param max          the biggest acceptable value.
 	 */
 	public void defineDouble(String path, double defaultValue, double min, double max) {
-		define(path, defaultValue, (v) -> (v instanceof Double) && ((double)v) >= min && ((double)v) <= max);
+		defineValue(path, defaultValue, (v) -> (v instanceof Double) && ((double)v) >= min && ((double)v) <= max);
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class ConfigSpecification {
 	 * @param <T>                the type of the list.
 	 */
 	public <T> void defineList(String path, List<T> defaultValue, Predicate<? super T> listValueValidator) {
-		define(path, defaultValue, (v) -> {
+		defineValue(path, defaultValue, (v) -> {
 			if (v instanceof List) {
 				List<T> list = (List)v;
 				for (T element : list) {
@@ -228,7 +228,7 @@ public class ConfigSpecification {
 	 * @return the number of corrected values.
 	 */
 	public int correct(Config config) {
-		//TODO
+		return correct(config, (p, iv, cv) -> {});
 	}
 
 	/**
