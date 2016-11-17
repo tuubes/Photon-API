@@ -10,6 +10,11 @@ import java.util.List;
  */
 public interface PermissionGroup extends Permissible {
 	/**
+	 * @return the group's name.
+	 */
+	String getName();
+
+	/**
 	 * @return the group's members.
 	 */
 	Collection<Permissible> getMembers();
