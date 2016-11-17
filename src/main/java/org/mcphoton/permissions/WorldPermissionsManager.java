@@ -21,12 +21,27 @@ package org.mcphoton.permissions;
 import java.util.Collection;
 
 /**
- * A PermissionsManager manages all the permissions.
+ * A WorldPermissionsManager manages the permissions at a world level. In the documentation, the "managed
+ * world" refers to the world for which the WorldPermissionsManager works.
+ * <p>
+ * The world permissions override the global permissions.
+ * </p>
+ *
+ * @author TheElectronWill
+ * @see GlobalPermissionsManager
  */
-public interface PermissionsManager {
+public interface WorldPermissionsManager {
 
 	/**
-	 * Checks if a given Permissible object has the specified permission.
+	 * Checks if a given Permissible object has the specified permission in the managed world.
+	 * <p>
+	 * The result of this method is determined as follows:
+	 * <ul>
+	 * <li>If the specified permission is set in the managed world, the world setting is returned.</li>
+	 * <li>Else, if the specified permission is set globally, the global setting is returned.</li>
+	 * <li>Else the {@code ifNotSet} boolean value is returned.</li>
+	 * </ul>
+	 * </p>
 	 *
 	 * @param p        the permissible.
 	 * @param perm     the permission to check.
@@ -36,7 +51,7 @@ public interface PermissionsManager {
 	boolean hasPermission(Permissible p, String perm, boolean ifNotSet);
 
 	/**
-	 * Checks if a given permission is set on a Permissible.
+	 * Checks if a given permission is set on a Permissible, either in the managed world or globally.
 	 *
 	 * @param p    the permissible.
 	 * @param perm the permission.
@@ -45,7 +60,16 @@ public interface PermissionsManager {
 	boolean isPermissionSet(Permissible p, String perm);
 
 	/**
-	 * Sets a permission for a Permissible.
+	 * Checks if a given permission is set on a Permissible, in the managed world (not globally).
+	 *
+	 * @param p    the permissible.
+	 * @param perm the permission.
+	 * @return {@code true} if the permission is set, {@code false} if it isn't.
+	 */
+	boolean isPermissionSetLocally(Permissible p, String perm);
+
+	/**
+	 * Sets a permission for a Permissible, in the managed world.
 	 *
 	 * @param p       the permissible.
 	 * @param perm    the permission.
@@ -54,7 +78,7 @@ public interface PermissionsManager {
 	void setPermission(Permissible p, String perm, boolean setting);
 
 	/**
-	 * Unsets a permission.
+	 * Unsets a permission, in the managed world.
 	 *
 	 * @param p    the permissible.
 	 * @param perm the permission to unset.
@@ -62,21 +86,32 @@ public interface PermissionsManager {
 	void unsetPermission(Permissible p, String perm);
 
 	/**
-	 * Creates a new empty PermissionGroup.
+	 * Creates a new empty PermissionGroup, in the managed world.
 	 *
-	 * @return an empty PermissionGroup.
+	 * @param name the group's name.
+	 * @return a new empty PermissionGroup.
 	 */
-	PermissionGroup createGroup();
+	PermissionGroup createGroup(String name);
 
 	/**
-	 * Deletes a PermissionGroup. The group's member don't get deleted, they are just removed from the group.
+	 * Deletes a PermissionGroup, from the managed world. The group's member don't get deleted, they are
+	 * just removed from the group.
 	 *
 	 * @param group the group to delete.
 	 */
 	void deleteGroup(PermissionGroup group);
 
 	/**
-	 * Gets a collection of all the existing permission groups. The returned collection isn't modifiable.
+	 * Gets a permission group (of the managed world) by its name.
+	 *
+	 * @param name the group's name.
+	 * @return the permission group with that name, or null if there is none.
+	 */
+	PermissionGroup getGroup(String name);
+
+	/**
+	 * Gets a collection of all the existing permission groups for the managed world (no global groups). The
+	 * returned  collection isn't modifiable.
 	 *
 	 * @return the existing permission groups.
 	 */
