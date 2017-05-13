@@ -1,26 +1,7 @@
-![](https://img.shields.io/badge/next%20version-0.5.0-yellow.svg)
-![](https://img.shields.io/badge/progress-65%25-yellow.svg)
 [![](https://img.shields.io/badge/discord-join%20chat!-7289DA.svg)](https://discord.gg/vWYembz)
 
-Photon API for plugins. **Supports Minecraft version 1.10**.  
+Photon API for plugins.
 
-## License
-**This project is licensed under the terms of the GNU Lesser General Public License version 3**, which you can find in the LICENSE file.
-All the files in this repository (except the LICENSE file which is copyrighted by the Free Software Foundation) are copyrighted by TheElectronWill and others who wrote them (the contributors).
-
-## How to build
-Photon uses [gradle](http://gradle.org) to manage its dependencies. Building the project is very easy:
-
-1. Install the Java 8 SDK (aka JDK 8) if you don't already have it.
-2. Run the following command in the project's root directory: `./gradlew build`
-
-## How to contribute
-You can fork this project and send me pull requests :)
-* To contribute to the Photon API, you must first understand it. Please read [the API wiki](https://github.com/mcphoton/Photon-API/wiki) to know about the project's guidelines and architecture.
-* Decent java skills are required.
-
-## Branches
-The *develop* branch contains the latest **in development** version of the Photon API. It's probably unstable and may change a lot. More stable releases can be found in the *master* branch.
-
-## Current status
-The Photon API **isn't ready** yet, that is, it lacks some important features and may change a lot in the future. But we've worked a lot and it is on the right track.
+## No more development in this repository
+The API has been put in the [Photon-Server repository](https://github.com/mcphoton/Photon-Server).
+This repository is kept for archive purpose only, please use the [Photon-Server repository](https://github.com/mcphoton/Photon-Server) instead.
